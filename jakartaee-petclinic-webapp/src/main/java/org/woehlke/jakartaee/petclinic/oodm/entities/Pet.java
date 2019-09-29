@@ -222,14 +222,16 @@ public class Pet implements TwEntities<Pet> {
         Pet pet = (Pet) o;
         return Objects.equals(getId(), pet.getId()) &&
                 Objects.equals(getUuid(), pet.getUuid()) &&
-                Objects.equals(getName(), pet.getName()) &&
-                Objects.equals(getBirthDate(), pet.getBirthDate()) &&
-                Objects.equals(getType(), pet.getType());
+                getName().equals(pet.getName()) &&
+                getBirthDate().equals(pet.getBirthDate()) &&
+                getType().equals(pet.getType()) &&
+                getOwner().equals(pet.getOwner()) &&
+                Objects.equals(getVisits(), pet.getVisits());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getUuid(), getName(), getBirthDate(), getType());
+        return Objects.hash(getId(), getUuid(), getName(), getBirthDate(), getType(), getOwner(), getVisits());
     }
 
     @Override

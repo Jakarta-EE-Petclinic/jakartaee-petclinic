@@ -186,15 +186,16 @@ public class Visit implements TwEntities<Visit> {
         if (this == o) return true;
         if (!(o instanceof Visit)) return false;
         Visit visit = (Visit) o;
-        return getId().equals(visit.getId()) &&
-                getUuid().equals(visit.getUuid()) &&
+        return Objects.equals(getId(), visit.getId()) &&
+                Objects.equals(getUuid(), visit.getUuid()) &&
                 getDate().equals(visit.getDate()) &&
-                getDescription().equals(visit.getDescription());
+                getDescription().equals(visit.getDescription()) &&
+                Objects.equals(getPet(), visit.getPet());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getUuid(), getDate(), getDescription());
+        return Objects.hash(getId(), getUuid(), getDate(), getDescription(), getPet());
     }
 
     @Override

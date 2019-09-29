@@ -148,13 +148,13 @@ public class PetType implements TwEntities<PetType> {
         if (!(o instanceof PetType)) return false;
         PetType petType = (PetType) o;
         return Objects.equals(getId(), petType.getId()) &&
-                getUuid().equals(petType.getUuid()) &&
+                Objects.equals(getUuid(), petType.getUuid()) &&
                 getName().equals(petType.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getUuid(), getName());
+        return Objects.hash(getId(), getUuid(), getName());
     }
 
     @Override

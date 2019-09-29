@@ -236,10 +236,10 @@ public class Vet implements TwEntities<Vet> {
         if (!(o instanceof Vet)) return false;
         Vet vet = (Vet) o;
         return Objects.equals(getId(), vet.getId()) &&
-                getUuid().equals(vet.getUuid()) &&
+                Objects.equals(getUuid(), vet.getUuid()) &&
                 getFirstName().equals(vet.getFirstName()) &&
                 getLastName().equals(vet.getLastName()) &&
-                getSpecialties().equals(vet.getSpecialties());
+                Objects.equals(getSpecialties(), vet.getSpecialties());
     }
 
     @Override

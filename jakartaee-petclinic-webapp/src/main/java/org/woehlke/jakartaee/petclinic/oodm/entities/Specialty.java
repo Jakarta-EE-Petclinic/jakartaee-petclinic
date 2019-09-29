@@ -151,13 +151,13 @@ public class Specialty implements TwEntities<Specialty> {
         if (!(o instanceof Specialty)) return false;
         Specialty specialty = (Specialty) o;
         return Objects.equals(getId(), specialty.getId()) &&
-                getUuid().equals(specialty.getUuid()) &&
+                Objects.equals(getUuid(), specialty.getUuid()) &&
                 getName().equals(specialty.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getUuid(), getName());
+        return Objects.hash(getId(), getUuid(), getName());
     }
 
     @Override

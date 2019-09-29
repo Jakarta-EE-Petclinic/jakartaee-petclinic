@@ -324,19 +324,20 @@ public class Owner implements TwEntities<Owner> {
         Owner owner = (Owner) o;
         return Objects.equals(getId(), owner.getId()) &&
                 Objects.equals(getUuid(), owner.getUuid()) &&
-                Objects.equals(getFirstName(), owner.getFirstName()) &&
-                Objects.equals(getLastName(), owner.getLastName()) &&
-                Objects.equals(getAddress(), owner.getAddress()) &&
-                Objects.equals(getHouseNumber(), owner.getHouseNumber()) &&
-                Objects.equals(getAddressInfo(), owner.getAddressInfo()) &&
-                Objects.equals(getCity(), owner.getCity()) &&
-                Objects.equals(getZipCode(), owner.getZipCode()) &&
-                Objects.equals(getPhoneNumber(), owner.getPhoneNumber());
+                getFirstName().equals(owner.getFirstName()) &&
+                getLastName().equals(owner.getLastName()) &&
+                getAddress().equals(owner.getAddress()) &&
+                getHouseNumber().equals(owner.getHouseNumber()) &&
+                getAddressInfo().equals(owner.getAddressInfo()) &&
+                getCity().equals(owner.getCity()) &&
+                getZipCode().equals(owner.getZipCode()) &&
+                getPhoneNumber().equals(owner.getPhoneNumber()) &&
+                Objects.equals(getPets(), owner.getPets());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getUuid(), getFirstName(), getLastName(), getAddress(), getHouseNumber(), getAddressInfo(), getCity(), getZipCode(), getPhoneNumber());
+        return Objects.hash(getId(), getUuid(), getFirstName(), getLastName(), getAddress(), getHouseNumber(), getAddressInfo(), getCity(), getZipCode(), getPhoneNumber(), getPets());
     }
 
     @Override
