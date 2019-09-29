@@ -1,0 +1,74 @@
+<ui:composition template="template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <f:loadBundle basename="messages" var="msg" />
+
+    <ui:define name="contentTitle">
+        <h1 id="editPet">
+            <i class="fas fa-paw"></i>
+            <h:outputText value="#{msg['editPet']}"/>
+        </h1>
+    </ui:define>
+
+        <ui:define name="content">
+            <div class="container">
+                <p:panel id="contentPanel" header="#{msg['editPet']}">
+                    <h:form id="editPetForm">
+                        <p:panelGrid id="grid" columns="2" styleClass="table table-striped">
+                            <h:outputLabel value="#{msg['owner']}" for="firstName"/>
+                            <h:panelGroup>
+                                <h:outputText id="firstName"
+                                              value="#{ownerView.entity.firstName}" />&#160;
+                                <h:outputText id="lastName"
+                                              value="#{ownerView.entity.lastName}"/>
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <p:outputLabel value="#{msg['name']}" for="petName"/>
+                                <p:inputText id="petName" styleClass="form-control"
+                                             value="#{ownerView.pet.name}"/>
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <p:outputLabel value="#{msg['birthdate']}" for="petBirthDate"/>
+                                <p:calendar id="petBirthDate"
+                                              value="#{ownerView.pet.birthDate}"
+                                              showIcon="true"
+                                              showButtonBar="true"/>
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <p:outputLabel value="#{msg['petType']}" for="petType"/>
+                                <p:selectOneListbox id="petType" value="#{ownerView.petTypeId}">
+                                    <f:selectItems value="#{ownerView.allPetTypes}"
+                                                   var="petType" itemLabel="#{petType.name}"
+                                                   itemValue="#{petType.id}" />
+                                </p:selectOneListbox>
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <p:commandButton
+                                        id="save"
+                                        type="submit"
+                                        value="#{msg['save']}"
+                                        action="#{ownerView.saveOwnerPetEdit}"
+                                        ajax="false"
+                                        icon="fa fa-fw fa-save"
+                                        styleClass="saveButton"/>
+                                <p:commandButton
+                                        id="cancel"
+                                        type="cancel"
+                                        value="#{msg['cancel']}"
+                                        action="#{ownerView.cancelOwnerPetEdit}"
+                                        ajax="false"
+                                        icon="fa fa-fw fa-times-circle"
+                                        styleClass="cancelButton"
+                                        includeViewParams="true"/>
+                            </h:panelGroup>
+                        </p:panelGrid>
+                    </h:form>
+                </p:panel>
+            </div>
+        </ui:define>
+
+    </ui:composition>

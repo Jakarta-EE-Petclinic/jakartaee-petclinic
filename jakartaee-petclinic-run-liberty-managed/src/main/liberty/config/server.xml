@@ -1,0 +1,51 @@
+<server description="Sample Liberty server">
+    <!-- tag::features[] -->
+    <featureManager>
+	    <feature>javaee-8.0</feature>
+    </featureManager>
+    <!-- end::features[] -->
+
+    <basicRegistry id="basic" realm="BasicRealm">
+        <user name="admin" password="adminpwd" />
+        <user name="tw" password="twpwd" />
+    </basicRegistry>
+
+    <applicationManager autoExpand="true" />
+    <quickStartSecurity userName="admin" userPassword="adminpwd" />
+    <keyStore id="defaultKeyStore" password="mpKeystore" />
+
+    <httpEndpoint
+            id="defaultHttpEndpoint"
+            host="*"
+            httpPort="${default.http.port}"
+            httpsPort="${default.https.port}"/>
+
+    <variable name="io_openliberty_guides_system_inMaintenance" value="false"/>
+
+    <webApplication location="${packageFile}" contextRoot="/petclinic" />
+
+    <!-- Postgres coffee-shop-db definition -->
+    <dataSource id="DefaultDataSource"
+                jndiName="jdbc/javaee8petclinicDS"
+                jdbcDriverRef="postgresql-driver"
+                type="javax.sql.ConnectionPoolDataSource"
+                transactional="true">
+        <properties serverName="localhost"
+                    portNumber="5432"
+                    databaseName="petclinic"
+                    user="java"
+                    password="javapwd"/>
+    </dataSource>
+
+    <jdbcDriver id="postgresql-driver"
+                javax.sql.XADataSource="org.postgresql.xa.PGXADataSource"
+                javax.sql.ConnectionPoolDataSource="org.postgresql.ds.PGConnectionPoolDataSource"
+                libraryRef="postgresql-library"/>
+
+    <library id="postgresql-library">
+        <fileset id="PostgreSQLFileset"
+                 dir="${postgresql.jar.dir}"
+                 includes="${postgresql.jar.file}"/>
+    </library>
+
+</server>

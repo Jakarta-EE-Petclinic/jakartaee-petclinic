@@ -1,0 +1,110 @@
+<ui:composition template="template.xhtml"
+            xmlns="http://www.w3.org/1999/xhtml"
+            xmlns:h="http://java.sun.com/jsf/html"
+            xmlns:f="http://java.sun.com/jsf/core"
+            xmlns:ui="http://java.sun.com/jsf/facelets"
+            xmlns:p="http://primefaces.org/ui">
+
+    <f:loadBundle basename="messages" var="msg" />
+
+    <ui:define name="contentTitle">
+        <h1 id="contentTitleHeadline" class="contentTitleHeadline">
+            <i id="contentTitleHeadlineIcon" class="fa fa-fw fa-user contentTitleHeadlineIcon"/>
+            <h:outputText
+                    id="contentTitleHeadlineText"
+                    styleClass="contentTitleHeadlineText"
+                    value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.contentTitleHeadline.owner.list']}"/>
+        </h1>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="container">
+            <p:panel id="contentPanel"
+                     styleClass="contentPanel"
+                     header="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.contentPanel.owner.list']}">
+                <h:form id="findEntityForm">
+                    <p:panelGrid id="newAndSearchGrid" columns="4" styleClass="newAndSearchGrid">
+                        <p:commandButton
+                                id="showNewFormButton"
+                                styleClass="showNewFormButton"
+                                action="#{ownerView.showNewForm}"
+                                icon="fa fa-fw fa-plus-square"
+                                ajax="false"
+                                value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.showNewFormButton']}" />
+                        <p:outputLabel
+                                id="labelTextSearchterm"
+                                styleClass="labelTextSearchterm"
+                                value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.searchterm.owner']}"
+                                for="inputTextSearchterm"/>
+                        <p:inputText id="inputTextSearchterm"
+                                     styleClass="inputTextSearchterm"
+                                     value="#{ownerView.searchterm}" />
+                        <p:commandButton id="searchButton"
+                                         styleClass="searchButton"
+                                         action="#{ownerView.search}"
+                                         value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.searchButton']}"
+                                         icon="fa fa-fw fa-search"
+                                         ajax="false"/>
+                    </p:panelGrid>
+                </h:form>
+                <h:form id="entityDataTableForm">
+                    <p:panelGrid id="tableGrid" styleClass="tableGrid" columns="1">
+                        <p:dataTable id="entityDataTable"
+                                     styleClass="entityDataTable"
+                                     value="#{ownerView.list}"
+                                     var="owner"
+                                     rowKey="#{owner.id}"
+                                     selection="#{ownerView.selected}"
+                                     selectionMode="single"
+                                     scrollable="true"
+                                     scrollHeight="200">
+                            <p:column headerText="#{msg['org.woehlke.javaee8.petclinic.oodm.entities.owner.firstName']}"
+                                      sortBy="#{owner.firstName}">
+                                <h:outputText id="firstName"
+                                              styleClass="entityDataTableCell"
+                                              value="#{owner.firstName}"/>
+                            </p:column>
+                            <p:column headerText="#{msg['org.woehlke.javaee8.petclinic.oodm.entities.owner.lastName']}"
+                                      sortBy="#{owner.lastName}">
+                                <h:outputText id="lastName"
+                                              styleClass="entityDataTableCell"
+                                              value="#{owner.lastName}"/>
+                            </p:column>
+                            <p:column headerText="#{msg['org.woehlke.javaee8.petclinic.oodm.entities.owner.city']}"
+                                      sortBy="#{owner.city}">
+                                <h:outputText id="city"
+                                              styleClass="entityDataTableCell"
+                                              value="#{owner.city}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </p:panelGrid>
+                    <p:panelGrid id="footerGrid" styleClass="footerGrid" columns="4">
+                        <p:commandButton
+                                id="showEditFormButton"
+                                styleClass="showEditFormButton"
+                                action="#{ownerView.showSelectedEntity}"
+                                value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.showEditFormButton']}"
+                                ajax="false"
+                                icon="fa fa-fw fa-edit"/>
+                        <p:commandButton
+                                id="deleteSelectedButton"
+                                styleClass="deleteSelectedButton"
+                                action="#{ownerView.deleteSelected}"
+                                value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.deleteSelectedButton']}"
+                                ajax="false"
+                                icon="fa fa-fw fa-trash"/>
+                        <p:link href="./rest/owner/list/xml">
+                            <i class="fa fa-fw fa-arrow-alt-circle-right"/>
+                            <h:outputText value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.showXml']}"/>
+                        </p:link>
+                        <p:link href="./rest/owner/list/json">
+                            <i class="fa fa-fw fa-arrow-alt-circle-right"/>
+                            <h:outputText value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.showJson']}"/>
+                        </p:link>
+                    </p:panelGrid>
+                </h:form>
+            </p:panel>
+        </div>
+    </ui:define>
+
+</ui:composition>

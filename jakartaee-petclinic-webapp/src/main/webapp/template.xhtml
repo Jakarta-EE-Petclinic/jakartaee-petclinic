@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="#{languageView.locale.language}"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<f:view locale="#{languageView.locale}">
+<f:loadBundle basename="messages" var="msg" />
+<h:head>
+    <title>Jakarta EE 8 Petclinic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- Bootstrap -->
+    <link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Optional theme -->
+    <!--
+    <link rel="stylesheet" href="webjars/bootstrap/4.3.1/css/bootstrap-theme.min.css" />
+    -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--
+    <script type="text/javascript" src="webjars/jquery/3.4.1/jquery.min.js"></script>
+    -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <link rel="stylesheet" href="webjars/font-awesome/5.10.1/css/all.css" />
+    <link rel="stylesheet" href="primefaces-luna-amber/theme.css" />
+    <link rel="stylesheet" href="javaee8petclinc.css" />
+    <link rel="stylesheet" href="primefaces/components.css" />
+    <!-- For Community Themes except 'Luna' and 'Nova' theme -->
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
+    <h:outputScript name="jquery/jquery.js" library="primefaces"/>
+    <h:outputScript name="jquery/jquery-plugins.js" library="primefaces"/>
+    <script type="text/javascript" src="primefaces/components.js"></script>
+</h:head>
+<h:body>
+<div class="container">
+
+    <header>
+        <h:form>
+            <p:menubar>
+                <p:menuitem value="#{msg['home']}"
+                            url="home.jsf" icon="pi pi-home"
+                            update="messages"
+                            ajax="false" />
+                <p:submenu label="#{msg['owners']}" icon="fa fa-fw fa-user">
+                    <p:menuitem value="#{msg['owners']}"
+                                url="ownerList.jsf"
+                                icon="fa fa-fw fa-user"
+                                update="messages"
+                                ajax="false" />
+                    <p:separator />
+                    <p:menuitem value="#{msg['petTypes']}"
+                                url="petTypeList.jsf"
+                                icon="fa fa-fw fa-paw"
+                                update="messages"
+                                ajax="false"/>
+                </p:submenu>
+                <p:submenu label="#{msg['veterinarians']}" icon="fa fa-fw fa-stethoscope">
+                    <p:menuitem value="#{msg['veterinarians']}"
+                                url="vetList.jsf"
+                                icon="fa fa-fw fa-stethoscope"
+                                update="messages"
+                                ajax="false" />
+                    <p:separator />
+                    <p:menuitem value="#{msg['specialties']}"
+                                url="specialtyList.jsf"
+                                icon="fa fa-fw fa-briefcase"
+                                update="messages"
+                                ajax="false" />
+                </p:submenu>
+                <p:menuitem value="#{msg['help']}" url="help.jsf" icon="pi pi-question-circle" />
+                <f:facet name="options">
+                    <span class="ui-inputgroup">
+                        <p:selectOneMenu value="#{languageView.localeSelected}">
+                            <f:selectItems value="#{languageView.countries}"/>
+                        </p:selectOneMenu>
+                        <p:commandButton
+                                type="submit"
+                                ajax="false"
+                                icon="fa fa-fw fa-save"
+                                update="growl"
+                                action="#{languageView.changeLanguage}"/>
+                    </span>
+                </f:facet>
+            </p:menubar>
+        </h:form>
+    </header>
+
+    <section>
+        <br/>
+        <div class="container">
+            <div class="row">
+                <p:messages id="messagesOut" showDetail="true" closable="true">
+                    <p:autoUpdate />
+                </p:messages>
+            </div>
+            <div class="row">
+                <ui:insert name="contentTitle">Content Title</ui:insert>
+            </div>
+        </div>
+        <hr/>
+    </section>
+
+    <section>
+        <ui:insert name="content">Main Content</ui:insert>
+    </section>
+
+    <footer>
+        <hr/>
+        <div style="float: left">
+        © 2019 Thomas Wöhlke
+        </div>
+        <div style="float: right">
+
+        </div>
+    </footer>
+</div>
+</h:body>
+</f:view>
+</html>

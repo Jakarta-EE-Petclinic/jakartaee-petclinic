@@ -1,0 +1,66 @@
+<ui:composition template="template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <f:loadBundle basename="messages" var="msg" />
+
+    <ui:define name="contentTitle">
+        <h1>
+            <i class="fa fa-stethoscope"></i>
+            <h:outputText value="#{msg['addNewVeterinarian']}"/>
+        </h1>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="container">
+            <h:form id="addNewVeterinarianForm">
+                <p:panel id="contentPanel" header="#{msg['addNewVeterinarian']}" style="margin-bottom:20px">
+                    <p:panelGrid id="gridall" columns="2" styleClass="foo">
+                        <p:panelGrid id="gridData" columns="2" styleClass="foo">
+                            <p:outputLabel value="#{msg['firstName']}"
+                                           for="firstName"/>
+                            <p:inputText id="firstName"
+                                         styleClass="form-control"
+                                         value="#{vetView.entity.firstName}"/>
+                            <p:outputLabel value="#{msg['lastName']}"
+                                           for="lastName"/>
+                            <p:inputText id="lastName"
+                                         styleClass="form-control"
+                                         value="#{vetView.entity.lastName}"/>
+                        </p:panelGrid>
+                        <p:panelGrid id="gridPickList" columns="1" styleClass="foo">
+                            <p:pickList
+                                    id="selectedSpecialtiesPickList"
+                                    value="#{vetView.specialtiesPickList}"
+                                    var="specialty"
+                                    converter="specialtyConverter"
+                                    itemValue="#{specialty}"
+                                    itemLabel="#{specialty.name}"/>
+                        </p:panelGrid>
+                    </p:panelGrid>
+                    <p:panelGrid id="buttons" columns="2" styleClass="foo">
+                        <p:commandButton id="save"
+                                         type="submit"
+                                         styleClass="saveButton"
+                                         icon="fa fa-fw fa-save"
+                                         value="#{msg['save']}"
+                                         ajax="false"
+                                         action="#{vetView.saveNew}"/>
+                        <p:commandButton id="cancel"
+                                         type="cancel"
+                                         styleClass="cancelButton"
+                                         icon="fa fa-fw fa-times-circle"
+                                         value="#{msg['cancel']}"
+                                         ajax="false"
+                                         action="#{vetView.cancel}"
+                                         includeViewParams="true"/>
+                    </p:panelGrid>
+                </p:panel>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>

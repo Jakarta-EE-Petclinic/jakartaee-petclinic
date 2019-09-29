@@ -1,0 +1,46 @@
+<ui:composition template="template.xhtml"
+            xmlns="http://www.w3.org/1999/xhtml"
+            xmlns:h="http://java.sun.com/jsf/html"
+            xmlns:f="http://java.sun.com/jsf/core"
+            xmlns:ui="http://java.sun.com/jsf/facelets"
+            xmlns:p="http://primefaces.org/ui">
+
+    <f:loadBundle basename="messages" var="msg" />
+
+    <ui:define name="contentTitle">
+        <h1 id="addNewSpecialty">
+            <i class="fas fa-briefcase"></i>
+            <h:outputText value="#{msg['addNewSpecialty']}"/>
+        </h1>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="container">
+            <p:panel id="contentPanel" header="#{msg['addNewSpecialty']}" style="margin-bottom:20px">
+                <p:panelGrid id="grid" columns="4" cellpadding="5" styleClass="foo">
+                    <h:form id="addNewSpecialtyForm">
+                        <p:outputLabel value="#{msg['name']}" for="name"/>
+                        <p:inputText id="name"
+                                     value="#{specialtyView.entity.name}"/>
+                        <p:commandButton id="save"
+                                         type="submit"
+                                         styleClass="saveButton"
+                                         icon="fa fa-fw fa-save"
+                                         value="#{msg['save']}"
+                                         ajax="false"
+                                         action="#{specialtyView.saveNew}"/>
+                        <p:commandButton id="cancel"
+                                         type="cancel"
+                                         styleClass="cancelButton"
+                                         icon="fa fa-fw fa-times-circle"
+                                         value="#{msg['cancel']}"
+                                         ajax="false"
+                                         action="#{specialtyView.cancel}"
+                                         includeViewParams="true"/>
+                    </h:form>
+                </p:panelGrid>
+            </p:panel>
+        </div>
+    </ui:define>
+
+</ui:composition>

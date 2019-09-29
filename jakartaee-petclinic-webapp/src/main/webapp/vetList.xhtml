@@ -1,0 +1,118 @@
+<ui:composition template="template.xhtml"
+            xmlns="http://www.w3.org/1999/xhtml"
+            xmlns:h="http://java.sun.com/jsf/html"
+            xmlns:f="http://java.sun.com/jsf/core"
+            xmlns:ui="http://java.sun.com/jsf/facelets"
+            xmlns:p="http://primefaces.org/ui">
+
+    <f:loadBundle basename="messages" var="msg" />
+
+    <ui:define name="contentTitle">
+        <h1 id="contentTitleHeadline" class="contentTitleHeadline">
+            <i id="contentTitleHeadlineIcon" class="fa fa-stethoscope contentTitleHeadlineIcon"/>
+            <h:outputText
+                id="contentTitleHeadlineText"
+                styleClass="contentTitleHeadlineText"
+                value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.list']}"/>
+        </h1>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="container">
+            <p:panel id="contentPanel"
+                     styleClass="contentPanel"
+                     header="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.contentPanel.veterinarian.list']}">
+                <h:form id="findEntityForm">
+                    <p:panelGrid id="newAndSearchGrid" columns="4" styleClass="newAndSearchGrid">
+                        <p:commandButton
+                                id="showNewFormButton"
+                                styleClass="showNewFormButton"
+                                action="#{vetView.showNewForm}"
+                                ajax="false"
+                                icon="fa fa-fw fa-plus-square"
+                                value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.showNewFormButton']}"/>
+                        <p:outputLabel
+                                id="labelTextSearchterm"
+                                styleClass="labelTextSearchterm"
+                                value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.searchterm.veterinarian']}"
+                                for="inputTextSearchterm"/>
+                        <p:inputText
+                                id="inputTextSearchterm"
+                                value="#{vetView.searchterm}"/>
+                        <p:commandButton
+                                id="searchButton"
+                                action="#{vetView.search}"
+                                value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.searchButton']}"
+                                icon="fa fa-fw fa-search"
+                                ajax="false"/>
+                    </p:panelGrid>
+                </h:form>
+                <h:form id="entityDataTableForm">
+                    <p:panelGrid id="tableGrid" columns="1" styleClass="tableGrid">
+                        <p:dataTable id="entityDataTable"
+                                     styleClass="entityDataTable"
+                                     value="#{vetView.list}"
+                                     var="vet"
+                                     selection="#{vetView.selected}"
+                                     rowKey="#{vet.id}"
+                                     selectionMode="single"
+                                     scrollable="true"
+                                     scrollHeight="200">
+                            <p:column
+                                    id="columnVeterinarianFirstName"
+                                    styleClass="columnVeterinarianFirstName"
+                                    headerText="#{msg['org.woehlke.javaee8.petclinic.oodm.entities.veterinarian.firstName']}"
+                                    sortBy="#{vet.firstName}">
+                                 <h:outputText
+                                         styleClass="entityDataTableCell"
+                                         value="#{vet.firstName}"/>
+                            </p:column>
+                            <p:column
+                                    id="columnVeterinarianLastName"
+                                    styleClass="columnVeterinarianLastName"
+                                    headerText="#{msg['org.woehlke.javaee8.petclinic.oodm.entities.veterinarian.lastName']}"
+                                    sortBy="#{vet.lastName}">
+                                <h:outputText
+                                        styleClass="entityDataTableCell"
+                                        value="#{vet.lastName}"/>
+                            </p:column>
+                            <p:column
+                                    id="columnVeterinarianSpecialties"
+                                    styleClass="columnVeterinarianSpecialties"
+                                    headerText="#{msg['org.woehlke.javaee8.petclinic.oodm.entities.veterinarian.specialties']}"
+                                    sortBy="#{vet.specialtiesAsString}">
+                                <h:outputText
+                                        styleClass="entityDataTableCell"
+                                        value="#{vet.specialtiesAsString}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </p:panelGrid>
+                    <p:panelGrid id="footerGrid" columns="4">
+                        <p:commandButton
+                                id="showEditFormButton"
+                                styleClass="showEditFormButton"
+                                action="#{vetView.showEditForm}"
+                                ajax="false"
+                                value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.showEditFormButton']}"
+                                icon="fa fa-fw fa-edit"/>
+                        <p:commandButton
+                                id="deleteSelectedButton"
+                                styleClass="deleteSelectedButton"
+                                action="#{vetView.deleteSelected}"
+                                ajax="false"
+                                value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.deleteSelectedButton']}"
+                                icon="fa fa-fw fa-trash"/>
+                        <p:link href="./rest/vet/list/xml">
+                            <i class="fa fa-fw fa-arrow-alt-circle-right"/>
+                            <h:outputText value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.showXml']}"/>
+                        </p:link>
+                        <p:link href="./rest/vet/list/json">
+                            <i class="fa fa-fw fa-arrow-alt-circle-right"/>
+                            <h:outputText value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.showJson']}"/>
+                        </p:link>
+                    </p:panelGrid>
+                </h:form>
+            </p:panel>
+        </div>
+    </ui:define>
+</ui:composition>
