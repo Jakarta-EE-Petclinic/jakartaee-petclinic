@@ -28,7 +28,7 @@ public class PetDaoImpl implements PetDao {
 
     private static Logger log = LogManager.getLogger(PetDaoImpl.class.getName());
 
-    @PersistenceContext(unitName="javaee8petclinic")
+    @PersistenceContext(unitName="jakartaeePetclinic")
     private EntityManager entityManager;
 
 

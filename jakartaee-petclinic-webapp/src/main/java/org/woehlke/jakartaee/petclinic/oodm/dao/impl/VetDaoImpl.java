@@ -31,7 +31,7 @@ public class VetDaoImpl implements VetDao {
 
     private static Logger log = LogManager.getLogger(VetDaoImpl.class.getName());
 
-    @PersistenceContext(unitName="javaee8petclinic")
+    @PersistenceContext(unitName="jakartaeePetclinic")
     private EntityManager entityManager;
 
     @Override

@@ -30,7 +30,7 @@ public class SpecialtyDaoImpl implements SpecialtyDao {
 
     private static Logger log = LogManager.getLogger(SpecialtyDaoImpl.class.getName());
 
-    @PersistenceContext(unitName="javaee8petclinic")
+    @PersistenceContext(unitName="jakartaeePetclinic")
     private EntityManager entityManager;
 
     @Override
