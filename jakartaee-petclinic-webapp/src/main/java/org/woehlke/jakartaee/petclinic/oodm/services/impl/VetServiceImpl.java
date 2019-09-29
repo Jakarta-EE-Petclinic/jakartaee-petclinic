@@ -43,15 +43,7 @@ public class VetServiceImpl implements VetService {
     @Override
     public Vet addNew(Vet vet) {
         log.debug("about to addNew: "+vet.toString());
-        Set<Specialty> specialties = new HashSet<>();
-        for(Specialty specialty:vet.getSpecialties()){
-            specialties.add(specialtyDao.findSpecialtyByName(specialty.getName()));
-        }
-        vet.setSpecialties(new HashSet<>());
-        vet.setUuid(UUID.randomUUID());
-        vet = this.vetDao.addNew(vet);
-        vet.setSpecialties(specialties);
-        return this.vetDao.update(vet);
+        return this.vetDao.addNew(vet);
     }
 
     @Override

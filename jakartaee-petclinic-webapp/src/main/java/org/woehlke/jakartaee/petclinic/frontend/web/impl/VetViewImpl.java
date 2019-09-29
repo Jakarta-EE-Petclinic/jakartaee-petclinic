@@ -290,7 +290,15 @@ public class VetViewImpl implements VetView, ViewModelOperations {
     @Override
     public void saveNewEntity() {
         try {
-            this.selected = this.entityService.addNew(this.entity);
+            this.entity.setUuid(UUID.randomUUID());
+            Set<Specialty> specialties = new HashSet<>();
+            for(Specialty specialty:this.entity.getSpecialties()){
+                specialties.add(specialtyService.findSpecialtyByName(specialty.getName()));
+            }
+            this.entity.setSpecialties(new HashSet<>());
+            this.entity = this.entityService.addNew( this.entity);
+            this.entity.setSpecialties(specialties);
+            this.selected = this.entityService.update(this.entity);
             this.entity = this.selected;
         } catch (EJBException e){
             log.warn(e.getMessage()+this.entity.toString());
@@ -300,6 +308,12 @@ public class VetViewImpl implements VetView, ViewModelOperations {
     @Override
     public void saveEditedEntity() {
         try {
+            Set<Specialty> specialties = new HashSet<>();
+            for(Specialty specialty:this.entity.getSpecialties()){
+                specialties.add(specialtyService.findSpecialtyByName(specialty.getName()));
+            }
+            this.entity.setSpecialties(specialties);
+            this.selected = this.entityService.update(this.entity);
             this.entity = this.entityService.update(this.entity);
             this.selected = this.entity;
             frontendMessagesView.addInfoMessage("Updated", this.entity.getPrimaryKeyWithId());
