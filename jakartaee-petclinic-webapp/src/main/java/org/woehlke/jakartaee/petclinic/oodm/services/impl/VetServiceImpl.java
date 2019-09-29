@@ -17,6 +17,7 @@ import javax.ejb.Stateless;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Stateless
 public class VetServiceImpl implements VetService {
@@ -47,6 +48,7 @@ public class VetServiceImpl implements VetService {
             specialties.add(specialtyDao.findSpecialtyByName(specialty.getName()));
         }
         vet.setSpecialties(new HashSet<>());
+        vet.setUuid(UUID.randomUUID());
         vet = this.vetDao.addNew(vet);
         vet.setSpecialties(specialties);
         return this.vetDao.update(vet);
