@@ -232,12 +232,12 @@
                     <schemaSourceExcludeFilters>
                         <noJaxbIndex implementation="org.codehaus.mojo.jaxb2.shared.filters.pattern.PatternFileFilter">
                             <patterns>
-                                <pattern>org.woehlke.javaee8.petclinic.frontend</pattern>
-                                <pattern>org.woehlke.javaee8.petclinic.application</pattern>
-                                <pattern>org.woehlke.javaee8.petclinic.frontend</pattern>
-                                <pattern>org.woehlke.javaee8.petclinic.frontend</pattern>
-                                <pattern>org.woehlke.javaee8.petclinic.oodm.dao</pattern>
-                                <pattern>org.woehlke.javaee8.petclinic.oodm.services</pattern>
+                                <pattern>org.woehlke.jakartaee.petclinic.frontend</pattern>
+                                <pattern>org.woehlke.jakartaee.petclinic.application</pattern>
+                                <pattern>org.woehlke.jakartaee.petclinic.frontend</pattern>
+                                <pattern>org.woehlke.jakartaee.petclinic.frontend</pattern>
+                                <pattern>org.woehlke.jakartaee.petclinic.oodm.dao</pattern>
+                                <pattern>org.woehlke.jakartaee.petclinic.oodm.services</pattern>
                             </patterns>
                         </noJaxbIndex>
                     </schemaSourceExcludeFilters>

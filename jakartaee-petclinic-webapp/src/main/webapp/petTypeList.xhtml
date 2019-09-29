@@ -13,14 +13,14 @@
             <h:outputText
                     id="contentTitleHeadlineText"
                     styleClass="contentTitleHeadlineText"
-                    value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.contentTitleHeadline.petType.list']}"/>
+                    value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.list']}"/>
         </h1>
     </ui:define>
 
     <ui:define name="content">
         <div class="container">
             <p:panel id="contentPanel"
-                     header="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.contentPanel.petType.list']}"
+                     header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentPanel.petType.list']}"
                      styleClass="contentPanel">
                 <h:form id="findEntityForm">
                         <p:panelGrid id="newAndSearchGrid" columns="4" styleClass="newAndSearchGrid">
@@ -30,11 +30,11 @@
                                     action="#{petTypeView.showNewForm}"
                                     icon="fa fa-fw fa-plus-square"
                                     ajax="false"
-                                    value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.showNewFormButton']}" />
+                                    value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.showNewFormButton']}" />
                             <p:outputLabel
                                     id="labelTextSearchterm"
                                     styleClass="labelTextSearchterm"
-                                    value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.searchterm.petType']}"
+                                    value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.petType']}"
                                     for="inputTextSearchterm"/>
                             <p:inputText id="inputTextSearchterm"
                                          styleClass="inputTextSearchterm"
@@ -45,7 +45,7 @@
                                     action="#{petTypeView.search}"
                                              icon="fa fa-fw fa-search"
                                              ajax="false"
-                                    value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.searchButton']}" />
+                                    value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchButton']}" />
                         </p:panelGrid>
                 </h:form>
                 <h:form id="entityDataTableForm">
@@ -62,7 +62,7 @@
                             <p:column
                                     id="columnPetTypeName"
                                     styleClass="columnPetTypeName"
-                                    headerText="#{msg['org.woehlke.javaee8.petclinic.oodm.entities.petType.name']}"
+                                    headerText="#{msg['org.woehlke.jakartaee.petclinic.oodm.entities.petType.name']}"
                                     sortBy="#{petType.name}">
                                 <h:outputText
                                         styleClass="entityDataTableCell"
@@ -74,23 +74,23 @@
                         <p:commandButton
                                 id="showEditFormButton"
                                 action="#{petTypeView.showEditForm}"
-                                value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.showEditFormButton']}"
+                                value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.showEditFormButton']}"
                                 ajax="false"
                                 icon="fa fa-fw fa-edit" />
                         <p:commandButton
                                 id="deleteSelectedButton"
                                 action="#{petTypeView.deleteSelected}"
-                                value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.deleteSelectedButton']}"
+                                value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.deleteSelectedButton']}"
                                 ajax="false"
                                 icon="fa fa-fw fa-trash"/>
                     </p:panelGrid>
                     <p:link href="./rest/petType/list/xml">
                         <i class="fa fa-fw fa-arrow-alt-circle-right"/>
-                        <h:outputText value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.showXml']}"/>
+                        <h:outputText value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.showXml']}"/>
                     </p:link>
                     <p:link href="./rest/petType/list/json">
                         <i class="fa fa-fw fa-arrow-alt-circle-right"/>
-                        <h:outputText value="#{msg['org.woehlke.javaee8.petclinic.frontend.web.entity.list.showJson']}"/>
+                        <h:outputText value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.showJson']}"/>
                     </p:link>
                 </h:form>
             </p:panel>

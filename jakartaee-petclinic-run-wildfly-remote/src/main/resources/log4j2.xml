@@ -6,16 +6,16 @@
 		</Console>
 	</Appenders>
 	<Loggers>
-		<Logger name="org.woehlke.javaee8.petclinic.application" level="info" additivity="false">
+		<Logger name="org.woehlke.jakartaee.petclinic.application" level="info" additivity="false">
 			<AppenderRef ref="Console"/>
 		</Logger>
-		<Logger name="org.woehlke.javaee8.petclinic.oodm" level="info" additivity="false">
+		<Logger name="org.woehlke.jakartaee.petclinic.oodm" level="info" additivity="false">
 			<AppenderRef ref="Console"/>
 		</Logger>
-		<Logger name="org.woehlke.javaee8.petclinic.frontend.web" level="debug" additivity="false">
+		<Logger name="org.woehlke.jakartaee.petclinic.frontend.web" level="debug" additivity="false">
 			<AppenderRef ref="Console"/>
 		</Logger>
-		<Logger name="org.woehlke.javaee8.petclinic.frontend.api" level="info" additivity="false">
+		<Logger name="org.woehlke.jakartaee.petclinic.frontend.api" level="info" additivity="false">
 			<AppenderRef ref="Console"/>
 		</Logger>
 		<Root level="warn">
