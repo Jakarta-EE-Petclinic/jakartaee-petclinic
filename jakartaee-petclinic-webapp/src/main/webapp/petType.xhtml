@@ -55,8 +55,8 @@
     <ui:define name="content">
         <div class="container" id="contentContainer">
             <ui:fragment rendered="#{petTypeView.flowStateNew}">
-                <h:form id="addNewSpecialtyForm" styleClass="addNewEntityForm">
-                    <p:panel id="addNewSpecialtyPanel" styleClass="contentPanel"
+                <h:form id="addNewPetTypeForm" styleClass="addNewEntityForm">
+                    <p:panel id="addNewPetTypePanel" styleClass="contentPanel"
                              header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.addNew']}">
                         <div class="ui-g">
                             <div class="ui-g-4">
@@ -91,9 +91,9 @@
                 </h:form>
             </ui:fragment>
             <ui:fragment rendered="#{petTypeView.flowStateEdit}">
-                <h:form id="editSpecialtyForm">
+                <h:form id="editPetTypeForm">
                     <p:panel
-                            id="editSpecialtyFormPanel"
+                            id="editPetTypePanel"
                             styleClass="contentPanel"
                             header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.edit']}">
                         <div class="ui-g">
@@ -129,12 +129,12 @@
                 </h:form>
             </ui:fragment>
             <ui:fragment rendered="#{petTypeView.flowStatDelete}">
-                <h:form id="deleteSpecialtyForm" styleClass="deleteEntityForm">
-                    <p:panel id="deleteSpecialtyPanel" styleClass="contentPanel"
+                <h:form id="deletePetTypeForm" styleClass="deleteEntityForm">
+                    <p:panel id="deletePetTypePanel" styleClass="contentPanel"
                              header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.delete']}">
                         <div class="ui-g">
                             <div class="ui-g-4">
-                                <p:outputLabel value="#{msg['name']}" for="nameNew"/>
+                                <p:outputLabel value="#{msg['name']}" for="nameDelete"/>
                             </div>
                             <div class="ui-g-4">
                                 <p:inputText id="nameDelete"
