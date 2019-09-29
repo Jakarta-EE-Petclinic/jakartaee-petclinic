@@ -155,7 +155,7 @@ public class SpecialtyViewImpl implements SpecialtyView, ViewModelOperations {
     @Override
     public String showNewForm(){
        this.newEntity();
-        this.flowState = CrudViewFlowState.NEW;
+       this.flowState = CrudViewFlowState.NEW;
        return JSF_PAGE;
     }
 
