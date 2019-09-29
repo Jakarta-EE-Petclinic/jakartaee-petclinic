@@ -281,7 +281,7 @@ public class SpecialtyViewImpl implements SpecialtyView, ViewModelOperations {
         } else {
             loadList();
         }
-        return list;
+        return this.list;
     }
 
     @Override

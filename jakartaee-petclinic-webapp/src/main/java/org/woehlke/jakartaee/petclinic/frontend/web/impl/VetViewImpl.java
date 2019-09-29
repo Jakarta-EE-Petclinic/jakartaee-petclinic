@@ -38,6 +38,8 @@ public class VetViewImpl implements VetView, ViewModelOperations {
 
     private static Logger log = LogManager.getLogger(VetViewImpl.class.getName());
 
+    private final static String JSF_PAGE = "vet.jsf";
+
     @SuppressWarnings("deprecation")
     @ManagedProperty(value = "#{languageView}")
     private LanguageView languageView;
@@ -59,6 +61,8 @@ public class VetViewImpl implements VetView, ViewModelOperations {
     private String searchterm;
 
     private DualListModel<Specialty> specialtiesPickList;
+
+    private CrudViewFlowState flowState;
 
     @PostConstruct
     public void init() {
@@ -125,10 +129,11 @@ public class VetViewImpl implements VetView, ViewModelOperations {
         this.frontendMessagesView = frontendMessagesView;
     }
 
-    public String showNewForm() {
-        this.entity = new Vet();
-        initSpecialtiesPickList();
-        return "vetNew.jsf";
+    @Override
+    public String showNewForm(){
+        this.newEntity();
+        this.flowState = CrudViewFlowState.NEW;
+        return JSF_PAGE;
     }
 
     public String saveNew() {
@@ -151,14 +156,14 @@ public class VetViewImpl implements VetView, ViewModelOperations {
             log.warn(this.entity.toString());
             log.warn(e.getMessage());
         }
-        loadList();
-        return "vetList.jsf";
+        this.flowState = CrudViewFlowState.LIST;
+        return JSF_PAGE;
     }
 
     @Override
-    public String cancelNew() {
-        loadList();
-        return "vetList.jsf";
+    public String cancelNew(){
+        this.flowState = CrudViewFlowState.LIST;
+        return JSF_PAGE;
     }
 
     public void setList(List<Vet> list) {
@@ -166,14 +171,19 @@ public class VetViewImpl implements VetView, ViewModelOperations {
     }
 
     public List<Vet> getList() {
-        loadList();
+        if(this.flowState == CrudViewFlowState.LIST_SEARCH_RESULT){
+            performSearch();
+        } else {
+            loadList();
+        }
         return this.list;
     }
 
-    public String showEditForm() {
-        this.entity = entityService.findById(this.selected.getId());
-        resetSpecialtiesPickList();
-        return "vetEdit.jsf";
+    @Override
+    public String showEditForm(){
+        this.reloadEntityFromSelected();
+        this.flowState = CrudViewFlowState.EDIT;
+        return JSF_PAGE;
     }
 
     public String saveEdited() {
@@ -190,31 +200,33 @@ public class VetViewImpl implements VetView, ViewModelOperations {
         } catch (EJBException e){
             log.warn(e.getMessage()+this.entity.toString());
         }
-        loadList();
-        return "vetList.jsf";
+        this.flowState = CrudViewFlowState.LIST;
+        return JSF_PAGE;
     }
 
     @Override
-    public String cancelEdited() {
-        return null;
+    public String cancelEdited(){
+        this.flowState = CrudViewFlowState.LIST;
+        return JSF_PAGE;
     }
 
     @Override
-    public String showDeleteForm() {
-        return null;
+    public String showDeleteForm(){
+        this.flowState = CrudViewFlowState.DELETE;
+        return JSF_PAGE;
     }
 
     @Override
-    public String performDelete() {
+    public String performDelete(){
         deleteSelectedEntity();
-        loadList();
-        return "vetList.jsf";
+        this.flowState = CrudViewFlowState.LIST;
+        return JSF_PAGE;
     }
 
     @Override
-    public String cancelDelete() {
-        loadList();
-        return "vetList.jsf";
+    public String cancelDelete(){
+        this.flowState = CrudViewFlowState.LIST;
+        return JSF_PAGE;
     }
 
     public String getSearchterm() {
@@ -225,9 +237,10 @@ public class VetViewImpl implements VetView, ViewModelOperations {
         this.searchterm = searchterm;
     }
 
-    public String search() {
-        performSearch();
-        return "vetList.jsf";
+    @Override
+    public String search(){
+        this.flowState = CrudViewFlowState.LIST_SEARCH_RESULT;
+        return JSF_PAGE;
     }
 
     @Override
@@ -319,9 +332,6 @@ public class VetViewImpl implements VetView, ViewModelOperations {
     public void newEntity() {
         this.entity = new Vet();
     }
-
-    private CrudViewFlowState flowState;
-
 
     @Override
     public boolean isFlowStateList(){
