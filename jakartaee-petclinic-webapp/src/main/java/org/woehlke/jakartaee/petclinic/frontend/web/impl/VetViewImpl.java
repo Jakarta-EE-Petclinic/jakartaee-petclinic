@@ -290,16 +290,16 @@ public class VetViewImpl implements VetView, ViewModelOperations {
     @Override
     public void saveNewEntity() {
         try {
-            this.entity.setUuid(UUID.randomUUID());
             Set<Specialty> specialties = new HashSet<>();
             for(Specialty specialty:this.entity.getSpecialties()){
                 specialties.add(specialtyService.findSpecialtyByName(specialty.getName()));
             }
             this.entity.setSpecialties(new HashSet<>());
+            this.entity.setUuid(UUID.randomUUID());
             this.entity = this.entityService.addNew( this.entity);
             this.entity.setSpecialties(specialties);
-            this.selected = this.entityService.update(this.entity);
-            this.entity = this.selected;
+            this.entity = this.entityService.update(this.entity);
+            this.selected = this.entity;
         } catch (EJBException e){
             log.warn(e.getMessage()+this.entity.toString());
         }
