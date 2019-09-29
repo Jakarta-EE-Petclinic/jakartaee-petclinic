@@ -14,7 +14,9 @@ import javax.ejb.EJB;
 import javax.ejb.PostActivate;
 import javax.ejb.PrePassivate;
 import javax.ejb.Stateless;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Stateless
 public class VetServiceImpl implements VetService {
@@ -40,11 +42,14 @@ public class VetServiceImpl implements VetService {
     @Override
     public Vet addNew(Vet vet) {
         log.debug("about to addNew: "+vet.toString());
+        Set<Specialty> specialties = new HashSet<>();
         for(Specialty specialty:vet.getSpecialties()){
-            //TODO: ???
-            specialtyDao.addNew(specialty);
+            specialties.add(specialtyDao.findSpecialtyByName(specialty.getName()));
         }
-        return this.vetDao.addNew(vet);
+        vet.setSpecialties(new HashSet<>());
+        vet = this.vetDao.addNew(vet);
+        vet.setSpecialties(specialties);
+        return this.vetDao.update(vet);
     }
 
     @Override
@@ -54,9 +59,11 @@ public class VetServiceImpl implements VetService {
 
     @Override
     public Vet update(Vet vet) {
+        Set<Specialty> specialties = new HashSet<>();
         for(Specialty specialty:vet.getSpecialties()){
-            specialtyDao.update(specialty);
+            specialties.add(specialtyDao.findSpecialtyByName(specialty.getName()));
         }
+        vet.setSpecialties(specialties);
         return this.vetDao.update(vet);
     }
 
