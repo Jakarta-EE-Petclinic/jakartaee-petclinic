@@ -16,4 +16,5 @@ public interface OwnerView extends CrudView<Owner>, ViewHasLanguage, OwnersPetVi
     void setRoot(TreeNode root);
     TreeNode getRoot();
 
+    String showSelectedEntity();
 }

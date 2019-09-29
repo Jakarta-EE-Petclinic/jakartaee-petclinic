@@ -8,4 +8,9 @@ import java.io.Serializable;
 
 public interface SpecialtyView extends CrudView<Specialty>, ViewHasLanguage, Serializable {
 
+    boolean isFlowStateList();
+    boolean isFlowStateNew();
+    boolean isFlowStateEdit();
+    boolean isFlowStatDelete();
+    boolean isFlowStateSearchResult();
 }

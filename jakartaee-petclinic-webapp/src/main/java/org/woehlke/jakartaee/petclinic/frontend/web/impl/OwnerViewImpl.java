@@ -162,12 +162,6 @@ public class OwnerViewImpl implements OwnerView {
     }
 
     @Override
-    public String showEntityList() {
-        this.list = entityService.getAll();
-        return "ownerList.jsf";
-    }
-
-    @Override
     public String showNewForm(){
         this.entity = new Owner();
         return "ownerNew.jsf";
@@ -189,7 +183,7 @@ public class OwnerViewImpl implements OwnerView {
     }
 
     @Override
-    public String cancel(){
+    public String cancelNew() {
         this.list = entityService.getAll();
         return "ownerList.jsf?faces-redirect=true";
     }
@@ -253,6 +247,24 @@ public class OwnerViewImpl implements OwnerView {
         return "owner.jsf";
     }
 
+    @Override
+    public String cancelEdited() {
+        fetchList();
+        return "ownerList.jsf";
+    }
+
+    @Override
+    public String showDeleteForm() {
+        fetchList();
+        return "ownerList.jsf";
+    }
+
+    @Override
+    public String cancelDelete() {
+        fetchList();
+        return "ownerList.jsf";
+    }
+
     private void fetchList(){
         this.list = entityService.getAll();
         if(this.list.size()>0){
@@ -263,7 +275,7 @@ public class OwnerViewImpl implements OwnerView {
     }
 
     @Override
-    public String deleteSelected() {
+    public String performDelete() {
         try {
             long id = this.selected.getId();
             String uuid = this.selected.getUuid().toString();

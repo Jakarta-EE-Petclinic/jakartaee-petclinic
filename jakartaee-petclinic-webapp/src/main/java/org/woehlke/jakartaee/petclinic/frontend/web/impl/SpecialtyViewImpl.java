@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.woehlke.jakartaee.petclinic.frontend.web.LanguageView;
 import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
+import org.woehlke.jakartaee.petclinic.frontend.web.common.CrudViewFlowState;
 import org.woehlke.jakartaee.petclinic.frontend.web.common.ViewModelOperations;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Specialty;
 import org.woehlke.jakartaee.petclinic.oodm.services.SpecialtyService;
@@ -33,6 +34,8 @@ public class SpecialtyViewImpl implements SpecialtyView, ViewModelOperations {
 
     private static Logger log = LogManager.getLogger(SpecialtyViewImpl.class.getName());
 
+    private final static String JSF_PAGE = "specialty.jsf";
+
     @EJB
     private SpecialtyService entityService;
 
@@ -50,11 +53,15 @@ public class SpecialtyViewImpl implements SpecialtyView, ViewModelOperations {
 
     private String searchterm;
 
+    private CrudViewFlowState flowState;
+
     @PostConstruct
     public void init(){
         log.trace("postConstruct");
+        this.flowState = CrudViewFlowState.LIST;
     }
 
+    @Override
     public void reloadEntityFromSelected(){
         if(this.selected != null){
             this.selected = entityService.findById(this.selected.getId());
@@ -62,18 +69,12 @@ public class SpecialtyViewImpl implements SpecialtyView, ViewModelOperations {
         }
     }
 
-    public void loadEntity(){
-        if(this.entity != null) {
-            this.entity = entityService.findById(this.entity.getId());
-        } else {
-            frontendMessagesView.addWarnMessage("cannot load Entity",this.entity);
-        }
-    }
-
+    @Override
     public void loadList(){
         this.list = entityService.getAll();
     }
 
+    @Override
     public void saveNewEntity(){
         try {
             this.entity = entityService.addNew(this.entity);
@@ -107,7 +108,6 @@ public class SpecialtyViewImpl implements SpecialtyView, ViewModelOperations {
                 this.selected = null;
                 frontendMessagesView.addInfoMessage("Deleted", msgInfo);
             }
-            loadList();
         } catch (EJBTransactionRolledbackException e) {
             frontendMessagesView.addWarnMessage("cannot delete, object still in use", this.selected);
         } catch (EJBException e){
@@ -115,6 +115,30 @@ public class SpecialtyViewImpl implements SpecialtyView, ViewModelOperations {
         }
     }
 
+    @Override
+    public boolean isFlowStateList(){
+        return  this.flowState == CrudViewFlowState.LIST;
+    }
+
+    @Override
+    public boolean isFlowStateNew(){
+       return  this.flowState == CrudViewFlowState.NEW;
+    }
+
+    @Override
+    public boolean isFlowStateEdit(){
+        return  this.flowState == CrudViewFlowState.EDIT;
+    }
+
+    @Override
+    public boolean isFlowStatDelete(){
+        return  this.flowState == CrudViewFlowState.DELETE;
+    }
+
+    @Override
+    public boolean isFlowStateSearchResult(){
+        return  this.flowState == CrudViewFlowState.LIST_SEARCH_RESULT;
+    }
 
     @Override
     public void newEntity(){
@@ -124,64 +148,84 @@ public class SpecialtyViewImpl implements SpecialtyView, ViewModelOperations {
     @Override
     public String showEditForm(){
         this.reloadEntityFromSelected();
-        return "specialtyEdit.jsf";
+        this.flowState = CrudViewFlowState.EDIT;
+        return JSF_PAGE;
     }
 
     @Override
-    public String showEntityList() {
-        this.loadList();
-        return "specialtyList.jsf";
-    }
-
     public String showNewForm(){
        this.newEntity();
-       return "specialtyNew.jsf";
+        this.flowState = CrudViewFlowState.NEW;
+       return JSF_PAGE;
     }
 
-    public String deleteSelected() {
-        deleteSelectedEntity();
-        return "specialtyList.jsf";
-    }
-
+    @Override
     public String saveNew(){
         this.saveNewEntity();
-        this.loadList();
-        return "specialtyList.jsf";
+        this.flowState = CrudViewFlowState.LIST;
+        return JSF_PAGE;
     }
 
+    @Override
     public String saveEdited(){
         this.saveEditedEntity();
-        this.loadList();
-        return "specialtyList.jsf";
+        this.flowState = CrudViewFlowState.LIST;
+        return JSF_PAGE;
     }
 
-    public String cancel(){
-        this.loadList();
-        return "specialtyList.jsf";
+    @Override
+    public String cancelEdited(){
+        this.flowState = CrudViewFlowState.LIST;
+        return JSF_PAGE;
     }
 
-    public String showSelectedEntity(){
-        return showEditForm();
+    @Override
+    public String cancelNew(){
+        this.flowState = CrudViewFlowState.LIST;
+        return JSF_PAGE;
     }
 
+    @Override
+    public String showDeleteForm(){
+        this.flowState = CrudViewFlowState.DELETE;
+        return JSF_PAGE;
+    }
+
+    @Override
+    public String performDelete(){
+        deleteSelectedEntity();
+        this.flowState = CrudViewFlowState.LIST;
+        return JSF_PAGE;
+    }
+
+    @Override
+    public String cancelDelete(){
+        this.flowState = CrudViewFlowState.LIST;
+        return JSF_PAGE;
+    }
+
+    @Override
     public String search(){
-        performSearch();
-        return "specialtyList.jsf";
+        this.flowState = CrudViewFlowState.LIST_SEARCH_RESULT;
+        return JSF_PAGE;
     }
 
 
     @Override
     public void performSearch() {
         if(searchterm==null || searchterm.isEmpty()){
-            this.list = entityService.getAll();
+            this.flowState = CrudViewFlowState.LIST;
+            loadList();
+            frontendMessagesView.addInfoMessage("Search ", "Missing searchterm");
         } else {
             try {
+                this.flowState = CrudViewFlowState.LIST_SEARCH_RESULT;
                 this.list = entityService.search(searchterm);
                 frontendMessagesView.addInfoMessage("Search ", "Found "+this.list.size()+ "results for searchterm "+searchterm);
             } catch (Exception e){
-                log.debug(e.getMessage());
+                this.flowState = CrudViewFlowState.LIST;
+                loadList();
                 frontendMessagesView.addWarnMessage(e.getLocalizedMessage(),searchterm);
-                this.list = entityService.getAll();
             }
         }
     }
@@ -232,7 +276,11 @@ public class SpecialtyViewImpl implements SpecialtyView, ViewModelOperations {
 
     @Override
     public List<Specialty> getList() {
-        loadList();
+        if(this.flowState == CrudViewFlowState.LIST_SEARCH_RESULT){
+            performSearch();
+        } else {
+            loadList();
+        }
         return list;
     }
 

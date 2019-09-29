@@ -7,4 +7,10 @@ import org.woehlke.jakartaee.petclinic.oodm.entities.PetType;
 import java.io.Serializable;
 
 public interface PetTypeView extends CrudView<PetType>, ViewHasLanguage, Serializable {
+
+    boolean isFlowStateList();
+    boolean isFlowStateNew();
+    boolean isFlowStateEdit();
+    boolean isFlowStatDelete();
+    boolean isFlowStateSearchResult();
 }

@@ -7,17 +7,17 @@ import java.util.List;
 
 public interface CrudView<T extends TwEntities> extends ViewHasSearch, ViewHasLanguage, Serializable {
 
-    String showEntityList();
-    String showSelectedEntity();
-
     String showNewForm();
     String saveNew();
+    String cancelNew();
 
     String showEditForm();
     String saveEdited();
+    String cancelEdited();
 
-    String deleteSelected();
-    String cancel();
+    String showDeleteForm();
+    String performDelete();
+    String cancelDelete();
 
     T getSelected();
     void setSelected(T selected);

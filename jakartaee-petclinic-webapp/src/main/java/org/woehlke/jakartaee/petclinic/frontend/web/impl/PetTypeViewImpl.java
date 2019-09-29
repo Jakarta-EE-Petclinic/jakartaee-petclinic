@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.woehlke.jakartaee.petclinic.frontend.web.LanguageView;
 import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
+import org.woehlke.jakartaee.petclinic.frontend.web.common.CrudViewFlowState;
 import org.woehlke.jakartaee.petclinic.frontend.web.common.ViewModelOperations;
 import org.woehlke.jakartaee.petclinic.oodm.entities.PetType;
 import org.woehlke.jakartaee.petclinic.oodm.services.PetTypeService;
@@ -34,6 +35,8 @@ public class PetTypeViewImpl implements PetTypeView, ViewModelOperations {
 
     private static Logger log = LogManager.getLogger(PetTypeViewImpl.class);
 
+    private final static String JSF_PAGE = "petTypeList.jsf";
+
     @EJB
     private PetTypeService entityService;
 
@@ -50,15 +53,12 @@ public class PetTypeViewImpl implements PetTypeView, ViewModelOperations {
     private List<PetType> list;
     private String searchterm;
 
+    private CrudViewFlowState flowState;
+
     @PostConstruct
     public void init(){
+        this.flowState = CrudViewFlowState.LIST;
         log.trace("postConstruct");
-    }
-
-    @Override
-    public String showEntityList() {
-        loadList();
-        return "petTypeList.jsf";
     }
 
     @Override
@@ -67,22 +67,18 @@ public class PetTypeViewImpl implements PetTypeView, ViewModelOperations {
         return "petTypeNew.jsf";
     }
 
-    @Override
-    public String cancel(){
-        loadList();
-        return "petTypeList.jsf";
-    }
-
-    @Override
-    public String showSelectedEntity(){
-        return showEditForm();
-    }
 
     @Override
     public String saveNew(){
         saveNewEntity();
         loadList();
-        return "petTypeList.jsf";
+        return JSF_PAGE;
+    }
+
+    @Override
+    public String cancelNew() {
+        loadList();
+        return JSF_PAGE;
     }
 
     @Override
@@ -92,7 +88,7 @@ public class PetTypeViewImpl implements PetTypeView, ViewModelOperations {
             return "petTypeEdit.jsf";
         } else {
             loadList();
-            return "petTypeList.jsf";
+            return JSF_PAGE;
         }
     }
 
@@ -100,19 +96,37 @@ public class PetTypeViewImpl implements PetTypeView, ViewModelOperations {
     public String saveEdited(){
         saveEditedEntity();
         loadList();
-        return "petTypeList.jsf";
+        return JSF_PAGE;
     }
 
     @Override
-    public String deleteSelected(){
-        deleteSelectedEntity();
-        return "petTypeList.jsf";
+    public String cancelEdited() {
+        loadList();
+        return JSF_PAGE;
     }
+
+    @Override
+    public String showDeleteForm() {
+        return null;
+    }
+
+    @Override
+    public String performDelete() {
+        loadList();
+        return JSF_PAGE;
+    }
+
+    @Override
+    public String cancelDelete() {
+        loadList();
+        return JSF_PAGE;
+    }
+
 
     @Override
     public String search(){
         performSearch();
-        return "petTypeList.jsf";
+        return JSF_PAGE;
     }
 
     @Override
@@ -199,15 +213,6 @@ public class PetTypeViewImpl implements PetTypeView, ViewModelOperations {
     }
 
     @Override
-    public void loadEntity(){
-        if(this.entity != null) {
-            this.entity = entityService.findById(this.entity.getId());
-        } else {
-            frontendMessagesView.addWarnMessage("cannot load Entity","");
-        }
-    }
-
-    @Override
     public void loadList() {
         this.list = this.entityService.getAll();
     }
@@ -269,6 +274,31 @@ public class PetTypeViewImpl implements PetTypeView, ViewModelOperations {
     @PreDestroy
     public void preDestroy(){
         log.trace("preDestroy");
+    }
+
+    @Override
+    public boolean isFlowStateList(){
+        return  this.flowState == CrudViewFlowState.LIST;
+    }
+
+    @Override
+    public boolean isFlowStateNew(){
+        return  this.flowState == CrudViewFlowState.NEW;
+    }
+
+    @Override
+    public boolean isFlowStateEdit(){
+        return  this.flowState == CrudViewFlowState.EDIT;
+    }
+
+    @Override
+    public boolean isFlowStatDelete(){
+        return  this.flowState == CrudViewFlowState.DELETE;
+    }
+
+    @Override
+    public boolean isFlowStateSearchResult(){
+        return  this.flowState == CrudViewFlowState.LIST_SEARCH_RESULT;
     }
 
 }

@@ -126,15 +126,6 @@ public class VisitViewImpl implements VisitView, ViewModelOperations {
     }
 
     @Override
-    public void loadEntity(){
-        if(this.entity != null) {
-            this.entity = entityService.findById(this.entity.getId());
-        } else {
-            frontendMessagesView.addWarnMessage("cannot load Entity",this.entity);
-        }
-    }
-
-    @Override
     public void loadList() {
         this.list = this.entityService.getAll();
     }

@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.primefaces.model.DualListModel;
 import org.woehlke.jakartaee.petclinic.frontend.web.LanguageView;
 import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
+import org.woehlke.jakartaee.petclinic.frontend.web.common.CrudViewFlowState;
 import org.woehlke.jakartaee.petclinic.frontend.web.common.ViewModelOperations;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Specialty;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Vet;
@@ -62,6 +63,7 @@ public class VetViewImpl implements VetView, ViewModelOperations {
     @PostConstruct
     public void init() {
         log.trace("postConstruct");
+        this.flowState = CrudViewFlowState.LIST;
         loadList();
         initSpecialtiesPickList();
     }
@@ -83,7 +85,7 @@ public class VetViewImpl implements VetView, ViewModelOperations {
                 srcList.add(specialty);
             }
         }
-        this.specialtiesPickList = new DualListModel<Specialty>(srcList, targetList);
+        this.specialtiesPickList = new DualListModel<>(srcList, targetList);
     }
 
     public DualListModel<Specialty> getSpecialtiesPickList() {
@@ -123,12 +125,6 @@ public class VetViewImpl implements VetView, ViewModelOperations {
         this.frontendMessagesView = frontendMessagesView;
     }
 
-    @Override
-    public String showEntityList() {
-        loadList();
-        return "vetList.jsf";
-    }
-
     public String showNewForm() {
         this.entity = new Vet();
         initSpecialtiesPickList();
@@ -155,6 +151,12 @@ public class VetViewImpl implements VetView, ViewModelOperations {
             log.warn(this.entity.toString());
             log.warn(e.getMessage());
         }
+        loadList();
+        return "vetList.jsf";
+    }
+
+    @Override
+    public String cancelNew() {
         loadList();
         return "vetList.jsf";
     }
@@ -193,28 +195,24 @@ public class VetViewImpl implements VetView, ViewModelOperations {
     }
 
     @Override
-    public String showSelectedEntity() {
-        return showEditForm();
+    public String cancelEdited() {
+        return null;
     }
 
-    public String deleteSelected() {
-        try {
-            long id = this.selected.getId();
-            this.entity = entityService.findById(id);
-            this.entity.removeSpecialties();
-            entityService.update(this.entity);
-            entityService.delete(id);
-            this.entity = null;
-            this.selected = null;
-        } catch (EJBException e){
-            log.warn(e.getMessage());
-        }
+    @Override
+    public String showDeleteForm() {
+        return null;
+    }
+
+    @Override
+    public String performDelete() {
+        deleteSelectedEntity();
         loadList();
         return "vetList.jsf";
     }
 
     @Override
-    public String cancel() {
+    public String cancelDelete() {
         loadList();
         return "vetList.jsf";
     }
@@ -272,15 +270,6 @@ public class VetViewImpl implements VetView, ViewModelOperations {
     }
 
     @Override
-    public void loadEntity(){
-        if(this.entity != null) {
-            this.entity = entityService.findById(this.entity.getId());
-        } else {
-            frontendMessagesView.addWarnMessage("cannot load Entity",this.entity);
-        }
-    }
-
-    @Override
     public void loadList() {
         this.list = this.entityService.getAll();
     }
@@ -330,4 +319,33 @@ public class VetViewImpl implements VetView, ViewModelOperations {
     public void newEntity() {
         this.entity = new Vet();
     }
+
+    private CrudViewFlowState flowState;
+
+
+    @Override
+    public boolean isFlowStateList(){
+        return  this.flowState == CrudViewFlowState.LIST;
+    }
+
+    @Override
+    public boolean isFlowStateNew(){
+        return  this.flowState == CrudViewFlowState.NEW;
+    }
+
+    @Override
+    public boolean isFlowStateEdit(){
+        return  this.flowState == CrudViewFlowState.EDIT;
+    }
+
+    @Override
+    public boolean isFlowStatDelete(){
+        return  this.flowState == CrudViewFlowState.DELETE;
+    }
+
+    @Override
+    public boolean isFlowStateSearchResult(){
+        return  this.flowState == CrudViewFlowState.LIST_SEARCH_RESULT;
+    }
+
 }

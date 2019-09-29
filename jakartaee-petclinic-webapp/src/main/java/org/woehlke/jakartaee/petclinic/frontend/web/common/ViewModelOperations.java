@@ -5,7 +5,6 @@ import java.io.Serializable;
 public interface ViewModelOperations extends Serializable {
 
     void reloadEntityFromSelected();
-    void loadEntity();
     void loadList();
     void saveNewEntity();
     void saveEditedEntity();

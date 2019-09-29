@@ -8,7 +8,7 @@
 <f:view locale="#{languageView.locale}">
 <f:loadBundle basename="messages" var="msg" />
 <h:head>
-    <title>Jakarta EE 8 Petclinic</title>
+    <title><h:outputText value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.title']}"/></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <!-- Bootstrap -->
@@ -65,7 +65,7 @@
                                 ajax="false" />
                     <p:separator />
                     <p:menuitem value="#{msg['specialties']}"
-                                url="specialtyList.jsf"
+                                url="specialty.jsf"
                                 icon="fa fa-fw fa-briefcase"
                                 update="messages"
                                 ajax="false" />
@@ -80,7 +80,7 @@
                                 type="submit"
                                 ajax="false"
                                 icon="fa fa-fw fa-save"
-                                update="growl"
+                                update="messages"
                                 action="#{languageView.changeLanguage}"/>
                     </span>
                 </f:facet>
@@ -110,7 +110,7 @@
     <footer>
         <hr/>
         <div style="float: left">
-        © 2019 Thomas Wöhlke
+            <h:outputText value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.copyright']}"/>
         </div>
         <div style="float: right">
 
