@@ -58,6 +58,8 @@ import java.util.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Pet implements TwEntities<Pet> {
 
+    private static final long serialVersionUID = 1007513582768464905L;
+
     public final static String TABLENAME = "pets";
 
     public final static String COL_ID = "id";

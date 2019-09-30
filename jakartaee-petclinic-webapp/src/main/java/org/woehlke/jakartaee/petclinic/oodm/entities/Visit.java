@@ -60,6 +60,8 @@ import java.util.UUID;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Visit implements TwEntities<Visit> {
 
+    private static final long serialVersionUID = 2357446696894656827L;
+
     public final static String TABLENAME = "visits";
 
     public final static String COL_ID = "id";

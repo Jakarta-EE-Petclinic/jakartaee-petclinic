@@ -3,7 +3,9 @@ package org.woehlke.jakartaee.petclinic.frontend.web.impl;
 import org.woehlke.jakartaee.petclinic.frontend.web.common.CrudViewFlowState;
 import org.woehlke.jakartaee.petclinic.frontend.web.common.HasCrudFlowState;
 
-public abstract class CrudViewFlow implements HasCrudFlowState {
+import java.io.Serializable;
+
+public abstract class CrudViewFlow implements HasCrudFlowState, Serializable {
 
     private CrudViewFlowState flowState;
 

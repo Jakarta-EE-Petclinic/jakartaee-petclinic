@@ -10,4 +10,6 @@ public interface PetTypeView extends CrudView<PetType>,
         HasSearch,
         HasViewModelOperations,
         Serializable {
+
+    long serialVersionUID = -7305835717012880655L;
 }

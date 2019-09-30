@@ -19,6 +19,8 @@ import javax.ws.rs.core.MediaType;
 @Path("/specialty")
 public class SpecialtyWebservice {
 
+    private static final long serialVersionUID = 607664665910620584L;
+
     private static Logger log = LogManager.getLogger(SpecialtyWebservice.class.getName());
 
     @EJB

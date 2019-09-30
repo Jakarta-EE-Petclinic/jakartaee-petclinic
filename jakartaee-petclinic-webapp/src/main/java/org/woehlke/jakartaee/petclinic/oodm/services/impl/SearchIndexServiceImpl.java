@@ -14,6 +14,8 @@ import javax.ejb.*;
 @Stateless
 public class SearchIndexServiceImpl implements SearchIndexService {
 
+    private static final long serialVersionUID = 2941468681052495358L;
+
     private static Logger log = LogManager.getLogger(SearchIndexServiceImpl.class.getName());
 
     @EJB

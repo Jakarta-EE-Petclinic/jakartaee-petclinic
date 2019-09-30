@@ -8,6 +8,8 @@ import java.io.Serializable;
 
 public interface SpecialtyService extends CrudService<Specialty>, SearchableService<Specialty>, Serializable {
 
+    long serialVersionUID = -5259594533899166058L;
+
     Specialty findSpecialtyByName(String name);
 
 }

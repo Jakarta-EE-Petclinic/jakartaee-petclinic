@@ -20,6 +20,8 @@ import java.util.List;
 @SessionScoped
 public class FrontendMessagesViewImpl implements FrontendMessagesView {
 
+    private static final long serialVersionUID = -2267751568724878682L;
+
     private static Logger log = LogManager.getLogger(FrontendMessagesViewImpl.class.getName());
 
     public void addInfoMessage(String summary, String detail) {

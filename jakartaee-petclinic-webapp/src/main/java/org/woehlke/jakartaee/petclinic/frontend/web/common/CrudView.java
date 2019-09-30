@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface CrudView<T extends TwEntities> extends HasSearch, HasLanguage, Serializable {
 
+    long serialVersionUID = -4976697275728754000L;
+
     String showNewForm();
     String saveNew();
     String cancelNew();

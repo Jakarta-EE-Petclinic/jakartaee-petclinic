@@ -12,6 +12,8 @@ import static org.woehlke.jakartaee.petclinic.oodm.entities.listener.ListenerLog
 
 public class OwnerListener implements Serializable {
 
+    private static final long serialVersionUID = 5882887419196240305L;
+
     private static Logger log = LogManager.getLogger(OwnerListener.class.getName());
 
     @PrePersist

@@ -30,6 +30,8 @@ import java.util.List;
 @SessionScoped
 public class SpecialtyViewImpl implements SpecialtyView {
 
+    private static final long serialVersionUID = 9080853875975855082L;
+
     private static Logger log = LogManager.getLogger(SpecialtyViewImpl.class.getName());
 
     private final static String JSF_PAGE = "specialty.jsf";

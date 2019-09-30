@@ -15,4 +15,5 @@ public interface VetView extends CrudView<Vet>,
 
     Specialty findSpecialtyByName(String name);
 
+    long serialVersionUID = -4141782100256382881L;
 }

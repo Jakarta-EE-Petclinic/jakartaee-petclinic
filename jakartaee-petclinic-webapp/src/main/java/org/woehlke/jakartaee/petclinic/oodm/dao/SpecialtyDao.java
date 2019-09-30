@@ -13,5 +13,7 @@ import org.woehlke.jakartaee.petclinic.oodm.entities.Specialty;
  */
 public interface SpecialtyDao extends CrudDao<Specialty>, Searchable<Specialty> {
 
+    long serialVersionUID = -3942585068863132460L;
+
     Specialty findSpecialtyByName(String name);
 }

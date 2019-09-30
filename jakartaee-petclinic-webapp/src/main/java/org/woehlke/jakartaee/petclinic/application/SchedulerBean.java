@@ -17,6 +17,8 @@ import java.time.format.DateTimeFormatter;
 @ManagedBean
 public class SchedulerBean implements Serializable {
 
+    private static final long serialVersionUID = 8425286360447275162L;
+
     private static Logger log = LogManager.getLogger(SchedulerBean.class.getName());
 
     @EJB

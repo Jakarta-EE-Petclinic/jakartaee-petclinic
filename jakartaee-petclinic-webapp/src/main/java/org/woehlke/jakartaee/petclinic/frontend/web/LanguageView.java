@@ -8,6 +8,8 @@ import java.util.Map;
 
 public interface LanguageView extends Serializable {
 
+    long serialVersionUID = 5845484688944674808L;
+
     Map<String,String> getCountries();
     void setCountries(List<SelectItem> countries);
 

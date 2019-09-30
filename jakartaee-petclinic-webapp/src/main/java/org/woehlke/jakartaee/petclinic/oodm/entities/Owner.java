@@ -63,6 +63,8 @@ import java.util.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Owner implements TwEntities<Owner> {
 
+    private static final long serialVersionUID = 7995827646591579744L;
+
     public final static String TABLENAME = "owners";
 
     public final static String COL_ID = "id";

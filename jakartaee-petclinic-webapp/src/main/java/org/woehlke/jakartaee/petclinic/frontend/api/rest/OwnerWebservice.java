@@ -19,6 +19,8 @@ import java.io.Serializable;
 @Path("/owner")
 public class OwnerWebservice implements Serializable {
 
+    private static final long serialVersionUID = 532726561254887897L;
+
     private static Logger log = LogManager.getLogger(OwnerWebservice.class.getName());
 
     @EJB

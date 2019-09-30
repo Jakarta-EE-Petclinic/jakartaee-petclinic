@@ -27,6 +27,8 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class VetList implements Serializable {
 
+    private static final long serialVersionUID = 6396791677094922721L;
+
     @XmlElement(required=true)
     private List<Vet> vetList;
 

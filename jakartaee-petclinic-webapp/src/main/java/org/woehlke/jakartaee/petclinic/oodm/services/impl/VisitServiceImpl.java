@@ -17,6 +17,8 @@ import java.util.List;
 @Stateless
 public class VisitServiceImpl implements VisitService {
 
+    private static final long serialVersionUID = 4560958540651968289L;
+
     private static Logger log = LogManager.getLogger(VisitServiceImpl.class.getName());
 
     @EJB

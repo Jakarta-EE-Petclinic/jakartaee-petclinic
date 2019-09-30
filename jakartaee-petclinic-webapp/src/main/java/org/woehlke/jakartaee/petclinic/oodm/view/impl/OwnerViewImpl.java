@@ -39,6 +39,8 @@ import java.util.List;
 @SessionScoped
 public class OwnerViewImpl implements OwnerView {
 
+    private static final long serialVersionUID = -4809817472969005481L;
+
     private static Logger log = LogManager.getLogger(OwnerViewImpl.class.getName());
 
     private final static String JSF_PAGE = "owner.jsf";

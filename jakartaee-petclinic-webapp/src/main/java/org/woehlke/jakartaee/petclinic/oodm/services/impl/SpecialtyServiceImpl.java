@@ -17,6 +17,8 @@ import java.util.List;
 @Stateless
 public class SpecialtyServiceImpl implements SpecialtyService {
 
+    private static final long serialVersionUID = 6145428275502469961L;
+
     private static Logger log = LogManager.getLogger(SpecialtyServiceImpl.class.getName());
 
     @EJB

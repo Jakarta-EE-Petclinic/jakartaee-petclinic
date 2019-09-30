@@ -23,6 +23,8 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class SpecialtyList implements Serializable {
 
+    private static final long serialVersionUID = -4974070594228297652L;
+
     @XmlElement(required=true)
     private List<Specialty> specialtyList;
 

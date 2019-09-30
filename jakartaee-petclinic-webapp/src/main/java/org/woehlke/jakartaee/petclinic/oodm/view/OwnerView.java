@@ -16,5 +16,7 @@ public interface OwnerView extends CrudView<Owner>,
         HasTreeNode,
         Serializable {
 
+    long serialVersionUID = 3691413509555926089L;
+
     String showSelectedEntity();
 }

@@ -53,6 +53,8 @@ import java.util.UUID;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Specialty implements TwEntities<Specialty> {
 
+    private static final long serialVersionUID = -836560513920170089L;
+
     public final static String TABLENAME = "specialties";
 
     public final static String COL_ID = "id";

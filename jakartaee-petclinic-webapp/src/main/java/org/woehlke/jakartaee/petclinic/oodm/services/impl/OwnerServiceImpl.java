@@ -23,6 +23,8 @@ import java.util.List;
 @Stateless
 public class OwnerServiceImpl implements OwnerService {
 
+    private static final long serialVersionUID = -553095693269912269L;
+
     private static Logger log = LogManager.getLogger(OwnerServiceImpl.class.getName());
 
     @EJB

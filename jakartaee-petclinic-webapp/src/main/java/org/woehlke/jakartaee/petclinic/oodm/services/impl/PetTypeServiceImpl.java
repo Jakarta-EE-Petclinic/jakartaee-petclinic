@@ -17,6 +17,8 @@ import java.util.List;
 @Stateless
 public class PetTypeServiceImpl implements PetTypeService {
 
+    private static final long serialVersionUID = -6242995649030237034L;
+
     private static Logger log = LogManager.getLogger(PetTypeServiceImpl.class.getName());
 
     @EJB

@@ -19,6 +19,8 @@ import java.io.Serializable;
 @Path("/petType")
 public class PetTypeWebservice implements Serializable {
 
+    private static final long serialVersionUID = -105453087511255998L;
+
     private static Logger log = LogManager.getLogger(PetTypeWebservice.class.getName());
 
     @EJB

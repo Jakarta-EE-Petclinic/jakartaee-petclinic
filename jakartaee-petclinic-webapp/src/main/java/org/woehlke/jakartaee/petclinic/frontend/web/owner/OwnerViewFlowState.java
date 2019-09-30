@@ -1,6 +1,8 @@
 package org.woehlke.jakartaee.petclinic.frontend.web.owner;
 
-public enum OwnerViewFlowState {
+import java.io.Serializable;
+
+public enum OwnerViewFlowState implements Serializable {
     LIST,
     NEW,
     EDIT,

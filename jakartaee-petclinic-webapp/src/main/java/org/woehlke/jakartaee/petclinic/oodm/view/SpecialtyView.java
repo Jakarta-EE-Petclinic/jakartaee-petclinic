@@ -11,4 +11,5 @@ public interface SpecialtyView extends CrudView<Specialty>,
         HasViewModelOperations,
         Serializable {
 
+    long serialVersionUID = -3557696335568559475L;
 }

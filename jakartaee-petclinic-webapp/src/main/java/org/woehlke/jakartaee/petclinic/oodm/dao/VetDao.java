@@ -12,4 +12,6 @@ import org.woehlke.jakartaee.petclinic.oodm.entities.Vet;
  * To change this template use File | Settings | File Templates.
  */
 public interface VetDao extends CrudDao<Vet>, Searchable<Vet> {
+
+    long serialVersionUID = -8002507178196926932L;
 }

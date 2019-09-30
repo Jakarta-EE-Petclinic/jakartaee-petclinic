@@ -20,6 +20,8 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class NavigationViewImpl implements NavigationView {
 
+    private static final long serialVersionUID = 8658978949128397699L;
+
     private static Logger log = LogManager.getLogger(NavigationViewImpl.class.getName());
 
     @SuppressWarnings("deprecation")

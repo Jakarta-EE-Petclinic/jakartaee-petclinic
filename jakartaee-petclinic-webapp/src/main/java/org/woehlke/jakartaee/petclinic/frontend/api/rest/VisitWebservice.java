@@ -20,6 +20,8 @@ import java.io.Serializable;
 @Path("/visit")
 public class VisitWebservice  implements Serializable {
 
+    private static final long serialVersionUID = 7444366391126982311L;
+
     private static Logger log = LogManager.getLogger(VisitWebservice.class.getName());
 
     @EJB

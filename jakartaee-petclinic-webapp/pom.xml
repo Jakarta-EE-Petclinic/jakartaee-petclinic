@@ -277,7 +277,6 @@
                 <executions>
                     <execution>
                         <id>unpack-dependencies</id>
-                        <phase>process-test-classes</phase>
                         <goals>
                             <goal>unpack-dependencies</goal>
                         </goals>
@@ -286,6 +285,9 @@
                         </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <excludeTypes>pom</excludeTypes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>

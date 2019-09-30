@@ -36,6 +36,8 @@ import java.util.*;
 @SessionScoped
 public class VetViewImpl implements VetView {
 
+    private static final long serialVersionUID = 2838339162976374606L;
+
     private static Logger log = LogManager.getLogger(VetViewImpl.class.getName());
 
     private final static String JSF_PAGE = "vet.jsf";

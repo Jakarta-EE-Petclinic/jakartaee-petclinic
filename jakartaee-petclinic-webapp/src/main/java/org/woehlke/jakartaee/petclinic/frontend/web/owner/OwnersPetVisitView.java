@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 public interface OwnersPetVisitView extends Serializable {
 
+    long serialVersionUID = 2400107254778567823L;
+
     String showOwnerPetVisitNewForm();
     String saveOwnerPetVisitNew();
     String cancelOwnerPetVisitNew();

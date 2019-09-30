@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface CrudService<T extends TwEntities> extends Serializable {
 
+    long serialVersionUID = 8240918516324226703L;
+
     List<T> getAll();
     T findById(long id);
 

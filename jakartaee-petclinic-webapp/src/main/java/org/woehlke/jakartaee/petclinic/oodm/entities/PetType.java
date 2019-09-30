@@ -57,6 +57,8 @@ import java.util.UUID;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PetType implements TwEntities<PetType> {
 
+    private static final long serialVersionUID = -2213412509142145275L;
+
     public final static String TABLENAME = "types";
 
     public final static String COL_ID = "id";

@@ -4,5 +4,7 @@ import org.woehlke.jakartaee.petclinic.frontend.web.common.HasViewModelOperation
 
 public interface HasOwnerModelOperations extends HasViewModelOperations {
 
+    long serialVersionUID = 1490389883743112662L;
+
     void loadPetTypeList();
 }

@@ -26,9 +26,11 @@ import java.util.UUID;
 @Stateless
 public class VisitDaoImpl implements VisitDao {
 
+    private static final long serialVersionUID = 892248114140040519L;
+
     private static Logger log = LogManager.getLogger(VisitDaoImpl.class.getName());
 
-    @PersistenceContext(unitName="jakartaeePetclinic")
+    @PersistenceContext(unitName=PERSISTENCE_UNIT_NAME)
     private EntityManager entityManager;
 
     @Override

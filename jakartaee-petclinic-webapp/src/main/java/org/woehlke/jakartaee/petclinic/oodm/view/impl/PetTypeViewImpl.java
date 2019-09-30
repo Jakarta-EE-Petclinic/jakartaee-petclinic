@@ -32,6 +32,8 @@ import java.util.List;
 @SessionScoped
 public class PetTypeViewImpl implements PetTypeView {
 
+    private static final long serialVersionUID = -528406859430949031L;
+
     private static Logger log = LogManager.getLogger(PetTypeViewImpl.class);
 
     private final static String JSF_PAGE = "petType.jsf";

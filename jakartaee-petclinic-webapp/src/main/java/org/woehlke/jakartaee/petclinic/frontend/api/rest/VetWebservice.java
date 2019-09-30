@@ -27,6 +27,8 @@ import java.io.Serializable;
 @Path("/vet")
 public class VetWebservice implements Serializable {
 
+    private static final long serialVersionUID = 607664665910620584L;
+
     private static Logger log = LogManager.getLogger(VetWebservice.class.getName());
 
     @EJB

@@ -13,4 +13,5 @@ import org.woehlke.jakartaee.petclinic.oodm.entities.Owner;
  */
 public interface OwnerDao extends CrudDao<Owner>, Searchable<Owner> {
 
+    long serialVersionUID = 4561420558388982124L;
 }

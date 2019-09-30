@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 public interface FrontendMessagesView extends Serializable {
 
+    long serialVersionUID = 2936821773310905949L;
+
     void addInfoMessage(String summary, String detail);
     void addWarnMessage(String summary, String detail);
     void addErrorMessage(String summary, String detail);

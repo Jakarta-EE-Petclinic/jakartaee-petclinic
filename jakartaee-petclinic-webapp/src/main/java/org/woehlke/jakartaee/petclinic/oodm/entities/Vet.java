@@ -59,6 +59,8 @@ import java.util.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Vet implements TwEntities<Vet> {
 
+    private static final long serialVersionUID = 6749793465861123385L;
+
     public final static String XML_ROOT_ELEMENT_NAME = "vet";
 
     public final static String TABLENAME = "vets";

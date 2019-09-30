@@ -22,6 +22,8 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PetTypeList implements Serializable {
 
+    private static final long serialVersionUID = -5455359835551484530L;
+
     @XmlElement(required=true)
     private List<PetType> petTypeList;
 

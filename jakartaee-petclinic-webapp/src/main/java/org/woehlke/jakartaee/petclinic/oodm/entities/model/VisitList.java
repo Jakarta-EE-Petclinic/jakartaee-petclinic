@@ -22,6 +22,8 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class VisitList implements Serializable {
 
+    private static final long serialVersionUID = -7588305041391798453L;
+
     @XmlElement(required=true)
     private List<Visit> visitList;
 

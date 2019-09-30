@@ -19,6 +19,8 @@ import java.io.Serializable;
 )
 public class PetTypeConverter implements Converter<PetType>, Serializable {
 
+    private static final long serialVersionUID = 4908876595996046904L;
+
     private static Logger log = LogManager.getLogger(PetTypeConverter.class.getName());
 
     @Override

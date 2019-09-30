@@ -28,13 +28,13 @@ import java.util.*;
 @SessionScoped
 public class LanguageViewImpl implements LanguageView {
 
+    private static final long serialVersionUID = 1L;
+
     @SuppressWarnings("deprecation")
     @ManagedProperty(value = "#{frontendMessagesView}")
     private FrontendMessagesView frontendMessagesView;
 
     private static Logger log = LogManager.getLogger(LanguageViewImpl.class.getName());
-
-    private static final long serialVersionUID = 1L;
 
     private final Locale DEFAULT = Locale.ENGLISH;
 

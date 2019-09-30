@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface OwnersPetView extends Serializable {
 
+    long serialVersionUID = 889970231263134104L;
+
     String showOwnerPetNewForm();
     String saveOwnerPetNew();
     String cancelOwnerPetNew();

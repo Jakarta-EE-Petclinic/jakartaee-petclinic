@@ -29,9 +29,11 @@ import java.util.UUID;
 @Stateless
 public class VetDaoImpl implements VetDao {
 
+    private static final long serialVersionUID = -1003870150408928198L;
+
     private static Logger log = LogManager.getLogger(VetDaoImpl.class.getName());
 
-    @PersistenceContext(unitName="jakartaeePetclinic")
+    @PersistenceContext(unitName=PERSISTENCE_UNIT_NAME)
     private EntityManager entityManager;
 
     @Override

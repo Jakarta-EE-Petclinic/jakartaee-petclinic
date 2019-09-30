@@ -5,11 +5,12 @@ import org.woehlke.jakartaee.petclinic.frontend.web.owner.OwnerViewFlowState;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name="ownerViewFlow")
 @SessionScoped
-public class OwnerViewFlow implements HasOwnerViewFlowState {
+public class OwnerViewFlow implements HasOwnerViewFlowState, Serializable {
 
     private OwnerViewFlowState flowState;
 

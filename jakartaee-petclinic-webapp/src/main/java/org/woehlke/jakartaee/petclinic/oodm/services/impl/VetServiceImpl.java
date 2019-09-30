@@ -19,6 +19,8 @@ import java.util.UUID;
 @Stateless
 public class VetServiceImpl implements VetService {
 
+    private static final long serialVersionUID = 2698313227542867286L;
+
     private static Logger log = LogManager.getLogger(VetServiceImpl.class.getName());
 
     @EJB

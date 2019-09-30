@@ -28,9 +28,11 @@ import java.util.UUID;
 @Stateless
 public class SpecialtyDaoImpl implements SpecialtyDao {
 
+    private static final long serialVersionUID = 1355422039564914705L;
+
     private static Logger log = LogManager.getLogger(SpecialtyDaoImpl.class.getName());
 
-    @PersistenceContext(unitName="jakartaeePetclinic")
+    @PersistenceContext(unitName=PERSISTENCE_UNIT_NAME)
     private EntityManager entityManager;
 
     @Override

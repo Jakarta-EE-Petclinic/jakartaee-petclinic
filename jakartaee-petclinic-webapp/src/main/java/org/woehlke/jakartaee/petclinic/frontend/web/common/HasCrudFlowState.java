@@ -1,6 +1,8 @@
 package org.woehlke.jakartaee.petclinic.frontend.web.common;
 
-public interface HasCrudFlowState {
+import java.io.Serializable;
+
+public interface HasCrudFlowState extends Serializable {
 
     boolean isFlowStateList();
     boolean isFlowStateNew();

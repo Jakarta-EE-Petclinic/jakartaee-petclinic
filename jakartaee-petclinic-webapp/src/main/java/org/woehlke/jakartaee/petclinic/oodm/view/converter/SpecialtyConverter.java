@@ -26,6 +26,8 @@ import java.io.Serializable;
 )
 public class SpecialtyConverter implements Converter<Specialty>, Serializable {
 
+    private static final long serialVersionUID = 3816519727799645701L;
+
     private static Logger log = LogManager.getLogger(SpecialtyConverter.class.getName());
 
     @Override

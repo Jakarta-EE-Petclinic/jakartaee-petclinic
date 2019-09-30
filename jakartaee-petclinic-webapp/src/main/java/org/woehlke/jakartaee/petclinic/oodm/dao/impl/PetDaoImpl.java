@@ -26,9 +26,11 @@ import java.util.UUID;
 @Stateless
 public class PetDaoImpl implements PetDao {
 
+    private static final long serialVersionUID = -9149391932558758266L;
+
     private static Logger log = LogManager.getLogger(PetDaoImpl.class.getName());
 
-    @PersistenceContext(unitName="jakartaeePetclinic")
+    @PersistenceContext(unitName=PERSISTENCE_UNIT_NAME)
     private EntityManager entityManager;
 
 

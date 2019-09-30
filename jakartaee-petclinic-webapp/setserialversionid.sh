@@ -18,7 +18,7 @@ echo "FINISHED MAVEN"
 export MY_CLASSPATH_DEPS=`cat etc/classpath.txt`
 export HERE=`pwd`
 export MY_CLASSPATH_APP=$HERE/target/classes/
-export CLASSPATH=".;$MY_CLASSPATH_APP"
+export CLASSPATH=.:$MY_CLASSPATH_APP:$MY_CLASSPATH_DEPS
 echo $CLASSPATH
 cd target/classes
 echo "START serialver"

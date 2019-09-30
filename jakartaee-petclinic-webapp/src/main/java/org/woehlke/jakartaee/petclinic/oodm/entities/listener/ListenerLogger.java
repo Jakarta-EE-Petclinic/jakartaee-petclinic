@@ -4,7 +4,9 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.spi.StandardLevel;
 import org.woehlke.jakartaee.petclinic.oodm.entities.common.TwEntities;
 
-class ListenerLogger {
+import java.io.Serializable;
+
+class ListenerLogger implements Serializable {
 
     static void logIt(String event, StandardLevel logLevel, Logger log, TwEntities domainObject){
         String[] infos = {

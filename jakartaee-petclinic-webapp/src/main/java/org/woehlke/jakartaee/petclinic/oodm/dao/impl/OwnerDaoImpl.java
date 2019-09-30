@@ -30,9 +30,11 @@ import java.util.UUID;
 @Stateless
 public class OwnerDaoImpl implements OwnerDao {
 
+    private static final long serialVersionUID = -2768460721378705615L;
+
     private static Logger log = LogManager.getLogger(OwnerDaoImpl.class.getName());
 
-    @PersistenceContext(unitName="jakartaeePetclinic")
+    @PersistenceContext(unitName=PERSISTENCE_UNIT_NAME)
     private EntityManager entityManager;
 
     @Override

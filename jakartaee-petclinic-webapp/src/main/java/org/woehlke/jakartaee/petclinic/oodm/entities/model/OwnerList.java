@@ -22,6 +22,8 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class OwnerList implements Serializable {
 
+    private static final long serialVersionUID = 7608980315748812643L;
+
     @XmlElement(required=true)
     private List<Owner> ownerList;
 

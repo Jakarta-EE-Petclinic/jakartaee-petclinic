@@ -2,7 +2,9 @@ package org.woehlke.jakartaee.petclinic.frontend.web.common;
 
 import org.primefaces.model.TreeNode;
 
-public interface HasTreeNode {
+import java.io.Serializable;
+
+public interface HasTreeNode  extends Serializable {
 
     TreeNode getTreeNodeRoot();
     void setTreeNodeRoot(TreeNode treeNodeRoot);

@@ -6,6 +6,8 @@ import java.util.UUID;
 
 public interface TwEntities<T extends TwEntities> extends Serializable, Comparable<T> {
 
+    long serialVersionUID = -3378330831315654285L;
+
     Long getId();
 
     UUID getUuid();
