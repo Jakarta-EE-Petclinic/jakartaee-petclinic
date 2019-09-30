@@ -49,10 +49,10 @@ import java.util.UUID;
     )
 })
 @EntityListeners(VisitListener.class)
-@XmlRootElement(name="visit")
+@XmlRootElement(name="Visit")
 @XmlType(
-        name = "visit",
-        namespace = "http://woehlke.org/javaee8/petclinic/oodm/entities/visit",
+        name = "Visit",
+        namespace = "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/Visit",
         propOrder = {
                 "id", "uuid", "date","description"
         }

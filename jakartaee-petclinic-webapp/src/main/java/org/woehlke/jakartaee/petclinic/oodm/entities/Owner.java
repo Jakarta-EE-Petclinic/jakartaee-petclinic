@@ -49,14 +49,16 @@ import java.util.*;
     )
 })
 @EntityListeners(OwnerListener.class)
-@XmlRootElement(name="owner")
+@XmlRootElement(
+    name="Owner"
+)
 @XmlType(
-        name = "owner",
-        namespace = "http://woehlke.org/javaee8/petclinic/oodm/entities/owner",
-        propOrder = {
-                "id", "uuid", "firstName", "lastName", "address", "houseNumber",
-                "addressInfo","city", "zipCode", "phoneNumber","pets"
-        }
+    name = "Owner",
+    namespace = "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/Owner",
+    propOrder = {
+            "id", "uuid", "firstName", "lastName", "address", "houseNumber",
+            "addressInfo","city", "zipCode", "phoneNumber","pets"
+    }
 )
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Owner implements TwEntities<Owner> {

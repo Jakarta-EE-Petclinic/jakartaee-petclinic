@@ -9,13 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@XmlRootElement(name="PetList")
+@XmlRootElement(
+    name="PetList"
+)
 @XmlType(
-        name="PetList",
-        namespace = "http://woehlke.org/javaee8/petclinic/oodm/entities/PetList",
-        propOrder = {
-                "petList"
-        }
+    name="PetList",
+    namespace = "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/model/PetList",
+    propOrder = {
+        "petList"
+    }
 )
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PetList implements Serializable {

@@ -42,10 +42,10 @@ import java.util.UUID;
         query = "select s from Specialty s order by s.name"
     )
 })
-@XmlRootElement(name="specialty")
+@XmlRootElement(name="Specialty")
 @XmlType(
-        name = "specialty",
-        namespace = "http://woehlke.org/javaee8/petclinic/oodm/entities/specialty",
+        name = "Specialty",
+        namespace = "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/Specialty",
         propOrder = {
                 "id", "uuid", "name"
         }

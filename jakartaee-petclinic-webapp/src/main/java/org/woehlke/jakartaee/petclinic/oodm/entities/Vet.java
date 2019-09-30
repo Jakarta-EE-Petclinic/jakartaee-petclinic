@@ -46,10 +46,12 @@ import java.util.*;
     )
 })
 @EntityListeners(VetListener.class)
-@XmlRootElement(name="vet")
+@XmlRootElement(
+        name="Vet"
+)
 @XmlType(
-    name = "vet",
-    namespace = "http://org/woehlke/javaee8/petclinic/oodm/entities/vet",
+    name = "Vet",
+    namespace =  "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/Vet",
     propOrder = {
             "id", "uuid", "firstName", "lastName", "specialties"
     }

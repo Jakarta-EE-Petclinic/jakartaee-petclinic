@@ -18,11 +18,11 @@ import java.util.Objects;
  */
 @XmlRootElement(name="VetList")
 @XmlType(
-        name="VetList",
-        namespace = "http://woehlke.org/javaee8/petclinic/oodm/entities/VetList",
-        propOrder = {
-                "vetList"
-        }
+    name="VetList",
+    namespace = "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/model/VetList",
+    propOrder = {
+        "vetList"
+    }
 )
 @XmlAccessorType(XmlAccessType.FIELD)
 public class VetList implements Serializable {

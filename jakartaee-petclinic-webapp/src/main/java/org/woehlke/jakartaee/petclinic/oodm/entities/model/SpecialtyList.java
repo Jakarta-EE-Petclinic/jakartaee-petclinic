@@ -10,13 +10,15 @@ import java.util.List;
 import java.util.Objects;
 
 
-@XmlRootElement(name="SpecialtyList")
+@XmlRootElement(
+    name="SpecialtyList"
+)
 @XmlType(
-        name="SpecialtyList",
-        namespace = "http://woehlke.org/javaee8/petclinic/oodm/entities/SpecialtyList",
-        propOrder = {
-                "specialtyList"
-        }
+    name="SpecialtyList",
+    namespace = "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/model/SpecialtyList",
+    propOrder = {
+        "specialtyList"
+    }
 )
 @XmlAccessorType(XmlAccessType.FIELD)
 public class SpecialtyList implements Serializable {

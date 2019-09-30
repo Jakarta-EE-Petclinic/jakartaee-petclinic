@@ -44,10 +44,12 @@ import java.util.UUID;
     )
 })
 @EntityListeners(PetTypeListener.class)
-@XmlRootElement(name="petType")
+@XmlRootElement(
+        name="PetType"
+)
 @XmlType(
-        name = "petType",
-        namespace = "http://woehlke.org/javaee8/petclinic/oodm/entities/petType",
+        name = "PetType",
+        namespace = "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/PetType",
         propOrder = {
                 "id", "uuid", "name"
         }

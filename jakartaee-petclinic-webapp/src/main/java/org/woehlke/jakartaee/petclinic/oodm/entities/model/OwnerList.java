@@ -9,13 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@XmlRootElement(name="OwnerList")
+@XmlRootElement(
+        name="OwnerList"
+)
 @XmlType(
-        name="OwnerList",
-        namespace = "http://woehlke.org/javaee8/petclinic/oodm/entities/OwnerList",
-        propOrder = {
-            "ownerList"
-        }
+    name="OwnerList",
+    namespace = "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/model/OwnerList",
+    propOrder = {
+        "ownerList"
+    }
 )
 @XmlAccessorType(XmlAccessType.FIELD)
 public class OwnerList implements Serializable {
