@@ -114,6 +114,104 @@
             </p:panel>
             </ui:fragment>
 
+            <ui:fragment rendered="#{ownerViewFlow.renderPanelEditOwner}">
+            <p:panel id="contentPanelEditOwner" header="#{msg['editOwner']}">
+                <h:form id="editOwnerForm">
+                    <div class="ui-g">
+                        <div class="ui-g-2">
+                            <p:outputLabel value="#{msg['firstName']}" for="firstNameEditOwner"/>
+                        </div>
+                        <div class="ui-g-4">
+                            <p:inputText id="firstNameEditOwner"
+                                         value="#{ownerView.entity.firstName}"/>
+                        </div>
+                        <div class="ui-g-2">
+                            <p:outputLabel value="#{msg['lastName']}" for="lastNameEditOwner"/>
+                        </div>
+                        <div class="ui-g-4">
+                            <p:inputText id="lastNameEditOwner"
+                                         value="#{ownerView.entity.lastName}"/>
+                        </div>
+                    </div>
+                    <div class="ui-g">
+                        <div class="ui-g-2">
+                            <p:outputLabel value="#{msg['address']}" for="addressEditOwner"/>
+                        </div>
+                        <div class="ui-g-4">
+                            <p:inputText id="addressEditOwner"
+                                         value="#{ownerView.entity.address}"/>
+                        </div>
+                        <div class="ui-g-2">
+                            <p:outputLabel value="#{msg['houseNumber']}" for="houseNumberEditOwner"/>
+                        </div>
+                        <div class="ui-g-4">
+                            <p:inputText id="houseNumberEditOwner"
+                                         value="#{ownerView.entity.houseNumber}"/>
+                        </div>
+                    </div>
+                    <div class="ui-g">
+                        <div class="ui-g-2">
+                            <p:outputLabel value="#{msg['addressInfo']}" for="addressInfoEditOwner"/>
+                        </div>
+                        <div class="ui-g-10">
+                            <p:inputText id="addressInfoEditOwner"
+                                         value="#{ownerView.entity.addressInfo}"/>
+                        </div>
+                    </div>
+                    <div class="ui-g">
+                        <div class="ui-g-2">
+                            <p:outputLabel value="#{msg['city']}" for="cityEditOwner"/>
+                        </div>
+                        <div class="ui-g-4">
+                            <p:inputText id="cityEditOwner"
+                                         value="#{ownerView.entity.city}"/>
+                        </div>
+                        <div class="ui-g-2">
+                            <p:outputLabel value="#{msg['zipCode']}" for="zipCodeEditOwner"/>
+                        </div>
+                        <div class="ui-g-4">
+                            <p:inputText id="zipCodeEditOwner"
+                                         value="#{ownerView.entity.zipCode}"/>
+                        </div>
+                    </div>
+                    <div class="ui-g">
+                        <div class="ui-g-2">
+                            <p:outputLabel value="#{msg['phoneNumber']}" for="phoneNumberEditOwner"/>
+                        </div>
+                        <div class="ui-g-10">
+                            <p:inputText id="phoneNumberEditOwner"
+                                         value="#{ownerView.entity.phoneNumber}"/>
+                        </div>
+                    </div>
+                    <div class="ui-g">
+                        <div class="ui-g-2">
+                            <p:commandButton
+                                    id="saveEditOwner"
+                                    type="submit"
+                                    value="#{msg['save']}"
+                                    action="#{ownerView.saveEdited}"
+                                    ajax="false"
+                                    icon="fa fa-fw fa-save"
+                                    styleClass="saveButton"/>
+                        </div>
+                        <div class="ui-g-2">
+                            <p:commandButton
+                                    id="cancelEditOwner"
+                                    type="cancel"
+                                    value="#{msg['cancel']}"
+                                    action="#{ownerView.cancelEdited}"
+                                    ajax="false"
+                                    icon="fa fa-fw fa-times-circle"
+                                    styleClass="cancelButton"
+                                    includeViewParams="true"/>
+                        </div>
+                        <div class="ui-g-8">
+                        </div>
+                    </div>
+                </h:form>
+            </p:panel>
+            </ui:fragment>
+
             <!-- Owner -->
 
             <h:form id="showOwnerForm">

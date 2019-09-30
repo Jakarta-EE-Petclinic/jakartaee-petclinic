@@ -103,6 +103,10 @@ public class OwnerViewFlow implements HasOwnerViewFlowState {
         return this.isFlowStateNew();
     }
 
+    public boolean renderPanelEditOwner(){
+        return this.isFlowStateEdit();
+    }
+
     public boolean renderPanelOwner(){
         return this.isFlowStateShow();
     }
