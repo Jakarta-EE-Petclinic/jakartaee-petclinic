@@ -100,27 +100,27 @@ public class OwnerViewFlow implements HasOwnerViewFlowState, Serializable {
         this.flowState = OwnerViewFlowState.LIST_SEARCH_RESULT;
     }
 
-    public boolean renderPanelAddNewOwner(){
+    public boolean isRenderPanelAddNewOwner(){
         return this.isFlowStateNew();
     }
 
-    public boolean renderPanelEditOwner(){
+    public boolean isRenderPanelEditOwner(){
         return this.isFlowStateEdit();
     }
 
-    public boolean renderPanelOwner(){
+    public boolean isRenderPanelOwner(){
         return this.isFlowStateShow();
     }
 
-    public boolean renderPanelPetsAndVisitsTable(){
-        return this.renderPanelOwner();
+    public boolean isRenderPanelPetsAndVisitsTable(){
+        return this.isRenderPanelOwner();
     }
 
-    public boolean renderPanelPetsAndVisitsTree(){
-        return this.renderPanelOwner();
+    public boolean isRenderPanelPetsAndVisitsTree(){
+        return this.isRenderPanelOwner();
     }
 
-    public boolean renderPanelOwnerList(){
+    public boolean isRenderPanelOwnerList(){
         return true;
     }
 }
