@@ -190,7 +190,7 @@ public class VetViewImpl implements VetView {
     @Override
     public String showDeleteForm(){
         this.reloadEntityFromSelected();
-        this.vetViewFlow.setFlowStatDelete();
+        this.vetViewFlow.setFlowStateDelete();
         return JSF_PAGE;
     }
 

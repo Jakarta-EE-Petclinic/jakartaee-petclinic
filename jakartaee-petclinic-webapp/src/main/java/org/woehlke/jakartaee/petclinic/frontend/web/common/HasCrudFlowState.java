@@ -9,12 +9,12 @@ public interface HasCrudFlowState extends Serializable {
     boolean isFlowStateList();
     boolean isFlowStateNew();
     boolean isFlowStateEdit();
-    boolean isFlowStatDelete();
+    boolean isFlowStateDelete();
     boolean isFlowStateSearchResult();
 
     void setFlowStateList();
     void setFlowStateNew();
     void setFlowStateEdit();
-    void setFlowStatDelete();
+    void setFlowStateDelete();
     void setFlowStateSearchResult();
 }

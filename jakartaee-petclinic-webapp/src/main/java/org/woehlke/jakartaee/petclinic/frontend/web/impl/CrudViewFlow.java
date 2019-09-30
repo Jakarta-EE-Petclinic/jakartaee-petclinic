@@ -27,7 +27,7 @@ public abstract class CrudViewFlow implements HasCrudFlowState, Serializable {
     }
 
     @Override
-    public boolean isFlowStatDelete(){
+    public boolean isFlowStateDelete(){
         return  this.flowState == CrudViewFlowState.DELETE;
     }
 
@@ -53,7 +53,7 @@ public abstract class CrudViewFlow implements HasCrudFlowState, Serializable {
     }
 
     @Override
-    public void setFlowStatDelete(){
+    public void setFlowStateDelete(){
         this.flowState = CrudViewFlowState.DELETE;
     }
 

@@ -107,7 +107,7 @@ public class PetTypeViewImpl implements PetTypeView {
 
     @Override
     public String showDeleteForm() {
-        this.petTypeViewFlow.setFlowStatDelete();
+        this.petTypeViewFlow.setFlowStateDelete();
         return JSF_PAGE;
     }
 
@@ -272,10 +272,10 @@ public class PetTypeViewImpl implements PetTypeView {
             }
             this.petTypeViewFlow.setFlowStateList();
         } catch (EJBTransactionRolledbackException e) {
-            this.petTypeViewFlow.setFlowStatDelete();
+            this.petTypeViewFlow.setFlowStateDelete();
             frontendMessagesView.addWarnMessage("cannot delete, object still in use", this.selected);
         } catch (EJBException e){
-            this.petTypeViewFlow.setFlowStatDelete();
+            this.petTypeViewFlow.setFlowStateDelete();
             frontendMessagesView.addErrorMessage(e.getLocalizedMessage(),this.selected);
         }
     }

@@ -37,7 +37,7 @@ public class OwnerViewFlow implements HasOwnerViewFlowState, Serializable {
     }
 
     @Override
-    public boolean isFlowStatDelete(){
+    public boolean isFlowStateDelete(){
         return  this.flowState == OwnerViewFlowState.DELETE;
     }
 
@@ -93,7 +93,7 @@ public class OwnerViewFlow implements HasOwnerViewFlowState, Serializable {
     }
 
     @Override
-    public void setFlowStatDelete(){
+    public void setFlowStateDelete(){
         this.flowState = OwnerViewFlowState.DELETE;
     }
 

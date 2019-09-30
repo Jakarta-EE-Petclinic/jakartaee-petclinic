@@ -142,10 +142,10 @@ public class OwnerViewImpl implements OwnerView {
                 frontendMessagesView.addInfoMessage("Deleted", msgInfo);
             }
         } catch (EJBTransactionRolledbackException e) {
-            this.ownerViewFlow.setFlowStatDelete();
+            this.ownerViewFlow.setFlowStateDelete();
             frontendMessagesView.addWarnMessage("cannot delete, object still in use", this.selected);
         } catch (EJBException e){
-            this.ownerViewFlow.setFlowStatDelete();
+            this.ownerViewFlow.setFlowStateDelete();
             frontendMessagesView.addErrorMessage(e.getLocalizedMessage(),this.selected);
         }
     }
@@ -273,12 +273,11 @@ public class OwnerViewImpl implements OwnerView {
         try {
             this.entity = entityService.addNew(this.entity);
             this.selected=this.entity;
-            frontendMessagesView.addInfoMessage("addded owner",this.entity);
             this.ownerViewFlow.setFlowStateShow();
+            frontendMessagesView.addInfoMessage("addded owner",this.entity);
         } catch (EJBException e){
-            log.warn(e.getMessage()+this.entity.toString());
-            frontendMessagesView.addWarnMessage(e,this.entity);
             this.ownerViewFlow.setFlowStateNew();
+            frontendMessagesView.addWarnMessage(e,this.entity);
         }
         return JSF_PAGE;
     }
@@ -299,11 +298,13 @@ public class OwnerViewImpl implements OwnerView {
     public String showSelectedEntity(){
         long id = this.selected.getId();
         this.entity = entityService.findById(id);
+        this.selected = this.entity;
         initTreeNodes();
         this.ownerViewFlow.setFlowStateEdit();
         return JSF_PAGE;
     }
 
+    @Override
     public void initTreeNodes(){
         this.treeNodeRoot = new CheckboxTreeNode(this.entity);
         for(Pet pet:this.entity.getPets()){
@@ -318,6 +319,9 @@ public class OwnerViewImpl implements OwnerView {
 
     @Override
     public String showEditForm(){
+        long id = this.selected.getId();
+        this.entity = entityService.findById(id);
+        this.selected = this.entity;
         this.ownerViewFlow.setFlowStateEdit();
         return JSF_PAGE;
     }
@@ -331,7 +335,6 @@ public class OwnerViewImpl implements OwnerView {
             frontendMessagesView.addInfoMessage("updated edited owner",this.entity);
         } catch (EJBException e){
             this.ownerViewFlow.setFlowStateEdit();
-            log.warn(e.getMessage()+this.entity.toString());
             frontendMessagesView.addWarnMessage(e,this.entity);
         }
         initTreeNodes();
@@ -346,7 +349,7 @@ public class OwnerViewImpl implements OwnerView {
 
     @Override
     public String showDeleteForm() {
-        this.ownerViewFlow.setFlowStatDelete();
+        this.ownerViewFlow.setFlowStateDelete();
         return JSF_PAGE;
     }
 
@@ -368,7 +371,7 @@ public class OwnerViewImpl implements OwnerView {
             this.ownerViewFlow.setFlowStateList();
             frontendMessagesView.addInfoMessage("deleted selected owner", selectedPrimaryKey);
         } catch (EJBException e){
-            this.ownerViewFlow.setFlowStatDelete();
+            this.ownerViewFlow.setFlowStateDelete();
             frontendMessagesView.addWarnMessage(e,this.selected);
         }
         return JSF_PAGE;

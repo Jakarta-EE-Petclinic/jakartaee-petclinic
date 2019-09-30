@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.woehlke.jakartaee.petclinic.frontend.web.LanguageView;
 import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
+import org.woehlke.jakartaee.petclinic.oodm.entities.Specialty;
 import org.woehlke.jakartaee.petclinic.oodm.services.SpecialtyService;
 import org.woehlke.jakartaee.petclinic.oodm.view.SpecialtyView;
 import org.woehlke.jakartaee.petclinic.oodm.view.flow.SpecialtyViewFlow;
@@ -51,9 +52,9 @@ public class SpecialtyViewImpl implements SpecialtyView {
     @ManagedProperty(value = "#{specialtyViewFlow}")
     private SpecialtyViewFlow specialtyViewFlow;
 
-    private org.woehlke.jakartaee.petclinic.oodm.entities.Specialty entity;
-    private org.woehlke.jakartaee.petclinic.oodm.entities.Specialty selected;
-    private List<org.woehlke.jakartaee.petclinic.oodm.entities.Specialty> list;
+    private Specialty entity;
+    private Specialty selected;
+    private List<Specialty> list;
 
     private String searchterm;
 
@@ -82,8 +83,10 @@ public class SpecialtyViewImpl implements SpecialtyView {
         try {
             this.entity = entityService.addNew(this.entity);
             this.selected = this.entity;
+            this.specialtyViewFlow.setFlowStateList();
             frontendMessagesView.addInfoMessage("Added", this.entity.getPrimaryKey());
         } catch (EJBException e){
+            this.specialtyViewFlow.setFlowStateNew();
             frontendMessagesView.addWarnMessage(e.getLocalizedMessage(),this.entity);
         }
     }
@@ -93,8 +96,10 @@ public class SpecialtyViewImpl implements SpecialtyView {
         try {
             this.entity = this.entityService.update(this.entity);
             this.selected = this.entity;
+            this.specialtyViewFlow.setFlowStateList();
             frontendMessagesView.addInfoMessage("Updated", this.entity.getPrimaryKey());
         } catch (EJBException e){
+            this.specialtyViewFlow.setFlowStateEdit();
             frontendMessagesView.addWarnMessage(e.getLocalizedMessage(),this.entity);
         }
     }
@@ -109,18 +114,21 @@ public class SpecialtyViewImpl implements SpecialtyView {
                     this.entity = null;
                 }
                 this.selected = null;
+                this.specialtyViewFlow.setFlowStateList();
                 frontendMessagesView.addInfoMessage("Deleted", msgInfo);
             }
         } catch (EJBTransactionRolledbackException e) {
+            this.specialtyViewFlow.setFlowStateDelete();
             frontendMessagesView.addWarnMessage("cannot delete, object still in use", this.selected);
         } catch (EJBException e){
+            this.specialtyViewFlow.setFlowStateDelete();
             frontendMessagesView.addErrorMessage(e.getLocalizedMessage(),this.selected);
         }
     }
 
     @Override
     public void newEntity(){
-        this.entity = new org.woehlke.jakartaee.petclinic.oodm.entities.Specialty();
+        this.entity = new Specialty();
     }
 
     @Override
@@ -165,7 +173,7 @@ public class SpecialtyViewImpl implements SpecialtyView {
 
     @Override
     public String showDeleteForm(){
-        this.specialtyViewFlow.setFlowStatDelete();
+        this.specialtyViewFlow.setFlowStateDelete();
         return JSF_PAGE;
     }
 
@@ -193,7 +201,6 @@ public class SpecialtyViewImpl implements SpecialtyView {
     public void performSearch() {
         if(searchterm==null || searchterm.isEmpty()){
             this.specialtyViewFlow.setFlowStateList();
-            loadList();
             frontendMessagesView.addInfoMessage("Search ", "Missing searchterm");
         } else {
             try {
@@ -202,7 +209,6 @@ public class SpecialtyViewImpl implements SpecialtyView {
                 frontendMessagesView.addInfoMessage("Search ", "Found "+this.list.size()+ "results for searchterm "+searchterm);
             } catch (Exception e){
                 this.specialtyViewFlow.setFlowStateList();
-                loadList();
                 frontendMessagesView.addWarnMessage(e.getLocalizedMessage(),searchterm);
             }
         }
@@ -233,27 +239,27 @@ public class SpecialtyViewImpl implements SpecialtyView {
     }
 
     @Override
-    public org.woehlke.jakartaee.petclinic.oodm.entities.Specialty getEntity() {
+    public Specialty getEntity() {
         return entity;
     }
 
     @Override
-    public void setEntity(org.woehlke.jakartaee.petclinic.oodm.entities.Specialty entity) {
+    public void setEntity(Specialty entity) {
         this.entity = entity;
     }
 
     @Override
-    public org.woehlke.jakartaee.petclinic.oodm.entities.Specialty getSelected() {
+    public Specialty getSelected() {
         return selected;
     }
 
     @Override
-    public void setSelected(org.woehlke.jakartaee.petclinic.oodm.entities.Specialty selected) {
+    public void setSelected(Specialty selected) {
         this.selected = selected;
     }
 
     @Override
-    public List<org.woehlke.jakartaee.petclinic.oodm.entities.Specialty> getList() {
+    public List<Specialty> getList() {
         if(this.specialtyViewFlow.isFlowStateSearchResult()){
             performSearch();
         } else {
@@ -263,7 +269,7 @@ public class SpecialtyViewImpl implements SpecialtyView {
     }
 
     @Override
-    public void setList(List<org.woehlke.jakartaee.petclinic.oodm.entities.Specialty> list) {
+    public void setList(List<Specialty> list) {
         this.list = list;
     }
 
