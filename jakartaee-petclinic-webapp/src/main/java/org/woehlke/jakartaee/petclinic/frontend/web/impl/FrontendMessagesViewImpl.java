@@ -147,24 +147,29 @@ public class FrontendMessagesViewImpl implements FrontendMessagesView {
     private void addMessageForEntityAndRuntimeException(RuntimeException e, TwEntities entity, String clientId, FacesMessage.Severity messageSeverity){
         StringBuilder sb1 = new StringBuilder("\n");
         String summary = e.getLocalizedMessage();
+        sb1.append("-----------------------------------------------------\n");
         sb1.append("entity Table       " + entity.getTableName()+"\n");
         sb1.append("entity Class       " + entity.getClass().getName()+"\n");
         sb1.append("entity UUID        " + entity.getUuid()+"\n");
         sb1.append("entity ID          " + entity.getId()+"\n");
         sb1.append("entity PK          " + entity.getPrimaryKey()+"\n");
-        sb1.append("clientId           " + clientId +"\n");
-        sb1.append("summary:           " + summary+"\n");
-        sb1.append("RuntimeException:  " + e.getMessage()+"\n");
+        sb1.append("RuntimeException:  " + e.getClass().getName()+"\n");
         sb1.append("RuntimeException:  " + e.getLocalizedMessage()+"\n");
+        sb1.append("Exception Cause:   " + e.getCause().getLocalizedMessage()+"\n");
+        sb1.append("Exception Cause:   " + e.getCause().getClass().getName()+"\n");
+        sb1.append("-----------------------------------------------------\n");
+        //sb1.append("clientId           " + clientId +"\n");
+        //sb1.append("summary:           " + summary+"\n");
         StringBuilder sb = new StringBuilder(sb1.toString());
-        long i = 0;
+        long i = 0L;
         for(StackTraceElement element:e.getStackTrace()){
             i++;
-            sb.append("StackTrace["+i+"]: "+element.getClass().getPackage()+"\n");
-            sb.append("StackTrace["+i+"]: "+element.getClassName()+"\n");
-            sb.append("StackTrace["+i+"]: "+element.getMethodName()+"\n");
-            sb.append("StackTrace["+i+"]: "+element.getFileName()+"\n");
-            sb.append("StackTrace["+i+"]: "+element.getLineNumber()+"\n");
+            StringBuilder lfdnr = new StringBuilder();
+            if (i<10){ lfdnr.append(" "); }
+            if(i<100){ lfdnr.append(" "); }
+            lfdnr.append(i);
+            sb.append("StackTrace["+lfdnr.toString()+"]: "+element.getClassName()+" . "+element.getMethodName()+" in: \n");
+            sb.append("StackTrace["+lfdnr.toString()+"]: "+element.getFileName()+" ( Line "+element.getLineNumber()+")\n");
         }
         List<String> logInfos = new ArrayList<>();
         logInfos.add(sb.toString());
