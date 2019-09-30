@@ -126,67 +126,65 @@ public class SpecialtyViewImpl implements SpecialtyView {
     @Override
     public String showEditForm(){
         this.reloadEntityFromSelected();
-        this.specialtyViewFlow.isFlowStateEdit();
+        this.specialtyViewFlow.setFlowStateEdit();
         return JSF_PAGE;
     }
 
     @Override
     public String showNewForm(){
        this.newEntity();
-        this.specialtyViewFlow.isFlowStateNew();
+       this.specialtyViewFlow.setFlowStateNew();
        return JSF_PAGE;
     }
 
     @Override
     public String saveNew(){
         this.saveNewEntity();
-        this.specialtyViewFlow.isFlowStateList();
-        this.specialtyViewFlow.isFlowStateList();
+        this.specialtyViewFlow.setFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String saveEdited(){
         this.saveEditedEntity();
-        this.specialtyViewFlow.isFlowStateList();
+        this.specialtyViewFlow.setFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String cancelEdited(){
-        this.specialtyViewFlow.isFlowStateList();
+        this.specialtyViewFlow.setFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String cancelNew(){
-        this.specialtyViewFlow.isFlowStateList();
+        this.specialtyViewFlow.setFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String showDeleteForm(){
-        this.specialtyViewFlow.isFlowStatDelete();
+        this.specialtyViewFlow.setFlowStatDelete();
         return JSF_PAGE;
     }
 
     @Override
     public String performDelete(){
         deleteSelectedEntity();
-        this.specialtyViewFlow.isFlowStateList();
+        this.specialtyViewFlow.setFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String cancelDelete(){
-        this.specialtyViewFlow.isFlowStateList();
+        this.specialtyViewFlow.setFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String search(){
-        this.specialtyViewFlow.isFlowStateSearchResult();
-        this.specialtyViewFlow.isFlowStateSearchResult();
+        this.specialtyViewFlow.setFlowStateSearchResult();
         return JSF_PAGE;
     }
 
@@ -194,16 +192,16 @@ public class SpecialtyViewImpl implements SpecialtyView {
     @Override
     public void performSearch() {
         if(searchterm==null || searchterm.isEmpty()){
-            this.specialtyViewFlow.isFlowStateList();
+            this.specialtyViewFlow.setFlowStateList();
             loadList();
             frontendMessagesView.addInfoMessage("Search ", "Missing searchterm");
         } else {
             try {
-                this.specialtyViewFlow.isFlowStateSearchResult();
+                this.specialtyViewFlow.setFlowStateSearchResult();
                 this.list = entityService.search(searchterm);
                 frontendMessagesView.addInfoMessage("Search ", "Found "+this.list.size()+ "results for searchterm "+searchterm);
             } catch (Exception e){
-                this.specialtyViewFlow.isFlowStateList();
+                this.specialtyViewFlow.setFlowStateList();
                 loadList();
                 frontendMessagesView.addWarnMessage(e.getLocalizedMessage(),searchterm);
             }

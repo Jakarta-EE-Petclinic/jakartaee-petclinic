@@ -138,7 +138,7 @@ public class VetViewImpl implements VetView {
     public String showNewForm(){
         this.newEntity();
         this. initSpecialtiesPickList();
-        this.vetViewFlow.isFlowStateNew();
+        this.vetViewFlow.setFlowStateNew();
         return JSF_PAGE;
     }
 
@@ -171,7 +171,7 @@ public class VetViewImpl implements VetView {
     public String showEditForm(){
         this.reloadEntityFromSelected();
         this.resetSpecialtiesPickList();
-        this.vetViewFlow.isFlowStateEdit();
+        this.vetViewFlow.setFlowStateEdit();
         return JSF_PAGE;
     }
 
@@ -217,7 +217,7 @@ public class VetViewImpl implements VetView {
 
     @Override
     public String search(){
-        this.vetViewFlow.isFlowStateSearchResult();
+        this.vetViewFlow.setFlowStateSearchResult();
         return JSF_PAGE;
     }
 
