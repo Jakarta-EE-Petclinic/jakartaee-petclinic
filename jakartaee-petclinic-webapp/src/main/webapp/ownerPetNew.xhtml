@@ -34,9 +34,13 @@
                         <h:panelGroup>
                             <h:outputText value="#{msg['birthdate']}" for="petBirthDate"/>
                             <p:calendar id="petBirthDate"
-                                          value="#{ownerView.pet.birthDate}"
-                                          showIcon="true"
-                                          showButtonBar="true"/>
+                                        styleClass="twCalendar"
+                                        value="#{ownerView.pet.birthDate}"
+                                        showOn="petBirthDate"
+                                        navigator="true"
+                                        locale="#{languageView.locale}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </p:calendar>
                         </h:panelGroup>
                         <h:panelGroup>
                         <p:outputLabel value="#{msg['petType']}" for="petType"/>
@@ -46,7 +50,7 @@
                                                value="#{ownerView.allPetTypes}"
                                                var="petType"
                                                itemLabel="#{petType.name}"
-                                               itemValue="#{petType.id}" />
+                                               itemValue="#{petType.id}"/>
                         </p:selectOneListbox>
                         </h:panelGroup>
                         <h:panelGroup>

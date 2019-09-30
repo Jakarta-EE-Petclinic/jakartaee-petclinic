@@ -38,9 +38,13 @@
             <p:panelGrid id="grid2" columns="2" >
                 <p:outputLabel value="#{msg['date']}" for="visitDate" />
                 <p:calendar id="visitDate"
-                              value="#{ownerView.visit.date}"
-                              showIcon="true"
-                              showButtonBar="true"/>
+                            styleClass="twCalendar"
+                            value="#{ownerView.visit.date}"
+                            showOn="visitDate"
+                            navigator="true"
+                            locale="#{languageView.locale}">
+                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                </p:calendar>
                 <p:outputLabel value="#{msg['description']}" for="visitDescription" />
                 <p:inputText id="visitDescription" styleClass="form-control"
                              value="#{ownerView.visit.description}" />
