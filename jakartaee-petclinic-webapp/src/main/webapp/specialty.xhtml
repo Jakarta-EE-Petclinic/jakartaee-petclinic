@@ -9,7 +9,7 @@
 
     <ui:define name="contentTitle">
         <div class="container" id="contentTitle">
-            <ui:fragment rendered="#{specialtyView.flowStateList}">
+            <ui:fragment rendered="#{specialtyViewFlow.flowStateList}">
                 <h1 id="listEntityHeader" class="contentTitleHeadline">
                     <i class="fa fa-stethoscope contentTitleHeadlineIcon"/>
                     <h:outputText
@@ -17,7 +17,7 @@
                             value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.list']}"/>
                 </h1>
             </ui:fragment>
-            <ui:fragment rendered="#{specialtyView.flowStateNew}">
+            <ui:fragment rendered="#{specialtyViewFlow.flowStateNew}">
                 <h1 id="newEntityHeader" class="contentTitleHeadline">
                     <i class="fa fa-stethoscope contentTitleHeadlineIcon"/>
                     <h:outputText
@@ -25,7 +25,7 @@
                             styleClass="contentTitleHeadlineText"/>
                 </h1>
             </ui:fragment>
-            <ui:fragment rendered="#{specialtyView.flowStateEdit}">
+            <ui:fragment rendered="#{specialtyViewFlow.flowStateEdit}">
                 <h1 id="editEntityHeader" class="contentTitleHeadline">
                     <i class="fa fa-stethoscope contentTitleHeadlineIcon"/>
                     <h:outputText
@@ -33,7 +33,7 @@
                             styleClass="contentTitleHeadlineText"/>
                 </h1>
             </ui:fragment>
-            <ui:fragment rendered="#{specialtyView.flowStatDelete}">
+            <ui:fragment rendered="#{specialtyViewFlow.flowStatDelete}">
                 <h1 id="deleteEntityHeader" class="contentTitleHeadline">
                     <i class="fa fa-stethoscope contentTitleHeadlineIcon"/>
                     <h:outputText
@@ -41,7 +41,7 @@
                             styleClass="contentTitleHeadlineText"/>
                 </h1>
             </ui:fragment>
-            <ui:fragment rendered="#{specialtyView.flowStateSearchResult}">
+            <ui:fragment rendered="#{specialtyViewFlow.flowStateSearchResult}">
                 <h1 id="searchResultEntityHeader" class="contentTitleHeadline">
                     <i class="fa fa-stethoscope contentTitleHeadlineIcon"/>
                     <h:outputText
@@ -54,7 +54,7 @@
 
     <ui:define name="content">
         <div class="container" id="contentContainer">
-            <ui:fragment rendered="#{specialtyView.flowStateNew}">
+            <ui:fragment rendered="#{specialtyViewFlow.flowStateNew}">
                 <h:form id="addNewSpecialtyForm" styleClass="addNewEntityForm">
                     <p:panel id="addNewSpecialtyPanel" styleClass="contentPanel"
                          header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.addNew']}">
@@ -90,7 +90,7 @@
                     </p:panel>
                 </h:form>
             </ui:fragment>
-            <ui:fragment rendered="#{specialtyView.flowStateEdit}">
+            <ui:fragment rendered="#{specialtyViewFlow.flowStateEdit}">
                 <h:form id="editSpecialtyForm">
                     <p:panel
                             id="editSpecialtyFormPanel"
@@ -128,7 +128,7 @@
                     </p:panel>
                 </h:form>
             </ui:fragment>
-            <ui:fragment rendered="#{specialtyView.flowStatDelete}">
+            <ui:fragment rendered="#{specialtyViewFlow.flowStatDelete}">
                 <h:form id="deleteSpecialtyForm" styleClass="deleteEntityForm">
                     <p:panel id="deleteSpecialtyPanel" styleClass="contentPanel"
                              header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.delete']}">

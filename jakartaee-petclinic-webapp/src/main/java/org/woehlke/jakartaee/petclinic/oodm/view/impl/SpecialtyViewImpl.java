@@ -1,14 +1,12 @@
-package org.woehlke.jakartaee.petclinic.frontend.web.impl;
+package org.woehlke.jakartaee.petclinic.oodm.view.impl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.woehlke.jakartaee.petclinic.frontend.web.LanguageView;
 import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
-import org.woehlke.jakartaee.petclinic.frontend.web.common.CrudViewFlowState;
-import org.woehlke.jakartaee.petclinic.frontend.web.common.ViewModelOperations;
-import org.woehlke.jakartaee.petclinic.oodm.entities.Specialty;
 import org.woehlke.jakartaee.petclinic.oodm.services.SpecialtyService;
-import org.woehlke.jakartaee.petclinic.frontend.web.SpecialtyView;
+import org.woehlke.jakartaee.petclinic.oodm.view.SpecialtyView;
+import org.woehlke.jakartaee.petclinic.oodm.view.flow.SpecialtyViewFlow;
 
 import javax.faces.bean.ManagedBean;;
 import javax.annotation.PostConstruct;
@@ -30,7 +28,7 @@ import java.util.List;
 @SuppressWarnings("deprecation")
 @ManagedBean(name="specialtyView")
 @SessionScoped
-public class SpecialtyViewImpl implements SpecialtyView, ViewModelOperations {
+public class SpecialtyViewImpl implements SpecialtyView {
 
     private static Logger log = LogManager.getLogger(SpecialtyViewImpl.class.getName());
 
@@ -47,18 +45,21 @@ public class SpecialtyViewImpl implements SpecialtyView, ViewModelOperations {
     @ManagedProperty(value = "#{frontendMessagesView}")
     private FrontendMessagesView frontendMessagesView;
 
-    private Specialty entity;
-    private Specialty selected;
-    private List<Specialty> list;
+    @SuppressWarnings("deprecation")
+    @ManagedProperty(value = "#{specialtyViewFlow}")
+    private SpecialtyViewFlow specialtyViewFlow;
+
+    private org.woehlke.jakartaee.petclinic.oodm.entities.Specialty entity;
+    private org.woehlke.jakartaee.petclinic.oodm.entities.Specialty selected;
+    private List<org.woehlke.jakartaee.petclinic.oodm.entities.Specialty> list;
 
     private String searchterm;
 
-    private CrudViewFlowState flowState;
 
     @PostConstruct
     public void init(){
         log.trace("postConstruct");
-        this.flowState = CrudViewFlowState.LIST;
+        this.specialtyViewFlow.setFlowStateList();
     }
 
     @Override
@@ -116,97 +117,74 @@ public class SpecialtyViewImpl implements SpecialtyView, ViewModelOperations {
     }
 
     @Override
-    public boolean isFlowStateList(){
-        return  this.flowState == CrudViewFlowState.LIST;
-    }
-
-    @Override
-    public boolean isFlowStateNew(){
-       return  this.flowState == CrudViewFlowState.NEW;
-    }
-
-    @Override
-    public boolean isFlowStateEdit(){
-        return  this.flowState == CrudViewFlowState.EDIT;
-    }
-
-    @Override
-    public boolean isFlowStatDelete(){
-        return  this.flowState == CrudViewFlowState.DELETE;
-    }
-
-    @Override
-    public boolean isFlowStateSearchResult(){
-        return  this.flowState == CrudViewFlowState.LIST_SEARCH_RESULT;
-    }
-
-    @Override
     public void newEntity(){
-        this.entity = new Specialty();
+        this.entity = new org.woehlke.jakartaee.petclinic.oodm.entities.Specialty();
     }
 
     @Override
     public String showEditForm(){
         this.reloadEntityFromSelected();
-        this.flowState = CrudViewFlowState.EDIT;
+        this.specialtyViewFlow.isFlowStateEdit();
         return JSF_PAGE;
     }
 
     @Override
     public String showNewForm(){
        this.newEntity();
-       this.flowState = CrudViewFlowState.NEW;
+        this.specialtyViewFlow.isFlowStateNew();
        return JSF_PAGE;
     }
 
     @Override
     public String saveNew(){
         this.saveNewEntity();
-        this.flowState = CrudViewFlowState.LIST;
+        this.specialtyViewFlow.isFlowStateList();
+        this.specialtyViewFlow.isFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String saveEdited(){
         this.saveEditedEntity();
-        this.flowState = CrudViewFlowState.LIST;
+        this.specialtyViewFlow.isFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String cancelEdited(){
-        this.flowState = CrudViewFlowState.LIST;
+        this.specialtyViewFlow.isFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String cancelNew(){
-        this.flowState = CrudViewFlowState.LIST;
+        this.specialtyViewFlow.isFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String showDeleteForm(){
-        this.flowState = CrudViewFlowState.DELETE;
+        this.specialtyViewFlow.isFlowStatDelete();
         return JSF_PAGE;
     }
 
     @Override
     public String performDelete(){
         deleteSelectedEntity();
-        this.flowState = CrudViewFlowState.LIST;
+        this.specialtyViewFlow.isFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String cancelDelete(){
-        this.flowState = CrudViewFlowState.LIST;
+        this.specialtyViewFlow.isFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String search(){
-        this.flowState = CrudViewFlowState.LIST_SEARCH_RESULT;
+        this.specialtyViewFlow.isFlowStateSearchResult();
+        this.specialtyViewFlow.isFlowStateSearchResult();
         return JSF_PAGE;
     }
 
@@ -214,16 +192,16 @@ public class SpecialtyViewImpl implements SpecialtyView, ViewModelOperations {
     @Override
     public void performSearch() {
         if(searchterm==null || searchterm.isEmpty()){
-            this.flowState = CrudViewFlowState.LIST;
+            this.specialtyViewFlow.isFlowStateList();
             loadList();
             frontendMessagesView.addInfoMessage("Search ", "Missing searchterm");
         } else {
             try {
-                this.flowState = CrudViewFlowState.LIST_SEARCH_RESULT;
+                this.specialtyViewFlow.isFlowStateSearchResult();
                 this.list = entityService.search(searchterm);
                 frontendMessagesView.addInfoMessage("Search ", "Found "+this.list.size()+ "results for searchterm "+searchterm);
             } catch (Exception e){
-                this.flowState = CrudViewFlowState.LIST;
+                this.specialtyViewFlow.isFlowStateList();
                 loadList();
                 frontendMessagesView.addWarnMessage(e.getLocalizedMessage(),searchterm);
             }
@@ -255,28 +233,28 @@ public class SpecialtyViewImpl implements SpecialtyView, ViewModelOperations {
     }
 
     @Override
-    public Specialty getEntity() {
+    public org.woehlke.jakartaee.petclinic.oodm.entities.Specialty getEntity() {
         return entity;
     }
 
     @Override
-    public void setEntity(Specialty entity) {
+    public void setEntity(org.woehlke.jakartaee.petclinic.oodm.entities.Specialty entity) {
         this.entity = entity;
     }
 
     @Override
-    public Specialty getSelected() {
+    public org.woehlke.jakartaee.petclinic.oodm.entities.Specialty getSelected() {
         return selected;
     }
 
     @Override
-    public void setSelected(Specialty selected) {
+    public void setSelected(org.woehlke.jakartaee.petclinic.oodm.entities.Specialty selected) {
         this.selected = selected;
     }
 
     @Override
-    public List<Specialty> getList() {
-        if(this.flowState == CrudViewFlowState.LIST_SEARCH_RESULT){
+    public List<org.woehlke.jakartaee.petclinic.oodm.entities.Specialty> getList() {
+        if(this.specialtyViewFlow.isFlowStateSearchResult()){
             performSearch();
         } else {
             loadList();
@@ -285,7 +263,7 @@ public class SpecialtyViewImpl implements SpecialtyView, ViewModelOperations {
     }
 
     @Override
-    public void setList(List<Specialty> list) {
+    public void setList(List<org.woehlke.jakartaee.petclinic.oodm.entities.Specialty> list) {
         this.list = list;
     }
 

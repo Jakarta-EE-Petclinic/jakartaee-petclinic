@@ -4,9 +4,8 @@ import org.woehlke.jakartaee.petclinic.frontend.web.LanguageView;
 
 import java.io.Serializable;
 
-public interface ViewHasLanguage extends Serializable {
+public interface HasLanguage extends Serializable {
 
     LanguageView getLanguageView();
-
     void setLanguageView(LanguageView languageView);
 }

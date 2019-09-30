@@ -1,4 +1,4 @@
-package org.woehlke.jakartaee.petclinic.frontend.web;
+package org.woehlke.jakartaee.petclinic.frontend.web.owner;
 
 import org.woehlke.jakartaee.petclinic.oodm.entities.Pet;
 import org.woehlke.jakartaee.petclinic.oodm.entities.PetType;
@@ -22,5 +22,7 @@ public interface OwnersPetView extends Serializable {
     void setPetSelected(Pet petSelected);
     long getPetTypeId();
     void setPetTypeId(long petTypeId);
+    List<PetType> getPetTypeList();
+    void setPetTypeList(List<PetType> petTypeList);
     List<PetType> getAllPetTypes();
 }

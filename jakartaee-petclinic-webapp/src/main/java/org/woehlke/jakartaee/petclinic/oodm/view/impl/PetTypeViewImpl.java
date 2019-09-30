@@ -1,15 +1,14 @@
-package org.woehlke.jakartaee.petclinic.frontend.web.impl;
+package org.woehlke.jakartaee.petclinic.oodm.view.impl;
 
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.woehlke.jakartaee.petclinic.frontend.web.LanguageView;
 import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
-import org.woehlke.jakartaee.petclinic.frontend.web.common.CrudViewFlowState;
-import org.woehlke.jakartaee.petclinic.frontend.web.common.ViewModelOperations;
 import org.woehlke.jakartaee.petclinic.oodm.entities.PetType;
 import org.woehlke.jakartaee.petclinic.oodm.services.PetTypeService;
-import org.woehlke.jakartaee.petclinic.frontend.web.PetTypeView;
+import org.woehlke.jakartaee.petclinic.oodm.view.PetTypeView;
+import org.woehlke.jakartaee.petclinic.oodm.view.flow.PetTypeViewFlow;
 
 import javax.faces.bean.ManagedBean;;
 import javax.annotation.PostConstruct;
@@ -31,7 +30,7 @@ import java.util.List;
 @SuppressWarnings("deprecation")
 @ManagedBean(name="petTypeView")
 @SessionScoped
-public class PetTypeViewImpl implements PetTypeView, ViewModelOperations {
+public class PetTypeViewImpl implements PetTypeView {
 
     private static Logger log = LogManager.getLogger(PetTypeViewImpl.class);
 
@@ -48,23 +47,25 @@ public class PetTypeViewImpl implements PetTypeView, ViewModelOperations {
     @ManagedProperty(value = "#{frontendMessagesView}")
     private FrontendMessagesView frontendMessagesView;
 
-    private PetType entity;
-    private PetType selected;
-    private List<PetType> list;
-    private String searchterm;
+    @SuppressWarnings("deprecation")
+    @ManagedProperty(value = "#{petTypeViewFlow}")
+    private PetTypeViewFlow petTypeViewFlow;
 
-    private CrudViewFlowState flowState;
+    private org.woehlke.jakartaee.petclinic.oodm.entities.PetType entity;
+    private org.woehlke.jakartaee.petclinic.oodm.entities.PetType selected;
+    private List<org.woehlke.jakartaee.petclinic.oodm.entities.PetType> list;
+    private String searchterm;
 
     @PostConstruct
     public void init(){
-        this.flowState = CrudViewFlowState.LIST;
+        this.petTypeViewFlow.setFlowStateList();
         log.trace("postConstruct");
     }
 
     @Override
     public String showNewForm(){
         this.newEntity();
-        this.flowState = CrudViewFlowState.NEW;
+        this.petTypeViewFlow.setFlowStateNew();
         return JSF_PAGE;
     }
 
@@ -72,7 +73,7 @@ public class PetTypeViewImpl implements PetTypeView, ViewModelOperations {
     @Override
     public String saveNew(){
         this.saveNewEntity();
-        this.flowState = CrudViewFlowState.LIST;
+        this.petTypeViewFlow.setFlowStateList();
         return JSF_PAGE;
     }
 
@@ -85,62 +86,62 @@ public class PetTypeViewImpl implements PetTypeView, ViewModelOperations {
     @Override
     public String showEditForm(){
         this.reloadEntityFromSelected();
-        this.flowState = CrudViewFlowState.EDIT;
+        this.petTypeViewFlow.isFlowStateEdit();
         return JSF_PAGE;
     }
 
     @Override
     public String saveEdited(){
         this.saveEditedEntity();
-        this.flowState = CrudViewFlowState.LIST;
+        this.petTypeViewFlow.setFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String cancelEdited() {
-        this.flowState = CrudViewFlowState.LIST;
+        this.petTypeViewFlow.setFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String showDeleteForm() {
-        this.flowState = CrudViewFlowState.DELETE;
+        this.petTypeViewFlow.isFlowStatDelete();
         return JSF_PAGE;
     }
 
     @Override
     public String performDelete() {
         deleteSelectedEntity();
-        this.flowState = CrudViewFlowState.LIST;
+        this.petTypeViewFlow.setFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String cancelDelete() {
-        this.flowState = CrudViewFlowState.LIST;
+        this.petTypeViewFlow.setFlowStateList();
         return JSF_PAGE;
     }
 
 
     @Override
     public String search(){
-        this.flowState = CrudViewFlowState.LIST_SEARCH_RESULT;
+        this.petTypeViewFlow.isFlowStateSearchResult();
         return JSF_PAGE;
     }
 
     @Override
     public void performSearch() {
         if(searchterm==null || searchterm.isEmpty()){
-            this.flowState = CrudViewFlowState.LIST;
+            this.petTypeViewFlow.setFlowStateList();
             loadList();
             frontendMessagesView.addInfoMessage("Search ", "Missing searchterm");
         } else {
             try {
-                this.flowState = CrudViewFlowState.LIST_SEARCH_RESULT;
+                this.petTypeViewFlow.setFlowStateSearchResult();
                 this.list = entityService.search(searchterm);
                 frontendMessagesView.addInfoMessage("Search ", "Found "+this.list.size()+ "results for searchterm "+searchterm);
             } catch (Exception e){
-                this.flowState = CrudViewFlowState.LIST;
+                this.petTypeViewFlow.setFlowStateList();
                 loadList();
                 frontendMessagesView.addWarnMessage(e.getLocalizedMessage(),searchterm);
             }
@@ -169,12 +170,12 @@ public class PetTypeViewImpl implements PetTypeView, ViewModelOperations {
     }
 
     @Override
-    public PetType getSelected() {
+    public org.woehlke.jakartaee.petclinic.oodm.entities.PetType getSelected() {
         return selected;
     }
 
     @Override
-    public void setSelected(PetType selected) {
+    public void setSelected(org.woehlke.jakartaee.petclinic.oodm.entities.PetType selected) {
         this.selected = selected;
         if( this.selected != null ){
             this.entity = entityService.findById(this.selected.getId());
@@ -197,8 +198,8 @@ public class PetTypeViewImpl implements PetTypeView, ViewModelOperations {
         this.languageView = languageView;
     }
 
-    public List<PetType> getList() {
-        if(this.flowState == CrudViewFlowState.LIST_SEARCH_RESULT){
+    public List<org.woehlke.jakartaee.petclinic.oodm.entities.PetType> getList() {
+        if(this.petTypeViewFlow.isFlowStateSearchResult()){
             performSearch();
         } else {
             loadList();
@@ -206,7 +207,7 @@ public class PetTypeViewImpl implements PetTypeView, ViewModelOperations {
         return list;
     }
 
-    public void setList(List<PetType> list) {
+    public void setList(List<org.woehlke.jakartaee.petclinic.oodm.entities.PetType> list) {
         this.list = list;
     }
 
@@ -235,6 +236,7 @@ public class PetTypeViewImpl implements PetTypeView, ViewModelOperations {
             frontendMessagesView.addInfoMessage("Added", this.entity.getPrimaryKey());
         } catch (EJBException e){
             log.warn(e.getMessage()+this.entity.toString());
+            frontendMessagesView.addWarnMessage(e, this.entity);
         }
     }
 
@@ -274,37 +276,12 @@ public class PetTypeViewImpl implements PetTypeView, ViewModelOperations {
 
     @Override
     public void newEntity() {
-        this.entity = new PetType();
+        this.entity = new org.woehlke.jakartaee.petclinic.oodm.entities.PetType();
     }
 
     @PreDestroy
     public void preDestroy(){
         log.trace("preDestroy");
-    }
-
-    @Override
-    public boolean isFlowStateList(){
-        return  this.flowState == CrudViewFlowState.LIST;
-    }
-
-    @Override
-    public boolean isFlowStateNew(){
-        return  this.flowState == CrudViewFlowState.NEW;
-    }
-
-    @Override
-    public boolean isFlowStateEdit(){
-        return  this.flowState == CrudViewFlowState.EDIT;
-    }
-
-    @Override
-    public boolean isFlowStatDelete(){
-        return  this.flowState == CrudViewFlowState.DELETE;
-    }
-
-    @Override
-    public boolean isFlowStateSearchResult(){
-        return  this.flowState == CrudViewFlowState.LIST_SEARCH_RESULT;
     }
 
 }

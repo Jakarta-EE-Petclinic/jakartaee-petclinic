@@ -2,7 +2,7 @@ package org.woehlke.jakartaee.petclinic.frontend.web.common;
 
 import java.io.Serializable;
 
-public interface ViewModelOperations extends Serializable {
+public interface HasViewModelOperations extends Serializable {
 
     void reloadEntityFromSelected();
     void loadList();

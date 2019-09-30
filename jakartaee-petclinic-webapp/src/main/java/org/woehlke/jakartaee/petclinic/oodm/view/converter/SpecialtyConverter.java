@@ -1,4 +1,4 @@
-package org.woehlke.jakartaee.petclinic.frontend.web.converter;
+package org.woehlke.jakartaee.petclinic.oodm.view.converter;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

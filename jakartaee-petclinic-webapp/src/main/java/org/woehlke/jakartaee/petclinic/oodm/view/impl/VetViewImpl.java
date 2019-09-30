@@ -1,4 +1,4 @@
-package org.woehlke.jakartaee.petclinic.frontend.web.impl;
+package org.woehlke.jakartaee.petclinic.oodm.view.impl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -6,12 +6,11 @@ import org.primefaces.model.DualListModel;
 import org.woehlke.jakartaee.petclinic.frontend.web.LanguageView;
 import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
 import org.woehlke.jakartaee.petclinic.frontend.web.common.CrudViewFlowState;
-import org.woehlke.jakartaee.petclinic.frontend.web.common.ViewModelOperations;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Specialty;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Vet;
 import org.woehlke.jakartaee.petclinic.oodm.services.SpecialtyService;
 import org.woehlke.jakartaee.petclinic.oodm.services.VetService;
-import org.woehlke.jakartaee.petclinic.frontend.web.VetView;
+import org.woehlke.jakartaee.petclinic.oodm.view.VetView;
 
 
 import javax.faces.bean.ManagedBean;;
@@ -34,7 +33,7 @@ import java.util.*;
 @SuppressWarnings("deprecation")
 @ManagedBean(name="vetView")
 @SessionScoped
-public class VetViewImpl implements VetView, ViewModelOperations {
+public class VetViewImpl implements VetView {
 
     private static Logger log = LogManager.getLogger(VetViewImpl.class.getName());
 
@@ -105,19 +104,19 @@ public class VetViewImpl implements VetView, ViewModelOperations {
         return specialtyService.findSpecialtyByName(name);
     }
 
-    public Vet getEntity() {
+    public org.woehlke.jakartaee.petclinic.oodm.entities.Vet getEntity() {
         return entity;
     }
 
-    public void setEntity(Vet entity) {
+    public void setEntity(org.woehlke.jakartaee.petclinic.oodm.entities.Vet entity) {
         this.entity = entity;
     }
 
-    public Vet getSelected() {
+    public org.woehlke.jakartaee.petclinic.oodm.entities.Vet getSelected() {
         return selected;
     }
 
-    public void setSelected(Vet selected) {
+    public void setSelected(org.woehlke.jakartaee.petclinic.oodm.entities.Vet selected) {
         this.selected = selected;
     }
 
@@ -149,11 +148,11 @@ public class VetViewImpl implements VetView, ViewModelOperations {
         return JSF_PAGE;
     }
 
-    public void setList(List<Vet> list) {
+    public void setList(List<org.woehlke.jakartaee.petclinic.oodm.entities.Vet> list) {
         this.list = list;
     }
 
-    public List<Vet> getList() {
+    public List<org.woehlke.jakartaee.petclinic.oodm.entities.Vet> getList() {
         if(this.flowState == CrudViewFlowState.LIST_SEARCH_RESULT){
             performSearch();
         } else {
@@ -327,8 +326,9 @@ public class VetViewImpl implements VetView, ViewModelOperations {
 
     @Override
     public void newEntity() {
-        this.entity = new Vet();
+        this.entity = new org.woehlke.jakartaee.petclinic.oodm.entities.Vet();
     }
+
 
     @Override
     public boolean isFlowStateList(){
@@ -354,5 +354,32 @@ public class VetViewImpl implements VetView, ViewModelOperations {
     public boolean isFlowStateSearchResult(){
         return  this.flowState == CrudViewFlowState.LIST_SEARCH_RESULT;
     }
+
+
+    @Override
+    public void setFlowStateList(){
+        this.flowState = CrudViewFlowState.LIST;
+    }
+
+    @Override
+    public void setFlowStateNew(){
+        this.flowState = CrudViewFlowState.NEW;
+    }
+
+    @Override
+    public void setFlowStateEdit(){
+        this.flowState = CrudViewFlowState.EDIT;
+    }
+
+    @Override
+    public void setFlowStatDelete(){
+        this.flowState = CrudViewFlowState.DELETE;
+    }
+
+    @Override
+    public void setFlowStateSearchResult(){
+        this.flowState = CrudViewFlowState.LIST_SEARCH_RESULT;
+    }
+
 
 }

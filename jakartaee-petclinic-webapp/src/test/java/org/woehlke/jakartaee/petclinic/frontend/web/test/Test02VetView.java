@@ -28,9 +28,9 @@ import static org.jboss.arquillian.graphene.Graphene.goTo;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class Test02Vet extends AbstractPrimePageTest {
+public class Test02VetView extends AbstractPrimePageTest {
 
-    private static Logger log = LogManager.getLogger(Test02Vet.class.getName());
+    private static Logger log = LogManager.getLogger(Test02VetView.class.getName());
 
 
     @BeforeDeployment

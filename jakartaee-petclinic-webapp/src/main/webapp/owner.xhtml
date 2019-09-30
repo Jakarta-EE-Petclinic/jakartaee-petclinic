@@ -16,8 +16,109 @@
 
     <ui:define name="content">
         <div class="container">
+
+            <ui:fragment rendered="#{ownerViewFlow.renderPanelAddNewOwner}">
+            <p:panel id="contentPanelAddNewOwner" header="#{msg['addNewOwner']}" style="margin-bottom:20px">
+                <h:form id="addNewOwnerForm">
+                    <div class="ui-g">
+                        <div class="ui-g-2">
+                            <p:outputLabel value="#{msg['firstName']}" for="firstNameAddNewOwner"/>
+                        </div>
+                        <div class="ui-g-4">
+                            <p:inputText id="firstNameAddNewOwner"
+                                         value="#{ownerView.entity.firstName}"/>
+                        </div>
+                        <div class="ui-g-2">
+                            <p:outputLabel value="#{msg['lastName']}" for="lastNameAddNewOwner"/>
+                        </div>
+                        <div class="ui-g-4">
+                            <p:inputText id="lastNameAddNewOwner"
+                                         value="#{ownerView.entity.lastName}"/>
+                        </div>
+                    </div>
+                    <div class="ui-g">
+                        <div class="ui-g-2">
+                            <p:outputLabel value="#{msg['address']}" for="addressAddNewOwner"/>
+                        </div>
+                        <div class="ui-g-4">
+                            <p:inputText id="addressAddNewOwner"
+                                         value="#{ownerView.entity.address}"/>
+                        </div>
+                        <div class="ui-g-2">
+                            <p:outputLabel value="#{msg['houseNumber']}" for="houseNumberAddNewOwner"/>
+                        </div>
+                        <div class="ui-g-4">
+                            <p:inputText id="houseNumberAddNewOwner"
+                                         value="#{ownerView.entity.houseNumber}"/>
+                        </div>
+                    </div>
+                    <div class="ui-g">
+                        <div class="ui-g-2">
+                            <p:outputLabel value="#{msg['addressInfo']}" for="addressInfoAddNewOwner"/>
+                        </div>
+                        <div class="ui-g-10">
+                            <p:inputText id="addressInfoAddNewOwner"
+                                         value="#{ownerView.entity.addressInfo}"/>
+                        </div>
+                    </div>
+                    <div class="ui-g">
+                        <div class="ui-g-2">
+                            <p:outputLabel value="#{msg['city']}" for="cityAddNewOwner"/>
+                        </div>
+                        <div class="ui-g-4">
+                            <p:inputText id="cityAddNewOwner"
+                                         value="#{ownerView.entity.city}"/>
+                        </div>
+                        <div class="ui-g-2">
+                            <p:outputLabel value="#{msg['zipCode']}" for="zipCodeAddNewOwner"/>
+                        </div>
+                        <div class="ui-g-4">
+                            <p:inputText id="zipCodeAddNewOwner"
+                                         value="#{ownerView.entity.zipCode}"/>
+                        </div>
+                    </div>
+                    <div class="ui-g">
+                        <div class="ui-g-2">
+                            <p:outputLabel value="#{msg['phoneNumber']}" for="phoneNumberAddNewOwner"/>
+                        </div>
+                        <div class="ui-g-10">
+                            <p:inputText id="phoneNumberAddNewOwner"
+                                         value="#{ownerView.entity.phoneNumber}"/>
+                        </div>
+                    </div>
+                    <div class="ui-g">
+                        <div class="ui-g-2">
+                            <p:commandButton
+                                    id="saveAddNewOwner"
+                                    type="submit"
+                                    value="#{msg['save']}"
+                                    action="#{ownerView.saveNew}"
+                                    ajax="false"
+                                    icon="fa fa-fw fa-save"
+                                    styleClass="saveButton"/>
+                        </div>
+                        <div class="ui-g-2">
+                            <p:commandButton id="cancelAddNewOwner"
+                                             type="cancel"
+                                             value="#{msg['cancel']}"
+                                             action="#{ownerView.cancelNew}"
+                                             ajax="false"
+                                             icon="fa fa-fw fa-times-circle"
+                                             styleClass="cancelButton"
+                                             includeViewParams="true"/>
+                        </div>
+                        <div class="ui-g-8">
+                        </div>
+                    </div>
+                </h:form>
+            </p:panel>
+            </ui:fragment>
+
+            <!-- Owner -->
+
             <h:form id="showOwnerForm">
-                <p:panel id="contentPanel" header="#{msg['owner']}">
+                <ui:fragment rendered="#{ownerViewFlow.renderPanelOwner}">
+                <p:panel id="contentPanelOwner" header="#{msg['owner']}">
                     <div class="ui-g">
                         <div class="ui-g-2">
                             <p:outputLabel value="#{msg['firstName']}" for="firstName"/>
@@ -111,25 +212,15 @@
                     </div>
                 </p:panel>
                 <br/>
-                <p:panel id="contentPanelPetsAndVisits" header="#{msg['petsAndVisits']}">
-                    <div class="ui-g">
-                        <div class="ui-g-12">
-                            <p:tree value="#{ownerView.root}" var="node" orientation="horizontal">
-                                <p:treeNode>
-                                    <h:outputText value="#{node.primaryKey}" />
-                                </p:treeNode>
-                            </p:tree>
-                        </div>
-                    </div>
-                </p:panel>
-                <br/>
-                <p:panel id="contentPanelPetsAndVisits2" header="#{msg['petsAndVisits']}">
+            </ui:fragment>
+            <ui:fragment rendered="#{ownerViewFlow.renderPanelPetsAndVisitsTable}">
+                <p:panel id="contentPanelPetsAndVisitsTable" header="#{msg['petsAndVisits']}">
                     <div class="ui-g">
                         <div class="ui-g-12">
                             <p:dataTable id="petsAndVisitsTable"
+                                         styleClass="table"
                                          value="#{ownerView.entity.pets}"
                                          var="ownersPet"
-                                         styleClass="table"
                                          rowKey="#{ownersPet.id}"
                                          selection="#{ownerView.petSelected}"
                                          selectionMode="single"
@@ -215,7 +306,111 @@
                             </div>
                     </div>
                 </p:panel>
+                <br/>
+            </ui:fragment>
+            <ui:fragment rendered="#{ownerViewFlow.renderPanelPetsAndVisitsTree}">
+                <p:panel id="contentPanelPetsAndVisitsTree" header="#{msg['petsAndVisits']}">
+                    <div class="ui-g">
+                        <div class="ui-g-12">
+                            <p:tree value="#{ownerView.root}" var="node" orientation="horizontal">
+                                <p:treeNode>
+                                    <h:outputText value="#{node.primaryKey}" />
+                                </p:treeNode>
+                            </p:tree>
+                        </div>
+                    </div>
+                </p:panel>
+            </ui:fragment>
             </h:form>
+
+            <ui:fragment rendered="#{ownerViewFlow.renderPanelOwnerList}">
+            <p:panel id="contentPanelOwnerList"
+                     styleClass="contentPanel"
+                     header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentPanel.owner.list']}">
+                <h:form id="findEntityForm">
+                    <p:panelGrid id="newAndSearchGrid" columns="4" styleClass="newAndSearchGrid">
+                        <p:commandButton
+                                id="showNewFormButton"
+                                styleClass="showNewFormButton"
+                                action="#{ownerView.showNewForm}"
+                                icon="fa fa-fw fa-plus-square"
+                                ajax="false"
+                                value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.showNewFormButton']}" />
+                        <p:outputLabel
+                                id="labelTextSearchterm"
+                                styleClass="labelTextSearchterm"
+                                value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.owner']}"
+                                for="inputTextSearchterm"/>
+                        <p:inputText id="inputTextSearchterm"
+                                     styleClass="inputTextSearchterm"
+                                     value="#{ownerView.searchterm}" />
+                        <p:commandButton id="searchButton"
+                                         styleClass="searchButton"
+                                         action="#{ownerView.search}"
+                                         value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchButton']}"
+                                         icon="fa fa-fw fa-search"
+                                         ajax="false"/>
+                    </p:panelGrid>
+                </h:form>
+                <h:form id="entityDataTableForm">
+                    <p:panelGrid id="tableGrid" styleClass="tableGrid" columns="1">
+                        <p:dataTable id="entityDataTable"
+                                     styleClass="entityDataTable"
+                                     value="#{ownerView.list}"
+                                     var="owner"
+                                     rowKey="#{owner.id}"
+                                     selection="#{ownerView.selected}"
+                                     selectionMode="single"
+                                     scrollable="true"
+                                     scrollHeight="200">
+                            <p:column headerText="#{msg['org.woehlke.jakartaee.petclinic.oodm.entities.owner.firstName']}"
+                                      sortBy="#{owner.firstName}">
+                                <h:outputText id="firstNameInList"
+                                              styleClass="entityDataTableCell"
+                                              value="#{owner.firstName}"/>
+                            </p:column>
+                            <p:column headerText="#{msg['org.woehlke.jakartaee.petclinic.oodm.entities.owner.lastName']}"
+                                      sortBy="#{owner.lastName}">
+                                <h:outputText id="lastNameInList"
+                                              styleClass="entityDataTableCell"
+                                              value="#{owner.lastName}"/>
+                            </p:column>
+                            <p:column headerText="#{msg['org.woehlke.jakartaee.petclinic.oodm.entities.owner.city']}"
+                                      sortBy="#{owner.city}">
+                                <h:outputText id="cityInList"
+                                              styleClass="entityDataTableCell"
+                                              value="#{owner.city}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </p:panelGrid>
+                    <p:panelGrid id="footerGrid" styleClass="footerGrid" columns="4">
+                        <p:commandButton
+                                id="showEditFormButtonInList"
+                                styleClass="showEditFormButton"
+                                action="#{ownerView.showSelectedEntity}"
+                                value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.showEditFormButton']}"
+                                ajax="false"
+                                icon="fa fa-fw fa-edit"/>
+                        <p:commandButton
+                                id="deleteSelectedButton"
+                                styleClass="deleteSelectedButton"
+                                action="#{ownerView.deleteSelectedEntity}"
+                                value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.deleteSelectedButton']}"
+                                ajax="false"
+                                icon="fa fa-fw fa-trash"/>
+                        <p:link href="./rest/owner/list/xml">
+                            <i class="fa fa-fw fa-arrow-alt-circle-right"/>
+                            <h:outputText value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.showXml']}"/>
+                        </p:link>
+                        <p:link href="./rest/owner/list/json">
+                            <i class="fa fa-fw fa-arrow-alt-circle-right"/>
+                            <h:outputText value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.showJson']}"/>
+                        </p:link>
+                    </p:panelGrid>
+                </h:form>
+            </p:panel>
+            </ui:fragment>
+
         </div>
     </ui:define>
 

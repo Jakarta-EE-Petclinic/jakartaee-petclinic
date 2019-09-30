@@ -31,9 +31,9 @@ import static org.jboss.arquillian.graphene.Graphene.goTo;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class Test04Owner extends AbstractPrimePageTest {
+public class Test04OwnerView extends AbstractPrimePageTest {
 
-    private static Logger log = LogManager.getLogger(Test04Owner.class.getName());
+    private static Logger log = LogManager.getLogger(Test04OwnerView.class.getName());
 
     @BeforeDeployment
     public static void beforeDeployment(){

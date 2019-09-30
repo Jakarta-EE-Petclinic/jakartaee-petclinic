@@ -5,7 +5,7 @@ import org.woehlke.jakartaee.petclinic.oodm.entities.common.TwEntities;
 import java.io.Serializable;
 import java.util.List;
 
-public interface CrudView<T extends TwEntities> extends ViewHasSearch, ViewHasLanguage, Serializable {
+public interface CrudView<T extends TwEntities> extends HasSearch, HasLanguage, Serializable {
 
     String showNewForm();
     String saveNew();

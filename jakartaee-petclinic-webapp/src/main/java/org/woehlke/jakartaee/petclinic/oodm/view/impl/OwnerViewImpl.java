@@ -1,4 +1,4 @@
-package org.woehlke.jakartaee.petclinic.frontend.web.impl;
+package org.woehlke.jakartaee.petclinic.oodm.view.impl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,12 +14,14 @@ import org.woehlke.jakartaee.petclinic.oodm.services.OwnerService;
 import org.woehlke.jakartaee.petclinic.oodm.services.PetService;
 import org.woehlke.jakartaee.petclinic.oodm.services.PetTypeService;
 import org.woehlke.jakartaee.petclinic.oodm.services.VisitService;
-import org.woehlke.jakartaee.petclinic.frontend.web.OwnerView;
+import org.woehlke.jakartaee.petclinic.oodm.view.OwnerView;
+import org.woehlke.jakartaee.petclinic.oodm.view.flow.OwnerViewFlow;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
+import javax.ejb.EJBTransactionRolledbackException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -39,6 +41,13 @@ public class OwnerViewImpl implements OwnerView {
 
     private static Logger log = LogManager.getLogger(OwnerViewImpl.class.getName());
 
+    private final static String JSF_PAGE_LIST = "ownerList.jsf";
+
+    private final static String JSF_PAGE = "owner.jsf";
+
+    @EJB
+    private OwnerService entityService;
+
     @EJB
     private PetService petService;
 
@@ -48,9 +57,6 @@ public class OwnerViewImpl implements OwnerView {
     @EJB
     private VisitService visitService;
 
-    @EJB
-    private OwnerService entityService;
-
     @SuppressWarnings("deprecation")
     @ManagedProperty(value = "#{languageView}")
     private LanguageView languageView;
@@ -58,6 +64,10 @@ public class OwnerViewImpl implements OwnerView {
     @SuppressWarnings("deprecation")
     @ManagedProperty(value = "#{frontendMessagesView}")
     private FrontendMessagesView frontendMessagesView;
+
+    @SuppressWarnings("deprecation")
+    @ManagedProperty(value = "#{ownerViewFlow}")
+    private OwnerViewFlow ownerViewFlow;
 
     private String searchterm;
 
@@ -67,14 +77,84 @@ public class OwnerViewImpl implements OwnerView {
 
     private Pet pet;
     private Pet petSelected;
+    private List<PetType> petTypeList;
     private long petTypeId;
 
     private Visit visit;
 
-    private TreeNode root;
+    private TreeNode treeNodeRoot;
+
+    @Override
+    public void reloadEntityFromSelected() {
+        if( this.selected != null ){
+            this.entity = entityService.findById(this.selected.getId());
+            this.selected = this.entity;
+        }
+    }
+
+    @Override
+    public void loadList() {
+        this.list = entityService.getAll();
+    }
+
+    @Override
+    public void saveNewEntity() {
+        try {
+            log.debug((this.entity!=null)?this.entity.toString():"null");
+            log.debug((this.selected!=null)?this.selected.toString():"null");
+            this.selected = this.entityService.addNew(this.entity);
+            this.entity = this.selected;
+            log.debug((this.entity!=null)?this.entity.toString():"null");
+            log.debug((this.selected!=null)?this.selected.toString():"null");
+            frontendMessagesView.addInfoMessage("Added", this.entity.getPrimaryKey());
+        } catch (EJBException e){
+            log.warn(e.getMessage()+this.entity.toString());
+            frontendMessagesView.addWarnMessage(e, this.entity);
+        }
+    }
+
+    @Override
+    public void saveEditedEntity() {
+        try {
+            log.debug((this.entity!=null)?this.entity.toString():"null");
+            log.debug((this.selected!=null)?this.selected.toString():"null");
+            this.entity = this.entityService.update(this.entity);
+            log.debug((this.entity!=null)?this.entity.toString():"null");
+            log.debug((this.selected!=null)?this.selected.toString():"null");
+            frontendMessagesView.addInfoMessage("Updated", this.entity.getPrimaryKey());
+        } catch (EJBException e){
+            log.warn(e.getMessage()+this.entity.toString());
+            frontendMessagesView.addWarnMessage(e, this.entity);
+        }
+    }
+
+    @Override
+    public void deleteSelectedEntity(){
+        try {
+            if(this.selected != null) {
+                String msgInfo = this.selected.getPrimaryKey();
+                if(this.selected.compareTo(this.entity)==0){
+                    this.entity = null;
+                }
+                entityService.delete(this.selected.getId());
+                this.selected = null;
+                frontendMessagesView.addInfoMessage("Deleted", msgInfo);
+            }
+        } catch (EJBTransactionRolledbackException e) {
+            frontendMessagesView.addWarnMessage("cannot delete, object still in use", this.selected);
+        } catch (EJBException e){
+            frontendMessagesView.addErrorMessage(e.getLocalizedMessage(),this.selected);
+        }
+    }
+
+    @Override
+    public void newEntity() {
+        this.entity = new Owner();
+    }
 
     @PostConstruct
     public void init(){
+        this.ownerViewFlow.setFlowStateList();
         log.trace("postConstruct and init");
     }
 
@@ -129,14 +209,30 @@ public class OwnerViewImpl implements OwnerView {
     }
 
     @Override
-    public TreeNode getRoot() {
-        initTreeNodes();
-        return root;
+    public TreeNode getTreeNodeRoot() {
+        this.initTreeNodes();
+        return treeNodeRoot;
     }
 
     @Override
-    public void setRoot(TreeNode root) {
-        this.root = root;
+    public void setTreeNodeRoot(TreeNode treeNodeRoot) {
+        this.treeNodeRoot = treeNodeRoot;
+    }
+
+    @Override
+    public void loadPetTypeList(){
+        this.petTypeList = this.petTypeService.getAll();
+    }
+
+    @Override
+    public List<PetType> getPetTypeList() {
+        this.loadPetTypeList();
+        return petTypeList;
+    }
+
+    @Override
+    public void setPetTypeList(List<PetType> petTypeList) {
+        this.petTypeList = petTypeList;
     }
 
     @Override
@@ -189,21 +285,6 @@ public class OwnerViewImpl implements OwnerView {
     }
 
     @Override
-    public String cancelOwnerShow(){
-        return "ownerList.jsf?faces-redirect=true";
-    }
-
-    @Override
-    public String cancelOwnerNew(){
-        return "ownerList.jsf?faces-redirect=true";
-    }
-
-    @Override
-    public String cancelOwnerEdit(){
-        return "owner.jsf?faces-redirect=true";
-    }
-
-    @Override
     public String cancelOwnerPetVisitNew(){
         return "ownerList.jsf?faces-redirect=true";
     }
@@ -213,23 +294,24 @@ public class OwnerViewImpl implements OwnerView {
         long id = this.selected.getId();
         this.entity = entityService.findById(id);
         initTreeNodes();
-        return "owner.jsf";
+        return JSF_PAGE;
     }
 
-    private void initTreeNodes(){
-        this.root = new CheckboxTreeNode(this.entity);
+    public void initTreeNodes(){
+        this.treeNodeRoot = new CheckboxTreeNode(this.entity);
         for(Pet pet:this.entity.getPets()){
-            TreeNode petTreeNode = new CheckboxTreeNode(pet, root);
+            TreeNode petTreeNode = new CheckboxTreeNode(pet, treeNodeRoot);
             for(Visit visit:pet.getVisits()){
                 TreeNode petVisitsTreeNode = new CheckboxTreeNode(visit, petTreeNode);
                 petTreeNode.getChildren().add(petVisitsTreeNode);
             }
-            this.root.getChildren().add(petTreeNode);
+            this.treeNodeRoot.getChildren().add(petTreeNode);
         }
     }
 
     @Override
     public String showEditForm(){
+        this.ownerViewFlow.setFlowStateEdit();
         return "ownerEdit.jsf";
     }
 
@@ -244,34 +326,26 @@ public class OwnerViewImpl implements OwnerView {
             frontendMessagesView.addWarnMessage(e,this.entity);
         }
         initTreeNodes();
-        return "owner.jsf";
+        this.ownerViewFlow.setFlowStateShow();
+        return JSF_PAGE;
     }
 
     @Override
     public String cancelEdited() {
-        fetchList();
+        this.ownerViewFlow.setFlowStateShow();
         return "ownerList.jsf";
     }
 
     @Override
     public String showDeleteForm() {
-        fetchList();
+         this.ownerViewFlow.setFlowStatDelete();
         return "ownerList.jsf";
     }
 
     @Override
     public String cancelDelete() {
-        fetchList();
+        this.ownerViewFlow.setFlowStateShow();
         return "ownerList.jsf";
-    }
-
-    private void fetchList(){
-        this.list = entityService.getAll();
-        if(this.list.size()>0){
-            int indexFirst = 0;
-            this.selected = this.list.get(indexFirst);
-            this.entity = this.selected;
-        }
     }
 
     @Override
@@ -287,7 +361,7 @@ public class OwnerViewImpl implements OwnerView {
         } catch (EJBException e){
             frontendMessagesView.addWarnMessage(e,this.selected);
         }
-        fetchList();
+        this.ownerViewFlow.setFlowStateList();
         return "ownerList.jsf";
     }
 
@@ -299,6 +373,7 @@ public class OwnerViewImpl implements OwnerView {
     @Override
     public String showOwnerPetNewForm(){
         this.pet = new Pet();
+        this.ownerViewFlow.setFlowStateNewPet();
         return "ownerPetNew.jsf";
     }
 
@@ -315,20 +390,24 @@ public class OwnerViewImpl implements OwnerView {
         } catch (EJBException e) {
             frontendMessagesView.addWarnMessage(e,this.pet);
         }
-        return "owner.jsf?faces-redirect=true";
+        this.ownerViewFlow.setFlowStateShow();
+        return JSF_PAGE;
     }
 
     @Override
     public String cancelOwnerPetNew() {
-        return "owner.jsf?faces-redirect=true";
+        this.ownerViewFlow.setFlowStateShow();
+        return JSF_PAGE;
     }
 
     @Override
     public String showOwnerPetEditForm(){
         if(this.petSelected != null){
             this.pet = petService.findById(this.petSelected.getId());
+            this.ownerViewFlow.setFlowStateEditPet();
             return "petEdit.jsf";
         } else {
+            this.ownerViewFlow.setFlowStateShow();
             return "ownerList.jsf";
         }
     }
@@ -346,20 +425,27 @@ public class OwnerViewImpl implements OwnerView {
         } catch (EJBException e){
             frontendMessagesView.addWarnMessage(e,this.pet);
         }
-        return "owner.jsf";
+        this.ownerViewFlow.setFlowStateShow();
+        return JSF_PAGE;
     }
 
     @Override
     public String cancelOwnerPetEdit() {
-        return "owner.jsf";
+        return JSF_PAGE;
     }
 
     @Override
     public String showOwnerPetVisitNewForm(){
-        this.pet = petService.findById(this.pet.getId());
-        this.petTypeId = this.pet.getType().getId();
-        this.visit = new Visit();
-        return "ownerPetVisitNew.jsf";
+        if(this.petSelected != null) {
+            this.pet = petService.findById(this.petSelected.getId());
+            this.petTypeId = this.pet.getType().getId();
+            this.visit = new Visit();
+            this.ownerViewFlow.setFlowStateNewVisit();
+            return "ownerPetVisitNew.jsf";
+        } else {
+            frontendMessagesView.addWarnMessage("Add New Visit","You must select a Pet first.");
+            return JSF_PAGE;
+        }
     }
 
     @Override
@@ -375,12 +461,13 @@ public class OwnerViewImpl implements OwnerView {
                 long ownerId = this.entity.getId();
                 this.entity = this.entityService.findById(ownerId);
                 frontendMessagesView.addInfoMessage("added new visit",this.visit);
+                this.ownerViewFlow.setFlowStateShow();
             }
         } catch (EJBException e){
             frontendMessagesView.addWarnMessage(e,this.visit);
         }
         log.trace("owner2: "+this.entity.toString());
-        return "owner.jsf";
+        return JSF_PAGE;
     }
 
     @PreDestroy
@@ -390,7 +477,7 @@ public class OwnerViewImpl implements OwnerView {
 
     @Override
     public List<Owner> getList() {
-        fetchList();
+        loadList();
         return list;
     }
 
@@ -436,5 +523,6 @@ public class OwnerViewImpl implements OwnerView {
     public void setFrontendMessagesView(FrontendMessagesView frontendMessagesView) {
         this.frontendMessagesView = frontendMessagesView;
     }
+
 
 }

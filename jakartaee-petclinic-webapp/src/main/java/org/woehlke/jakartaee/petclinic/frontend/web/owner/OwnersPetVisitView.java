@@ -1,4 +1,4 @@
-package org.woehlke.jakartaee.petclinic.frontend.web;
+package org.woehlke.jakartaee.petclinic.frontend.web.owner;
 
 import org.woehlke.jakartaee.petclinic.oodm.entities.Visit;
 
