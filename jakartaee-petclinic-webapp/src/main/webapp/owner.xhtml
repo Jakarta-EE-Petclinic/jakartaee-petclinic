@@ -410,7 +410,7 @@
                 <p:panel id="contentPanelPetsAndVisitsTree" header="#{msg['petsAndVisits']}">
                     <div class="ui-g">
                         <div class="ui-g-12">
-                            <p:tree value="#{ownerView.root}" var="node" orientation="horizontal">
+                            <p:tree value="#{ownerView.treeNodeRoot}" var="node" orientation="horizontal">
                                 <p:treeNode>
                                     <h:outputText value="#{node.primaryKey}" />
                                 </p:treeNode>
