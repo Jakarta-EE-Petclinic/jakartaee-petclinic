@@ -33,7 +33,7 @@
                             styleClass="contentTitleHeadlineText"/>
                 </h1>
             </ui:fragment>
-            <ui:fragment rendered="#{petTypeViewFlow.flowStatDelete}">
+            <ui:fragment rendered="#{petTypeViewFlow.flowStateDelete}">
                 <h1 id="deleteEntityHeader" class="contentTitleHeadline">
                     <i class="fas fa-paw contentTitleHeadlineIcon"/>
                     <h:outputText
@@ -128,7 +128,7 @@
                     </p:panel>
                 </h:form>
             </ui:fragment>
-            <ui:fragment rendered="#{petTypeViewFlow.flowStatDelete}">
+            <ui:fragment rendered="#{petTypeViewFlow.flowStateDelete}">
                 <h:form id="deletePetTypeForm" styleClass="deleteEntityForm">
                     <p:panel id="deletePetTypePanel" styleClass="contentPanel"
                              header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.delete']}">

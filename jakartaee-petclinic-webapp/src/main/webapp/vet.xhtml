@@ -33,7 +33,7 @@
                             styleClass="contentTitleHeadlineText"/>
                 </h1>
             </ui:fragment>
-            <ui:fragment rendered="#{vetViewFlow.flowStatDelete}">
+            <ui:fragment rendered="#{vetViewFlow.flowStateDelete}">
                 <h1 id="deleteEntityHeader" class="contentTitleHeadline">
                     <i class="fa fa-stethoscope contentTitleHeadlineIcon"/>
                     <h:outputText
@@ -150,7 +150,7 @@
                     </p:panel>
                 </h:form>
             </ui:fragment>
-            <ui:fragment rendered="#{vetViewFlow.flowStatDelete}">
+            <ui:fragment rendered="#{vetViewFlow.flowStateDelete}">
                 <h:form id="deleteSpecialtyForm" styleClass="deleteEntityForm">
                     <p:panel id="deleteSpecialtyPanel" styleClass="contentPanel"
                              header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.delete']}">
