@@ -542,4 +542,11 @@ public class OwnerViewImpl implements OwnerView {
         this.frontendMessagesView = frontendMessagesView;
     }
 
+    public OwnerViewFlow getOwnerViewFlow() {
+        return ownerViewFlow;
+    }
+
+    public void setOwnerViewFlow(OwnerViewFlow ownerViewFlow) {
+        this.ownerViewFlow = ownerViewFlow;
+    }
 }
