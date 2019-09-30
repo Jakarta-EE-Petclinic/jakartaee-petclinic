@@ -102,6 +102,7 @@ public class OwnerViewFlow implements HasOwnerViewFlowState, Serializable {
         this.flowState = OwnerViewFlowState.LIST_SEARCH_RESULT;
     }
 
+
     public boolean isRenderPanelAddNewOwner(){
         return this.isFlowStateNew();
     }
@@ -115,14 +116,26 @@ public class OwnerViewFlow implements HasOwnerViewFlowState, Serializable {
     }
 
     public boolean isRenderPanelPetsAndVisitsTable(){
-        return this.isRenderPanelOwner();
+        return this.isFlowStateShow();
     }
 
     public boolean isRenderPanelPetsAndVisitsTree(){
-        return this.isRenderPanelOwner();
+        return this.isFlowStateShow();
     }
 
     public boolean isRenderPanelOwnerList(){
         return true;
+    }
+
+    public boolean isRenderPanelEditOwnersPet(){
+        return this.isFlowStateEditPet();
+    }
+
+    public boolean isRenderPanelAddNewOwnersPet(){
+        return this.isFlowStateNewPet();
+    }
+
+    public boolean isRenderPanelAddNewOwnersPetVisit(){
+        return this.isFlowStateNewVisit();
     }
 }

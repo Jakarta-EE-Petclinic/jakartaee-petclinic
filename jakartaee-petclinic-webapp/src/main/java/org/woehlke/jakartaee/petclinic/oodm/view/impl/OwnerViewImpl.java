@@ -383,7 +383,7 @@ public class OwnerViewImpl implements OwnerView {
     public String showOwnerPetNewForm(){
         this.pet = new Pet();
         this.ownerViewFlow.setFlowStateNewPet();
-        return "ownerPetNew.jsf";
+        return JSF_PAGE;
     }
 
     @Override
@@ -415,7 +415,7 @@ public class OwnerViewImpl implements OwnerView {
         if(this.petSelected != null){
             this.pet = petService.findById(this.petSelected.getId());
             this.ownerViewFlow.setFlowStateEditPet();
-            return "ownerPetEdit.jsf";
+            return JSF_PAGE;
         } else {
             this.ownerViewFlow.setFlowStateShow();
             return JSF_PAGE;
@@ -453,7 +453,7 @@ public class OwnerViewImpl implements OwnerView {
             this.petTypeId = this.pet.getType().getId();
             this.visit = new Visit();
             this.ownerViewFlow.setFlowStateNewVisit();
-            return "ownerPetVisitNew.jsf";
+            return JSF_PAGE;
         } else {
             this.ownerViewFlow.setFlowStateShow();
             frontendMessagesView.addWarnMessage("Add New Visit","You must select a Pet first.");
@@ -486,7 +486,7 @@ public class OwnerViewImpl implements OwnerView {
         } catch (EJBException e){
             this.ownerViewFlow.setFlowStateNewVisit();
             frontendMessagesView.addWarnMessage(e,this.visit);
-            return "ownerPetVisitNew.jsf";
+            return JSF_PAGE;
         }
     }
 
