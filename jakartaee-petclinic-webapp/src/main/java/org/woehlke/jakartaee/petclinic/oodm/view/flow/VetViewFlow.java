@@ -12,4 +12,5 @@ import java.io.Serializable;
 @ManagedBean(name="vetViewFlow")
 @SessionScoped
 public class VetViewFlow extends CrudViewFlow implements HasCrudFlowState, Serializable {
+    private static final long serialVersionUID = -4032116498859585466L;
 }

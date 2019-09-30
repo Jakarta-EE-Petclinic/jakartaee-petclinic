@@ -12,6 +12,8 @@ import java.io.Serializable;
 @SessionScoped
 public class OwnerViewFlow implements HasOwnerViewFlowState, Serializable {
 
+    private static final long serialVersionUID = 4530858836742945751L;
+
     private OwnerViewFlowState flowState;
 
     @Override

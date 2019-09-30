@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 public interface HasOwnerViewFlowState extends HasCrudFlowState, Serializable {
 
+    long serialVersionUID = 6654391340545426308L;
+
     boolean isFlowStateShow();
     void setFlowStateShow();
 

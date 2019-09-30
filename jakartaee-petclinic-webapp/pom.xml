@@ -282,6 +282,7 @@
                         </goals>
                         <configuration>
                             <excludeTypes>pom</excludeTypes>
+                            <includeScope></includeScope>
                         </configuration>
                     </execution>
                 </executions>

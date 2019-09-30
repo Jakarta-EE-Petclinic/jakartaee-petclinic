@@ -11,4 +11,5 @@ import java.io.Serializable;
 @ManagedBean(name="specialtyViewFlow")
 @SessionScoped
 public class SpecialtyViewFlow extends CrudViewFlow implements HasCrudFlowState, Serializable {
+    private static final long serialVersionUID = -621000271002202654L;
 }

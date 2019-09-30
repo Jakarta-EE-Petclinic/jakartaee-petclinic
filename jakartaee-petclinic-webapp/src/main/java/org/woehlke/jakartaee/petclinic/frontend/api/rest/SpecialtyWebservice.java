@@ -14,10 +14,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.io.Serializable;
 
 @Stateless
 @Path("/specialty")
-public class SpecialtyWebservice {
+public class SpecialtyWebservice implements Serializable {
 
     private static final long serialVersionUID = 607664665910620584L;
 

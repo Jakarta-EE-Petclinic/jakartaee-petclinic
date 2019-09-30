@@ -3,3 +3,6 @@ org.woehlke.javaee8.petclinic.oodm.entities.*
 target
 javafiles.txt
 etc
+createdFiles.lst
+createdFiles*.txt
+createdFiles*.sh

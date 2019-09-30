@@ -7,6 +7,8 @@ import java.io.Serializable;
 
 public abstract class CrudViewFlow implements HasCrudFlowState, Serializable {
 
+    private static final long serialVersionUID = 8853867570285389553L;
+
     private CrudViewFlowState flowState;
 
     @Override

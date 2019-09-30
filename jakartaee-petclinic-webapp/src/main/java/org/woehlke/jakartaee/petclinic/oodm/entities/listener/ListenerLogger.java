@@ -8,6 +8,8 @@ import java.io.Serializable;
 
 class ListenerLogger implements Serializable {
 
+    private static final long serialVersionUID = -6345160390628557648L;
+
     static void logIt(String event, StandardLevel logLevel, Logger log, TwEntities domainObject){
         String[] infos = {
                 event+" TableName  "+domainObject.getTableName(),

@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public interface HasCrudFlowState extends Serializable {
 
+    long serialVersionUID = -2732706731385890693L;
+
     boolean isFlowStateList();
     boolean isFlowStateNew();
     boolean isFlowStateEdit();

@@ -23,7 +23,8 @@ echo $CLASSPATH
 cd target/classes
 echo "START serialver"
 export TARGET_FILE=../../etc/serialversions.txt
-source ../../setserialversionid2.sh
+#source ../../setserialversionid2.sh
+source ../../createdFiles04.sh
 cat $TARGET_FILE
 echo "FINISHED"
 #exit 0

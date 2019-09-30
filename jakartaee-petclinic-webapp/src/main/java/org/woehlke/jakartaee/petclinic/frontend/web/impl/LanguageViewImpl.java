@@ -28,7 +28,7 @@ import java.util.*;
 @SessionScoped
 public class LanguageViewImpl implements LanguageView {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -5444922829398489233L;
 
     @SuppressWarnings("deprecation")
     @ManagedProperty(value = "#{frontendMessagesView}")

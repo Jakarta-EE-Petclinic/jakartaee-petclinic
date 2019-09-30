@@ -12,4 +12,5 @@ import java.io.Serializable;
 @ManagedBean(name="petTypeViewFlow")
 @SessionScoped
 public class PetTypeViewFlow extends CrudViewFlow implements HasCrudFlowState, Serializable {
+    private static final long serialVersionUID = 8397968607819895147L;
 }
