@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.woehlke.jakartaee.petclinic.oodm.dao.SpecialtyDao;
 import org.woehlke.jakartaee.petclinic.oodm.dao.VetDao;
-import org.woehlke.jakartaee.petclinic.oodm.entities.Specialty;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Vet;
 import org.woehlke.jakartaee.petclinic.oodm.services.VetService;
 
@@ -14,9 +13,7 @@ import javax.ejb.EJB;
 import javax.ejb.PostActivate;
 import javax.ejb.PrePassivate;
 import javax.ejb.Stateless;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Stateless
@@ -42,7 +39,8 @@ public class VetServiceImpl implements VetService {
 
     @Override
     public Vet addNew(Vet vet) {
-        log.debug("about to addNew: "+vet.toString());
+        vet.setUuid(UUID.randomUUID());
+        log.debug("try to addNew: "+vet.toString());
         return this.vetDao.addNew(vet);
     }
 

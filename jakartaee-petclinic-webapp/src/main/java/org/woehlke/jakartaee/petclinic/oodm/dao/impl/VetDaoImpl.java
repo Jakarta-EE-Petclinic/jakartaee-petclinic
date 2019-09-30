@@ -51,7 +51,7 @@ public class VetDaoImpl implements VetDao {
     @Override
     public Vet addNew(Vet vet) {
         vet.setUuid(UUID.randomUUID());
-        log.debug("addNewVet: "+vet.toString());
+        log.debug("try to persist: "+vet.toString());
         entityManager.persist(vet);
         log.debug("persisted: "+vet.toString());
         return vet;

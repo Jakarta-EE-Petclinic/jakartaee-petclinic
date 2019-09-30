@@ -81,10 +81,10 @@ public class VetViewImpl implements VetView, ViewModelOperations {
     private void resetSpecialtiesPickList(){
         List<Specialty> srcList = new ArrayList<>();
         List<Specialty> targetList = new ArrayList<>();
-        for(Specialty specialty: entity.getSpecialties()){
+        for(Specialty specialty: this.entity.getSpecialties()){
             targetList.add(specialty);
         }
-        for(Specialty specialty:specialtyService.getAll()){
+        for(Specialty specialty:this.specialtyService.getAll()){
             if(!targetList.contains(specialty)){
                 srcList.add(specialty);
             }
@@ -132,30 +132,13 @@ public class VetViewImpl implements VetView, ViewModelOperations {
     @Override
     public String showNewForm(){
         this.newEntity();
+        this. initSpecialtiesPickList();
         this.flowState = CrudViewFlowState.NEW;
         return JSF_PAGE;
     }
 
     public String saveNew() {
-        try {
-            log.debug("try to save New: "+this.entity.toString());
-            this.entity.removeSpecialties();
-            this.entity = entityService.addNew(this.entity);
-            log.debug("nr source: "+this.specialtiesPickList.getSource().size());
-            log.debug("nr target: "+this.specialtiesPickList.getTarget().size());
-            for (Specialty specialtyTransient : this.specialtiesPickList.getTarget()) {
-                log.debug("saveNew: "+specialtyTransient.toString());
-                Specialty specialty = specialtyService.findSpecialtyByName(specialtyTransient.getName());
-                this.entity.addSpecialty(specialty);
-                this.specialtyService.update(specialty);
-            }
-            this.entity = entityService.update(this.entity);
-            this.selected = this.entity;
-        } catch (EJBException e){
-            log.warn("saveNew:");
-            log.warn(this.entity.toString());
-            log.warn(e.getMessage());
-        }
+        this.saveNewEntity();
         this.flowState = CrudViewFlowState.LIST;
         return JSF_PAGE;
     }
@@ -182,24 +165,13 @@ public class VetViewImpl implements VetView, ViewModelOperations {
     @Override
     public String showEditForm(){
         this.reloadEntityFromSelected();
+        this.resetSpecialtiesPickList();
         this.flowState = CrudViewFlowState.EDIT;
         return JSF_PAGE;
     }
 
     public String saveEdited() {
-        try {
-            this.entity.removeSpecialties();
-            for (Specialty specialtyTransient : this.specialtiesPickList.getTarget()) {
-                log.debug("saveEdited: "+specialtyTransient.toString());
-                Specialty specialty = specialtyService.findSpecialtyByName(specialtyTransient.getName());
-                this.entity.addSpecialty(specialty);
-                //this.specialtyService.update(specialty);
-            }
-            this.entity = entityService.update(this.entity);
-            this.selected = this.entity;
-        } catch (EJBException e){
-            log.warn(e.getMessage()+this.entity.toString());
-        }
+        this.saveEditedEntity();
         this.flowState = CrudViewFlowState.LIST;
         return JSF_PAGE;
     }
@@ -212,13 +184,14 @@ public class VetViewImpl implements VetView, ViewModelOperations {
 
     @Override
     public String showDeleteForm(){
+        this.reloadEntityFromSelected();
         this.flowState = CrudViewFlowState.DELETE;
         return JSF_PAGE;
     }
 
     @Override
     public String performDelete(){
-        deleteSelectedEntity();
+        this.deleteSelectedEntity();
         this.flowState = CrudViewFlowState.LIST;
         return JSF_PAGE;
     }
@@ -290,35 +263,43 @@ public class VetViewImpl implements VetView, ViewModelOperations {
     @Override
     public void saveNewEntity() {
         try {
-            Set<Specialty> specialties = new HashSet<>();
-            for(Specialty specialty:this.entity.getSpecialties()){
-                specialties.add(specialtyService.findSpecialtyByName(specialty.getName()));
-            }
-            this.entity.setSpecialties(new HashSet<>());
+            log.debug("try to save New: "+this.entity.toString());
+            this.entity.removeSpecialties();
             this.entity.setUuid(UUID.randomUUID());
-            this.entity = this.entityService.addNew( this.entity);
-            this.entity.setSpecialties(specialties);
-            this.entity = this.entityService.update(this.entity);
+            this.entity = entityService.addNew(this.entity);
+            this.entity = entityService.findById(this.entity.getId());
+            log.debug("nr source: "+this.specialtiesPickList.getSource().size());
+            log.debug("nr target: "+this.specialtiesPickList.getTarget().size());
+            for (Specialty specialtyTransient : this.specialtiesPickList.getTarget()) {
+                Specialty specialty = specialtyService.findSpecialtyByName(specialtyTransient.getName());
+                this.entity.addSpecialty(specialty);
+            }
+            this.entity = entityService.update(this.entity);
+            log.debug("saved New: "+this.entity.toString());
             this.selected = this.entity;
+            frontendMessagesView.addInfoMessage("Added new Vetinarian", this.entity.getPrimaryKey());
         } catch (EJBException e){
             log.warn(e.getMessage()+this.entity.toString());
+            frontendMessagesView.addWarnMessage(e,this.entity);
         }
     }
 
     @Override
     public void saveEditedEntity() {
         try {
-            Set<Specialty> specialties = new HashSet<>();
-            for(Specialty specialty:this.entity.getSpecialties()){
-                specialties.add(specialtyService.findSpecialtyByName(specialty.getName()));
+            this.entity.removeSpecialties();
+            for (Specialty specialtyTransient : this.specialtiesPickList.getTarget()) {
+                log.debug(" added transient via saveEditedEntity: "+specialtyTransient.toString());
+                Specialty specialty = specialtyService.findSpecialtyByName(specialtyTransient.getName());
+                this.entity.addSpecialty(specialty);
+                //this.specialtyService.update(specialty);
             }
-            this.entity.setSpecialties(specialties);
-            this.selected = this.entityService.update(this.entity);
-            this.entity = this.entityService.update(this.entity);
+            this.entity = entityService.update(this.entity);
             this.selected = this.entity;
-            frontendMessagesView.addInfoMessage("Updated", this.entity.getPrimaryKeyWithId());
+            frontendMessagesView.addInfoMessage("Updated Vetinarian", this.entity.getPrimaryKey());
         } catch (EJBException e){
             log.warn(e.getMessage()+this.entity.toString());
+            frontendMessagesView.addWarnMessage(e,this.entity);
         }
     }
 
@@ -326,9 +307,11 @@ public class VetViewImpl implements VetView, ViewModelOperations {
     public void deleteSelectedEntity(){
         try {
             if(this.selected != null) {
-                String msgInfo = this.selected.getPrimaryKeyWithId();
-                entityService.delete(this.selected.getId());
-                if(this.selected.compareTo(this.entity)==0){
+                String msgInfo = this.selected.getPrimaryKey();
+                boolean same = (this.selected.compareTo(this.entity)==0);
+                long id = this.selected.getId();
+                entityService.delete(id);
+                if(same){
                     this.entity = null;
                 }
                 this.selected = null;

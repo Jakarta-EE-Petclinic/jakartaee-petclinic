@@ -161,7 +161,7 @@ public class Vet implements TwEntities<Vet> {
     }
 
     public void removeSpecialties(){
-        this.specialties = new HashSet<Specialty>();
+        this.specialties = new HashSet<>();
     }
 
     @Transient

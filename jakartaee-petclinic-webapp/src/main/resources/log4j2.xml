@@ -9,7 +9,7 @@
 		<Logger name="org.woehlke.jakartaee.petclinic.application" level="info" additivity="false">
 			<AppenderRef ref="Console"/>
 		</Logger>
-		<Logger name="org.woehlke.jakartaee.petclinic.oodm" level="info" additivity="false">
+		<Logger name="org.woehlke.jakartaee.petclinic.oodm" level="debug" additivity="false">
 			<AppenderRef ref="Console"/>
 		</Logger>
 		<Logger name="org.woehlke.jakartaee.petclinic.frontend.web" level="debug" additivity="false">
