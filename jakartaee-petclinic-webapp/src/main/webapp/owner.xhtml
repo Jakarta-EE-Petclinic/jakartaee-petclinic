@@ -446,8 +446,8 @@
 
             <!-- Owner -->
 
-            <h:form id="showOwnerForm">
-                <ui:fragment rendered="#{ownerViewFlow.renderPanelOwner}">
+        <h:form id="showOwnerForm">
+            <ui:fragment rendered="#{ownerViewFlow.renderPanelOwner}">
                 <p:panel id="contentPanelOwner"
                          header="#{msg['owner']}"
                          styleClass="contentPanel">
@@ -543,10 +543,13 @@
                         </div>
                     </div>
                 </p:panel>
-                <br/>
+            <br/>
             </ui:fragment>
+
             <ui:fragment rendered="#{ownerViewFlow.renderPanelPetsAndVisitsTable}">
-                <p:panel id="contentPanelPetsAndVisitsTable" header="#{msg['petsAndVisits']}" styleClass="contentPanel">
+                <p:panel id="contentPanelPetsAndVisitsTable"
+                         header="#{msg['petsAndVisits']}"
+                         styleClass="contentPanel">
                     <div class="ui-g">
                         <div class="ui-g-12">
                             <p:dataTable id="petsAndVisitsTable"
@@ -637,14 +640,6 @@
                                     styleClass="showEditFormButton"/>
                         </div>
                     </div>
-                </p:panel>
-                <br/>
-            </ui:fragment>
-
-            <ui:fragment rendered="#{ownerViewFlow.renderPanelPetsAndVisitsTree}">
-                <p:panel id="contentPanelPetsAndVisitsTree"
-                         header="#{msg['petsAndVisits']}"
-                         styleClass="contentPanel">
                     <div class="ui-g">
                         <div class="ui-g-12">
                             <p:tree value="#{ownerView.treeNodeRoot}" var="node" orientation="horizontal">
@@ -657,7 +652,6 @@
                 </p:panel>
                 <br/>
             </ui:fragment>
-            </h:form>
 
             <ui:fragment rendered="#{ownerViewFlow.renderPanelOwnerList}">
                 <p:panel id="contentPanelOwnerList"

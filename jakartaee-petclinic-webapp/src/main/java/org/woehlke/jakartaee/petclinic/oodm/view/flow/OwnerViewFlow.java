@@ -119,10 +119,6 @@ public class OwnerViewFlow implements HasOwnerViewFlowState, Serializable {
         return this.isFlowStateShow();
     }
 
-    public boolean isRenderPanelPetsAndVisitsTree(){
-        return this.isFlowStateShow();
-    }
-
     public boolean isRenderPanelOwnerList(){
         return true;
     }
