@@ -442,12 +442,10 @@
                 <br/>
             </ui:fragment>
 
-
-
             <!-- Owner -->
 
-        <h:form id="showOwnerForm">
             <ui:fragment rendered="#{ownerViewFlow.renderPanelOwner}">
+                <h:form id="showOwnerForm">
                 <p:panel id="contentPanelOwner"
                          header="#{msg['owner']}"
                          styleClass="contentPanel">
@@ -542,115 +540,116 @@
                         <div class="ui-g-6">
                         </div>
                     </div>
-                </p:panel>
-            <br/>
-            </ui:fragment>
-
-            <ui:fragment rendered="#{ownerViewFlow.renderPanelPetsAndVisitsTable}">
-                <p:panel id="contentPanelPetsAndVisitsTable"
-                         header="#{msg['petsAndVisits']}"
-                         styleClass="contentPanel">
                     <div class="ui-g">
                         <div class="ui-g-12">
-                            <p:dataTable id="petsAndVisitsTable"
-                                         styleClass="table"
-                                         value="#{ownerView.entity.pets}"
-                                         var="ownersPet"
-                                         rowKey="#{ownersPet.id}"
-                                         selection="#{ownerView.petSelected}"
-                                         selectionMode="single"
-                                         scrollable="true"
-                                         scrollHeight="400">
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.pet.list']}"/>
-                                    </f:facet>
-                                    <dl class="dl-horizontal" style="float: left">
-                                        <dt><h:outputText value="#{msg['name']}"/></dt>
-                                        <dd><h:outputText id="petsName" value="#{ownersPet.name}"/></dd>
-                                        <dt><h:outputText value="#{msg['birthdate']}" /></dt>
-                                        <dd>
-                                            <h:outputText id="petsBirthDate"
-                                                          value="#{ownersPet.birthDate}">
-                                                <f:convertDateTime type="date" dateStyle="medium"/>
-                                            </h:outputText>
-                                        </dd>
-                                        <dt><h:outputText value="#{msg['petType']}"/></dt>
-                                        <dd><h:outputText id="petsType" value="#{ownersPet.type.name}"/></dd>
-                                    </dl>
-                                </p:column>
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.visit.list']}"/>
-                                    </f:facet>
-                                    <p:dataTable
-                                            id="visitsTable"
-                                            value="#{ownersPet.visits}"
-                                            var="visit"
-                                            styleClass="table-condensed table"
-                                            style="float: right"
-                                            scrollable="true"
-                                            scrollHeight="400">
-                                        <p:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="#{msg['date']}"/>
-                                            </f:facet>
-                                            <h:outputText id="date" value="#{visit.date}">
-                                                <f:convertDateTime type="date" dateStyle="medium"/>
-                                            </h:outputText>
-                                        </p:column>
-                                        <p:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="#{msg['description']}"/>
-                                            </f:facet>
-                                            <h:outputText id="description" value="#{visit.description}"/>
-                                        </p:column>
-                                        <f:facet name="footer">
-                                            <p:commandButton
-                                                    id="addVisitButton"
-                                                    type="submit"
-                                                    value="#{msg['addVisit']}"
-                                                    action="#{ownerView.showOwnerPetVisitNewForm}"
-                                                    ajax="false"
-                                                    icon="fa fa-fw fa-plus-square"
-                                                    styleClass="addNewButton"/>
-                                        </f:facet>
-                                    </p:dataTable>
-                                </p:column>
-                            </p:dataTable>
-                        </div>
-                        <div class="ui-g-2">
-                            <p:commandButton
-                                    id="addNewPetButton"
-                                    type="submit"
-                                    value="#{msg['addNewPet']}"
-                                    action="#{ownerView.showOwnerPetNewForm}"
-                                    ajax="false"
-                                    icon="fa fa-fw fa-plus-square"
-                                    styleClass="addNewButton"/>
-                        </div>
-                        <div class="ui-g-2">
-                            <p:commandButton
-                                    id="editPetButton"
-                                    type="submit"
-                                    value="#{msg['editPet']}"
-                                    action="#{ownerView.showOwnerPetEditForm}"
-                                    ajax="false"
-                                    icon="fa fa-fw fa-edit"
-                                    styleClass="showEditFormButton"/>
-                        </div>
-                    </div>
-                    <div class="ui-g">
-                        <div class="ui-g-12">
-                            <p:tree value="#{ownerView.treeNodeRoot}" var="node" orientation="horizontal">
-                                <p:treeNode>
-                                    <h:outputText value="#{node.primaryKey}" />
-                                </p:treeNode>
-                            </p:tree>
+                            <p:panel id="contentPanelPetsAndVisitsTable"
+                                     header="#{msg['petsAndVisits']}"
+                                     styleClass="contentPanel">
+                                <div class="ui-g">
+                                    <div class="ui-g-12">
+                                        <p:dataTable id="petsAndVisitsTable"
+                                                     styleClass="table"
+                                                     value="#{ownerView.entity.pets}"
+                                                     var="ownersPet"
+                                                     rowKey="#{ownersPet.id}"
+                                                     selection="#{ownerView.petSelected}"
+                                                     selectionMode="single"
+                                                     scrollable="true"
+                                                     scrollHeight="400">
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.pet.list']}"/>
+                                                </f:facet>
+                                                <dl class="dl-horizontal" style="float: left">
+                                                    <dt><h:outputText value="#{msg['name']}"/></dt>
+                                                    <dd><h:outputText id="petsName" value="#{ownersPet.name}"/></dd>
+                                                    <dt><h:outputText value="#{msg['birthdate']}" /></dt>
+                                                    <dd>
+                                                        <h:outputText id="petsBirthDate"
+                                                                      value="#{ownersPet.birthDate}">
+                                                            <f:convertDateTime type="date" dateStyle="medium"/>
+                                                        </h:outputText>
+                                                    </dd>
+                                                    <dt><h:outputText value="#{msg['petType']}"/></dt>
+                                                    <dd><h:outputText id="petsType" value="#{ownersPet.type.name}"/></dd>
+                                                </dl>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.visit.list']}"/>
+                                                </f:facet>
+                                                <p:dataTable
+                                                        id="visitsTable"
+                                                        value="#{ownersPet.visits}"
+                                                        var="visit"
+                                                        styleClass="table-condensed table"
+                                                        style="float: right"
+                                                        scrollable="true"
+                                                        scrollHeight="400">
+                                                    <p:column>
+                                                        <f:facet name="header">
+                                                            <h:outputText value="#{msg['date']}"/>
+                                                        </f:facet>
+                                                        <h:outputText id="date" value="#{visit.date}">
+                                                            <f:convertDateTime type="date" dateStyle="medium"/>
+                                                        </h:outputText>
+                                                    </p:column>
+                                                    <p:column>
+                                                        <f:facet name="header">
+                                                            <h:outputText value="#{msg['description']}"/>
+                                                        </f:facet>
+                                                        <h:outputText id="description" value="#{visit.description}"/>
+                                                    </p:column>
+                                                    <f:facet name="footer">
+                                                        <p:commandButton
+                                                                id="addVisitButton"
+                                                                type="submit"
+                                                                value="#{msg['addVisit']}"
+                                                                action="#{ownerView.showOwnerPetVisitNewForm}"
+                                                                ajax="false"
+                                                                icon="fa fa-fw fa-plus-square"
+                                                                styleClass="addNewButton"/>
+                                                    </f:facet>
+                                                </p:dataTable>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </div>
+                                    <div class="ui-g-2">
+                                        <p:commandButton
+                                                id="addNewPetButton"
+                                                type="submit"
+                                                value="#{msg['addNewPet']}"
+                                                action="#{ownerView.showOwnerPetNewForm}"
+                                                ajax="false"
+                                                icon="fa fa-fw fa-plus-square"
+                                                styleClass="addNewButton"/>
+                                    </div>
+                                    <div class="ui-g-2">
+                                        <p:commandButton
+                                                id="editPetButton"
+                                                type="submit"
+                                                value="#{msg['editPet']}"
+                                                action="#{ownerView.showOwnerPetEditForm}"
+                                                ajax="false"
+                                                icon="fa fa-fw fa-edit"
+                                                styleClass="showEditFormButton"/>
+                                    </div>
+                                </div>
+                                <div class="ui-g">
+                                    <div class="ui-g-12">
+                                        <p:tree value="#{ownerView.treeNodeRoot}" var="node" orientation="horizontal">
+                                            <p:treeNode>
+                                                <h:outputText value="#{node.primaryKey}" />
+                                            </p:treeNode>
+                                        </p:tree>
+                                    </div>
+                                </div>
+                            </p:panel>
                         </div>
                     </div>
                 </p:panel>
                 <br/>
+                </h:form>
             </ui:fragment>
 
             <ui:fragment rendered="#{ownerViewFlow.renderPanelOwnerList}">
@@ -682,6 +681,7 @@
                                          ajax="false"/>
                     </p:panelGrid>
                 </h:form>
+
                 <h:form id="entityDataTableForm">
                     <p:panelGrid id="tableGrid" styleClass="tableGrid" columns="1">
                         <p:dataTable id="entityDataTable"

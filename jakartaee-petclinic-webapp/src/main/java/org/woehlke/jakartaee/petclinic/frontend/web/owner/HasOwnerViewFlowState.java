@@ -23,7 +23,5 @@ public interface HasOwnerViewFlowState extends HasCrudFlowState, Serializable {
    boolean isRenderPanelAddNewOwner();
    boolean isRenderPanelEditOwner();
    boolean isRenderPanelOwner();
-   boolean isRenderPanelPetsAndVisitsTable();
-   boolean isRenderPanelPetsAndVisitsTree();
    boolean isRenderPanelOwnerList();
 }
