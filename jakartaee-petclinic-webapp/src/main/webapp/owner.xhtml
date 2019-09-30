@@ -244,12 +244,9 @@
                                         value="#{ownerView.pet.birthDate}"
                                         showOn="petBirthDate"
                                         navigator="true"
-                                        locale="#{languageView.locale}">
-                                <f:convertDateTime
-                                        type="date"
-                                        dateStyle="medium"
+                                        showIcon="true"
+                                        showButtonBar="true"
                                         locale="#{languageView.locale}"/>
-                            </p:calendar>
                         </h:panelGroup>
                         <h:panelGroup>
                             <p:outputLabel value="#{msg['petType']}" for="petTypeEditOwnersPet"/>
@@ -313,12 +310,9 @@
                                         value="#{ownerView.pet.birthDate}"
                                         showOn="petBirthDate"
                                         navigator="true"
-                                        locale="#{languageView.locale}">
-                                <f:convertDateTime
-                                        type="date"
-                                        dateStyle="medium"
+                                        showIcon="true"
+                                        showButtonBar="true"
                                         locale="#{languageView.locale}"/>
-                            </p:calendar>
                         </h:panelGroup>
                         <h:panelGroup>
                             <p:outputLabel value="#{msg['petType']}" for="petTypeAddNewOwnersPet"/>
@@ -383,11 +377,9 @@
                                     value="#{ownerView.visit.date}"
                                     showOn="visitDate"
                                     navigator="true"
-                                    locale="#{languageView.locale}">
-                            <f:convertDateTime
-                                    type="date"
+                                    showIcon="true"
+                                    showButtonBar="true"
                                     locale="#{languageView.locale}"/>
-                        </p:calendar>
                         <p:outputLabel value="#{msg['description']}" for="visitDescription" />
                         <p:inputText id="visitDescription"
                                      styleClass="form-control"
