@@ -53,9 +53,9 @@ public class PetTypeViewImpl implements PetTypeView {
     @ManagedProperty(value = "#{petTypeViewFlow}")
     private PetTypeViewFlow petTypeViewFlow;
 
-    private org.woehlke.jakartaee.petclinic.oodm.entities.PetType entity;
-    private org.woehlke.jakartaee.petclinic.oodm.entities.PetType selected;
-    private List<org.woehlke.jakartaee.petclinic.oodm.entities.PetType> list;
+    private PetType entity;
+    private PetType selected;
+    private List<PetType> list;
     private String searchterm;
 
     @PostConstruct
@@ -81,14 +81,14 @@ public class PetTypeViewImpl implements PetTypeView {
 
     @Override
     public String cancelNew() {
-        loadList();
+        this.petTypeViewFlow.setFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String showEditForm(){
         this.reloadEntityFromSelected();
-        this.petTypeViewFlow.isFlowStateEdit();
+        this.petTypeViewFlow.setFlowStateEdit();
         return JSF_PAGE;
     }
 
@@ -107,7 +107,7 @@ public class PetTypeViewImpl implements PetTypeView {
 
     @Override
     public String showDeleteForm() {
-        this.petTypeViewFlow.isFlowStatDelete();
+        this.petTypeViewFlow.setFlowStatDelete();
         return JSF_PAGE;
     }
 
@@ -127,7 +127,7 @@ public class PetTypeViewImpl implements PetTypeView {
 
     @Override
     public String search(){
-        this.petTypeViewFlow.isFlowStateSearchResult();
+        this.petTypeViewFlow.setFlowStateSearchResult();
         return JSF_PAGE;
     }
 
@@ -135,7 +135,6 @@ public class PetTypeViewImpl implements PetTypeView {
     public void performSearch() {
         if(searchterm==null || searchterm.isEmpty()){
             this.petTypeViewFlow.setFlowStateList();
-            loadList();
             frontendMessagesView.addInfoMessage("Search ", "Missing searchterm");
         } else {
             try {
@@ -144,7 +143,6 @@ public class PetTypeViewImpl implements PetTypeView {
                 frontendMessagesView.addInfoMessage("Search ", "Found "+this.list.size()+ "results for searchterm "+searchterm);
             } catch (Exception e){
                 this.petTypeViewFlow.setFlowStateList();
-                loadList();
                 frontendMessagesView.addWarnMessage(e.getLocalizedMessage(),searchterm);
             }
         }
@@ -172,12 +170,12 @@ public class PetTypeViewImpl implements PetTypeView {
     }
 
     @Override
-    public org.woehlke.jakartaee.petclinic.oodm.entities.PetType getSelected() {
+    public PetType getSelected() {
         return selected;
     }
 
     @Override
-    public void setSelected(org.woehlke.jakartaee.petclinic.oodm.entities.PetType selected) {
+    public void setSelected(PetType selected) {
         this.selected = selected;
         if( this.selected != null ){
             this.entity = entityService.findById(this.selected.getId());
@@ -200,7 +198,7 @@ public class PetTypeViewImpl implements PetTypeView {
         this.languageView = languageView;
     }
 
-    public List<org.woehlke.jakartaee.petclinic.oodm.entities.PetType> getList() {
+    public List<PetType> getList() {
         if(this.petTypeViewFlow.isFlowStateSearchResult()){
             performSearch();
         } else {
@@ -209,7 +207,7 @@ public class PetTypeViewImpl implements PetTypeView {
         return list;
     }
 
-    public void setList(List<org.woehlke.jakartaee.petclinic.oodm.entities.PetType> list) {
+    public void setList(List<PetType> list) {
         this.list = list;
     }
 
@@ -235,8 +233,10 @@ public class PetTypeViewImpl implements PetTypeView {
             this.entity = this.selected;
             log.debug((this.entity!=null)?this.entity.toString():"null");
             log.debug((this.selected!=null)?this.selected.toString():"null");
+            this.petTypeViewFlow.setFlowStateList();
             frontendMessagesView.addInfoMessage("Added", this.entity.getPrimaryKey());
         } catch (EJBException e){
+            this.petTypeViewFlow.setFlowStateNew();
             log.warn(e.getMessage()+this.entity.toString());
             frontendMessagesView.addWarnMessage(e, this.entity);
         }
@@ -250,8 +250,10 @@ public class PetTypeViewImpl implements PetTypeView {
             this.entity = this.entityService.update(this.entity);
             log.debug((this.entity!=null)?this.entity.toString():"null");
             log.debug((this.selected!=null)?this.selected.toString():"null");
+            this.petTypeViewFlow.setFlowStateList();
             frontendMessagesView.addInfoMessage("Updated", this.entity.getPrimaryKey());
         } catch (EJBException e){
+            this.petTypeViewFlow.setFlowStateEdit();
             log.warn(e.getMessage()+this.entity.toString());
         }
     }
@@ -268,10 +270,12 @@ public class PetTypeViewImpl implements PetTypeView {
                 this.selected = null;
                 frontendMessagesView.addInfoMessage("Deleted", msgInfo);
             }
-            loadList();
+            this.petTypeViewFlow.setFlowStateList();
         } catch (EJBTransactionRolledbackException e) {
+            this.petTypeViewFlow.setFlowStatDelete();
             frontendMessagesView.addWarnMessage("cannot delete, object still in use", this.selected);
         } catch (EJBException e){
+            this.petTypeViewFlow.setFlowStatDelete();
             frontendMessagesView.addErrorMessage(e.getLocalizedMessage(),this.selected);
         }
     }
