@@ -18,7 +18,7 @@
         <div class="container">
 
             <ui:fragment rendered="#{ownerViewFlow.renderPanelAddNewOwner}">
-            <p:panel id="contentPanelAddNewOwner" header="#{msg['addNewOwner']}" style="margin-bottom:20px">
+            <p:panel id="contentPanelAddNewOwner" header="#{msg['addNewOwner']}" contentPanel="contentPanel">
                 <h:form id="addNewOwnerForm">
                     <div class="ui-g">
                         <div class="ui-g-2">
@@ -115,7 +115,7 @@
             </ui:fragment>
 
             <ui:fragment rendered="#{ownerViewFlow.renderPanelEditOwner}">
-            <p:panel id="contentPanelEditOwner" header="#{msg['editOwner']}">
+            <p:panel id="contentPanelEditOwner" header="#{msg['editOwner']}" styleClass="contentPanel">
                 <h:form id="editOwnerForm">
                     <div class="ui-g">
                         <div class="ui-g-2">
@@ -216,7 +216,7 @@
 
             <h:form id="showOwnerForm">
                 <ui:fragment rendered="#{ownerViewFlow.renderPanelOwner}">
-                <p:panel id="contentPanelOwner" header="#{msg['owner']}">
+                <p:panel id="contentPanelOwner" header="#{msg['owner']}" styleClass="contentPanel">
                     <div class="ui-g">
                         <div class="ui-g-2">
                             <p:outputLabel value="#{msg['firstName']}" for="firstName"/>
@@ -312,7 +312,7 @@
                 <br/>
             </ui:fragment>
             <ui:fragment rendered="#{ownerViewFlow.renderPanelPetsAndVisitsTable}">
-                <p:panel id="contentPanelPetsAndVisitsTable" header="#{msg['petsAndVisits']}">
+                <p:panel id="contentPanelPetsAndVisitsTable" header="#{msg['petsAndVisits']}" styleClass="contentPanel">
                     <div class="ui-g">
                         <div class="ui-g-12">
                             <p:dataTable id="petsAndVisitsTable"
@@ -407,7 +407,7 @@
                 <br/>
             </ui:fragment>
             <ui:fragment rendered="#{ownerViewFlow.renderPanelPetsAndVisitsTree}">
-                <p:panel id="contentPanelPetsAndVisitsTree" header="#{msg['petsAndVisits']}">
+                <p:panel id="contentPanelPetsAndVisitsTree" header="#{msg['petsAndVisits']}" styleClass="contentPanel">
                     <div class="ui-g">
                         <div class="ui-g-12">
                             <p:tree value="#{ownerView.treeNodeRoot}" var="node" orientation="horizontal">
