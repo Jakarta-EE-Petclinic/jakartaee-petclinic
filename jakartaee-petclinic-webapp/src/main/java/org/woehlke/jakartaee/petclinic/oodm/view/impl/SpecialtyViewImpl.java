@@ -272,4 +272,11 @@ public class SpecialtyViewImpl implements SpecialtyView {
         log.trace("preDestroy");
     }
 
+    public SpecialtyViewFlow getSpecialtyViewFlow() {
+        return specialtyViewFlow;
+    }
+
+    public void setSpecialtyViewFlow(SpecialtyViewFlow specialtyViewFlow) {
+        this.specialtyViewFlow = specialtyViewFlow;
+    }
 }

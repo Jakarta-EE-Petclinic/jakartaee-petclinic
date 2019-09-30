@@ -11,6 +11,7 @@ import org.woehlke.jakartaee.petclinic.oodm.entities.Vet;
 import org.woehlke.jakartaee.petclinic.oodm.services.SpecialtyService;
 import org.woehlke.jakartaee.petclinic.oodm.services.VetService;
 import org.woehlke.jakartaee.petclinic.oodm.view.VetView;
+import org.woehlke.jakartaee.petclinic.oodm.view.flow.VetViewFlow;
 
 
 import javax.faces.bean.ManagedBean;;
@@ -47,6 +48,10 @@ public class VetViewImpl implements VetView {
     @ManagedProperty(value = "#{frontendMessagesView}")
     private FrontendMessagesView frontendMessagesView;
 
+    @SuppressWarnings("deprecation")
+    @ManagedProperty(value = "#{vetViewFlow}")
+    private VetViewFlow vetViewFlow;
+
     @EJB
     private SpecialtyService specialtyService;
 
@@ -61,12 +66,11 @@ public class VetViewImpl implements VetView {
 
     private DualListModel<Specialty> specialtiesPickList;
 
-    private CrudViewFlowState flowState;
 
     @PostConstruct
     public void init() {
         log.trace("postConstruct");
-        this.flowState = CrudViewFlowState.LIST;
+        this.vetViewFlow.setFlowStateList();
         loadList();
         initSpecialtiesPickList();
     }
@@ -132,19 +136,19 @@ public class VetViewImpl implements VetView {
     public String showNewForm(){
         this.newEntity();
         this. initSpecialtiesPickList();
-        this.flowState = CrudViewFlowState.NEW;
+        this.vetViewFlow.isFlowStateNew();
         return JSF_PAGE;
     }
 
     public String saveNew() {
         this.saveNewEntity();
-        this.flowState = CrudViewFlowState.LIST;
+        this.vetViewFlow.setFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String cancelNew(){
-        this.flowState = CrudViewFlowState.LIST;
+        this.vetViewFlow.setFlowStateList();
         return JSF_PAGE;
     }
 
@@ -153,7 +157,7 @@ public class VetViewImpl implements VetView {
     }
 
     public List<org.woehlke.jakartaee.petclinic.oodm.entities.Vet> getList() {
-        if(this.flowState == CrudViewFlowState.LIST_SEARCH_RESULT){
+        if( this.vetViewFlow.isFlowStateSearchResult()){
             performSearch();
         } else {
             loadList();
@@ -165,39 +169,39 @@ public class VetViewImpl implements VetView {
     public String showEditForm(){
         this.reloadEntityFromSelected();
         this.resetSpecialtiesPickList();
-        this.flowState = CrudViewFlowState.EDIT;
+        this.vetViewFlow.isFlowStateEdit();
         return JSF_PAGE;
     }
 
     public String saveEdited() {
         this.saveEditedEntity();
-        this.flowState = CrudViewFlowState.LIST;
+        this.vetViewFlow.setFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String cancelEdited(){
-        this.flowState = CrudViewFlowState.LIST;
+        this.vetViewFlow.setFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String showDeleteForm(){
         this.reloadEntityFromSelected();
-        this.flowState = CrudViewFlowState.DELETE;
+        this.vetViewFlow.setFlowStatDelete();
         return JSF_PAGE;
     }
 
     @Override
     public String performDelete(){
         this.deleteSelectedEntity();
-        this.flowState = CrudViewFlowState.LIST;
+        this.vetViewFlow.setFlowStateList();
         return JSF_PAGE;
     }
 
     @Override
     public String cancelDelete(){
-        this.flowState = CrudViewFlowState.LIST;
+        this.vetViewFlow.setFlowStateList();
         return JSF_PAGE;
     }
 
@@ -211,7 +215,7 @@ public class VetViewImpl implements VetView {
 
     @Override
     public String search(){
-        this.flowState = CrudViewFlowState.LIST_SEARCH_RESULT;
+        this.vetViewFlow.isFlowStateSearchResult();
         return JSF_PAGE;
     }
 
@@ -329,57 +333,11 @@ public class VetViewImpl implements VetView {
         this.entity = new org.woehlke.jakartaee.petclinic.oodm.entities.Vet();
     }
 
-
-    @Override
-    public boolean isFlowStateList(){
-        return  this.flowState == CrudViewFlowState.LIST;
+    public VetViewFlow getVetViewFlow() {
+        return vetViewFlow;
     }
 
-    @Override
-    public boolean isFlowStateNew(){
-        return  this.flowState == CrudViewFlowState.NEW;
+    public void setVetViewFlow(VetViewFlow vetViewFlow) {
+        this.vetViewFlow = vetViewFlow;
     }
-
-    @Override
-    public boolean isFlowStateEdit(){
-        return  this.flowState == CrudViewFlowState.EDIT;
-    }
-
-    @Override
-    public boolean isFlowStatDelete(){
-        return  this.flowState == CrudViewFlowState.DELETE;
-    }
-
-    @Override
-    public boolean isFlowStateSearchResult(){
-        return  this.flowState == CrudViewFlowState.LIST_SEARCH_RESULT;
-    }
-
-
-    @Override
-    public void setFlowStateList(){
-        this.flowState = CrudViewFlowState.LIST;
-    }
-
-    @Override
-    public void setFlowStateNew(){
-        this.flowState = CrudViewFlowState.NEW;
-    }
-
-    @Override
-    public void setFlowStateEdit(){
-        this.flowState = CrudViewFlowState.EDIT;
-    }
-
-    @Override
-    public void setFlowStatDelete(){
-        this.flowState = CrudViewFlowState.DELETE;
-    }
-
-    @Override
-    public void setFlowStateSearchResult(){
-        this.flowState = CrudViewFlowState.LIST_SEARCH_RESULT;
-    }
-
-
 }

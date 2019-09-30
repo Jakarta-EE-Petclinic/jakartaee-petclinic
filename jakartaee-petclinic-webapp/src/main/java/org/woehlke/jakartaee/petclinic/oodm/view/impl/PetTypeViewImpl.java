@@ -284,4 +284,11 @@ public class PetTypeViewImpl implements PetTypeView {
         log.trace("preDestroy");
     }
 
+    public PetTypeViewFlow getPetTypeViewFlow() {
+        return petTypeViewFlow;
+    }
+
+    public void setPetTypeViewFlow(PetTypeViewFlow petTypeViewFlow) {
+        this.petTypeViewFlow = petTypeViewFlow;
+    }
 }

@@ -7,7 +7,11 @@ import org.woehlke.jakartaee.petclinic.oodm.entities.Vet;
 import java.io.Serializable;
 
 
-public interface VetView extends CrudView<Vet>, HasLanguage, HasSearch, HasCrudFlowState, HasViewModelOperations, Serializable {
+public interface VetView extends CrudView<Vet>,
+        HasLanguage,
+        HasSearch,
+        HasViewModelOperations,
+        Serializable {
 
     Specialty findSpecialtyByName(String name);
 
