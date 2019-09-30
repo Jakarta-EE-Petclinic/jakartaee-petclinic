@@ -145,20 +145,30 @@ public class FrontendMessagesViewImpl implements FrontendMessagesView {
     }
 
     private void addMessageForEntityAndRuntimeException(RuntimeException e, TwEntities entity, String clientId, FacesMessage.Severity messageSeverity){
+        StringBuilder sb1 = new StringBuilder("\n");
         String summary = e.getLocalizedMessage();
-        List<String> logInfos = new ArrayList<>();
-        logInfos.add("summary:           " + summary);
-        logInfos.add("RuntimeException:  " + e.getMessage());
-        logInfos.add("RuntimeException:  " + e.getLocalizedMessage());
+        sb1.append("entity Table       " + entity.getTableName()+"\n");
+        sb1.append("entity Class       " + entity.getClass().getName()+"\n");
+        sb1.append("entity UUID        " + entity.getUuid()+"\n");
+        sb1.append("entity ID          " + entity.getId()+"\n");
+        sb1.append("entity PK          " + entity.getPrimaryKey()+"\n");
+        sb1.append("clientId           " + clientId +"\n");
+        sb1.append("summary:           " + summary+"\n");
+        sb1.append("RuntimeException:  " + e.getMessage()+"\n");
+        sb1.append("RuntimeException:  " + e.getLocalizedMessage()+"\n");
+        StringBuilder sb = new StringBuilder(sb1.toString());
         long i = 0;
         for(StackTraceElement element:e.getStackTrace()){
             i++;
-            logInfos.add("StackTrace["+i+"]: "+element.getClass().getPackage());
-            logInfos.add("StackTrace["+i+"]: "+element.getClassName());
-            logInfos.add("StackTrace["+i+"]: "+element.getMethodName());
-            logInfos.add("StackTrace["+i+"]: "+element.getFileName());
-            logInfos.add("StackTrace["+i+"]: "+element.getLineNumber());
+            sb.append("StackTrace["+i+"]: "+element.getClass().getPackage()+"\n");
+            sb.append("StackTrace["+i+"]: "+element.getClassName()+"\n");
+            sb.append("StackTrace["+i+"]: "+element.getMethodName()+"\n");
+            sb.append("StackTrace["+i+"]: "+element.getFileName()+"\n");
+            sb.append("StackTrace["+i+"]: "+element.getLineNumber()+"\n");
         }
+        List<String> logInfos = new ArrayList<>();
+        logInfos.add(sb.toString());
+        logInfos.add(sb1.toString());
         this.doLogging(logInfos,messageSeverity);
         this.addMessageForEntity(summary,entity,clientId,messageSeverity);
     }
