@@ -468,7 +468,6 @@ public class OwnerViewImpl implements OwnerView {
                 this.visit.setPet(this.pet);
                 this.pet.addVisit(this.visit);
                 this.visit = this.entityService.addNewVisit(this.visit);
-                this.pet = this.petService.update(this.pet);
                 log.trace("owner1: " + this.entity.toString());
                 long ownerId = this.entity.getId();
                 this.entity = this.entityService.findById(ownerId);

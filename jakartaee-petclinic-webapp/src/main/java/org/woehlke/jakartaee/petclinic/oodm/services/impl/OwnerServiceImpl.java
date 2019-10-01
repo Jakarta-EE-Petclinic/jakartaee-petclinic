@@ -6,6 +6,7 @@ import org.woehlke.jakartaee.petclinic.oodm.dao.OwnerDao;
 import org.woehlke.jakartaee.petclinic.oodm.dao.PetDao;
 import org.woehlke.jakartaee.petclinic.oodm.dao.VisitDao;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Owner;
+import org.woehlke.jakartaee.petclinic.oodm.entities.Pet;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Visit;
 import org.woehlke.jakartaee.petclinic.oodm.services.OwnerService;
 
@@ -39,9 +40,15 @@ public class OwnerServiceImpl implements OwnerService {
     @Override
     public Visit addNewVisit(Visit visit) {
         log.debug("about to addNewVisit: " + visit.toString());
-        visitDao.addNew(visit);
-        petDao.update(visit.getPet());
-        ownerDao.update(visit.getPet().getOwner());
+        Pet pet = visit.getPet();
+        Owner owner = pet.getOwner();
+        visit.setPet(null);
+        visit = visitDao.addNew(visit);
+        owner =  ownerDao.update(owner);
+        pet.setOwner(owner);
+        pet = petDao.update(pet);
+        visit.setPet(pet);
+        visit = visitDao.update(visit);
         return visit;
     }
 
