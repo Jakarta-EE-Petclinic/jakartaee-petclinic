@@ -191,13 +191,12 @@ public class Visit implements TwEntities<Visit> {
         return Objects.equals(getId(), visit.getId()) &&
                 Objects.equals(getUuid(), visit.getUuid()) &&
                 getDate().equals(visit.getDate()) &&
-                getDescription().equals(visit.getDescription()) &&
-                Objects.equals(getPet(), visit.getPet());
+                getDescription().equals(visit.getDescription());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getUuid(), getDate(), getDescription(), getPet());
+        return Objects.hash(getId(), getUuid(), getDate(), getDescription());
     }
 
     @Override
@@ -205,7 +204,7 @@ public class Visit implements TwEntities<Visit> {
         return "Visit{" +
                 "id=" + id +
                 ", uuid=" + uuid +
-                ", date=" + ((date!=null)?date.toLocaleString():null) +
+                ", date=" + ((date!=null)?date.toString():null) +
                 ", description='" + description + '\'' +
                 '}';
     }
