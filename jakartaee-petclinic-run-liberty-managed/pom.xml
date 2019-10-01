@@ -381,7 +381,7 @@
                         <type>zip</type>
                     </assemblyArtifact>
                     <serverHome>${project.build.directory}/wlp</serverHome>
-                    <serverName>test</serverName>
+                    <serverName>JakartaEEPetclinicServer</serverName>
                     <features>
                         <acceptLicense>true</acceptLicense>
                         <feature>javaee-8.0</feature>
@@ -467,7 +467,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <skipTests>true</skipTests>
+                    <skipTests>false</skipTests>
                     <environmentVariables>
                         <OPENLIBERTY_HOME>${project.build.directory}/wlp</OPENLIBERTY_HOME>
                     </environmentVariables>
