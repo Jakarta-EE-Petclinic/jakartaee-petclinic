@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 
 
 @Startup
-@Stateless
+@Singleton
 @ApplicationScoped
 public class SchedulerBean implements Serializable {
 
@@ -26,7 +26,10 @@ public class SchedulerBean implements Serializable {
     private SearchIndexService searchIndexService;
 
     @Schedules ({
-            @Schedule(minute="15",persistent = false)
+            @Schedule(
+                    minute="15",
+                    persistent = false
+            )
     })
     public void automaticallyScheduled() {
         LocalDateTime now = LocalDateTime.now();
