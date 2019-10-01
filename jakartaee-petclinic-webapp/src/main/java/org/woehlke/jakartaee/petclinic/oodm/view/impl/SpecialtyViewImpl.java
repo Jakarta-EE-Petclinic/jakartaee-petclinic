@@ -9,14 +9,14 @@ import org.woehlke.jakartaee.petclinic.oodm.services.SpecialtyService;
 import org.woehlke.jakartaee.petclinic.oodm.view.SpecialtyView;
 import org.woehlke.jakartaee.petclinic.oodm.view.flow.SpecialtyViewFlow;
 
-import javax.faces.bean.ManagedBean;;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.ejb.EJBTransactionRolledbackException;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 
 /**
@@ -26,8 +26,7 @@ import java.util.List;
  * Time: 12:00
  * To change this template use File | Settings | File Templates.
  */
-@SuppressWarnings("deprecation")
-@ManagedBean(name="specialtyView")
+@Named("specialtyView")
 @SessionScoped
 public class SpecialtyViewImpl implements SpecialtyView {
 
@@ -40,16 +39,13 @@ public class SpecialtyViewImpl implements SpecialtyView {
     @EJB
     private SpecialtyService entityService;
 
-    @SuppressWarnings("deprecation")
-    @ManagedProperty(value = "#{languageView}")
+    @Inject
     private LanguageView languageView;
 
-    @SuppressWarnings("deprecation")
-    @ManagedProperty(value = "#{frontendMessagesView}")
+    @Inject
     private FrontendMessagesView frontendMessagesView;
 
-    @SuppressWarnings("deprecation")
-    @ManagedProperty(value = "#{specialtyViewFlow}")
+    @Inject
     private SpecialtyViewFlow specialtyViewFlow;
 
     private Specialty entity;

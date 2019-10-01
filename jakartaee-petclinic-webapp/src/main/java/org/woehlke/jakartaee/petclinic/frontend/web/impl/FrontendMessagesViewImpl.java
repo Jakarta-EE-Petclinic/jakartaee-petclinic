@@ -5,18 +5,17 @@ import org.apache.logging.log4j.Logger;
 import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
 import org.woehlke.jakartaee.petclinic.oodm.entities.common.TwEntities;
 
-import javax.faces.bean.ManagedBean;;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
 //TODO work with keys and fetch text from Resource-Bunble message.properties
-@SuppressWarnings("deprecation")
-@ManagedBean(name="frontendMessagesView")
+@Named("frontendMessagesView")
 @SessionScoped
 public class FrontendMessagesViewImpl implements FrontendMessagesView {
 

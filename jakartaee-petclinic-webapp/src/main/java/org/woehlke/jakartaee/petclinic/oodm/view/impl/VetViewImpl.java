@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.primefaces.model.DualListModel;
 import org.woehlke.jakartaee.petclinic.frontend.web.LanguageView;
 import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
-import org.woehlke.jakartaee.petclinic.frontend.web.common.CrudViewFlowState;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Specialty;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Vet;
 import org.woehlke.jakartaee.petclinic.oodm.services.SpecialtyService;
@@ -14,14 +13,14 @@ import org.woehlke.jakartaee.petclinic.oodm.view.VetView;
 import org.woehlke.jakartaee.petclinic.oodm.view.flow.VetViewFlow;
 
 
-import javax.faces.bean.ManagedBean;;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.ejb.EJBTransactionRolledbackException;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.*;
 
 /**
@@ -31,8 +30,7 @@ import java.util.*;
  * Time: 22:59
  * To change this template use File | Settings | File Templates.
  */
-@SuppressWarnings("deprecation")
-@ManagedBean(name="vetView")
+@Named("vetView")
 @SessionScoped
 public class VetViewImpl implements VetView {
 
@@ -42,16 +40,13 @@ public class VetViewImpl implements VetView {
 
     private final static String JSF_PAGE = "vet.jsf";
 
-    @SuppressWarnings("deprecation")
-    @ManagedProperty(value = "#{languageView}")
+    @Inject
     private LanguageView languageView;
 
-    @SuppressWarnings("deprecation")
-    @ManagedProperty(value = "#{frontendMessagesView}")
+    @Inject
     private FrontendMessagesView frontendMessagesView;
 
-    @SuppressWarnings("deprecation")
-    @ManagedProperty(value = "#{vetViewFlow}")
+    @Inject
     private VetViewFlow vetViewFlow;
 
     @EJB

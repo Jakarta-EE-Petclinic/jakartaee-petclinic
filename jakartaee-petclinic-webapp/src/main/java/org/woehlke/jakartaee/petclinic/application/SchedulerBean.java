@@ -4,17 +4,18 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.woehlke.jakartaee.petclinic.oodm.services.SearchIndexService;
 
-import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.*;
+import javax.enterprise.context.ApplicationScoped;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
 @Startup
-@ManagedBean
+@Stateless
+@ApplicationScoped
 public class SchedulerBean implements Serializable {
 
     private static final long serialVersionUID = 8425286360447275162L;

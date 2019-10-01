@@ -10,14 +10,14 @@ import org.woehlke.jakartaee.petclinic.oodm.services.PetTypeService;
 import org.woehlke.jakartaee.petclinic.oodm.view.PetTypeView;
 import org.woehlke.jakartaee.petclinic.oodm.view.flow.PetTypeViewFlow;
 
-import javax.faces.bean.ManagedBean;;
+import javax.enterprise.context.SessionScoped;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.ejb.EJBTransactionRolledbackException;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 
 /**
@@ -27,8 +27,7 @@ import java.util.List;
  * Time: 11:49
  * To change this template use File | Settings | File Templates.
  */
-@SuppressWarnings("deprecation")
-@ManagedBean(name="petTypeView")
+@Named("petTypeView")
 @SessionScoped
 public class PetTypeViewImpl implements PetTypeView {
 
@@ -41,16 +40,13 @@ public class PetTypeViewImpl implements PetTypeView {
     @EJB
     private PetTypeService entityService;
 
-    @SuppressWarnings("deprecation")
-    @ManagedProperty(value = "#{languageView}")
+    @Inject
     private LanguageView languageView;
 
-    @SuppressWarnings("deprecation")
-    @ManagedProperty(value = "#{frontendMessagesView}")
+    @Inject
     private FrontendMessagesView frontendMessagesView;
 
-    @SuppressWarnings("deprecation")
-    @ManagedProperty(value = "#{petTypeViewFlow}")
+    @Inject
     private PetTypeViewFlow petTypeViewFlow;
 
     private PetType entity;

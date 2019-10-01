@@ -20,8 +20,12 @@ public interface HasOwnerViewFlowState extends HasCrudFlowState, Serializable {
     boolean isFlowStateNewVisit();
     void setFlowStateNewVisit();
 
-   boolean isRenderPanelAddNewOwner();
-   boolean isRenderPanelEditOwner();
-   boolean isRenderPanelOwner();
-   boolean isRenderPanelOwnerList();
+    boolean isRenderPanelAddNewOwner();
+    boolean isRenderPanelEditOwner();
+    boolean isRenderPanelOwner();
+    boolean isRenderPanelOwnerList();
+
+    boolean isRenderPanelEditOwnersPet();
+    boolean isRenderPanelAddNewOwnersPet();
+    boolean isRenderPanelAddNewOwnersPetVisit();
 }

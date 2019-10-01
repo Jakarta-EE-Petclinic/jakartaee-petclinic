@@ -7,16 +7,15 @@ import org.woehlke.jakartaee.petclinic.frontend.web.LanguageView;
 import org.woehlke.jakartaee.petclinic.frontend.web.NavigationView;
 import org.woehlke.jakartaee.petclinic.oodm.services.SearchIndexService;
 
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ManagedBean;;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.inject.Named;
 
-@SuppressWarnings("deprecation")
-@ManagedBean(name="navigationView")
+@Named("navigationView")
 @SessionScoped
 public class NavigationViewImpl implements NavigationView {
 
@@ -24,12 +23,10 @@ public class NavigationViewImpl implements NavigationView {
 
     private static Logger log = LogManager.getLogger(NavigationViewImpl.class.getName());
 
-    @SuppressWarnings("deprecation")
-    @ManagedProperty(value = "#{languageView}")
+    @Inject
     private LanguageView languageView;
 
-    @SuppressWarnings("deprecation")
-    @ManagedProperty(value = "#{frontendMessagesView}")
+    @Inject
     private FrontendMessagesView frontendMessagesView;
 
     @EJB

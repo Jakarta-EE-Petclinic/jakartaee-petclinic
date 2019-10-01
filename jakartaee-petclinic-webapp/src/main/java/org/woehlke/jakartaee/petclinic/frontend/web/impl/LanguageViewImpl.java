@@ -9,11 +9,11 @@ import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.*;
 
 /**
@@ -23,15 +23,13 @@ import java.util.*;
  * Time: 21:14
  * To change this template use File | Settings | File Templates.
  */
-@SuppressWarnings("deprecation")
-@ManagedBean(name="languageView")
+@Named("languageView")
 @SessionScoped
 public class LanguageViewImpl implements LanguageView {
 
     private static final long serialVersionUID = -5444922829398489233L;
 
-    @SuppressWarnings("deprecation")
-    @ManagedProperty(value = "#{frontendMessagesView}")
+    @Inject
     private FrontendMessagesView frontendMessagesView;
 
     private static Logger log = LogManager.getLogger(LanguageViewImpl.class.getName());

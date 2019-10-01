@@ -22,9 +22,9 @@ import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.ejb.EJBTransactionRolledbackException;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 
 /**
@@ -34,8 +34,7 @@ import java.util.List;
  * Time: 16:24
  * To change this template use File | Settings | File Templates.
  */
-@SuppressWarnings("deprecation")
-@ManagedBean(name="ownerView")
+@Named("ownerView")
 @SessionScoped
 public class OwnerViewImpl implements OwnerView {
 
@@ -57,16 +56,13 @@ public class OwnerViewImpl implements OwnerView {
     @EJB
     private VisitService visitService;
 
-    @SuppressWarnings("deprecation")
-    @ManagedProperty(value = "#{languageView}")
+    @Inject
     private LanguageView languageView;
 
-    @SuppressWarnings("deprecation")
-    @ManagedProperty(value = "#{frontendMessagesView}")
+    @Inject
     private FrontendMessagesView frontendMessagesView;
 
-    @SuppressWarnings("deprecation")
-    @ManagedProperty(value = "#{ownerViewFlow}")
+    @Inject
     private OwnerViewFlow ownerViewFlow;
 
     private String searchterm;
