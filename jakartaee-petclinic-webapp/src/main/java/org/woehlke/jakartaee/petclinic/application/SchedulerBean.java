@@ -27,8 +27,7 @@ public class SchedulerBean implements Serializable {
 
     @Schedules ({
             @Schedule(
-                    minute="15",
-                    persistent = false
+                    minute="15"
             )
     })
     public void automaticallyScheduled() {
