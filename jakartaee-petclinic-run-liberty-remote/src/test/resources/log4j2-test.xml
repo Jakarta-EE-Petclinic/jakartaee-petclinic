@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Logger name="org.woehlke.jakartaee.petclinic.application" level="info" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="org.woehlke.jakartaee.petclinic.oodm" level="info" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="org.woehlke.jakartaee.petclinic.Deployments" level="trace" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="org.woehlke.jakartaee.petclinic.frontend.web.Test01Specialties" level="trace" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="org.woehlke.jakartaee.petclinic.frontend.web.Test02Vet" level="trace" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="org.woehlke.jakartaee.petclinic.frontend.web.Test03PetType" level="trace" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="org.woehlke.jakartaee.petclinic.frontend.web.Test04Owner" level="trace" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="org.woehlke.jakartaee.petclinic.frontend.web" level="debug" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="org.woehlke.jakartaee.petclinic.frontend.api" level="info" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="org.woehlke.jakartaee.petclinic" level="info" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="org.jboss.arquillian.drone" level="debug" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="org.jboss.arquillian.graphene" level="debug" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="org.jboss.arquillian.container" level="debug" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="org.jboss.arquillian" level="info">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="org.jboss.shrinkwrap" level="info">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="org.openqa.selenium" level="debug" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="org.primefaces.extensions.arquillian" level="debug" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="java.util.concurrent" level="info">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Root level="info">
+			<AppenderRef ref="Console"/>
+		</Root>
+	</Loggers>
+</Configuration>

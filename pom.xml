@@ -14,9 +14,10 @@
     <modules>
         <module>jakartaee-petclinic-webapp</module>
         <module>jakartaee-petclinic-run-wildfly-managed</module>
-        <module>jakartaee-petclinic-run-wildfly-remote</module>
         <module>jakartaee-petclinic-run-liberty-managed</module>
-        <module>jakartaee-petclinic-run-glassfish</module>
+        <module>jakartaee-petclinic-run-wildfly-remote</module>
+        <module>jakartaee-petclinic-run-liberty-remote</module>
+        <module>jakartaee-petclinic-run-glassfish-remote</module>
         <module>jakartaee-petclinic-cloud-openshift</module>
         <module>jakartaee-petclinic-cloud-heroku</module>
     </modules>
@@ -58,7 +59,10 @@
         <jakartaee8.server.wildfly.version>17.0.1.Final</jakartaee8.server.wildfly.version>
         <jakartaee8.server.openliberty.runtime>19.0.0.9</jakartaee8.server.openliberty.runtime>
         <jakartaee8.server.glassfish.version>1.1.1</jakartaee8.server.glassfish.version>
-        <!-- Integration Testing with Arquillian and Selenium -->
+        <libertyInstallDir>${user.home}/j/srv/openliberty-19.0.0.9/wlp</libertyInstallDir>
+        <wildflyInstallDir>${user.home}/j/srv/wildfly-17.0.1.Final</wildflyInstallDir>
+        <glassfishInstallDir>${user.home}/j/srv/glassfish-5.1.0</glassfishInstallDir>
+        <!-- Integration Testing ~with Arquillian and Selenium -->
         <version.arquillian.core>1.4.1.Final</version.arquillian.core>
         <version.arquillian.drone>2.5.1</version.arquillian.drone>
         <version.graphene.webdriver>2.3.2</version.graphene.webdriver>
@@ -525,6 +529,11 @@
                     <groupId>net.wasdev.wlp.maven.plugins</groupId>
                     <artifactId>liberty-maven-plugin</artifactId>
                     <version>3.0.M1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-invoker-plugin</artifactId>
+                    <version>3.1.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>

@@ -45,7 +45,10 @@ public class Test01Specialties extends AbstractPrimePageTest {
     @Deployment
     public static WebArchive createDeployment() {
         log.info("createDeployment");
-        return ShrinkWrap.createFromZipFile(WebArchive.class, new File("target/petclinic.war"));
+        return ShrinkWrap.createFromZipFile(
+                WebArchive.class,
+                new File("target/petclinic.war")
+        );
     }
 
     @Page

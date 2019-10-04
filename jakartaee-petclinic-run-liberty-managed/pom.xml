@@ -358,7 +358,7 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>io.openliberty</groupId>
-                                    <artifactId>openliberty-runtime</artifactId>
+                                    <artifactId>openliberty-javaee8</artifactId>
                                     <version>${jakartaee8.server.openliberty.runtime}</version>
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
@@ -376,15 +376,52 @@
                 <configuration>
                     <assemblyArtifact>
                         <groupId>io.openliberty</groupId>
-                        <artifactId>openliberty-runtime</artifactId>
+                        <artifactId>openliberty-javaee8</artifactId>
                         <version>${jakartaee8.server.openliberty.runtime}</version>
                         <type>zip</type>
                     </assemblyArtifact>
+                    <installDirectory>${project.build.directory}/wlp</installDirectory>
                     <serverHome>${project.build.directory}/wlp</serverHome>
-                    <serverName>JakartaEEPetclinicServer</serverName>
+                    <serverName>defaultServer</serverName>
                     <features>
                         <acceptLicense>true</acceptLicense>
                         <feature>javaee-8.0</feature>
+                        <!-- Java EE 8 Web Profile -->
+                        <feature>appSecurity-3.0</feature>
+                        <feature>beanValidation-2.0</feature>
+                        <feature>cdi-2.0</feature>
+                        <feature>el-3.0</feature>
+                        <feature>jaspic-1.1</feature>
+                        <feature>jaxrs-2.1</feature>
+                        <feature>jdbc-4.2</feature>
+                        <feature>jndi-1.0</feature>
+                        <feature>jpa-2.2</feature>
+                        <feature>jsf-2.3</feature>
+                        <feature>jsp-2.3</feature>
+                        <feature>jsonb-1.0</feature>
+                        <feature>jsonp-1.1</feature>
+                        <feature>managedBeans-1.0</feature>
+                        <feature>servlet-4.0</feature>
+                        <feature>websocket-1.1</feature>
+                        <!-- Java EE 8 Full Platform -->
+                        <feature>batch-1.0</feature>
+                        <feature>concurrent-1.0</feature>
+                        <feature>ejb-3.2</feature>
+                        <feature>j2eeManagement-1.1</feature>
+                        <feature>jacc-1.5</feature>
+                        <feature>javaMail-1.6</feature>
+                        <feature>jaxb-2.2</feature>
+                        <feature>jaxws-2.2</feature>
+                        <feature>jca-1.7</feature>
+                        <feature>jms-2.0</feature>
+                        <!-- Extended Programming Model -->
+                        <feature>json-1.0</feature>
+                        <feature>batchManagement-1.0</feature>
+                        <feature>sessionDatabase-1.0</feature>
+                        <!-- Security -->
+                        <feature>appSecurity-3.0</feature>
+                        <feature>audit-1.0</feature>
+                        <feature>passwordUtilities-1.0</feature>
                     </features>
                     <configFile>src/main/liberty/config/server.xml</configFile>
                     <looseApplication>true</looseApplication>
@@ -397,6 +434,7 @@
                         <packageFile>${project.build.directory}/${app.name}.war</packageFile>
                         <postgresql.jar.dir>${project.build.directory}/${app.name}/WEB-INF/lib</postgresql.jar.dir>
                         <postgresql.jar.file>postgresql-${postgresql.driver.version}.jar</postgresql.jar.file>
+                        <wlpHome>${project.build.directory}/wlp</wlpHome>
                     </bootstrapProperties>
                     <appsDirectory>apps</appsDirectory>
                     <stripVersion>true</stripVersion>
@@ -404,56 +442,28 @@
                     <refresh>true</refresh>
                     <sourceDirectoryString>${project.basedir}/src/main/webapp</sourceDirectoryString>
                     <appArchive>${project.build.directory}/${app.name}.war</appArchive>
-                    <skipTestServer>true</skipTestServer>
+                    <skipTestServer>false</skipTestServer>
                     <!-- begin configure-arquillian -->
                     <arquillianProperties>
+                        <defaultProtocol>Servlet 3.0</defaultProtocol>
                         <verifyApps>arquillian-test</verifyApps>
                         <browser>chrome</browser>
                         <instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
-                        <openlibertyHome>${project.build.directory}/wlp</openlibertyHome>
+                        <wlpHome>${project.build.directory}/wlp</wlpHome>
                     </arquillianProperties>
-                    <skipIfArquillianXmlExists>true</skipIfArquillianXmlExists>
+                    <skipIfArquillianXmlExists>false</skipIfArquillianXmlExists>
                     <!-- end configure-arquillian -->
                 </configuration>
-                <!--
-                <configuration>
-                    <assemblyArtifact>
-                        <groupId>io.openliberty</groupId>
-                        <artifactId>openliberty-runtime</artifactId>
-                        <version>${jakartaee8.server.openliberty.runtime}</version>
-                        <type>zip</type>
-                    </assemblyArtifact>
-                    <serverName>GettingStartedServer</serverName>
-                    <stripVersion>true</stripVersion>
-                    <configFile>src/main/liberty/config/server.xml</configFile>
-                    <looseApplication>true</looseApplication>
-                    <packageFile>${project.build.directory}/${app.name}.war</packageFile>
-                    <include>usr</include>
-                    <bootstrapProperties>
-                        <default.http.port>8080</default.http.port>
-                        <default.https.port>8443</default.https.port>
-                        <app.context.root>${app.name}</app.context.root>
-                        <packageFile>${project.build.directory}/${app.name}.war</packageFile>
-                        <postgresql.jar.dir>${project.build.directory}/${app.name}/WEB-INF/lib</postgresql.jar.dir>
-                        <postgresql.jar.file>postgresql-${postgresql.driver.version}.jar</postgresql.jar.file>
-                    </bootstrapProperties>
-                    <appsDirectory>apps</appsDirectory>
-                    <looseApplication>true</looseApplication>
-                    <stripVersion>true</stripVersion>
-                    <installAppPackages>project</installAppPackages>
-                    <refresh>true</refresh>
-                    <sourceDirectoryString>${project.basedir}/src/main/webapp</sourceDirectoryString>
-                    <appArchive>${project.build.directory}/${app.name}.war</appArchive>
-                    <serverHome>${project.build.directory}/wlp</serverHome>
-                </configuration>
-                -->
                 <executions>
                     <execution>
                         <id>package-server</id>
+                        <phase>pre-integration-test</phase>
                         <configuration>
+                            <wlpHome>${project.build.directory}/wlp</wlpHome>
                             <outputDirectory>target/wlp-package</outputDirectory>
                         </configuration>
                     </execution>
+                    <!--
                     <execution>
                         <id>configure-arquillian-xml</id>
                         <phase>pre-integration-test</phase>
@@ -461,14 +471,51 @@
                             <goal>configure-arquillian</goal>
                         </goals>
                     </execution>
+                    -->
+                    <!--
+                    <execution>
+                        <id>install</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>test-start-server</goal>
+                        </goals>
+                    </execution>
+                    -->
                 </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <skipTests>false</skipTests>
                     <environmentVariables>
+                        <wlpHome>${project.build.directory}/wlp</wlpHome>
+                        <OPENLIBERTY_HOME>${project.build.directory}/wlp</OPENLIBERTY_HOME>
+                    </environmentVariables>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skipTests>false</skipTests>
+                    <environmentVariables>
+                        <wlpHome>${project.build.directory}/wlp</wlpHome>
                         <OPENLIBERTY_HOME>${project.build.directory}/wlp</OPENLIBERTY_HOME>
                     </environmentVariables>
                 </configuration>
