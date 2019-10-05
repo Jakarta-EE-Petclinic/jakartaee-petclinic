@@ -57,6 +57,7 @@
         <version.arquillian.core>1.4.1.Final</version.arquillian.core>
         <version.arquillian.drone>2.5.1</version.arquillian.drone>
         <version.graphene.webdriver>2.3.2</version.graphene.webdriver>
+        <skipIntegrationTests>false</skipIntegrationTests>
         <!-- build -->
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <postgresql.driver.version>42.2.7</postgresql.driver.version>
@@ -249,6 +250,24 @@
                 <version>${version.arquillian.drone}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.graphene</groupId>
+                <artifactId>graphene-webdriver-impl</artifactId>
+                <version>${version.graphene.webdriver}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.extension</groupId>
+                <artifactId>arquillian-drone-impl</artifactId>
+                <version>${version.arquillian.drone}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.extension</groupId>
+                <artifactId>arquillian-drone-webdriver</artifactId>
+                <version>${version.arquillian.drone}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.arquillian.spacelift</groupId>
@@ -681,6 +700,24 @@
     </build>
 
     <profiles>
+
+        <profile>
+            <id>it-skip-tests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <skipIntegrationTests>true</skipIntegrationTests>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>it-run-tests</id>
+            <properties>
+                <skipIntegrationTests>true</skipIntegrationTests>
+            </properties>
+        </profile>
+
         <profile>
             <id>it-default</id>
             <activation>
@@ -785,18 +822,6 @@
                 </dependency>
                 <!-- Integration Testing with Arquillian -->
                 <dependency>
-                    <groupId>org.jboss.arquillian.extension</groupId>
-                    <artifactId>arquillian-drone-webdriver-depchain</artifactId>
-                    <type>pom</type>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.arquillian.graphene</groupId>
-                    <artifactId>graphene-webdriver</artifactId>
-                    <type>pom</type>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
                     <groupId>org.jboss.arquillian.junit</groupId>
                     <artifactId>arquillian-junit-container</artifactId>
                     <scope>test</scope>
@@ -882,6 +907,16 @@
                     <artifactId>esapi</artifactId>
                 </dependency>
                 <dependency>
+                    <groupId>org.jboss.arquillian.graphene</groupId>
+                    <artifactId>graphene-webdriver-impl</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.arquillian.extension</groupId>
+                    <artifactId>arquillian-drone-webdriver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
                     <groupId>org.arquillian.spacelift</groupId>
                     <artifactId>arquillian-spacelift</artifactId>
                     <scope>test</scope>
@@ -951,7 +986,7 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
-                            <skipTests>true</skipTests>
+                            <skipTests>${skipIntegrationTests}</skipTests>
                             <environmentVariables>
                                 <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                                 <jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</jboss.home>
@@ -1042,15 +1077,13 @@
                     <scope>test</scope>
                 </dependency>
                 <dependency>
-                    <groupId>org.jboss.arquillian.extension</groupId>
-                    <artifactId>arquillian-drone-webdriver-depchain</artifactId>
-                    <type>pom</type>
+                    <groupId>org.jboss.arquillian.graphene</groupId>
+                    <artifactId>graphene-webdriver-impl</artifactId>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
-                    <groupId>org.jboss.arquillian.graphene</groupId>
-                    <artifactId>graphene-webdriver</artifactId>
-                    <type>pom</type>
+                    <groupId>org.jboss.arquillian.extension</groupId>
+                    <artifactId>arquillian-drone-webdriver</artifactId>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
@@ -1347,7 +1380,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <skipTests>false</skipTests>
+                            <skipTests>${skipIntegrationTests}</skipTests>
                             <environmentVariables>
                                 <wlpHome>${project.build.directory}/wlp</wlpHome>
                                 <OPENLIBERTY_HOME>${project.build.directory}/wlp</OPENLIBERTY_HOME>
@@ -1366,7 +1399,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <skipTests>false</skipTests>
+                            <skipTests>${skipIntegrationTests}</skipTests>
                             <environmentVariables>
                                 <wlpHome>${project.build.directory}/wlp</wlpHome>
                                 <OPENLIBERTY_HOME>${project.build.directory}/wlp</OPENLIBERTY_HOME>
@@ -1532,6 +1565,16 @@
                     <artifactId>esapi</artifactId>
                 </dependency>
                 <dependency>
+                    <groupId>org.jboss.arquillian.graphene</groupId>
+                    <artifactId>graphene-webdriver-impl</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.arquillian.extension</groupId>
+                    <artifactId>arquillian-drone-webdriver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
                     <groupId>org.arquillian.spacelift</groupId>
                     <artifactId>arquillian-spacelift</artifactId>
                     <scope>test</scope>
@@ -1587,7 +1630,22 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
-                            <skipTests>true</skipTests>
+                            <skipTests>${skipIntegrationTests}</skipTests>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <skipTests>${skipIntegrationTests}</skipTests>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -1671,25 +1729,8 @@
                     <scope>test</scope>
                 </dependency>
                 <dependency>
-                    <groupId>org.jboss.arquillian.extension</groupId>
-                    <artifactId>arquillian-drone-webdriver-depchain</artifactId>
-                    <type>pom</type>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.arquillian.graphene</groupId>
-                    <artifactId>graphene-webdriver</artifactId>
-                    <type>pom</type>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
                     <groupId>org.jboss.arquillian.junit</groupId>
                     <artifactId>arquillian-junit-container</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.arquillian.protocol</groupId>
-                    <artifactId>arquillian-protocol-servlet</artifactId>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
@@ -1909,7 +1950,6 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <!--
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
@@ -1920,17 +1960,15 @@
                             </environmentVariables>
                         </configuration>
                     </plugin>
-                    -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
-                        <!--
                         <configuration>
+                            <skipTests>${skipIntegrationTests}</skipTests>
                             <environmentVariables>
                                 <OPENLIBERTY_HOME>${project.build.directory}/wlp</OPENLIBERTY_HOME>
                             </environmentVariables>
                         </configuration>
-                        -->
                         <executions>
                             <execution>
                                 <id>install</id>

@@ -10,30 +10,39 @@ function checkDependencies() {
               dependency:resolve-plugins \
               dependency:analyze \
               dependency:analyze-dep-mgt \
-              dependency:analyze-duplicates \
+              dependency:analyze-duplicate \
               dependency:tree
     done
 }
 
-function deployRemoteWildfly(){
-  ./mvnw clean install wildfly:deploy && google-chrome http://localhost:8080/petclinic
+function runRemoteLiberty(){
+  ./mvnw -Pit-openliberty-remote clean install liberty:deploy test
 }
 
-function deployManagedWildfly(){
-  ./mvnw clean install wildfly:run -Pit-wildfly-managed && google-chrome http://localhost:8080/petclinic
+function runRemoteWildfly(){
+  ./mvnw -Pit-wildfly-remote clean install wildfly:deploy test
 }
 
-function deployManagedLiberty(){
-  ./mvnw clean install liberty:start -Pit-wildfly-managed && google-chrome http://localhost:8080/petclinic
+function runManagedWildfly(){
+  ./mvnw -Pit-wildfly-managed clean install wildfly:start test
+  ./mvnw -Pit-wildfly-managed wildfly:shutdown
+}
+
+function runManagedLiberty(){
+  ./mvnw  -Pit-openliberty-managed clean install liberty:start test
+  ./mvnw  -Pit-openliberty-managed liberty:stop
 }
 
 function main(){
   #checkDependencies
-  deployRemoteWildfly
-  #deployManagedWildfly
-  #deployManagedLiberty
+  runManagedWildfly
+  #runRemoteWildfly
+  #runManagedLiberty
+  #runRemoteLiberty
 }
 
-main
+#main
+
+groovy RunScript.groovy
 
 
