@@ -565,6 +565,21 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>primefaces-arquillian</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.omnifaces</groupId>
+            <artifactId>arquillian-primefaces</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -828,16 +843,6 @@
         <profile>
             <id>it-wildfly-managed</id>
             <dependencies>
-                <dependency>
-                    <groupId>org.primefaces.extensions</groupId>
-                    <artifactId>primefaces-arquillian</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.omnifaces</groupId>
-                    <artifactId>arquillian-primefaces</artifactId>
-                    <scope>test</scope>
-                </dependency>
                 <!-- logging -->
                 <dependency>
                     <groupId>commons-logging</groupId>
@@ -1014,16 +1019,6 @@
         <profile>
             <id>it-openliberty-managed</id>
             <dependencies>
-                <dependency>
-                    <groupId>org.primefaces.extensions</groupId>
-                    <artifactId>primefaces-arquillian</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.omnifaces</groupId>
-                    <artifactId>arquillian-primefaces</artifactId>
-                    <scope>test</scope>
-                </dependency>
                 <!-- logging -->
                 <!--
                 <dependency>
@@ -1033,11 +1028,6 @@
                 </dependency>
                 -->
                 <!-- Integration Testing with Arquillian -->
-                <dependency>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
-                    <scope>test</scope>
-                </dependency>
                 <dependency>
                     <groupId>org.jboss.arquillian.graphene</groupId>
                     <artifactId>graphene-webdriver-impl</artifactId>
@@ -1358,16 +1348,6 @@
         <profile>
             <id>it-wildfly-remote</id>
             <dependencies>
-                <dependency>
-                    <groupId>org.primefaces.extensions</groupId>
-                    <artifactId>primefaces-arquillian</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.omnifaces</groupId>
-                    <artifactId>arquillian-primefaces</artifactId>
-                    <scope>test</scope>
-                </dependency>
                 <!-- logging -->
                 <dependency>
                     <groupId>commons-logging</groupId>
@@ -1378,11 +1358,6 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.junit</groupId>
                     <artifactId>arquillian-junit-container</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
@@ -1538,16 +1513,6 @@
         <profile>
             <id>it-openliberty-remote</id>
             <dependencies>
-                <dependency>
-                    <groupId>org.primefaces.extensions</groupId>
-                    <artifactId>primefaces-arquillian</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.omnifaces</groupId>
-                    <artifactId>arquillian-primefaces</artifactId>
-                    <scope>test</scope>
-                </dependency>
                 <!-- logging -->
                 <!--
                 <dependency>
@@ -1557,11 +1522,6 @@
                 </dependency>
                 -->
                 <!-- Integration Testing with Arquillian -->
-                <dependency>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
-                    <scope>test</scope>
-                </dependency>
                 <dependency>
                     <groupId>org.jboss.arquillian.junit</groupId>
                     <artifactId>arquillian-junit-container</artifactId>
