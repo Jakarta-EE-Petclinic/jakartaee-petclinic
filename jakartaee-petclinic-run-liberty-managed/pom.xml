@@ -387,6 +387,7 @@
                         <acceptLicense>true</acceptLicense>
                         <feature>javaee-8.0</feature>
                         <!-- Java EE 8 Web Profile -->
+                        <!--
                         <feature>appSecurity-3.0</feature>
                         <feature>beanValidation-2.0</feature>
                         <feature>cdi-2.0</feature>
@@ -403,7 +404,9 @@
                         <feature>managedBeans-1.0</feature>
                         <feature>servlet-4.0</feature>
                         <feature>websocket-1.1</feature>
+                        -->
                         <!-- Java EE 8 Full Platform -->
+                        <!--
                         <feature>batch-1.0</feature>
                         <feature>concurrent-1.0</feature>
                         <feature>ejb-3.2</feature>
@@ -414,14 +417,10 @@
                         <feature>jaxws-2.2</feature>
                         <feature>jca-1.7</feature>
                         <feature>jms-2.0</feature>
+                        -->
                         <!-- Extended Programming Model -->
                         <feature>json-1.0</feature>
-                        <feature>batchManagement-1.0</feature>
                         <feature>sessionDatabase-1.0</feature>
-                        <!-- Security -->
-                        <feature>appSecurity-3.0</feature>
-                        <feature>audit-1.0</feature>
-                        <feature>passwordUtilities-1.0</feature>
                     </features>
                     <configFile>src/main/liberty/config/server.xml</configFile>
                     <looseApplication>true</looseApplication>
