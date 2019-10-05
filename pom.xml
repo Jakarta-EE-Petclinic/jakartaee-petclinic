@@ -841,32 +841,34 @@
                 <webdriverBrowser>chrome</webdriverBrowser>
             </properties>
         </profile>
-
         <profile>
             <id>it-browser-firefox</id>
             <properties>
                 <webdriverBrowser>firefox</webdriverBrowser>
             </properties>
         </profile>
-
         <profile>
             <id>it-browser-safari</id>
             <properties>
                 <webdriverBrowser>safari</webdriverBrowser>
             </properties>
         </profile>
-
         <profile>
             <id>it-browser-opera</id>
             <properties>
                 <webdriverBrowser>opera</webdriverBrowser>
             </properties>
         </profile>
-
         <profile>
             <id>it-browser-htmlunit</id>
             <properties>
                 <webdriverBrowser>htmlunit</webdriverBrowser>
+            </properties>
+        </profile>
+        <profile>
+            <id>it-browser-phantomjsdriver</id>
+            <properties>
+                <webdriverBrowser>phantomjsdriver</webdriverBrowser>
             </properties>
         </profile>
 
