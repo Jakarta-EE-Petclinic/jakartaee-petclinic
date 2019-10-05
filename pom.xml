@@ -832,6 +832,7 @@
             </properties>
         </profile>
 
+
         <profile>
             <id>it-browser-chrome</id>
             <activation>
@@ -871,6 +872,7 @@
                 <webdriverBrowser>phantomjsdriver</webdriverBrowser>
             </properties>
         </profile>
+
 
         <profile>
             <id>it-default</id>
@@ -1086,6 +1088,7 @@
                             <skipTests>${skipIntegrationTests}</skipTests>
                             <environmentVariables>
                                 <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                                <JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</JBOSS_HOME>
                                 <jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</jboss.home>
                                 <jbossas.startup.timeout>300</jbossas.startup.timeout>
                                 <http.port>8080</http.port>
@@ -1276,6 +1279,7 @@
                 </dependency>
             </dependencies>
             <build>
+                <finalName>petclinic</finalName>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -1312,7 +1316,7 @@
                                             <version>${jakartaee8.server.openliberty.runtime}</version>
                                             <type>zip</type>
                                             <overWrite>true</overWrite>
-                                            <outputDirectory>${project.build.directory}</outputDirectory>
+                                            <outputDirectory>${project.build.directory}/liberty</outputDirectory>
                                         </artifactItem>
                                     </artifactItems>
                                 </configuration>
@@ -1330,8 +1334,8 @@
                                 <version>${jakartaee8.server.openliberty.runtime}</version>
                                 <type>zip</type>
                             </assemblyArtifact>
-                            <installDirectory>${project.build.directory}/wlp</installDirectory>
-                            <serverHome>${project.build.directory}/wlp</serverHome>
+                            <installDirectory>${project.build.directory}/liberty/wlp</installDirectory>
+                            <serverHome>${project.build.directory}/liberty/wlp</serverHome>
                             <serverName>defaultServer</serverName>
                             <features>
                                 <acceptLicense>true</acceptLicense>
@@ -1353,7 +1357,7 @@
                                 <packageFile>${project.build.directory}/${app.name}.war</packageFile>
                                 <postgresql.jar.dir>${project.build.directory}/${app.name}/WEB-INF/lib</postgresql.jar.dir>
                                 <postgresql.jar.file>postgresql-${postgresql.driver.version}.jar</postgresql.jar.file>
-                                <wlpHome>${project.build.directory}/wlp</wlpHome>
+                                <wlpHome>${project.build.directory}/liberty/wlp</wlpHome>
                             </bootstrapProperties>
                             <appsDirectory>apps</appsDirectory>
                             <stripVersion>true</stripVersion>
@@ -1365,10 +1369,11 @@
                             <!-- begin configure-arquillian -->
                             <arquillianProperties>
                                 <defaultProtocol>Servlet 3.0</defaultProtocol>
-                                <verifyApps>arquillian-test</verifyApps>
-                                <browser>${webdriverBrowser}</browser>
+                                <verifyApps>${app.name}</verifyApps>
+                                <webdriver.browser>${webdriverBrowser}</webdriver.browser>
                                 <instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
-                                <wlpHome>${project.build.directory}/wlp</wlpHome>
+                                <wlpHome>${project.build.directory}/liberty/wlp</wlpHome>
+                                <wlp.home>${project.build.directory}/liberty/wlp</wlp.home>
                             </arquillianProperties>
                             <skipIfArquillianXmlExists>false</skipIfArquillianXmlExists>
                             <!-- end configure-arquillian -->
@@ -1378,11 +1383,11 @@
                                 <id>package-server</id>
                                 <phase>pre-integration-test</phase>
                                 <configuration>
-                                    <wlpHome>${project.build.directory}/wlp</wlpHome>
-                                    <outputDirectory>target/wlp-package</outputDirectory>
+                                    <wlpHome>${project.build.directory}/liberty/wlp</wlpHome>
+                                    <wlp.home>${project.build.directory}/liberty/wlp</wlp.home>
+                                    <outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/defaultServer</outputDirectory>
                                 </configuration>
                             </execution>
-                            <!--
                             <execution>
                                 <id>configure-arquillian-xml</id>
                                 <phase>pre-integration-test</phase>
@@ -1390,7 +1395,6 @@
                                     <goal>configure-arquillian</goal>
                                 </goals>
                             </execution>
-                            -->
                             <!--
                             <execution>
                                 <id>install</id>
@@ -1415,8 +1419,9 @@
                         <configuration>
                             <skipTests>${skipIntegrationTests}</skipTests>
                             <environmentVariables>
-                                <wlpHome>${project.build.directory}/wlp</wlpHome>
-                                <OPENLIBERTY_HOME>${project.build.directory}/wlp</OPENLIBERTY_HOME>
+                                <wlpHome>${project.build.directory}/liberty/wlp</wlpHome>
+                                <wlp.home>${project.build.directory}/liberty/wlp</wlp.home>
+                                <OPENLIBERTY_HOME>${project.build.directory}/liberty/wlp</OPENLIBERTY_HOME>
                             </environmentVariables>
                         </configuration>
                     </plugin>
@@ -1434,8 +1439,8 @@
                         <configuration>
                             <skipTests>${skipIntegrationTests}</skipTests>
                             <environmentVariables>
-                                <wlpHome>${project.build.directory}/wlp</wlpHome>
-                                <OPENLIBERTY_HOME>${project.build.directory}/wlp</OPENLIBERTY_HOME>
+                                <wlpHome>${project.build.directory}/liberty/wlp</wlpHome>
+                                <OPENLIBERTY_HOME>${project.build.directory}/liberty/wlp</OPENLIBERTY_HOME>
                             </environmentVariables>
                         </configuration>
                     </plugin>

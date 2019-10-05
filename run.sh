@@ -99,8 +99,8 @@ function main(){
   echo "-------------------"
   #checkDependencies $TESTS_PROFILE $BROWSER_PROFILE
   runManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  #runManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
   #runRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
-  runManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
   #runRemoteLiberty $TESTS_PROFILE $BROWSER_PROFILE
   echo "-------------------"
   echo "DONE and READY"
