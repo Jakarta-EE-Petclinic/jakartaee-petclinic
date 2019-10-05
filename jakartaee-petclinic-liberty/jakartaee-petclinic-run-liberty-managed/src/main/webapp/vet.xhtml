@@ -1,0 +1,297 @@
+<ui:composition template="template.xhtml"
+            xmlns="http://www.w3.org/1999/xhtml"
+            xmlns:h="http://java.sun.com/jsf/html"
+            xmlns:f="http://java.sun.com/jsf/core"
+            xmlns:ui="http://java.sun.com/jsf/facelets"
+            xmlns:p="http://primefaces.org/ui">
+
+    <f:loadBundle basename="messages" var="msg" />
+
+    <ui:define name="contentTitle">
+        <div class="container" id="contentTitle">
+            <ui:fragment rendered="#{vetViewFlow.flowStateList}">
+                <h1 id="listEntityHeader" class="contentTitleHeadline">
+                    <i class="fa fa-stethoscope contentTitleHeadlineIcon"/>
+                    <h:outputText
+                            styleClass="contentTitleHeadlineText"
+                            value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.list']}"/>
+                </h1>
+            </ui:fragment>
+            <ui:fragment rendered="#{vetViewFlow.flowStateNew}">
+                <h1 id="newEntityHeader" class="contentTitleHeadline">
+                    <i class="fa fa-stethoscope contentTitleHeadlineIcon"/>
+                    <h:outputText
+                            value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.addNew']}"
+                            styleClass="contentTitleHeadlineText"/>
+                </h1>
+            </ui:fragment>
+            <ui:fragment rendered="#{vetViewFlow.flowStateEdit}">
+                <h1 id="editEntityHeader" class="contentTitleHeadline">
+                    <i class="fa fa-stethoscope contentTitleHeadlineIcon"/>
+                    <h:outputText
+                            value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.edit']}"
+                            styleClass="contentTitleHeadlineText"/>
+                </h1>
+            </ui:fragment>
+            <ui:fragment rendered="#{vetViewFlow.flowStateDelete}">
+                <h1 id="deleteEntityHeader" class="contentTitleHeadline">
+                    <i class="fa fa-stethoscope contentTitleHeadlineIcon"/>
+                    <h:outputText
+                            value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.delete']}"
+                            styleClass="contentTitleHeadlineText"/>
+                </h1>
+            </ui:fragment>
+            <ui:fragment rendered="#{vetViewFlow.flowStateSearchResult}">
+                <h1 id="searchResultEntityHeader" class="contentTitleHeadline">
+                    <i class="fa fa-stethoscope contentTitleHeadlineIcon"/>
+                    <h:outputText
+                            value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.search']}"
+                            styleClass="contentTitleHeadlineText"/>
+                </h1>
+            </ui:fragment>
+        </div>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="container" id="contentContainer">
+            <ui:fragment rendered="#{vetViewFlow.flowStateNew}">
+                <h:form id="addNewVetForm" styleClass="addNewEntityForm">
+                    <p:panel id="addNewVetPanel" styleClass="contentPanel"
+                             header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.addNew']}">
+                        <p:panelGrid id="gridallAddNew" columns="2" styleClass="foo">
+                            <p:panelGrid id="gridDataAddNew" columns="2" styleClass="foo">
+                                <p:outputLabel value="#{msg['firstName']}"
+                                               for="firstNameAddNew"/>
+                                <p:inputText id="firstNameAddNew"
+                                             styleClass="form-control"
+                                             value="#{vetView.entity.firstName}"/>
+                                <p:outputLabel value="#{msg['lastName']}"
+                                               for="lastNameAddNew"/>
+                                <p:inputText id="lastNameAddNew"
+                                             styleClass="form-control"
+                                             value="#{vetView.entity.lastName}"/>
+                            </p:panelGrid>
+                            <p:panelGrid id="gridPickListAddNew" columns="1" styleClass="foo">
+                                <p:pickList
+                                        id="selectedSpecialtiesPickListAddNew"
+                                        value="#{vetView.specialtiesPickList}"
+                                        var="specialty"
+                                        converter="specialtyConverter"
+                                        itemValue="#{specialty}"
+                                        itemLabel="#{specialty.name}"/>
+                            </p:panelGrid>
+                        </p:panelGrid>
+                        <p:panelGrid id="buttonsAddNew" columns="2" styleClass="foo">
+                            <p:commandButton id="saveAddNewButton"
+                                             type="submit"
+                                             styleClass="saveButton"
+                                             icon="fa fa-fw fa-save"
+                                             value="#{msg['save']}"
+                                             ajax="false"
+                                             action="#{vetView.saveNew}"/>
+                            <p:commandButton id="cancelAddNew"
+                                             type="cancel"
+                                             styleClass="cancelButton"
+                                             icon="fa fa-fw fa-times-circle"
+                                             value="#{msg['cancel']}"
+                                             ajax="false"
+                                             action="#{vetView.cancelNew}"
+                                             includeViewParams="true"/>
+                        </p:panelGrid>
+                    </p:panel>
+                </h:form>
+            </ui:fragment>
+            <ui:fragment rendered="#{vetViewFlow.flowStateEdit}">
+                <h:form id="editSpecialtyForm">
+                    <p:panel
+                            id="editSpecialtyFormPanel"
+                            styleClass="contentPanel"
+                            header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.edit']}">
+                        <p:panelGrid id="gridallEdit" columns="2" styleClass="foo">
+                            <p:panelGrid id="gridDataEdit" columns="2" styleClass="foo">
+                                <p:outputLabel value="#{msg['firstName']}"
+                                               for="firstNameEdit"/>
+                                <p:inputText id="firstNameEdit"
+                                             styleClass="form-control"
+                                             value="#{vetView.entity.firstName}"/>
+                                <p:outputLabel value="#{msg['lastName']}"
+                                               for="lastNameEdit"/>
+                                <p:inputText id="lastNameEdit"
+                                             styleClass="form-control"
+                                             value="#{vetView.entity.lastName}"/>
+                            </p:panelGrid>
+                            <p:panelGrid id="gridPickListEdit" columns="1" styleClass="foo">
+                                <p:pickList
+                                        id="selectedSpecialtiesPickListEdit"
+                                        value="#{vetView.specialtiesPickList}"
+                                        var="specialty"
+                                        converter="specialtyConverter"
+                                        itemValue="#{specialty}"
+                                        itemLabel="#{specialty.name}"/>
+                            </p:panelGrid>
+                        </p:panelGrid>
+                        <p:panelGrid id="buttons" columns="2" styleClass="foo">
+                            <p:commandButton id="saveEditButton"
+                                             type="submit"
+                                             styleClass="saveButton"
+                                             icon="fa fa-fw fa-save"
+                                             value="#{msg['save']}"
+                                             ajax="false"
+                                             action="#{vetView.saveEdited}"/>
+                            <p:commandButton id="cancelEdit"
+                                             type="cancel"
+                                             styleClass="cancelButton"
+                                             icon="fa fa-fw fa-times-circle"
+                                             value="#{msg['cancel']}"
+                                             ajax="false"
+                                             action="#{vetView.cancelEdited}"
+                                             includeViewParams="true"/>
+                        </p:panelGrid>
+                    </p:panel>
+                </h:form>
+            </ui:fragment>
+            <ui:fragment rendered="#{vetViewFlow.flowStateDelete}">
+                <h:form id="deleteSpecialtyForm" styleClass="deleteEntityForm">
+                    <p:panel id="deleteSpecialtyPanel" styleClass="contentPanel"
+                             header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.delete']}">
+                        <p:panelGrid id="gridallDelete" columns="2" styleClass="foo">
+                            <p:panelGrid id="gridDataDelete" columns="2" styleClass="foo">
+                                <p:outputLabel value="#{msg['firstName']}"
+                                               for="firstNameDelete"/>
+                                <p:inputText id="firstNameDelete"
+                                             styleClass="form-control"
+                                             value="#{vetView.entity.firstName}"/>
+                                <p:outputLabel value="#{msg['lastName']}"
+                                               for="lastNameDelete"/>
+                                <p:inputText id="lastNameDelete"
+                                             styleClass="form-control"
+                                             value="#{vetView.entity.lastName}"/>
+                            </p:panelGrid>
+                            <p:panelGrid id="gridPickListDelete" columns="1" styleClass="foo">
+                                <p:pickList
+                                        id="selectedSpecialtiesPickListDelete"
+                                        value="#{vetView.specialtiesPickList}"
+                                        var="specialty"
+                                        converter="specialtyConverter"
+                                        itemValue="#{specialty}"
+                                        itemLabel="#{specialty.name}"/>
+                            </p:panelGrid>
+                        </p:panelGrid>
+                        <p:panelGrid id="buttonsDelete" columns="2" styleClass="foo">
+                            <p:commandButton id="saveDeleteButton"
+                                             type="submit"
+                                             styleClass="deleteButton"
+                                             icon="fa fa-fw fa-trash"
+                                             value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.deleteSelectedButton']}"
+                                             ajax="false"
+                                             action="#{vetView.performDelete}"/>
+                            <p:commandButton id="cancelDelete"
+                                             type="cancel"
+                                             styleClass="cancelButton"
+                                             icon="fa fa-fw fa-times-circle"
+                                             value="#{msg['cancel']}"
+                                             ajax="false"
+                                             action="#{vetView.cancelDelete}"
+                                             includeViewParams="true"/>
+                        </p:panelGrid>
+                    </p:panel>
+                </h:form>
+            </ui:fragment>
+
+            <p:panel id="contentPanel"
+                     styleClass="contentPanel"
+                     header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentPanel.veterinarian.list']}">
+                <h:form id="findEntityForm">
+                    <p:panelGrid id="newAndSearchGrid" columns="4" styleClass="newAndSearchGrid">
+                        <p:commandButton
+                                id="showNewFormButton"
+                                styleClass="showNewFormButton"
+                                action="#{vetView.showNewForm}"
+                                ajax="false"
+                                icon="fa fa-fw fa-plus-square"
+                                value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.showNewFormButton']}"/>
+                        <p:outputLabel
+                                id="labelTextSearchterm"
+                                styleClass="labelTextSearchterm"
+                                value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.veterinarian']}"
+                                for="inputTextSearchterm"/>
+                        <p:inputText
+                                id="inputTextSearchterm"
+                                value="#{vetView.searchterm}"/>
+                        <p:commandButton
+                                id="searchButton"
+                                action="#{vetView.search}"
+                                value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchButton']}"
+                                icon="fa fa-fw fa-search"
+                                ajax="false"/>
+                    </p:panelGrid>
+                </h:form>
+                <h:form id="entityDataTableForm">
+                    <p:panelGrid id="tableGrid" columns="1" styleClass="tableGrid">
+                        <p:dataTable id="entityDataTable"
+                                     styleClass="entityDataTable"
+                                     value="#{vetView.list}"
+                                     var="vet"
+                                     selection="#{vetView.selected}"
+                                     rowKey="#{vet.id}"
+                                     selectionMode="single"
+                                     scrollable="true"
+                                     scrollHeight="200">
+                            <p:column
+                                    id="columnVeterinarianFirstName"
+                                    styleClass="columnVeterinarianFirstName"
+                                    headerText="#{msg['org.woehlke.jakartaee.petclinic.oodm.entities.veterinarian.firstName']}"
+                                    sortBy="#{vet.firstName}">
+                                 <h:outputText
+                                         styleClass="entityDataTableCell"
+                                         value="#{vet.firstName}"/>
+                            </p:column>
+                            <p:column
+                                    id="columnVeterinarianLastName"
+                                    styleClass="columnVeterinarianLastName"
+                                    headerText="#{msg['org.woehlke.jakartaee.petclinic.oodm.entities.veterinarian.lastName']}"
+                                    sortBy="#{vet.lastName}">
+                                <h:outputText
+                                        styleClass="entityDataTableCell"
+                                        value="#{vet.lastName}"/>
+                            </p:column>
+                            <p:column
+                                    id="columnVeterinarianSpecialties"
+                                    styleClass="columnVeterinarianSpecialties"
+                                    headerText="#{msg['org.woehlke.jakartaee.petclinic.oodm.entities.veterinarian.specialties']}"
+                                    sortBy="#{vet.specialtiesAsString}">
+                                <h:outputText
+                                        styleClass="entityDataTableCell"
+                                        value="#{vet.specialtiesAsString}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </p:panelGrid>
+                    <p:panelGrid id="footerGrid" columns="4">
+                        <p:commandButton
+                                id="showEditFormButton"
+                                styleClass="showEditFormButton"
+                                action="#{vetView.showEditForm}"
+                                ajax="false"
+                                value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.showEditFormButton']}"
+                                icon="fa fa-fw fa-edit"/>
+                        <p:commandButton
+                                id="deleteSelectedButton"
+                                styleClass="deleteSelectedButton"
+                                action="#{vetView.showDeleteForm}"
+                                ajax="false"
+                                value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.deleteSelectedButton']}"
+                                icon="fa fa-fw fa-trash"/>
+                        <p:link href="./rest/vet/list/xml">
+                            <i class="fa fa-fw fa-arrow-alt-circle-right"/>
+                            <h:outputText value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.showXml']}"/>
+                        </p:link>
+                        <p:link href="./rest/vet/list/json">
+                            <i class="fa fa-fw fa-arrow-alt-circle-right"/>
+                            <h:outputText value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.showJson']}"/>
+                        </p:link>
+                    </p:panelGrid>
+                </h:form>
+            </p:panel>
+        </div>
+    </ui:define>
+</ui:composition>

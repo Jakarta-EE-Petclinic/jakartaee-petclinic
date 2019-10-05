@@ -1,8 +1,4 @@
 org.woehlke.javaee8.petclinic.oodm.entities.*
 *.iml
 target
-javafiles.txt
 etc
-createdFiles.lst
-createdFiles*.txt
-createdFiles*.sh
