@@ -1,7 +1,10 @@
-dryRun = true
+dryRun = false
+
+logfile = "maven-log.txt"
 
 def runCommand(command){
     if(! dryRun){
+        command = command + " >> " + logfile
         Process process = command.execute()
         def out = new StringBuffer()
         def err = new StringBuffer()
