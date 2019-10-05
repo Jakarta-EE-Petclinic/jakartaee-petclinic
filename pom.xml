@@ -789,9 +789,10 @@
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
-                    <compilerArguments>
-                        <endorseddirs>${endorsed.dir}</endorseddirs>
-                    </compilerArguments>
+                    <compilerArgs>
+                        <arg>-verbose</arg>
+                        <arg>-Xlint:all,-options,-path</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
             <plugin>
@@ -1368,28 +1369,14 @@
                             <skipTestServer>false</skipTestServer>
                             <!-- begin configure-arquillian -->
                             <arquillianProperties>
-                                <defaultProtocol>Servlet 3.0</defaultProtocol>
-                                <verifyApps>${app.name}</verifyApps>
-                                <webdriver.browser>${webdriverBrowser}</webdriver.browser>
-                                <instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
-                                <wlpHome>${project.build.directory}/liberty/wlp</wlpHome>
-                                <wlp.home>${project.build.directory}/liberty/wlp</wlp.home>
-                                <deployType>apps</deployType>
-                                <serverName>${app.name}</serverName>
+                                <deployType>dropins</deployType>
+                                <appDeployTimeout>600</appDeployTimeout>
+                                <appUndeployTimeout>400</appUndeployTimeout>
                             </arquillianProperties>
                             <skipIfArquillianXmlExists>false</skipIfArquillianXmlExists>
                             <!-- end configure-arquillian -->
                         </configuration>
                         <executions>
-                            <execution>
-                                <id>package-server</id>
-                                <phase>pre-integration-test</phase>
-                                <configuration>
-                                    <wlpHome>${project.build.directory}/liberty/wlp</wlpHome>
-                                    <wlp.home>${project.build.directory}/liberty/wlp</wlp.home>
-                                    <outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/defaultServer</outputDirectory>
-                                </configuration>
-                            </execution>
                             <execution>
                                 <id>install-server</id>
                                 <phase>prepare-package</phase>
@@ -1408,7 +1395,9 @@
                                         <feature>audit-1.0</feature>
                                         <feature>passwordUtilities-1.0</feature>
                                     </features>
-                                    <outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/defaultServer</outputDirectory>
+                                    <!--
+                                    <outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/</outputDirectory>
+                                    -->
                                 </configuration>
                             </execution>
                         </executions>

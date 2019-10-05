@@ -10,7 +10,7 @@
     </engine>
 
     <extension qualifier="webdriver">
-        <property name="browser">${webdriver.browser}</property>
+        <property name="browser">${webdriverBrowser}</property>
     </extension>
 
     <extension qualifier="drone">
@@ -19,17 +19,16 @@
 
     <container qualifier="it-openliberty-remote">
         <configuration>
-            <property name="wlpHome">${openlibertyHome}</property>
+            <property name="appDeployTimeout">600</property>
+            <property name="appUndeployTimeout">300</property>
         </configuration>
     </container>
 
     <container qualifier="arquillian-liberty-managed">
         <configuration>
-            <property name="wlpHome">${project.build.directory}/liberty/wlp/</property>
-            <property name="deployType">apps</property>
-            <property name="serverName">defaultServer</property>
-            <property name="appDeployTimeout">300</property>
-            <property name="appUndeployTimeout">200</property>
+            <property name="deployType">dropins</property>
+            <property name="appDeployTimeout">600</property>
+            <property name="appUndeployTimeout">300</property>
         </configuration>
     </container>
 
