@@ -844,11 +844,29 @@
 
         <profile>
             <id>it-browser-firefox</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <properties>
                 <webdriverBrowser>firefox</webdriverBrowser>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>it-browser-safari</id>
+            <properties>
+                <webdriverBrowser>safari</webdriverBrowser>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>it-browser-opera</id>
+            <properties>
+                <webdriverBrowser>opera</webdriverBrowser>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>it-browser-htmlunit</id>
+            <properties>
+                <webdriverBrowser>htmlunit</webdriverBrowser>
             </properties>
         </profile>
 
@@ -965,7 +983,22 @@
                 </dependency>
                 <dependency>
                     <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-opera-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-safari-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
                     <artifactId>htmlunit-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.codeborne</groupId>
+                    <artifactId>phantomjsdriver</artifactId>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
@@ -1143,12 +1176,27 @@
                 </dependency>
                 <dependency>
                     <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>htmlunit-driver</artifactId>
+                    <artifactId>selenium-firefox-driver</artifactId>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-firefox-driver</artifactId>
+                    <artifactId>selenium-opera-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-safari-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>htmlunit-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.codeborne</groupId>
+                    <artifactId>phantomjsdriver</artifactId>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
@@ -1316,7 +1364,7 @@
                             <arquillianProperties>
                                 <defaultProtocol>Servlet 3.0</defaultProtocol>
                                 <verifyApps>arquillian-test</verifyApps>
-                                <browser>chrome</browser>
+                                <browser>${webdriverBrowser}</browser>
                                 <instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
                                 <wlpHome>${project.build.directory}/wlp</wlpHome>
                             </arquillianProperties>
@@ -1467,7 +1515,22 @@
                 </dependency>
                 <dependency>
                     <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-opera-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-safari-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
                     <artifactId>htmlunit-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.codeborne</groupId>
+                    <artifactId>phantomjsdriver</artifactId>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
@@ -1624,12 +1687,27 @@
                 </dependency>
                 <dependency>
                     <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>htmlunit-driver</artifactId>
+                    <artifactId>selenium-firefox-driver</artifactId>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-firefox-driver</artifactId>
+                    <artifactId>selenium-opera-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-safari-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>htmlunit-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.codeborne</groupId>
+                    <artifactId>phantomjsdriver</artifactId>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
