@@ -16,21 +16,21 @@ function checkDependencies() {
 }
 
 function runRemoteLiberty(){
-  ./mvnw -Pit-openliberty-remote clean install liberty:deploy test
+  ./mvnw -Pit-openliberty-remote -Pit-skip-tests clean install liberty:deploy test
 }
 
 function runRemoteWildfly(){
-  ./mvnw -Pit-wildfly-remote clean install wildfly:deploy test
+  ./mvnw -Pit-wildfly-remote -Pit-skip-tests clean install wildfly:deploy test
 }
 
 function runManagedWildfly(){
-  ./mvnw -Pit-wildfly-managed clean install wildfly:start test
-  ./mvnw -Pit-wildfly-managed wildfly:shutdown
+  ./mvnw -Pit-wildfly-managed -Pit-skip-tests clean install wildfly:start test
+  ./mvnw -Pit-wildfly-managed -Pit-skip-tests wildfly:shutdown
 }
 
 function runManagedLiberty(){
-  ./mvnw  -Pit-openliberty-managed clean install liberty:start test
-  ./mvnw  -Pit-openliberty-managed liberty:stop
+  ./mvnw  -Pit-openliberty-managed -Pit-skip-tests clean install liberty:start test
+  ./mvnw  -Pit-openliberty-managed -Pit-skip-tests liberty:stop
 }
 
 function main(){
