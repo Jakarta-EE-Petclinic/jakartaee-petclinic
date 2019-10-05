@@ -1374,6 +1374,8 @@
                                 <instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
                                 <wlpHome>${project.build.directory}/liberty/wlp</wlpHome>
                                 <wlp.home>${project.build.directory}/liberty/wlp</wlp.home>
+                                <deployType>apps</deployType>
+                                <serverName>${app.name}</serverName>
                             </arquillianProperties>
                             <skipIfArquillianXmlExists>false</skipIfArquillianXmlExists>
                             <!-- end configure-arquillian -->
@@ -1389,17 +1391,12 @@
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>configure-arquillian-xml</id>
-                                <phase>pre-integration-test</phase>
-                                <goals>
-                                    <goal>configure-arquillian</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>install-feature</id>
+                                <id>install-server</id>
                                 <phase>prepare-package</phase>
                                 <goals>
+                                    <goal>create-server</goal>
                                     <goal>install-feature</goal>
+                                    <goal>configure-arquillian</goal>
                                 </goals>
                                 <configuration>
                                     <features>
@@ -1411,17 +1408,9 @@
                                         <feature>audit-1.0</feature>
                                         <feature>passwordUtilities-1.0</feature>
                                     </features>
+                                    <outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/defaultServer</outputDirectory>
                                 </configuration>
                             </execution>
-                            <!--
-                            <execution>
-                                <id>install</id>
-                                <phase>install</phase>
-                                <goals>
-                                    <goal>test-start-server</goal>
-                                </goals>
-                            </execution>
-                            -->
                         </executions>
                     </plugin>
                     <plugin>

@@ -23,10 +23,10 @@
         </configuration>
     </container>
 
-    <container qualifier="it-openliberty-managed">
+    <container qualifier="arquillian-liberty-managed">
         <configuration>
             <property name="wlpHome">${project.build.directory}/liberty/wlp/</property>
-            <property name="deployType">dropins</property>
+            <property name="deployType">apps</property>
             <property name="serverName">defaultServer</property>
             <property name="appDeployTimeout">300</property>
             <property name="appUndeployTimeout">200</property>
