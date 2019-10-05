@@ -1286,6 +1286,7 @@
                                     <outputDirectory>target/wlp-package</outputDirectory>
                                 </configuration>
                             </execution>
+                            <!--
                             <execution>
                                 <id>configure-arquillian-xml</id>
                                 <phase>pre-integration-test</phase>
@@ -1293,6 +1294,7 @@
                                     <goal>configure-arquillian</goal>
                                 </goals>
                             </execution>
+                            -->
                             <!--
                             <execution>
                                 <id>install</id>

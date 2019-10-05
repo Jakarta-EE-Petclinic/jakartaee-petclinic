@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
 function checkDependencies() {
-    MY_PROFILES="it-default it-wildfly-managed it-wildfly-remote it-openliberty-managed it-openliberty-remote"
-    for THIS_PROFILE in $MY_PROFILES
+    TESTS_PROFILE=$1
+    SRV_PROFILES="it-default it-wildfly-managed it-wildfly-remote it-openliberty-managed it-openliberty-remote"
+    for SRV_PROFILE in $SRV_PROFILES
     do
-      ./mvnw  -P$THIS_PROFILE clean \
+      ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE \
+              clean \
               dependency:resolve \
               dependency:sources \
               dependency:resolve-plugins \
@@ -16,32 +18,48 @@ function checkDependencies() {
 }
 
 function runRemoteLiberty(){
-  ./mvnw -Pit-openliberty-remote -Pit-skip-tests clean install liberty:deploy test
+  TESTS_PROFILE=$1
+  SRV_PROFILE=it-openliberty-remote
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE clean install liberty:deploy
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE test
 }
 
 function runRemoteWildfly(){
-  ./mvnw -Pit-wildfly-remote -Pit-skip-tests clean install wildfly:deploy test
+  TESTS_PROFILE=$1
+  SRV_PROFILE=it-wildfly-remote
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE clean install wildfly:deploy
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE test
 }
 
 function runManagedWildfly(){
-  ./mvnw -Pit-wildfly-managed -Pit-skip-tests clean install wildfly:start test
-  ./mvnw -Pit-wildfly-managed -Pit-skip-tests wildfly:shutdown
+  TESTS_PROFILE=$1
+  SRV_PROFILE=it-wildfly-managed
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE clean install wildfly:start wildfly:deploy
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE test
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE wildfly:shutdown
 }
 
 function runManagedLiberty(){
-  ./mvnw  -Pit-openliberty-managed -Pit-skip-tests clean install liberty:start test
-  ./mvnw  -Pit-openliberty-managed -Pit-skip-tests liberty:stop
+  TESTS_PROFILE=$1
+  SRV_PROFILE=it-openliberty-managed
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE clean install liberty:start liberty:deploy
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE test
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE liberty:stop
 }
 
 function main(){
-  checkDependencies
-  runManagedWildfly
-  #runRemoteWildfly
-  runManagedLiberty
-  #runRemoteLiberty
+  TESTS_PROFILE=$1
+  #checkDependencies $TESTS_PROFILE
+  runManagedWildfly $TESTS_PROFILE
+  #runRemoteWildfly $TESTS_PROFILE
+  runManagedLiberty $TESTS_PROFILE
+  #runRemoteLiberty $TESTS_PROFILE
 }
 
-main
+#TESTS_PROFILE=it-skip-tests
+TESTS_PROFILE=it-run-tests
+
+main $TESTS_PROFILE
 
 
 
