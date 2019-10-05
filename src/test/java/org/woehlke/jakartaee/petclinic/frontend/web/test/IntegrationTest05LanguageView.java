@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.BeforeDeployment;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.graphene.page.Page;
 import org.jboss.arquillian.junit.Arquillian;
@@ -25,9 +26,9 @@ import static org.jboss.arquillian.graphene.Graphene.goTo;
 
 @RunWith(Arquillian.class)
 @RunAsClient
-public class LanguageViewTest extends AbstractPrimePageTest {
+public class IntegrationTest05LanguageView extends AbstractPrimePageTest {
 
-    private static Logger log = LogManager.getLogger(LanguageViewTest.class.getName());
+    private static Logger log = LogManager.getLogger(IntegrationTest05LanguageView.class.getName());
 
     private LanguageView languageView = new LanguageViewImpl();
 
@@ -39,7 +40,8 @@ public class LanguageViewTest extends AbstractPrimePageTest {
     @Deployment
     public static WebArchive createDeployment() {
         log.info("createDeployment");
-        return ShrinkWrap.createFromZipFile(WebArchive.class, new File("target/petclinic.war"));
+        File warFile = new File("target/petclinic.war");
+        return ShrinkWrap.createFromZipFile(WebArchive.class, warFile);
     }
 
     @Page
@@ -47,6 +49,8 @@ public class LanguageViewTest extends AbstractPrimePageTest {
 
     @Test
     @InSequence(1)
+    @RunAsClient
+    @OverProtocol("Servlet 3.0")
     public void testGetLocale(){
         log.info("testGetLocale");
         Locale expected = Locale.ENGLISH;
@@ -56,6 +60,8 @@ public class LanguageViewTest extends AbstractPrimePageTest {
 
     @Test
     @InSequence(2)
+    @RunAsClient
+    @OverProtocol("Servlet 3.0")
     public void testJsfLocale(){
         log.info("testJsfLocale");
         Locale result = org.primefaces.util.LocaleUtils.toLocale(Locale.GERMAN.toString());
@@ -72,6 +78,7 @@ public class LanguageViewTest extends AbstractPrimePageTest {
     @Test
     @InSequence(3)
     @RunAsClient
+    @OverProtocol("Servlet 3.0")
     public void testOpeningHomePage() {
         log.info("testOpeningHomePage");
         goTo(HomePage.class);

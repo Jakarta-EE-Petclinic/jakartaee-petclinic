@@ -5,6 +5,10 @@
 
     <defaultProtocol type="Servlet 3.0" />
 
+    <engine>
+        <property name="deploymentExportPath">target/</property>
+    </engine>
+
     <extension qualifier="webdriver">
         <property name="browser">${webdriver.browser}</property>
     </extension>
@@ -23,6 +27,7 @@
         <configuration>
             <property name="wlpHome">${project.build.directory}/liberty/wlp/</property>
             <property name="deployType">dropins</property>
+            <property name="serverName">defaultServer</property>
             <property name="appDeployTimeout">300</property>
             <property name="appUndeployTimeout">200</property>
         </configuration>

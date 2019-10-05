@@ -6,11 +6,15 @@ import org.apache.logging.log4j.LogManager;
         import org.jboss.arquillian.graphene.page.Location;
 import org.junit.Assert;
 //import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.primefaces.extensions.arquillian.AbstractPrimePage;
 import org.primefaces.extensions.arquillian.component.CommandButton;
 import org.primefaces.extensions.arquillian.component.InputText;
+
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,10 +23,10 @@ import org.primefaces.extensions.arquillian.component.InputText;
  * Time: 17:23
  * To change this template use File | Settings | File Templates.
  */
-@Location("specialtyList.jsf")
-public class SpecialtyListPage extends AbstractPrimePage {
+@Location("specialty.jsf")
+public class SpecialtyPage extends AbstractPrimePage {
 
-    private static Logger log = LogManager.getLogger(SpecialtyListPage.class.getName());
+    private static Logger log = LogManager.getLogger(SpecialtyPage.class.getName());
 
     @FindBy(id="contentTitleHeadline")
     private WebElement contentTitleHeadline;
@@ -41,6 +45,15 @@ public class SpecialtyListPage extends AbstractPrimePage {
 
     @FindBy(id="entityDataTableForm:footerGrid:deleteSelectedButton")
     private CommandButton deleteSelectedButton;
+
+    @FindBy(id="editSpecialty")
+    private WebElement editSpecialty;
+
+    @FindBy(id="editSpecialtyForm:name")
+    private InputText name;
+
+    @FindBy(id="editSpecialtyForm:save")
+    private CommandButton save;
 
     public void assertPageIsLoaded(){
         Assert.assertTrue(contentTitleHeadline.isDisplayed());
@@ -82,4 +95,21 @@ public class SpecialtyListPage extends AbstractPrimePage {
     }
    */
 
+    /*
+    public void assertPageIsLoaded() {
+        Assert.assertTrue(editSpecialty.isDisplayed());
+    }
+    */
+
+    public void editContent(String content) {
+        name.clear();
+        name.sendKeys(content);
+        save.click();
+    }
+
+    public void addNewContent(String content) {
+        name.clear();
+        name.sendKeys(content);
+        save.click();
+    }
 }

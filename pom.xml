@@ -1395,6 +1395,24 @@
                                     <goal>configure-arquillian</goal>
                                 </goals>
                             </execution>
+                            <execution>
+                                <id>install-feature</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>install-feature</goal>
+                                </goals>
+                                <configuration>
+                                    <features>
+                                        <acceptLicense>true</acceptLicense>
+                                        <feature>javaee-8.0</feature>
+                                        <feature>json-1.0</feature>
+                                        <feature>sessionDatabase-1.0</feature>
+                                        <feature>appSecurity-3.0</feature>
+                                        <feature>audit-1.0</feature>
+                                        <feature>passwordUtilities-1.0</feature>
+                                    </features>
+                                </configuration>
+                            </execution>
                             <!--
                             <execution>
                                 <id>install</id>

@@ -82,13 +82,13 @@ function runManagedLiberty(){
   echo "-------------------"
   echo "run Managed Liberty"
   echo "-------------------"
-  echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:start liberty:deploy"
+  echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:create-server liberty:test-start-server"
   echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test"
-  echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:stop"
+  echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:test-stop-server"
   echo "------------------"
-  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:start liberty:deploy
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:create-server liberty:test-start-server
   ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test
-  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:stop
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:test-stop-server
 }
 
 function main(){
@@ -98,8 +98,8 @@ function main(){
   echo "main"
   echo "-------------------"
   #checkDependencies $TESTS_PROFILE $BROWSER_PROFILE
-  runManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
-  #runManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
+  #runManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  runManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
   #runRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
   #runRemoteLiberty $TESTS_PROFILE $BROWSER_PROFILE
   echo "-------------------"

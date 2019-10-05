@@ -9,6 +9,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.primefaces.extensions.arquillian.AbstractPrimePage;
+import org.primefaces.extensions.arquillian.component.CommandButton;
+import org.primefaces.extensions.arquillian.component.InputText;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,10 +19,10 @@ import org.primefaces.extensions.arquillian.AbstractPrimePage;
  * Time: 18:56
  * To change this template use File | Settings | File Templates.
  */
-@Location("petTypeList.jsf")
-public class PetTypeListPage extends AbstractPrimePage {
+@Location("petType.jsf")
+public class PetTypePage extends AbstractPrimePage {
 
-    private static Logger log = LogManager.getLogger(PetTypeListPage.class.getName());
+    private static Logger log = LogManager.getLogger(PetTypePage.class.getName());
 
     @FindBy(id="petTypes")
     private WebElement petTypes;
@@ -48,6 +50,15 @@ public class PetTypeListPage extends AbstractPrimePage {
 
     @FindBy(id="petTypesForm:petTypesTable:colNameSort")
     private WebElement colNameSort;
+
+    @FindBy(id="editPetType")
+    private WebElement editPetType;
+
+    @FindBy(id="editPetTypeForm:name")
+    private InputText name;
+
+    @FindBy(id="editPetTypeForm:save")
+    private CommandButton save;
 
     public void assertPageIsLoaded() {
         Graphene.waitModel().until().element(petTypes).is().visible();
@@ -121,5 +132,17 @@ public class PetTypeListPage extends AbstractPrimePage {
     public void assertReverseOrder() {
         Graphene.waitModel().until().element(name5InTable).is().visible();
         Assert.assertTrue(name5InTable.getText().compareTo("pet06")==0);
+    }
+
+    public void editContent(String content) {
+        name.clear();
+        name.sendKeys(content);
+        Graphene.guardHttp(save).click();
+    }
+
+    public void addNewContent(String content) {
+        name.clear();
+        name.sendKeys(content);
+        Graphene.guardHttp(save).click();
     }
 }
