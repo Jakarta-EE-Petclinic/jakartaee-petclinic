@@ -1887,7 +1887,7 @@
                                 <verifyApps>arquillian-test</verifyApps>
                                 <browser>chrome</browser>
                                 <instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
-                                <openlibertyHome>${project.build.directory}/wlp</openlibertyHome>
+                                <openlibertyHome>${libertyInstallDir}</openlibertyHome>
                             </arquillianProperties>
                             <skipIfArquillianXmlExists>true</skipIfArquillianXmlExists>
                             <!-- end configure-arquillian -->
