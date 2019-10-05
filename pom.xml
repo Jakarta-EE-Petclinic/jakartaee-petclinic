@@ -58,6 +58,7 @@
         <version.arquillian.drone>2.5.1</version.arquillian.drone>
         <version.graphene.webdriver>2.3.2</version.graphene.webdriver>
         <skipIntegrationTests>false</skipIntegrationTests>
+        <webdriverBrowser>chrome</webdriverBrowser>
         <!-- build -->
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <postgresql.driver.version>42.2.7</postgresql.driver.version>
@@ -380,6 +381,7 @@
                 <artifactId>log4j-bom</artifactId>
                 <version>2.12.1</version>
                 <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
@@ -389,6 +391,26 @@
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-api</artifactId>
+                <version>2.12.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>2.12.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-to-slf4j</artifactId>
+                <version>2.12.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-web</artifactId>
+                <version>2.12.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-appserver</artifactId>
                 <version>2.12.1</version>
             </dependency>
             <!-- JSF PrimeFaces -->
@@ -542,6 +564,10 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-appserver</artifactId>
         </dependency>
         <!-- unknown -->
         <dependency>
@@ -803,6 +829,26 @@
             <id>it-run-tests</id>
             <properties>
                 <skipIntegrationTests>false</skipIntegrationTests>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>it-browser-chrome</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <webdriverBrowser>chrome</webdriverBrowser>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>it-browser-firefox</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <webdriverBrowser>firefox</webdriverBrowser>
             </properties>
         </profile>
 
@@ -1215,7 +1261,7 @@
                                             <artifactId>openliberty-javaee8</artifactId>
                                             <version>${jakartaee8.server.openliberty.runtime}</version>
                                             <type>zip</type>
-                                            <overWrite>false</overWrite>
+                                            <overWrite>true</overWrite>
                                             <outputDirectory>${project.build.directory}</outputDirectory>
                                         </artifactItem>
                                     </artifactItems>
