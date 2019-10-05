@@ -34,10 +34,10 @@ function runManagedLiberty(){
 }
 
 function main(){
-  #checkDependencies
+  checkDependencies
   runManagedWildfly
   #runRemoteWildfly
-  #runManagedLiberty
+  runManagedLiberty
   #runRemoteLiberty
 }
 
