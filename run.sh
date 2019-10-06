@@ -45,6 +45,21 @@ function runRemoteLiberty(){
   ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test
 }
 
+
+function testRemoteWildfly(){
+  TESTS_PROFILE=$1
+  BROWSER_PROFILE=$2
+  SRV_PROFILE=it-wildfly-remote
+  echo "--------------------"
+  echo "test Remote Wildfly"
+  echo "--------------------"
+  echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install wildfly:deploy"
+  echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test"
+  echo "--------------------"
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install wildfly:deploy
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test
+}
+
 function runRemoteWildfly(){
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
@@ -53,10 +68,8 @@ function runRemoteWildfly(){
   echo "run Remote Wildfly"
   echo "------------------"
   echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install wildfly:deploy"
-  echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test"
   echo "------------------"
   ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install wildfly:deploy
-  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test
 }
 
 function runManagedWildfly(){
@@ -77,6 +90,24 @@ function runManagedWildfly(){
   ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE wildfly:shutdown
 }
 
+function testManagedLiberty(){
+  TESTS_PROFILE=$1
+  BROWSER_PROFILE=$2
+  SRV_PROFILE=it-openliberty-managed
+  echo "--------------------"
+  echo "test Managed Liberty"
+  echo "--------------------"
+  echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install"
+  echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:test-start-server"
+  echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test"
+  echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:test-stop-server"
+  echo "-------------------"
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:test-start-server
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:test-stop-server
+}
+
 function runManagedLiberty(){
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
@@ -84,15 +115,9 @@ function runManagedLiberty(){
   echo "-------------------"
   echo "run Managed Liberty"
   echo "-------------------"
-  echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install"
-  echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:run-server #(liberty:test-start-server)"
-  echo "#./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test"
-  echo "#./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:test-stop-server"
+  echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:run-server"
   echo "------------------"
-  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install
-  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:run-server
-  #./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test
-  #./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:test-stop-server
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:run-server
 }
 
 function main(){
@@ -102,10 +127,10 @@ function main(){
   echo "main"
   echo "-------------------"
   #checkDependencies $TESTS_PROFILE $BROWSER_PROFILE
-  #runManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
-  runManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
-  #runRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
-  #runRemoteLiberty $TESTS_PROFILE $BROWSER_PROFILE
+  ##runManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
+  runRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  #TODO:runManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  #TODO:runRemoteLiberty $TESTS_PROFILE $BROWSER_PROFILE
   echo "-------------------"
   echo "DONE and READY"
   echo "-------------------"
