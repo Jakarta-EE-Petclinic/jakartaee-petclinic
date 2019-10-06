@@ -192,20 +192,17 @@
                                 ajax="false"
                                 value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.showNewFormButton']}" />
                         </div>
-                        <div class="ui-g-4">
+                        <div class="ui-g-10">
                             <p:outputLabel
                                 id="labelTextSearchterm"
                                 styleClass="labelTextSearchterm"
                                 value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.petType']}"
                                 for="inputTextSearchterm"/>
-                        </div>
-                        <div class="ui-g-4">
                             <p:inputText
                                 id="inputTextSearchterm"
                                 styleClass="inputTextSearchterm"
                                 value="#{petTypeView.searchterm}"/>
-                        </div>
-                        <div class="ui-g-2">
+                            <p:message for="inputTextSearchterm" display="icon"/>
                             <p:commandButton
                                 id="searchButton"
                                 styleClass="searchButton"
