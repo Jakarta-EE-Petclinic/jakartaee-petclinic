@@ -63,7 +63,9 @@
                                 <p:inputText id="nameNew"
                                              styleClass="inputText"
                                              value="#{specialtyView.entity.name}"
+                                             required="true"
                                              label="#{msg['name']}"/>
+                                <p:message for="nameNew" />
                             </div>
                             <div class="ui-g-2">
                                 <p:commandButton id="saveNewButton"
@@ -97,10 +99,15 @@
                             header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.edit']}">
                         <div class="ui-g">
                             <div class="ui-g-8">
+                                <p:outputLabel for="nameEdit" value="#{msg['name']}" />
                                 <p:inputText id="nameEdit"
-                                             styleClass="form-control"
+                                             styleClass="inputTextName inputText"
                                              value="#{specialtyView.entity.name}"
-                                             label="#{msg['name']}"/>
+                                             required="true"
+                                             label="#{msg['name']}">
+                                    <f:validateLength minimum="4" />
+                                </p:inputText>
+                                <p:message for="nameEdit" />
                             </div>
                             <div class="ui-g-2">
                                 <p:commandButton id="saveEditButton"
@@ -132,10 +139,15 @@
                              header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.delete']}">
                         <div class="ui-g">
                             <div class="ui-g-8">
+                                <p:outputLabel for="nameDelete" value="#{msg['name']}" />
                                 <p:inputText id="nameDelete"
-                                             styleClass="inputText"
+                                             styleClass="inputTextName inputText"
                                              value="#{specialtyView.entity.name}"
-                                             label="#{msg['name']}"/>
+                                             required="true"
+                                             label="#{msg['name']}">
+                                    <f:validateLength minimum="4" />
+                                </p:inputText>
+                                <p:message for="nameDelete" />
                             </div>
                             <div class="ui-g-2">
                                 <p:commandButton id="deleteButton"
@@ -176,13 +188,13 @@
                                 ajax="false"
                                 value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.showNewFormButton']}" />
                     </div>
-                    <div class="ui-g-8">
+                    <div class="ui-g-10">
+                        <p:outputLabel for="inputTextSearchterm" value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.specialty']}" />
                         <p:inputText id="inputTextSearchterm"
-                                     styleClass="inputTextSearchterm"
+                                     styleClass="inputTextSearchterm inputText"
                                      value="#{specialtyView.searchterm}"
                                      label="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.specialty']}"/>
-                    </div>
-                    <div class="ui-g-2">
+                        <p:message for="inputTextSearchterm" />
                         <p:commandButton
                                 id="searchButton"
                                 styleClass="searchButton"
