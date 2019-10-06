@@ -8,6 +8,7 @@ import org.woehlke.jakartaee.petclinic.oodm.services.SpecialtyService;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -23,34 +24,27 @@ import java.io.Serializable;
  * To change this template use File | Settings | File Templates.
  */
 @FacesConverter(
-    value = "specialtyConverter",
-    managed = true
+    value = "specialtyConverter"
 )
+@Stateless
 public class SpecialtyConverter implements Converter<Specialty>, Serializable {
 
     private static final long serialVersionUID = 3816519727799645701L;
 
     private static Logger log = LogManager.getLogger(SpecialtyConverter.class.getName());
 
-    @EJB
-    private SpecialtyService entityService;
-
     @Override
-    public Specialty getAsObject(FacesContext context, UIComponent component, String value) {
-        log.trace("getAsObject: value = "+value);
-        entityService.findSpecialtyByName(value);
-        Specialty specialty = entityService.findSpecialtyByName(value);
+    public Specialty getAsObject(FacesContext context, UIComponent component, String name) {
+        Specialty specialty = new Specialty(name);
+        log.debug("SpecialtyConverter.getAsObject: from = "+name+" to "+specialty.toString());
         return specialty;
     }
 
     @Override
-    public String getAsString(FacesContext context, UIComponent component, Specialty value) {
-        if (value == null){
-            return "Bingo Bongo";
-        } else {
-            log.trace("SpecialtyConverter.getAsString: " + value.toString());
-            return value.getName();
-        }
+    public String getAsString(FacesContext context, UIComponent component, Specialty specialty) {
+        String name = specialty.getName();
+        log.debug("SpecialtyConverter.getAsString: from " + specialty.toString() + " to "+name);
+        return name;
     }
 
     @PostConstruct

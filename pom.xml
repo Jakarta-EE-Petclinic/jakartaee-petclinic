@@ -53,6 +53,7 @@
         <libertyInstallDir>${user.home}/j/srv/openliberty-19.0.0.9/wlp</libertyInstallDir>
         <wildflyInstallDir>${user.home}/j/srv/wildfly-17.0.1.Final</wildflyInstallDir>
         <glassfishInstallDir>${user.home}/j/srv/glassfish-5.1.0</glassfishInstallDir>
+        <libertyServerName>petclinicServer</libertyServerName>
         <!-- Integration Testing ~with Arquillian and Selenium -->
         <version.arquillian.core>1.4.1.Final</version.arquillian.core>
         <version.arquillian.drone>2.5.1</version.arquillian.drone>
@@ -1236,37 +1237,57 @@
                     <groupId>io.openliberty.features</groupId>
                     <artifactId>javaee-8.0</artifactId>
                     <type>esa</type>
-                    <scope>test</scope>
+                    <scope>provided</scope>
                 </dependency>
                 <dependency>
                     <groupId>io.openliberty.features</groupId>
                     <artifactId>sessionDatabase-1.0</artifactId>
                     <type>esa</type>
-                    <scope>test</scope>
+                    <scope>provided</scope>
                 </dependency>
                 <dependency>
                     <groupId>io.openliberty.features</groupId>
                     <artifactId>json-1.0</artifactId>
                     <type>esa</type>
-                    <scope>test</scope>
+                    <scope>provided</scope>
                 </dependency>
+                <!--
                 <dependency>
                     <groupId>io.openliberty.features</groupId>
                     <artifactId>appSecurity-3.0</artifactId>
                     <type>esa</type>
-                    <scope>test</scope>
+                    <scope>provided</scope>
                 </dependency>
                 <dependency>
                     <groupId>io.openliberty.features</groupId>
                     <artifactId>audit-1.0</artifactId>
                     <type>esa</type>
-                    <scope>test</scope>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>io.openliberty.features</groupId>
+                    <artifactId>servlet-3.1</artifactId>
+                    <type>esa</type>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>io.openliberty.features</groupId>
+                    <artifactId>servlet-4.0</artifactId>
+                    <type>esa</type>
+                    <scope>provided</scope>
                 </dependency>
                 <dependency>
                     <groupId>io.openliberty.features</groupId>
                     <artifactId>passwordUtilities-1.0</artifactId>
                     <type>esa</type>
-                    <scope>test</scope>
+                    <scope>provided</scope>
+                </dependency>
+                -->
+                <dependency>
+                    <groupId>io.openliberty.features</groupId>
+                    <artifactId>springBoot-2.0</artifactId>
+                    <type>esa</type>
+                    <scope>provided</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.cxf</groupId>
@@ -1337,15 +1358,13 @@
                             </assemblyArtifact>
                             <installDirectory>${project.build.directory}/liberty/wlp</installDirectory>
                             <serverHome>${project.build.directory}/liberty/wlp</serverHome>
-                            <serverName>defaultServer</serverName>
+                            <serverName>${libertyServerName}</serverName>
                             <features>
                                 <acceptLicense>true</acceptLicense>
                                 <feature>javaee-8.0</feature>
                                 <feature>json-1.0</feature>
                                 <feature>sessionDatabase-1.0</feature>
-                                <feature>appSecurity-3.0</feature>
-                                <feature>audit-1.0</feature>
-                                <feature>passwordUtilities-1.0</feature>
+                                <feature>springBoot-2.0</feature>
                             </features>
                             <configFile>src/main/liberty/config/server.xml</configFile>
                             <looseApplication>true</looseApplication>
@@ -1391,9 +1410,7 @@
                                         <feature>javaee-8.0</feature>
                                         <feature>json-1.0</feature>
                                         <feature>sessionDatabase-1.0</feature>
-                                        <feature>appSecurity-3.0</feature>
-                                        <feature>audit-1.0</feature>
-                                        <feature>passwordUtilities-1.0</feature>
+                                        <feature>springBoot-2.0</feature>
                                     </features>
                                     <!--
                                     <outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/</outputDirectory>
@@ -1438,6 +1455,12 @@
                                 <wlpHome>${project.build.directory}/liberty/wlp</wlpHome>
                                 <OPENLIBERTY_HOME>${project.build.directory}/liberty/wlp</OPENLIBERTY_HOME>
                             </environmentVariables>
+                            <systemPropertyVariables>
+                                <liberty.test.port>9080</liberty.test.port>
+                                <war.name>${app.name}</war.name>
+                                <wlpHome>${project.build.directory}/liberty/wlp</wlpHome>
+                                <OPENLIBERTY_HOME>${project.build.directory}/liberty/wlp</OPENLIBERTY_HOME>
+                            </systemPropertyVariables>
                         </configuration>
                     </plugin>
                 </plugins>

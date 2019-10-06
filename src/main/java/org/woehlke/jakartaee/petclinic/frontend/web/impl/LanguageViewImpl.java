@@ -8,7 +8,6 @@ import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;

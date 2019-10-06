@@ -292,7 +292,6 @@ public class VetViewImpl implements VetView {
                 log.debug(" added transient via saveEditedEntity: "+specialtyTransient.toString());
                 Specialty specialty = specialtyService.findSpecialtyByName(specialtyTransient.getName());
                 this.entity.addSpecialty(specialty);
-                //this.specialtyService.update(specialty);
             }
             this.entity = entityService.update(this.entity);
             this.selected = this.entity;

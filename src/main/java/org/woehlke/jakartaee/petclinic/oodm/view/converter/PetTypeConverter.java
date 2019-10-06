@@ -6,6 +6,7 @@ import org.woehlke.jakartaee.petclinic.oodm.entities.PetType;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.ejb.Stateless;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -14,9 +15,9 @@ import java.io.Serializable;
 
 
 @FacesConverter(
-    value = "petTypeConverter",
-    managed = true
+    value = "petTypeConverter"
 )
+@Stateless
 public class PetTypeConverter implements Converter<PetType>, Serializable {
 
     private static final long serialVersionUID = 4908876595996046904L;
@@ -24,13 +25,17 @@ public class PetTypeConverter implements Converter<PetType>, Serializable {
     private static Logger log = LogManager.getLogger(PetTypeConverter.class.getName());
 
     @Override
-    public PetType getAsObject(FacesContext context, UIComponent component, String value) {
-        return new PetType(value);
+    public PetType getAsObject(FacesContext context, UIComponent component, String name) {
+        PetType petType = new PetType(name);
+        log.debug("PetTypeConverter.getAsObject: from = "+name+" to "+petType.toString());
+        return petType;
     }
 
     @Override
-    public String getAsString(FacesContext context, UIComponent component, PetType value) {
-        return value.getName();
+    public String getAsString(FacesContext context, UIComponent component, PetType petType) {
+        String name = petType.getName();
+        log.debug("PetTypeConverter.getAsObject: from = "+petType.toString()+" to "+name);
+        return name;
     }
 
 
