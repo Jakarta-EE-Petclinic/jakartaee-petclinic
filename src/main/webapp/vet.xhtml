@@ -58,20 +58,27 @@
                 <h:form id="addNewVetForm" styleClass="addNewEntityForm">
                     <p:panel id="addNewVetPanel" styleClass="contentPanel"
                              header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.addNew']}">
-                        <p:panelGrid id="gridallAddNew" columns="2" styleClass="foo">
-                            <p:panelGrid id="gridDataAddNew" columns="2" styleClass="foo">
-                                <p:outputLabel value="#{msg['firstName']}"
-                                               for="firstNameAddNew"/>
-                                <p:inputText id="firstNameAddNew"
-                                             styleClass="form-control"
-                                             value="#{vetView.entity.firstName}"/>
-                                <p:outputLabel value="#{msg['lastName']}"
-                                               for="lastNameAddNew"/>
-                                <p:inputText id="lastNameAddNew"
-                                             styleClass="form-control"
-                                             value="#{vetView.entity.lastName}"/>
-                            </p:panelGrid>
-                            <p:panelGrid id="gridPickListAddNew" columns="1" styleClass="foo">
+                        <p:messages id="addNewPetTypeMessages" />
+                        <div class="ui-g">
+                            <div class="ui-g-6 ui-g-nopad">
+                                <div class="ui-g-12">
+                                    <p:outputLabel value="#{msg['firstName']}"
+                                                   for="firstNameAddNew"/>
+                                    <p:inputText id="firstNameAddNew"
+                                                 styleClass="form-control"
+                                                 value="#{vetView.entity.firstName}"/>
+                                    <p:message for="newPetTypeName" display="icon"/>
+                                </div>
+                                <div class="ui-g-12">
+                                    <p:outputLabel value="#{msg['lastName']}"
+                                                   for="lastNameAddNew"/>
+                                    <p:inputText id="lastNameAddNew"
+                                                 styleClass="form-control"
+                                                 value="#{vetView.entity.lastName}"/>
+                                    <p:message for="newPetTypeName" display="icon"/>
+                                </div>
+                            </div>
+                            <div class="ui-g-6">
                                 <p:pickList
                                         id="selectedSpecialtiesPickListAddNew"
                                         value="#{vetView.specialtiesPickList}"
@@ -79,26 +86,30 @@
                                         converter="specialtyConverter"
                                         itemValue="#{specialty}"
                                         itemLabel="#{specialty.name}"/>
-                            </p:panelGrid>
-                        </p:panelGrid>
-                        <p:panelGrid id="buttonsAddNew" columns="2" styleClass="foo">
-                            <p:commandButton id="saveAddNewButton"
-                                             type="submit"
-                                             styleClass="saveButton"
-                                             icon="fa fa-fw fa-save"
-                                             value="#{msg['save']}"
-                                             ajax="false"
-                                             action="#{vetView.saveNew}"/>
-                            <p:commandButton id="cancelAddNew"
-                                             type="cancel"
-                                             styleClass="cancelButton"
-                                             icon="fa fa-fw fa-times-circle"
-                                             value="#{msg['cancel']}"
-                                             ajax="false"
-                                             action="#{vetView.cancelNew}"
-                                             immediate="true"
-                                             includeViewParams="true"/>
-                        </p:panelGrid>
+                            </div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-2">
+                                <p:commandButton id="saveAddNewButton"
+                                                 type="submit"
+                                                 styleClass="saveButton"
+                                                 icon="fa fa-fw fa-save"
+                                                 value="#{msg['save']}"
+                                                 ajax="false"
+                                                 action="#{vetView.saveNew}"/>
+                            </div>
+                            <div class="ui-g-2">
+                                <p:commandButton id="cancelAddNew"
+                                                     type="cancel"
+                                                     styleClass="cancelButton"
+                                                     icon="fa fa-fw fa-times-circle"
+                                                     value="#{msg['cancel']}"
+                                                     ajax="false"
+                                                     action="#{vetView.cancelNew}"
+                                                     immediate="true"
+                                                     includeViewParams="true"/>
+                            </div>
+                        </div>
                     </p:panel>
                 </h:form>
             </ui:fragment>
