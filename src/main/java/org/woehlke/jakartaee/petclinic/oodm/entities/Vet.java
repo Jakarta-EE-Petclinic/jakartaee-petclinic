@@ -7,7 +7,8 @@ import org.woehlke.jakartaee.petclinic.oodm.entities.common.TwEntities;
 import org.woehlke.jakartaee.petclinic.oodm.entities.listener.VetListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.*;
 
 import java.util.*;
@@ -80,6 +81,19 @@ public class Vet implements TwEntities<Vet> {
     public final static String COL_JOIN_SPECIALTY_ID = "specialty_id";
 
     public Vet() {
+        this.specialties = new HashSet<>();
+    }
+
+    public Vet(@NotBlank String firstName, @NotBlank String lastName) {
+        this.specialties = new HashSet<>();
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Vet(@NotBlank String firstName, @NotBlank String lastName, @NotNull Set<Specialty> specialties) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.specialties = specialties;
     }
 
     @Id
@@ -96,7 +110,7 @@ public class Vet implements TwEntities<Vet> {
     )
     private UUID uuid;
 
-    @NotEmpty
+    @NotBlank
     @XmlElement(required=true)
     @Column(name = COL_FIRSTNAME, nullable = false)
     @Field(
@@ -106,7 +120,7 @@ public class Vet implements TwEntities<Vet> {
     )
     private String firstName;
 
-    @NotEmpty
+    @NotBlank
     @XmlElement(required=true)
     @Column(name = COL_LASTNAME, nullable = false)
     @Field(
@@ -116,6 +130,7 @@ public class Vet implements TwEntities<Vet> {
     )
     private String lastName;
 
+    @NotNull
     @XmlElementWrapper(name = "specialties", nillable = false, required = true)
     @XmlElement(name = "specialty")
     @IndexedEmbedded
@@ -128,7 +143,7 @@ public class Vet implements TwEntities<Vet> {
     @Transient
     protected Set<Specialty> getSpecialtiesInternal() {
         if (this.specialties == null) {
-            this.specialties = new HashSet<Specialty>();
+            this.specialties = new HashSet<>();
         }
         return this.specialties;
     }

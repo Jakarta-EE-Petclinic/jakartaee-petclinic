@@ -124,6 +124,7 @@ public class SpecialtyViewImpl implements SpecialtyView {
 
     @Override
     public void newEntity(){
+        String name = "add new name";
         this.entity = new Specialty();
     }
 

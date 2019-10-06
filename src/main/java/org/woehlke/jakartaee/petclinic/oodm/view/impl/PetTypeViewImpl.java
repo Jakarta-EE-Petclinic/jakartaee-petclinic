@@ -278,7 +278,8 @@ public class PetTypeViewImpl implements PetTypeView {
 
     @Override
     public void newEntity() {
-        this.entity = new org.woehlke.jakartaee.petclinic.oodm.entities.PetType();
+        String name = "add new name";
+        this.entity = new PetType();
     }
 
     @PreDestroy

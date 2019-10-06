@@ -21,6 +21,7 @@ import javax.ejb.EJBTransactionRolledbackException;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.NotBlank;
 import java.util.*;
 
 /**
@@ -326,6 +327,8 @@ public class VetViewImpl implements VetView {
 
     @Override
     public void newEntity() {
+        String firstName="add new first Name";
+        String lastName="add new last Name";
         this.entity = new org.woehlke.jakartaee.petclinic.oodm.entities.Vet();
     }
 
