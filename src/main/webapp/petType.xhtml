@@ -60,10 +60,10 @@
                              header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.addNew']}">
                         <p:messages id="addNewPetTypeMessages" />
                         <div class="ui-g">
-                            <div class="ui-g-12 form-group">
+                            <div class="ui-g-12 tw-form-group">
                                 <p:outputLabel value="#{msg['name']}" for="newPetTypeName"/>
                                 <p:inputText id="newPetTypeName"
-                                             styleClass="form-control"
+                                             styleClass="tw-form-control"
                                              value="#{petTypeView.entity.name}"
                                              required="true">
                                     <f:validateLength minimum="4" />
@@ -102,10 +102,10 @@
                             header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.edit']}">
                         <p:messages id="editPetTypeMessages" />
                         <div class="ui-g">
-                            <div class="ui-g-12 form-group">
+                            <div class="ui-g-12 tw-form-group">
                                 <p:outputLabel value="#{msg['name']}" for="editPetTypeName"/>
                                 <p:inputText id="editPetTypeName"
-                                             styleClass="form-control"
+                                             styleClass="tw-form-control"
                                              value="#{petTypeView.entity.name}"
                                              required="true">
                                     <f:validateLength minimum="4" />
@@ -142,10 +142,10 @@
                              header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.delete']}">
                         <p:messages id="deletePetTypeMessages" />
                         <div class="ui-g">
-                            <div class="ui-g-12 form-group">
+                            <div class="ui-g-12 tw-form-group">
                                 <p:outputLabel value="#{msg['name']}" for="deletePetTypeName"/>
                                 <p:inputText id="deletePetTypeName"
-                                             styleClass="form-control"
+                                             styleClass="tw-form-control"
                                              value="#{petTypeView.entity.name}"
                                              required="true"
                                              readonly="true">
@@ -192,7 +192,7 @@
                                 ajax="false"
                                 value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.showNewFormButton']}" />
                         </div>
-                        <div class="ui-g-10 form-group">
+                        <div class="ui-g-10 tw-form-group">
                             <p:outputLabel
                                 id="labelTextSearchterm"
                                 styleClass="labelTextSearchterm"
@@ -200,7 +200,7 @@
                                 for="inputTextSearchterm"/>
                             <p:inputText
                                 id="inputTextSearchterm"
-                                styleClass="form-control"
+                                styleClass="tw-form-control"
                                 value="#{petTypeView.searchterm}"/>
                             <p:message for="inputTextSearchterm" display="icon"/>
                             <p:commandButton
