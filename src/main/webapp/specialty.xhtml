@@ -59,6 +59,7 @@
                 <h:form id="addNewSpecialtyForm" styleClass="addNewEntityForm">
                     <p:panel id="addNewSpecialtyPanel" styleClass="contentPanel"
                          header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.addNew']}">
+                        <p:messages id="addNewSpecialtyMessages" />
                         <div class="ui-g">
                             <div class="ui-g-12">
                                 <p:outputLabel for="specialtyNameNew" value="#{msg['name']}" />
@@ -69,7 +70,7 @@
                                              label="#{msg['name']}">
                                     <f:validateLength minimum="4" />
                                 </p:inputText>
-                                <p:message for="specialtyNameNew" />
+                                <p:message for="specialtyNameNew" display="icon"/>
                             </div>
                         </div>
                         <div class="ui-g">
@@ -101,6 +102,7 @@
                             id="editSpecialtyFormPanel"
                             styleClass="contentPanel"
                             header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.edit']}">
+                        <p:messages id="editSpecialtyMessages" />
                         <div class="ui-g">
                             <div class="ui-g-12">
                                 <p:outputLabel for="specialtyNameEdit" value="#{msg['name']}" />
@@ -111,7 +113,7 @@
                                              label="#{msg['name']}">
                                     <f:validateLength minimum="4" />
                                 </p:inputText>
-                                <p:message for="specialtyNameEdit" />
+                                <p:message for="specialtyNameEdit" display="icon"/>
                             </div>
                         </div>
                         <div class="ui-g">
@@ -151,7 +153,7 @@
                                              required="true"
                                              readonly="true"
                                              label="#{msg['name']}"/>
-                                <p:message for="nameDelete" />
+                                <p:message for="nameDelete" display="icon"/>
                             </div>
                         </div>
                         <div class="ui-g">
@@ -198,7 +200,7 @@
                                      styleClass="inputTextSearchterm inputText"
                                      value="#{specialtyView.searchterm}"
                                      label="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.specialty']}"/>
-                        <p:message for="inputTextSearchterm" />
+                        <p:message for="inputTextSearchterm"  display="icon"/>
                         <p:commandButton
                                 id="searchButton"
                                 styleClass="searchButton"
