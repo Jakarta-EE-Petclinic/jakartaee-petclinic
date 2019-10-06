@@ -59,13 +59,11 @@
                     <p:panel id="addNewSpecialtyPanel" styleClass="contentPanel"
                          header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.addNew']}">
                         <div class="ui-g">
-                            <div class="ui-g-4">
-                                <p:outputLabel value="#{msg['name']}" for="nameNew"/>
-                            </div>
-                            <div class="ui-g-4">
+                            <div class="ui-g-8">
                                 <p:inputText id="nameNew"
                                              styleClass="inputText"
-                                             value="#{specialtyView.entity.name}"/>
+                                             value="#{specialtyView.entity.name}"
+                                             label="#{msg['name']}"/>
                             </div>
                             <div class="ui-g-2">
                                 <p:commandButton id="saveNewButton"
@@ -98,13 +96,11 @@
                             styleClass="contentPanel"
                             header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.edit']}">
                         <div class="ui-g">
-                            <div class="ui-g-4">
-                                <p:outputLabel value="#{msg['name']}" for="nameEdit"/>
-                            </div>
-                            <div class="ui-g-4">
+                            <div class="ui-g-8">
                                 <p:inputText id="nameEdit"
                                              styleClass="form-control"
-                                             value="#{specialtyView.entity.name}"/>
+                                             value="#{specialtyView.entity.name}"
+                                             label="#{msg['name']}"/>
                             </div>
                             <div class="ui-g-2">
                                 <p:commandButton id="saveEditButton"
@@ -135,13 +131,11 @@
                     <p:panel id="deleteSpecialtyPanel" styleClass="contentPanel"
                              header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.delete']}">
                         <div class="ui-g">
-                            <div class="ui-g-4">
-                                <p:outputLabel value="#{msg['name']}" for="nameDelete"/>
-                            </div>
-                            <div class="ui-g-4">
+                            <div class="ui-g-8">
                                 <p:inputText id="nameDelete"
                                              styleClass="inputText"
-                                             value="#{specialtyView.entity.name}"/>
+                                             value="#{specialtyView.entity.name}"
+                                             label="#{msg['name']}"/>
                             </div>
                             <div class="ui-g-2">
                                 <p:commandButton id="deleteButton"
@@ -174,35 +168,30 @@
             <h:form id="findEntityForm">
                 <div class="ui-g newAndSearchGrid">
                     <div class="ui-g-2">
-                    <p:commandButton
-                            id="showNewFormButton"
-                            styleClass="showNewFormButton"
-                            action="#{specialtyView.showNewForm}"
-                            icon="fa fa-fw fa-plus-square"
-                            ajax="false"
-                            value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.showNewFormButton']}" />
+                        <p:commandButton
+                                id="showNewFormButton"
+                                styleClass="showNewFormButton"
+                                action="#{specialtyView.showNewForm}"
+                                icon="fa fa-fw fa-plus-square"
+                                ajax="false"
+                                value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.showNewFormButton']}" />
                     </div>
-                    <div class="ui-g-4">
-                        <p:outputLabel id="labelTextSearchterm"
-                                   styleClass="labelTextSearchterm"
-                                   value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.specialty']}"
-                                   for="inputTextSearchterm"/>
+                    <div class="ui-g-8">
+                        <p:inputText id="inputTextSearchterm"
+                                     styleClass="inputTextSearchterm"
+                                     value="#{specialtyView.searchterm}"
+                                     label="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.specialty']}"/>
                     </div>
-                <div class="ui-g-4">
-                    <p:inputText id="inputTextSearchterm"
-                                 styleClass="inputTextSearchterm"
-                                 value="#{specialtyView.searchterm}"/>
+                    <div class="ui-g-2">
+                        <p:commandButton
+                                id="searchButton"
+                                styleClass="searchButton"
+                                action="#{specialtyView.search}"
+                                ajax="false"
+                                value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchButton']}"
+                                icon="fa fa-fw fa-search"/>
+                    </div>
                 </div>
-                <div class="ui-g-2">
-                    <p:commandButton
-                            id="searchButton"
-                            styleClass="searchButton"
-                            action="#{specialtyView.search}"
-                            ajax="false"
-                            value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchButton']}"
-                            icon="fa fa-fw fa-search"/>
-                </div>
-                    </div>
             </h:form>
             <h:form id="entityDataTableForm">
                 <div class="ui-g tableGrid">
