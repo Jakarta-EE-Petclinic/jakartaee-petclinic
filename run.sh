@@ -120,15 +120,28 @@ function runManagedLiberty(){
   ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:run-server
 }
 
+function checkAllDependencies(){
+  ALL_TESTS_PROFILES="it-skip-tests it-skip-tests"
+  ALL_BROWSER_PROFILES="it-browser-chrome it-browser-firefox it-browser-safari it-browser-opera it-browser-htmlunit it-browser-phantomjsdriver"
+  for TESTS_PROFILE in $ALL_TESTS_PROFILES
+  do
+    for BWROWSER_PROFILE in $ALL_BROWSER_PROFILES
+    do
+        checkDependencies $TESTS_PROFILE $BROWSER_PROFILE
+    done
+  done
+}
+
 function main(){
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
   echo "-------------------"
   echo "main"
   echo "-------------------"
+  checkAllDependencies
   #checkDependencies $TESTS_PROFILE $BROWSER_PROFILE
-  ##runManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
-  runRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  #runManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
+  #runRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
   #TODO:runManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
   #TODO:runRemoteLiberty $TESTS_PROFILE $BROWSER_PROFILE
   echo "-------------------"
@@ -143,8 +156,8 @@ BROWSER_PROFILE=it-browser-chrome
 #BROWSER_PROFILE=it-browser-htmlunit
 #BROWSER_PROFILE=it-browser-phantomjsdriver
 
-#TESTS_PROFILE=it-skip-tests
-TESTS_PROFILE=it-run-tests
+TESTS_PROFILE=it-skip-tests
+#TESTS_PROFILE=it-run-tests
 
 main $TESTS_PROFILE $BROWSER_PROFILE
 
