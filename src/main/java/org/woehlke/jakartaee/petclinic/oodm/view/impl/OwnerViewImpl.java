@@ -96,15 +96,17 @@ public class OwnerViewImpl implements OwnerView {
     @Override
     public void saveNewEntity() {
         try {
-            log.debug((this.entity!=null)?this.entity.toString():"null");
-            log.debug((this.selected!=null)?this.selected.toString():"null");
-            this.selected = this.entityService.addNew(this.entity);
-            this.entity = this.selected;
-            log.debug((this.entity!=null)?this.entity.toString():"null");
-            log.debug((this.selected!=null)?this.selected.toString():"null");
-            frontendMessagesView.addInfoMessage("Added", this.entity.getPrimaryKey());
+            if(this.entity!=null){
+                this.entity =  this.entityService.addNew(this.entity);
+                this.selected = this.entity;
+                this.ownerViewFlow.setFlowStateShow();
+                frontendMessagesView.addInfoMessage("Added New Owner" , this.entity);
+            } else {
+                this.newEntity();
+                this.ownerViewFlow.setFlowStateNew();
+            }
         } catch (EJBException e){
-            log.warn(e.getMessage()+this.entity.toString());
+            this.ownerViewFlow.setFlowStateNew();
             frontendMessagesView.addWarnMessage(e, this.entity);
         }
     }
@@ -112,15 +114,17 @@ public class OwnerViewImpl implements OwnerView {
     @Override
     public void saveEditedEntity() {
         try {
-            log.debug((this.entity!=null)?this.entity.toString():"null");
-            log.debug((this.selected!=null)?this.selected.toString():"null");
-            this.entity = this.entityService.update(this.entity);
-            log.debug((this.entity!=null)?this.entity.toString():"null");
-            log.debug((this.selected!=null)?this.selected.toString():"null");
-            frontendMessagesView.addInfoMessage("Updated", this.entity.getPrimaryKey());
+            if(this.entity!=null){
+                this.entity = entityService.update(this.entity);
+                this.selected = this.entity;
+                this.ownerViewFlow.setFlowStateShow();
+                frontendMessagesView.addInfoMessage("Updated Owner",this.entity);
+            } else {
+                this.ownerViewFlow.setFlowStateList();
+            }
         } catch (EJBException e){
-            log.warn(e.getMessage()+this.entity.toString());
-            frontendMessagesView.addWarnMessage(e, this.entity);
+            this.ownerViewFlow.setFlowStateEdit();
+            frontendMessagesView.addWarnMessage(e,this.entity);
         }
     }
 
@@ -135,7 +139,7 @@ public class OwnerViewImpl implements OwnerView {
                 entityService.delete(this.selected.getId());
                 this.selected = null;
                 this.ownerViewFlow.setFlowStateList();
-                frontendMessagesView.addInfoMessage("Deleted", msgInfo);
+                frontendMessagesView.addInfoMessage("Deleted Owner", msgInfo);
             }
         } catch (EJBTransactionRolledbackException e) {
             this.ownerViewFlow.setFlowStateDelete();
@@ -248,7 +252,8 @@ public class OwnerViewImpl implements OwnerView {
             try {
                 this.list = entityService.search(searchterm);
                 this.ownerViewFlow.setFlowStateSearchResult();
-                frontendMessagesView.addInfoMessage("Search ", "Found "+this.list.size()+ "results for searchterm "+searchterm);
+                String msg = "Found "+this.list.size()+ "results for searchterm "+searchterm;
+                frontendMessagesView.addInfoMessage("Search ", msg);
             } catch (Exception e){
                 log.warn(e.getMessage());
                 this.ownerViewFlow.setFlowStateList();
@@ -259,22 +264,15 @@ public class OwnerViewImpl implements OwnerView {
 
     @Override
     public String showNewForm(){
-        this.entity = new Owner();
+        this.newEntity();
         this.ownerViewFlow.setFlowStateNew();
         return JSF_PAGE;
     }
 
     @Override
     public String saveNew(){
-        try {
-            this.entity = entityService.addNew(this.entity);
-            this.selected=this.entity;
-            this.ownerViewFlow.setFlowStateShow();
-            frontendMessagesView.addInfoMessage("addded owner",this.entity);
-        } catch (EJBException e){
-            this.ownerViewFlow.setFlowStateNew();
-            frontendMessagesView.addWarnMessage(e,this.entity);
-        }
+        this.saveNewEntity();
+        this.ownerViewFlow.setFlowStateShow();
         return JSF_PAGE;
     }
 
@@ -292,10 +290,8 @@ public class OwnerViewImpl implements OwnerView {
 
     @Override
     public String showSelectedEntity(){
-        long id = this.selected.getId();
-        this.entity = entityService.findById(id);
-        this.selected = this.entity;
-        initTreeNodes();
+        this.reloadEntityFromSelected();
+        this.initTreeNodes();
         this.ownerViewFlow.setFlowStateShow();
         return JSF_PAGE;
     }
@@ -315,25 +311,15 @@ public class OwnerViewImpl implements OwnerView {
 
     @Override
     public String showEditForm(){
-        long id = this.selected.getId();
-        this.entity = entityService.findById(id);
-        this.selected = this.entity;
+        this.reloadEntityFromSelected();
         this.ownerViewFlow.setFlowStateEdit();
         return JSF_PAGE;
     }
 
     @Override
     public String saveEdited() {
-        try {
-            this.entity= entityService.update(this.entity);
-            this.selected=this.entity;
-            this.ownerViewFlow.setFlowStateShow();
-            frontendMessagesView.addInfoMessage("updated edited owner",this.entity);
-        } catch (EJBException e){
-            this.ownerViewFlow.setFlowStateEdit();
-            frontendMessagesView.addWarnMessage(e,this.entity);
-        }
-        initTreeNodes();
+        this.saveEditedEntity();
+        this.initTreeNodes();
         return JSF_PAGE;
     }
 
@@ -401,7 +387,7 @@ public class OwnerViewImpl implements OwnerView {
             this.entity.addPet(this.pet);
             this.entity = entityService.update(this.entity);
             this.ownerViewFlow.setFlowStateShow();
-            frontendMessagesView.addInfoMessage("saved new pet",this.pet.toString());
+            frontendMessagesView.addInfoMessage("saved new pet",this.pet);
         } catch (EJBException e) {
             this.ownerViewFlow.setFlowStateNewPet();
             frontendMessagesView.addWarnMessage(e,this.pet);
