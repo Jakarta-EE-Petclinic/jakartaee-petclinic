@@ -33,8 +33,8 @@ import java.util.ResourceBundle;
 public class SpecialtyViewImpl implements SpecialtyView {
 
     @Inject
-    @ManagedProperty("#{messages}")
-    private ResourceBundle messagesBundle;
+    @ManagedProperty("#{msg}")
+    private ResourceBundle bundle;
 
     private static final long serialVersionUID = 9080853875975855082L;
 
@@ -87,7 +87,7 @@ public class SpecialtyViewImpl implements SpecialtyView {
             this.selected = this.entity;
             this.specialtyViewFlow.setFlowStateList();
             String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.search.done";
-            String summary = messagesBundle.getString(summaryKey);
+            String summary = bundle.getString(summaryKey);
             frontendMessagesView.addInfoMessage(summary, this.entity.getPrimaryKey());
         } catch (EJBException e){
             this.specialtyViewFlow.setFlowStateNew();
@@ -102,7 +102,7 @@ public class SpecialtyViewImpl implements SpecialtyView {
             this.selected = this.entity;
             this.specialtyViewFlow.setFlowStateList();
             String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.edit.done";
-            String summary = messagesBundle.getString(summaryKey);
+            String summary = bundle.getString(summaryKey);
             frontendMessagesView.addInfoMessage(summary, this.entity);
         } catch (EJBException e){
             this.specialtyViewFlow.setFlowStateEdit();
@@ -122,13 +122,13 @@ public class SpecialtyViewImpl implements SpecialtyView {
                 this.selected = null;
                 this.specialtyViewFlow.setFlowStateList();
                 String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.delete.done";
-                String summary = messagesBundle.getString(summaryKey);
+                String summary = bundle.getString(summaryKey);
                 frontendMessagesView.addInfoMessage(summary, msgInfo);
             }
         } catch (EJBTransactionRolledbackException e) {
             this.specialtyViewFlow.setFlowStateDelete();
             String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.delete.denied";
-            String summary = messagesBundle.getString(summaryKey);
+            String summary = bundle.getString(summaryKey);
             frontendMessagesView.addWarnMessage(summary, this.selected);
         } catch (EJBException e){
             this.specialtyViewFlow.setFlowStateDelete();
@@ -211,11 +211,11 @@ public class SpecialtyViewImpl implements SpecialtyView {
     @Override
     public void performSearch() {
         String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.search.done";
-        String summary = messagesBundle.getString(summaryKey);
+        String summary = bundle.getString(summaryKey);
         if(searchterm==null || searchterm.isEmpty()){
             this.specialtyViewFlow.setFlowStateList();
             String missingKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.missing";
-            String detail = messagesBundle.getString(missingKey);
+            String detail = bundle.getString(missingKey);
             frontendMessagesView.addInfoMessage(summary, detail);
         } else {
             try {
@@ -223,8 +223,8 @@ public class SpecialtyViewImpl implements SpecialtyView {
                 this.list = entityService.search(searchterm);
                 String foundKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.found";
                 String resultsKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.results";
-                String found = messagesBundle.getString(foundKey);
-                String results = messagesBundle.getString(resultsKey);
+                String found = bundle.getString(foundKey);
+                String results = bundle.getString(resultsKey);
                 String detail = found+" "+this.list.size()+ " "+ results +" "+searchterm;
                 frontendMessagesView.addInfoMessage(summary, detail);
             } catch (Exception e){
@@ -276,6 +276,14 @@ public class SpecialtyViewImpl implements SpecialtyView {
     @Override
     public void setSelected(Specialty selected) {
         this.selected = selected;
+    }
+
+    public ResourceBundle getBundle() {
+        return bundle;
+    }
+
+    public void setBundle(ResourceBundle bundle) {
+        this.bundle = bundle;
     }
 
     @Override

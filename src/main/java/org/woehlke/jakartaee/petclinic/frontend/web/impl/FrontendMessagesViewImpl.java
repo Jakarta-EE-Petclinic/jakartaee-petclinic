@@ -22,10 +22,6 @@ import java.util.ResourceBundle;
 @SessionScoped
 public class FrontendMessagesViewImpl implements FrontendMessagesView {
 
-    @Inject
-    @ManagedProperty("#{messages}")
-    private ResourceBundle messagesBundle;
-
     private static final long serialVersionUID = -2267751568724878682L;
 
     private static Logger log = LogManager.getLogger(FrontendMessagesViewImpl.class.getName());

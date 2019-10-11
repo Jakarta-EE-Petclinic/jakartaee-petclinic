@@ -37,8 +37,8 @@ import java.util.*;
 public class VetViewImpl implements VetView {
 
     @Inject
-    @ManagedProperty("#{messages}")
-    private ResourceBundle messagesBundle;
+    @ManagedProperty("#{msg}")
+    private ResourceBundle bundle;
 
     private static final long serialVersionUID = 2838339162976374606L;
 
@@ -135,6 +135,14 @@ public class VetViewImpl implements VetView {
         this.frontendMessagesView = frontendMessagesView;
     }
 
+    public ResourceBundle getBundle() {
+        return bundle;
+    }
+
+    public void setBundle(ResourceBundle bundle) {
+        this.bundle = bundle;
+    }
+
     @Override
     public String showNewForm(){
         this.newEntity();
@@ -225,11 +233,11 @@ public class VetViewImpl implements VetView {
     @Override
     public void performSearch() {
         String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.search.done";
-        String summary = messagesBundle.getString(summaryKey);
+        String summary = bundle.getString(summaryKey);
         if(searchterm==null || searchterm.isEmpty()){
             this.vetViewFlow.setFlowStateList();
             String missingKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.missing";
-            String detail = messagesBundle.getString(missingKey);
+            String detail = bundle.getString(missingKey);
             frontendMessagesView.addInfoMessage(summary, detail);
         } else {
             try {
@@ -237,8 +245,8 @@ public class VetViewImpl implements VetView {
                 this.list = entityService.search(searchterm);
                 String foundKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.found";
                 String resultsKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.results";
-                String found = messagesBundle.getString(foundKey);
-                String results = messagesBundle.getString(resultsKey);
+                String found = bundle.getString(foundKey);
+                String results = bundle.getString(resultsKey);
                 String detail = found+" "+this.list.size()+ " "+ results +" "+searchterm;
                 frontendMessagesView.addInfoMessage(summary, detail);
             } catch (Exception e){
@@ -294,7 +302,7 @@ public class VetViewImpl implements VetView {
             log.debug("saved New: "+this.entity.toString());
             this.selected = this.entity;
             String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.addNew.done";
-            String summary = messagesBundle.getString(summaryKey);
+            String summary = bundle.getString(summaryKey);
             frontendMessagesView.addInfoMessage(summary, this.entity);
         } catch (EJBException e){
             log.warn(e.getMessage()+this.entity.toString());
@@ -314,7 +322,7 @@ public class VetViewImpl implements VetView {
             this.entity = entityService.update(this.entity);
             this.selected = this.entity;
             String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.edit.done";
-            String summary = messagesBundle.getString(summaryKey);
+            String summary = bundle.getString(summaryKey);
             frontendMessagesView.addInfoMessage(summary, this.entity);
         } catch (EJBException e){
             log.warn(e.getMessage()+this.entity.toString());
@@ -335,13 +343,13 @@ public class VetViewImpl implements VetView {
                 }
                 this.selected = null;
                 String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.delete.done";
-                String summary = messagesBundle.getString(summaryKey);
+                String summary = bundle.getString(summaryKey);
                 frontendMessagesView.addInfoMessage(summary, msgInfo);
             }
             loadList();
         } catch (EJBTransactionRolledbackException e) {
             String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.delete.denied";
-            String summary = messagesBundle.getString(summaryKey);
+            String summary = bundle.getString(summaryKey);
             frontendMessagesView.addWarnMessage(summary, this.selected);
         } catch (EJBException e){
             frontendMessagesView.addErrorMessage(e.getLocalizedMessage(),this.selected);

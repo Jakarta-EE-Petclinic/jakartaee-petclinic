@@ -28,8 +28,8 @@ import java.util.*;
 public class LanguageViewImpl implements LanguageView {
 
     @Inject
-    @ManagedProperty("#{messages}")
-    private ResourceBundle messagesBundle;
+    @ManagedProperty("#{msg}")
+    private ResourceBundle bundle;
 
     private static final long serialVersionUID = -5444922829398489233L;
 
@@ -102,6 +102,14 @@ public class LanguageViewImpl implements LanguageView {
 
     public void setFrontendMessagesView(FrontendMessagesView frontendMessagesView) {
         this.frontendMessagesView = frontendMessagesView;
+    }
+
+    public ResourceBundle getBundle() {
+        return bundle;
+    }
+
+    public void setBundle(ResourceBundle bundle) {
+        this.bundle = bundle;
     }
 
     public String getMsgCantDeleteSpecialty() {

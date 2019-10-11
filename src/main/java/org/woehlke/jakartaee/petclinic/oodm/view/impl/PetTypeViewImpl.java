@@ -34,8 +34,8 @@ import java.util.ResourceBundle;
 public class PetTypeViewImpl implements PetTypeView {
 
     @Inject
-    @ManagedProperty("#{messages}")
-    private ResourceBundle messagesBundle;
+    @ManagedProperty("#{msg}")
+    private ResourceBundle bundle;
 
     private static final long serialVersionUID = -528406859430949031L;
 
@@ -136,11 +136,11 @@ public class PetTypeViewImpl implements PetTypeView {
     @Override
     public void performSearch() {
         String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.search.done";
-        String summary = messagesBundle.getString(summaryKey);
+        String summary = bundle.getString(summaryKey);
         if(searchterm==null || searchterm.isEmpty()){
             this.petTypeViewFlow.setFlowStateList();
             String missingKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.missing";
-            String detail = messagesBundle.getString(missingKey);
+            String detail = bundle.getString(missingKey);
             frontendMessagesView.addInfoMessage(summary, detail);
         } else {
             try {
@@ -148,8 +148,8 @@ public class PetTypeViewImpl implements PetTypeView {
                 this.list = entityService.search(searchterm);
                 String foundKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.found";
                 String resultsKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.results";
-                String found = messagesBundle.getString(foundKey);
-                String results = messagesBundle.getString(resultsKey);
+                String found = bundle.getString(foundKey);
+                String results = bundle.getString(resultsKey);
                 String detail = found+" "+this.list.size()+ " "+ results +" "+searchterm;
                 frontendMessagesView.addInfoMessage(summary, detail);
             } catch (Exception e){
@@ -209,6 +209,14 @@ public class PetTypeViewImpl implements PetTypeView {
         this.languageView = languageView;
     }
 
+    public ResourceBundle getBundle() {
+        return bundle;
+    }
+
+    public void setBundle(ResourceBundle bundle) {
+        this.bundle = bundle;
+    }
+
     public List<PetType> getList() {
         if(this.petTypeViewFlow.isFlowStateSearchResult()){
             performSearch();
@@ -246,7 +254,7 @@ public class PetTypeViewImpl implements PetTypeView {
             log.debug((this.selected!=null)?this.selected.toString():"null");
             this.petTypeViewFlow.setFlowStateList();
             String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.addNew.done";
-            String summary = messagesBundle.getString(summaryKey);
+            String summary = bundle.getString(summaryKey);
             frontendMessagesView.addInfoMessage(summary, this.entity.getPrimaryKey());
         } catch (EJBException e){
             this.petTypeViewFlow.setFlowStateNew();
@@ -265,7 +273,7 @@ public class PetTypeViewImpl implements PetTypeView {
             log.debug((this.selected!=null)?this.selected.toString():"null");
             this.petTypeViewFlow.setFlowStateList();
             String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.edit.done";
-            String summary = messagesBundle.getString(summaryKey);
+            String summary = bundle.getString(summaryKey);
             frontendMessagesView.addInfoMessage(summary, this.entity.getPrimaryKey());
         } catch (EJBException e){
             this.petTypeViewFlow.setFlowStateEdit();
@@ -284,14 +292,14 @@ public class PetTypeViewImpl implements PetTypeView {
                 entityService.delete(this.selected.getId());
                 this.selected = null;
                 String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.delete.done";
-                String summary = messagesBundle.getString(summaryKey);
+                String summary = bundle.getString(summaryKey);
                 frontendMessagesView.addInfoMessage(summary, msgInfo);
             }
             this.petTypeViewFlow.setFlowStateList();
         } catch (EJBTransactionRolledbackException e) {
             this.petTypeViewFlow.setFlowStateDelete();
             String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.delete.denied";
-            String summary = messagesBundle.getString(summaryKey);
+            String summary = bundle.getString(summaryKey);
             frontendMessagesView.addWarnMessage(summary, this.selected);
         } catch (EJBException e){
             this.petTypeViewFlow.setFlowStateDelete();
