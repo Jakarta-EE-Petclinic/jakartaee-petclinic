@@ -133,7 +133,9 @@ public class FrontendMessagesViewImpl implements FrontendMessagesView {
             logInfos.add("addFrontendMessageForEntity.PrimaryKey: " + entity.getPrimaryKey());
             logInfos.add("addFrontendMessageForEntity.id:         " + entity.getId());
             logInfos.add("addFrontendMessageForEntity.uud:        " + entity.getUuid());
-            //logInfos.add("addFrontendMessageForEntity.clientId:   " + clientId);
+            if(clientId != null){
+                logInfos.add("addFrontendMessageForEntity.clientId:   " + clientId);
+            }
             detail = "entity: " + entity.getPrimaryKey();
         } else {
             String msg = "entity == null ";
@@ -182,7 +184,9 @@ public class FrontendMessagesViewImpl implements FrontendMessagesView {
         List<String> logInfos = new ArrayList<>();
         logInfos.add("addFrontendMessage.summary:   " + summary);
         logInfos.add("addFrontendMessage.detail:    " + detail);
-        logInfos.add("addFrontendMessage.clientId:  " + clientId);
+        if(clientId != null){
+            logInfos.add("addFrontendMessage.clientId:  " + clientId);
+        }
         this.doLogging(logInfos,messageSeverity);
         FacesMessage message = new FacesMessage(messageSeverity, summary, detail);
         FacesContext.getCurrentInstance().addMessage(clientId, message);
