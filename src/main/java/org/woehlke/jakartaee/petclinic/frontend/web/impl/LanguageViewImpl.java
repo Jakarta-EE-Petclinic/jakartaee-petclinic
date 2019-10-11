@@ -9,7 +9,6 @@ import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.annotation.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
@@ -26,10 +25,6 @@ import java.util.*;
 @Named("languageView")
 @SessionScoped
 public class LanguageViewImpl implements LanguageView {
-
-    @Inject
-    @ManagedProperty("#{msg}")
-    private ResourceBundle bundle;
 
     private static final long serialVersionUID = -5444922829398489233L;
 
@@ -102,14 +97,6 @@ public class LanguageViewImpl implements LanguageView {
 
     public void setFrontendMessagesView(FrontendMessagesView frontendMessagesView) {
         this.frontendMessagesView = frontendMessagesView;
-    }
-
-    public ResourceBundle getBundle() {
-        return bundle;
-    }
-
-    public void setBundle(ResourceBundle bundle) {
-        this.bundle = bundle;
     }
 
     public String getMsgCantDeleteSpecialty() {

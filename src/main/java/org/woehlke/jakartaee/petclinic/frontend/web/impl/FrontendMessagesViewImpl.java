@@ -8,14 +8,11 @@ import org.woehlke.jakartaee.petclinic.oodm.entities.common.TwEntities;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.annotation.ManagedProperty;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 //TODO work with keys and fetch text from Resource-Bunble message.properties
 @Named("frontendMessagesView")
