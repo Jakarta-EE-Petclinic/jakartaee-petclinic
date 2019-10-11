@@ -296,7 +296,7 @@ public class OwnerViewImpl implements OwnerView {
         this.entity = entityService.findById(id);
         this.selected = this.entity;
         initTreeNodes();
-        this.ownerViewFlow.setFlowStateEdit();
+        this.ownerViewFlow.setFlowStateShow();
         return JSF_PAGE;
     }
 
