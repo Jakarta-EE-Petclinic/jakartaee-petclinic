@@ -41,6 +41,7 @@ function startRemoteAppServerOpenLibertyWlp(){
   echo "-----------------------------------------"
   echo "start remote AppServer Open Liberty WLP"
   echo "-----------------------------------------"
+  cp src/main/liberty/config/server.xml ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/
   cd ~/j/srv/openliberty-19.0.0.9/wlp/bin
   ./server start
   echo "http://localhost:9080/"

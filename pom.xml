@@ -1825,20 +1825,15 @@
                         <artifactId>liberty-maven-plugin</artifactId>
                         <extensions>true</extensions>
                         <configuration>
-                            <installDirectory>/Users/tw/j/srv/openliberty-19.0.0.9/wlp</installDirectory>
-                            <serverHome>/Users/tw/j/srv/openliberty-19.0.0.9/wlp</serverHome>
+                            <installDirectory>${user.home}/j/srv/openliberty-19.0.0.9/wlp</installDirectory>
+                            <serverHome>${user.home}/j/srv/openliberty-19.0.0.9/wlp</serverHome>
                             <serverName>defaultServer</serverName>
                             <features>
                                 <acceptLicense>true</acceptLicense>
                                 <feature>javaee-8.0</feature>
-                                <!-- Extended Programming Model -->
                                 <feature>json-1.0</feature>
-                                <feature>batchManagement-1.0</feature>
                                 <feature>sessionDatabase-1.0</feature>
-                                <!-- Security -->
-                                <feature>appSecurity-3.0</feature>
-                                <feature>audit-1.0</feature>
-                                <feature>passwordUtilities-1.0</feature>
+                                <feature>springBoot-2.0</feature>
                             </features>
                             <configFile>src/main/liberty/config/server.xml</configFile>
                             <looseApplication>true</looseApplication>
@@ -1861,7 +1856,7 @@
                             <skipTestServer>true</skipTestServer>
                             <!-- begin configure-arquillian -->
                             <arquillianProperties>
-                                <defaultProtocol>Servlet 4.0</defaultProtocol>
+                                <defaultProtocol>Servlet 3.1</defaultProtocol>
                                 <verifyApps>arquillian-test</verifyApps>
                                 <browser>chrome</browser>
                                 <instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
@@ -1878,6 +1873,7 @@
                                     <goal>configure-arquillian</goal>
                                 </goals>
                             </execution>
+                            <!--
                             <execution>
                                 <id>install</id>
                                 <phase>install</phase>
@@ -1885,6 +1881,7 @@
                                     <goal>test-start-server</goal>
                                 </goals>
                             </execution>
+                            -->
                         </executions>
                     </plugin>
                     <plugin>

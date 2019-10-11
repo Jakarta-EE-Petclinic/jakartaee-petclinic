@@ -65,7 +65,6 @@ function runRemoteLiberty(){
   echo "run Remote Liberty"
   echo "------------------"
   echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:deploy"
-  echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test"
   echo "------------------"
   ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:deploy
   echo "http://localhost:9080/petclinic/"
