@@ -37,27 +37,35 @@ function stopRemoteAppServerOpenLibertyWlp(){
   ./server stop
 }
 
-function setupRemoteAppServerOpenLibertyWlp(){
-  ./mvnw clean install -DskipTests=true
+function setupRemoteAppServerOpenLibertyWlpDeployServerXml(){
+  mkdir -p ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/lib
   cp -f src/main/liberty/config/server.xml ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/
-  cp -f target/petclinic/WEB-INF/lib/postgresql-42.2.7.jar ~/j/srv/openliberty-19.0.0.9/wlp/lib/postgresql.jar
+}
+
+function setupRemoteAppServerOpenLibertyWlpDeployServerXmlDeployDatabaseJar(){
+  ./mvnw clean install -DskipTests=true
+  cp -f target/petclinic/WEB-INF/lib/postgresql-42.2.7.jar ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/lib/postgresql.jar
+}
+
+function setupRemoteAppServerOpenLibertyWlp(){
+  setupRemoteAppServerOpenLibertyWlpDeployServerXml
+  #setupRemoteAppServerOpenLibertyWlpDeployServerXmlDeployDatabaseJar
 }
 
 function startRemoteAppServerOpenLibertyWlp(){
   echo "-----------------------------------------"
   echo "start remote AppServer Open Liberty WLP"
   echo "-----------------------------------------"
+  setupRemoteAppServerOpenLibertyWlp
   cd ~/j/srv/openliberty-19.0.0.9/wlp/bin
-  #tail -f ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/logs/console.log &
-  tail -f ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/logs/messages.log &
   ./server start
   echo "http://localhost:9080/"
-
+  #tail -f ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/logs/messages.log &
+  tail -f ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/logs/console.log
 }
 
 function startAppServer(){
   #startRemoteAppServerWildfly18
-  setupRemoteAppServerOpenLibertyWlp
   startRemoteAppServerOpenLibertyWlp
   #startRemoteAppServerGlassfish51
 }
@@ -66,10 +74,3 @@ function stopAppServer(){
   stopRemoteAppServerOpenLibertyWlp
   #stopRemoteAppServerGlassfish51
 }
-
-function main() {
-  startAppServer
-  #stopAppServer
-}
-
-main

@@ -7,8 +7,6 @@
         <!--
         <feature>servlet-3.1</feature>
         -->
-        <feature>springBoot-2.0</feature>
-        <feature>adminCenter-1.0</feature>
     </featureManager>
     <!-- end::features[] -->
 
@@ -17,16 +15,18 @@
         <user name="tw" password="twpwd" />
     </basicRegistry>
 
+    <administrator-role><user>admin</user></administrator-role>
+
     <applicationManager autoExpand="true" />
 
-    <!--
-      <quickStartSecurity userName="admin" userPassword="adminpwd" />
-      -->
+    <httpSession idLength="56" />
+
     <keyStore id="defaultKeyStore" password="mpKeystore" />
 
     <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
     <httpEndpoint
             id="defaultHttpEndpoint"
+            host="*"
             httpPort="8080"
             httpsPort="8443"/>
 
