@@ -5,14 +5,10 @@
         <feature>json-1.0</feature>
         <feature>sessionDatabase-1.0</feature>
         <!--
-        <feature>appSecurity-3.0</feature>
-        <feature>audit-1.0</feature>
-        <feature>passwordUtilities-1.0</feature>
-        -->
-        <!--
         <feature>servlet-3.1</feature>
         -->
         <feature>springBoot-2.0</feature>
+        <feature>adminCenter-1.0</feature>
     </featureManager>
     <!-- end::features[] -->
 
@@ -28,15 +24,17 @@
       -->
     <keyStore id="defaultKeyStore" password="mpKeystore" />
 
+    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
     <httpEndpoint
             id="defaultHttpEndpoint"
-            host="*"
-            httpPort="${default.http.port}"
-            httpsPort="${default.https.port}"/>
+            httpPort="8080"
+            httpsPort="8443"/>
 
     <variable name="io_openliberty_guides_system_inMaintenance" value="false"/>
 
-    <webApplication location="${packageFile}" contextRoot="/petclinic" />
+    <!--
+    <webApplication location="petclinic.war" contextRoot="/petclinic" />
+    -->
 
     <!-- Postgres Database Configuration -->
     <dataSource id="DefaultDataSource"
@@ -56,8 +54,8 @@
                 libraryRef="postgresql-library"/>
     <library id="postgresql-library">
         <fileset id="PostgreSQLFileset"
-                 dir="${postgresql.jar.dir}"
-                 includes="${postgresql.jar.file}"/>
+                 dir="lib"
+                 includes="postgresql.jar"/>
     </library>
 
 </server>

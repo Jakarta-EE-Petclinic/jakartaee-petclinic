@@ -37,20 +37,27 @@ function stopRemoteAppServerOpenLibertyWlp(){
   ./server stop
 }
 
+function setupRemoteAppServerOpenLibertyWlp(){
+  ./mvnw clean install -DskipTests=true
+  cp -f src/main/liberty/config/server.xml ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/
+  cp -f target/petclinic/WEB-INF/lib/postgresql-42.2.7.jar ~/j/srv/openliberty-19.0.0.9/wlp/lib/postgresql.jar
+}
+
 function startRemoteAppServerOpenLibertyWlp(){
   echo "-----------------------------------------"
   echo "start remote AppServer Open Liberty WLP"
   echo "-----------------------------------------"
-  cp src/main/liberty/config/server.xml ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/
   cd ~/j/srv/openliberty-19.0.0.9/wlp/bin
+  #tail -f ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/logs/console.log &
+  tail -f ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/logs/messages.log &
   ./server start
   echo "http://localhost:9080/"
-  #tail -f ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/logs/console.log
-  tail -f ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/logs/messages.log
+
 }
 
 function startAppServer(){
   #startRemoteAppServerWildfly18
+  setupRemoteAppServerOpenLibertyWlp
   startRemoteAppServerOpenLibertyWlp
   #startRemoteAppServerGlassfish51
 }
