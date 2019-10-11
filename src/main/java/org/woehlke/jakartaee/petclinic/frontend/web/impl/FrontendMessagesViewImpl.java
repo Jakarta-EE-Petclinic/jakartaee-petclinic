@@ -104,24 +104,23 @@ public class FrontendMessagesViewImpl implements FrontendMessagesView {
     }
 
     private void doLogging(List<String> logInfos,FacesMessage.Severity messageSeverity){
-        if(messageSeverity.equals(FacesMessage.SEVERITY_INFO)) {
-            for(String logInfo:logInfos){
-                log.info(logInfo);
+        if(!logInfos.isEmpty()){
+            int first = 0;
+            String firstLine = logInfos.remove(first);
+            if(messageSeverity.equals(FacesMessage.SEVERITY_INFO)) {
+                log.info(firstLine);
             }
-        }
-        if(messageSeverity.equals(FacesMessage.SEVERITY_WARN)) {
-            for(String logInfo:logInfos){
-                log.warn(logInfo);
+            if(messageSeverity.equals(FacesMessage.SEVERITY_WARN)) {
+                log.warn(firstLine);
             }
-        }
-        if(messageSeverity.equals(FacesMessage.SEVERITY_ERROR)) {
-            for(String logInfo:logInfos){
-                log.error(logInfo);
+            if(messageSeverity.equals(FacesMessage.SEVERITY_ERROR)) {
+                log.error(firstLine);
             }
-        }
-        if(messageSeverity.equals(FacesMessage.SEVERITY_FATAL)) {
+            if(messageSeverity.equals(FacesMessage.SEVERITY_FATAL)) {
+                log.fatal(firstLine);
+            }
             for(String logInfo:logInfos){
-                log.error(logInfo);
+                log.debug(logInfo);
             }
         }
     }
@@ -134,7 +133,7 @@ public class FrontendMessagesViewImpl implements FrontendMessagesView {
             logInfos.add("addFrontendMessageForEntity.PrimaryKey: " + entity.getPrimaryKey());
             logInfos.add("addFrontendMessageForEntity.id:         " + entity.getId());
             logInfos.add("addFrontendMessageForEntity.uud:        " + entity.getUuid());
-            logInfos.add("addFrontendMessageForEntity.clientId:   " + clientId);
+            //logInfos.add("addFrontendMessageForEntity.clientId:   " + clientId);
             detail = "entity: " + entity.getPrimaryKey();
         } else {
             String msg = "entity == null ";
@@ -146,22 +145,21 @@ public class FrontendMessagesViewImpl implements FrontendMessagesView {
     }
 
     private void addMessageForEntityAndRuntimeException(RuntimeException e, TwEntities entity, String clientId, FacesMessage.Severity messageSeverity){
-        StringBuilder sb1 = new StringBuilder("\n");
         String summary = e.getLocalizedMessage();
+        StringBuilder sb1 = new StringBuilder("\n");
         sb1.append("-----------------------------------------------------\n");
         sb1.append("entity Table       " + entity.getTableName()+"\n");
         sb1.append("entity Class       " + entity.getClass().getName()+"\n");
         sb1.append("entity UUID        " + entity.getUuid()+"\n");
         sb1.append("entity ID          " + entity.getId()+"\n");
         sb1.append("entity PK          " + entity.getPrimaryKey()+"\n");
-        sb1.append("RuntimeException:  " + e.getClass().getName()+"\n");
-        sb1.append("RuntimeException:  " + e.getLocalizedMessage()+"\n");
-        sb1.append("Exception Cause:   " + e.getCause().getLocalizedMessage()+"\n");
-        sb1.append("Exception Cause:   " + e.getCause().getClass().getName()+"\n");
         sb1.append("-----------------------------------------------------\n");
-        //sb1.append("clientId           " + clientId +"\n");
-        //sb1.append("summary:           " + summary+"\n");
-        StringBuilder sb = new StringBuilder(sb1.toString());
+        sb1.append("RuntimeException Class   " + e.getClass().getName()+"\n");
+        sb1.append("RuntimeException Message " + e.getLocalizedMessage()+"\n");
+        sb1.append("Exception Cause Class    " + e.getCause().getClass().getName()+"\n");
+        sb1.append("Exception Cause Message   " + e.getCause().getLocalizedMessage()+"\n");
+        sb1.append("-----------------------------------------------------\n");
+        StringBuilder sb = new StringBuilder("\n");
         long i = 0L;
         for(StackTraceElement element:e.getStackTrace()){
             i++;
@@ -172,6 +170,7 @@ public class FrontendMessagesViewImpl implements FrontendMessagesView {
             sb.append("StackTrace["+lfdnr.toString()+"]: "+element.getClassName()+" . "+element.getMethodName()+" in: \n");
             sb.append("StackTrace["+lfdnr.toString()+"]: "+element.getFileName()+" ( Line "+element.getLineNumber()+")\n");
         }
+        sb.append("-----------------------------------------------------\n");
         List<String> logInfos = new ArrayList<>();
         logInfos.add(sb.toString());
         logInfos.add(sb1.toString());
