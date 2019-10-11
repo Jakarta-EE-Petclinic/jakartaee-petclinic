@@ -1,21 +1,5 @@
 #!/usr/bin/env bash
 
-function confBrowserForArquillian(){
-  BROWSER_PROFILE=it-browser-chrome
-  #BROWSER_PROFILE=it-browser-firefox
-  #BROWSER_PROFILE=it-browser-safari
-  #BROWSER_PROFILE=it-browser-opera
-  #BROWSER_PROFILE=it-browser-htmlunit
-  #BROWSER_PROFILE=it-browser-phantomjsdriver
-  return $BROWSER_PROFILE
-}
-
-function confTestProfile() {
-  TESTS_PROFILE=it-skip-tests
-  #TESTS_PROFILE=it-run-tests
-  return $TESTS_PROFILE
-}
-
 function checkDependencies() {
     TESTS_PROFILE=$1
     BROWSER_PROFILE=$2
@@ -59,7 +43,7 @@ function checkAllDependencies(){
   done
 }
 
-function runRemoteLiberty(){
+function testRemoteLiberty(){
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
   SRV_PROFILE=it-openliberty-remote
@@ -71,6 +55,20 @@ function runRemoteLiberty(){
   echo "------------------"
   ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:deploy
   ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test
+}
+
+function runRemoteLiberty(){
+  TESTS_PROFILE=$1
+  BROWSER_PROFILE=$2
+  SRV_PROFILE=it-openliberty-remote
+  echo "------------------"
+  echo "run Remote Liberty"
+  echo "------------------"
+  echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:deploy"
+  echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test"
+  echo "------------------"
+  ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:deploy
+  echo "http://localhost:9080/petclinic/"
 }
 
 function testRemoteWildfly(){
@@ -97,6 +95,7 @@ function runRemoteWildfly(){
   echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install wildfly:deploy"
   echo "------------------"
   ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install wildfly:deploy
+  echo "http://localhost:8080/petclinic/"
 }
 
 function runManagedWildfly(){
@@ -147,42 +146,51 @@ function runManagedLiberty(){
   ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:run-server
 }
 
-function runRemote() {
-  TESTS_PROFILE=confTestProfile
-  BROWSER_PROFILE=confBrowserForArquillian
-  #runRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
-  #runRemoteLiberty $TESTS_PROFILE $BROWSER_PROFILE
-  #runRemoteGlassfish $TESTS_PROFILE $BROWSER_PROFILE
+function resolveDependencies() {
+  TESTS_PROFILE=$1
+  BROWSER_PROFILE=$2
+  checkAllDependencies
+  #checkDependencies $TESTS_PROFILE $BROWSER_PROFILE
 }
 
 function runManaged() {
-  TESTS_PROFILE=confTestProfile
-  BROWSER_PROFILE=confBrowserForArquillian
+  TESTS_PROFILE=$1
+  BROWSER_PROFILE=$2
   #runManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
   #runManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
   #runManagedGlassfish $TESTS_PROFILE $BROWSER_PROFILE
 }
 
-function resolveDependencies() {
-  TESTS_PROFILE=confTestProfile
-  BROWSER_PROFILE=confBrowserForArquillian
-  checkAllDependencies
-  #checkDependencies $TESTS_PROFILE $BROWSER_PROFILE
+function runRemote() {
+  TESTS_PROFILE=$1
+  BROWSER_PROFILE=$2
+  #runRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  runRemoteLiberty $TESTS_PROFILE $BROWSER_PROFILE
+  #runRemoteGlassfish $TESTS_PROFILE $BROWSER_PROFILE
 }
 
 function main(){
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
   echo "-------------------"
-  echo "main"
+  echo " main"
   echo "-------------------"
-  #resolveDependencies
-  runRemote
-  #runManaged
+  #resolveDependencies $TESTS_PROFILE $BROWSER_PROFILE
+  runRemote  $TESTS_PROFILE $BROWSER_PROFILE
+  #runManaged  $TESTS_PROFILE $BROWSER_PROFILE
   echo "-------------------"
-  echo "DONE and READY"
+  echo " DONE and READY"
   echo "-------------------"
 }
 
+BROWSER_PROFILE=it-browser-chrome
+#BROWSER_PROFILE=it-browser-firefox
+#BROWSER_PROFILE=it-browser-safari
+#BROWSER_PROFILE=it-browser-opera
+#BROWSER_PROFILE=it-browser-htmlunit
+#BROWSER_PROFILE=it-browser-phantomjsdriver
+
+TESTS_PROFILE=it-skip-tests
+#TESTS_PROFILE=it-run-tests
 
 main $TESTS_PROFILE $BROWSER_PROFILE

@@ -1,25 +1,5 @@
 #!/usr/bin/env bash
 
-function startRemoteAppServerWildfly15(){
-  echo "-----------------------------------------"
-  echo "start remote AppServer Wildfly 15"
-  echo "-----------------------------------------"
-  echo "reminder: hit CTRL-C to stop this Server"
-  echo "-----------------------------------------"
-  cd ~/j/srv/wildfly-15.0.1.Final/bin
-  ./standalone.sh
-}
-
-function startRemoteAppServerWildfly17(){
-  echo "-----------------------------------------"
-  echo "start remote AppServer Wildfly 17"
-  echo "-----------------------------------------"
-  echo "reminder: hit CTRL-C to stop this Server"
-  echo "-----------------------------------------"
-  cd ~/j/srv/wildfly-17.0.1.Final/bin
-  ./standalone.sh
-}
-
 function startRemoteAppServerWildfly18(){
   echo "-----------------------------------------"
   echo "start remote AppServer Wildfly 18"
@@ -64,24 +44,24 @@ function startRemoteAppServerOpenLibertyWlp(){
   cd ~/j/srv/openliberty-19.0.0.9/wlp/bin
   ./server start
   echo "http://localhost:9080/"
+  #tail -f ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/logs/console.log
+  tail -f ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/logs/messages.log
 }
 
 function startAppServer(){
-  #startRemoteAppServerWildfly15
-  #startRemoteAppServerWildfly17
   #startRemoteAppServerWildfly18
-  #startRemoteAppServerGlassfish51
   startRemoteAppServerOpenLibertyWlp
+  #startRemoteAppServerGlassfish51
 }
 
 function stopAppServer(){
-  #stopRemoteAppServerGlassfish51
   stopRemoteAppServerOpenLibertyWlp
+  #stopRemoteAppServerGlassfish51
 }
 
 function main() {
-  #startAppServer
-  stopAppServer
+  startAppServer
+  #stopAppServer
 }
 
 main

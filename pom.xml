@@ -791,8 +791,11 @@
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                     <compilerArgs>
+                        <!--
                         <arg>-verbose</arg>
-                        <arg>-Xlint:all,-options,-path</arg>
+                        <arg>-Xlint:deprecation,-options,-path</arg>
+                         -->
+                        <arg>-Xlint:deprecation</arg>
                     </compilerArgs>
                 </configuration>
             </plugin>
