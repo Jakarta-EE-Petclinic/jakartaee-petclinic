@@ -9,6 +9,7 @@ import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.annotation.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
@@ -25,6 +26,10 @@ import java.util.*;
 @Named("languageView")
 @SessionScoped
 public class LanguageViewImpl implements LanguageView {
+
+    @Inject
+    @ManagedProperty("#{messages}")
+    private ResourceBundle messagesBundle;
 
     private static final long serialVersionUID = -5444922829398489233L;
 

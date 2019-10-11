@@ -15,9 +15,11 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.ejb.EJBTransactionRolledbackException;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.annotation.ManagedProperty;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * Created with IntelliJ IDEA.
@@ -29,6 +31,10 @@ import java.util.List;
 @Named("specialtyView")
 @SessionScoped
 public class SpecialtyViewImpl implements SpecialtyView {
+
+    @Inject
+    @ManagedProperty("#{messages}")
+    private ResourceBundle messagesBundle;
 
     private static final long serialVersionUID = 9080853875975855082L;
 
@@ -80,7 +86,9 @@ public class SpecialtyViewImpl implements SpecialtyView {
             this.entity = entityService.addNew(this.entity);
             this.selected = this.entity;
             this.specialtyViewFlow.setFlowStateList();
-            frontendMessagesView.addInfoMessage("Added", this.entity.getPrimaryKey());
+            String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.search.done";
+            String summary = messagesBundle.getString(summaryKey);
+            frontendMessagesView.addInfoMessage(summary, this.entity.getPrimaryKey());
         } catch (EJBException e){
             this.specialtyViewFlow.setFlowStateNew();
             frontendMessagesView.addWarnMessage(e.getLocalizedMessage(),this.entity);
@@ -93,7 +101,9 @@ public class SpecialtyViewImpl implements SpecialtyView {
             this.entity = this.entityService.update(this.entity);
             this.selected = this.entity;
             this.specialtyViewFlow.setFlowStateList();
-            frontendMessagesView.addInfoMessage("Updated", this.entity.getPrimaryKey());
+            String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.edit.done";
+            String summary = messagesBundle.getString(summaryKey);
+            frontendMessagesView.addInfoMessage(summary, this.entity);
         } catch (EJBException e){
             this.specialtyViewFlow.setFlowStateEdit();
             frontendMessagesView.addWarnMessage(e.getLocalizedMessage(),this.entity);
@@ -111,11 +121,15 @@ public class SpecialtyViewImpl implements SpecialtyView {
                 }
                 this.selected = null;
                 this.specialtyViewFlow.setFlowStateList();
-                frontendMessagesView.addInfoMessage("Deleted", msgInfo);
+                String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.delete.done";
+                String summary = messagesBundle.getString(summaryKey);
+                frontendMessagesView.addInfoMessage(summary, msgInfo);
             }
         } catch (EJBTransactionRolledbackException e) {
             this.specialtyViewFlow.setFlowStateDelete();
-            frontendMessagesView.addWarnMessage("cannot delete, object still in use", this.selected);
+            String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.delete.denied";
+            String summary = messagesBundle.getString(summaryKey);
+            frontendMessagesView.addWarnMessage(summary, this.selected);
         } catch (EJBException e){
             this.specialtyViewFlow.setFlowStateDelete();
             frontendMessagesView.addErrorMessage(e.getLocalizedMessage(),this.selected);
@@ -196,14 +210,23 @@ public class SpecialtyViewImpl implements SpecialtyView {
 
     @Override
     public void performSearch() {
+        String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.search.done";
+        String summary = messagesBundle.getString(summaryKey);
         if(searchterm==null || searchterm.isEmpty()){
             this.specialtyViewFlow.setFlowStateList();
-            frontendMessagesView.addInfoMessage("Search ", "Missing searchterm");
+            String missingKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.missing";
+            String detail = messagesBundle.getString(missingKey);
+            frontendMessagesView.addInfoMessage(summary, detail);
         } else {
             try {
                 this.specialtyViewFlow.setFlowStateSearchResult();
                 this.list = entityService.search(searchterm);
-                frontendMessagesView.addInfoMessage("Search ", "Found "+this.list.size()+ "results for searchterm "+searchterm);
+                String foundKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.found";
+                String resultsKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.results";
+                String found = messagesBundle.getString(foundKey);
+                String results = messagesBundle.getString(resultsKey);
+                String detail = found+" "+this.list.size()+ " "+ results +" "+searchterm;
+                frontendMessagesView.addInfoMessage(summary, detail);
             } catch (Exception e){
                 this.specialtyViewFlow.setFlowStateList();
                 frontendMessagesView.addWarnMessage(e.getLocalizedMessage(),searchterm);

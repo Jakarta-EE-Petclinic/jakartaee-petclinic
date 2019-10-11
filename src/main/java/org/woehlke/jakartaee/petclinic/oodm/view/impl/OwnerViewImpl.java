@@ -23,9 +23,11 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.ejb.EJBTransactionRolledbackException;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.annotation.ManagedProperty;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * Created with IntelliJ IDEA.
@@ -37,6 +39,10 @@ import java.util.List;
 @Named("ownerView")
 @SessionScoped
 public class OwnerViewImpl implements OwnerView {
+
+    @Inject
+    @ManagedProperty("#{messages}")
+    private ResourceBundle messagesBundle;
 
     private static final long serialVersionUID = -4809817472969005481L;
 
@@ -100,7 +106,9 @@ public class OwnerViewImpl implements OwnerView {
                 this.entity =  this.entityService.addNew(this.entity);
                 this.selected = this.entity;
                 this.ownerViewFlow.setFlowStateShow();
-                frontendMessagesView.addInfoMessage("Added New Owner" , this.entity);
+                String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.owner.addNew.done";
+                String summary = messagesBundle.getString(summaryKey);
+                frontendMessagesView.addInfoMessage(summary , this.entity);
             } else {
                 this.newEntity();
                 this.ownerViewFlow.setFlowStateNew();
@@ -118,7 +126,9 @@ public class OwnerViewImpl implements OwnerView {
                 this.entity = entityService.update(this.entity);
                 this.selected = this.entity;
                 this.ownerViewFlow.setFlowStateShow();
-                frontendMessagesView.addInfoMessage("Updated Owner",this.entity);
+                String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.owner.edit.done";
+                String summary = messagesBundle.getString(summaryKey);
+                frontendMessagesView.addInfoMessage(summary,this.entity);
             } else {
                 this.ownerViewFlow.setFlowStateList();
             }
@@ -139,11 +149,15 @@ public class OwnerViewImpl implements OwnerView {
                 entityService.delete(this.selected.getId());
                 this.selected = null;
                 this.ownerViewFlow.setFlowStateList();
-                frontendMessagesView.addInfoMessage("Deleted Owner", msgInfo);
+                String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.owner.delete.done";
+                String summary = messagesBundle.getString(summaryKey);
+                frontendMessagesView.addInfoMessage(summary, msgInfo);
             }
         } catch (EJBTransactionRolledbackException e) {
             this.ownerViewFlow.setFlowStateDelete();
-            frontendMessagesView.addWarnMessage("cannot delete, object still in use", this.selected);
+            String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.owner.delete.denied";
+            String summary = messagesBundle.getString(summaryKey);
+            frontendMessagesView.addWarnMessage(summary, this.selected);
         } catch (EJBException e){
             this.ownerViewFlow.setFlowStateDelete();
             frontendMessagesView.addErrorMessage(e.getLocalizedMessage(),this.selected);
@@ -246,16 +260,24 @@ public class OwnerViewImpl implements OwnerView {
 
     @Override
     public void performSearch() {
+        String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.owner.search.done";
+        String summary = messagesBundle.getString(summaryKey);
         if(searchterm==null || searchterm.isEmpty()){
             this.ownerViewFlow.setFlowStateList();
+            String missingKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.missing";
+            String detail = messagesBundle.getString(missingKey);
+            frontendMessagesView.addInfoMessage(summary, detail);
         } else {
             try {
-                this.list = entityService.search(searchterm);
                 this.ownerViewFlow.setFlowStateSearchResult();
-                String msg = "Found "+this.list.size()+ "results for searchterm "+searchterm;
-                frontendMessagesView.addInfoMessage("Search ", msg);
+                this.list = entityService.search(searchterm);
+                String foundKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.found";
+                String resultsKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.results";
+                String found = messagesBundle.getString(foundKey);
+                String results = messagesBundle.getString(resultsKey);
+                String detail = found+" "+this.list.size()+ " "+ results +" "+searchterm;
+                frontendMessagesView.addInfoMessage(summary, detail);
             } catch (Exception e){
-                log.warn(e.getMessage());
                 this.ownerViewFlow.setFlowStateList();
                 frontendMessagesView.addWarnMessage(e.getLocalizedMessage(),searchterm);
             }
@@ -357,7 +379,9 @@ public class OwnerViewImpl implements OwnerView {
             this.selected = null;
             this.entity = null;
             this.ownerViewFlow.setFlowStateList();
-            frontendMessagesView.addInfoMessage("deleted selected owner", selectedPrimaryKey);
+            String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.owner.delete.done";
+            String summary = messagesBundle.getString(summaryKey);
+            frontendMessagesView.addInfoMessage(summary, selectedPrimaryKey);
         } catch (EJBException e){
             this.ownerViewFlow.setFlowStateDelete();
             frontendMessagesView.addWarnMessage(e,this.selected);
@@ -387,7 +411,9 @@ public class OwnerViewImpl implements OwnerView {
             this.entity.addPet(this.pet);
             this.entity = entityService.update(this.entity);
             this.ownerViewFlow.setFlowStateShow();
-            frontendMessagesView.addInfoMessage("saved new pet",this.pet);
+            String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.owner.addNew.done";
+            String summary = messagesBundle.getString(summaryKey);
+            frontendMessagesView.addInfoMessage(summary,this.pet);
         } catch (EJBException e) {
             this.ownerViewFlow.setFlowStateNewPet();
             frontendMessagesView.addWarnMessage(e,this.pet);
@@ -423,7 +449,9 @@ public class OwnerViewImpl implements OwnerView {
             this.entity = this.entityService.findById(ownerId);
             this.selected = this.entity;
             this.ownerViewFlow.setFlowStateShow();
-            frontendMessagesView.addInfoMessage("updated edited pet",this.pet);
+            String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.owner.edit.done";
+            String summary = messagesBundle.getString(summaryKey);
+            frontendMessagesView.addInfoMessage(summary,this.pet);
         } catch (EJBException e){
             this.ownerViewFlow.setFlowStateEditPet();
             frontendMessagesView.addWarnMessage(e,this.pet);
@@ -447,7 +475,11 @@ public class OwnerViewImpl implements OwnerView {
             return JSF_PAGE;
         } else {
             this.ownerViewFlow.setFlowStateShow();
-            frontendMessagesView.addWarnMessage("Add New Visit","You must select a Pet first.");
+            String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.visit.addNew";
+            String summary = messagesBundle.getString(summaryKey);
+            String msgKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.visit.addNew.denied";
+            String msg = messagesBundle.getString(msgKey);
+            frontendMessagesView.addWarnMessage(summary,msg);
             return JSF_PAGE;
         }
     }
@@ -465,12 +497,18 @@ public class OwnerViewImpl implements OwnerView {
                 this.entity = this.entityService.findById(ownerId);
                 this.selected = this.entity;
                 log.trace("owner2: "+this.entity.toString());
-                frontendMessagesView.addInfoMessage("added new visit",this.visit);
+                String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.visit.addNew.done";
+                String summary = messagesBundle.getString(summaryKey);
+                frontendMessagesView.addInfoMessage(summary,this.visit);
                 this.ownerViewFlow.setFlowStateShow();
                 return JSF_PAGE;
             } else {
                 this.ownerViewFlow.setFlowStateShow();
-                frontendMessagesView.addWarnMessage("Add New Visit","You must select a Pet first.");
+                String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.visit.addNew";
+                String summary = messagesBundle.getString(summaryKey);
+                String msgKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.visit.addNew.denied";
+                String msg = messagesBundle.getString(msgKey);
+                frontendMessagesView.addWarnMessage(summary,msg);
                 return JSF_PAGE;
             }
         } catch (EJBException e){

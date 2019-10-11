@@ -19,6 +19,7 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.ejb.EJBTransactionRolledbackException;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.annotation.ManagedProperty;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotBlank;
@@ -34,6 +35,10 @@ import java.util.*;
 @Named("vetView")
 @SessionScoped
 public class VetViewImpl implements VetView {
+
+    @Inject
+    @ManagedProperty("#{messages}")
+    private ResourceBundle messagesBundle;
 
     private static final long serialVersionUID = 2838339162976374606L;
 
@@ -219,16 +224,26 @@ public class VetViewImpl implements VetView {
 
     @Override
     public void performSearch() {
+        String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.search.done";
+        String summary = messagesBundle.getString(summaryKey);
         if(searchterm==null || searchterm.isEmpty()){
-            this.list = entityService.getAll();
+            this.vetViewFlow.setFlowStateList();
+            String missingKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.missing";
+            String detail = messagesBundle.getString(missingKey);
+            frontendMessagesView.addInfoMessage(summary, detail);
         } else {
             try {
+                this.vetViewFlow.setFlowStateSearchResult();
                 this.list = entityService.search(searchterm);
-                frontendMessagesView.addInfoMessage("Search ", "Found "+this.list.size()+ "results for searchterm "+searchterm);
+                String foundKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.found";
+                String resultsKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.results";
+                String found = messagesBundle.getString(foundKey);
+                String results = messagesBundle.getString(resultsKey);
+                String detail = found+" "+this.list.size()+ " "+ results +" "+searchterm;
+                frontendMessagesView.addInfoMessage(summary, detail);
             } catch (Exception e){
-                log.debug(e.getMessage());
+                this.vetViewFlow.setFlowStateList();
                 frontendMessagesView.addWarnMessage(e.getLocalizedMessage(),searchterm);
-                this.list = entityService.getAll();
             }
         }
     }
@@ -278,7 +293,9 @@ public class VetViewImpl implements VetView {
             this.entity = entityService.update(this.entity);
             log.debug("saved New: "+this.entity.toString());
             this.selected = this.entity;
-            frontendMessagesView.addInfoMessage("Added new Vetinarian", this.entity.getPrimaryKey());
+            String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.addNew.done";
+            String summary = messagesBundle.getString(summaryKey);
+            frontendMessagesView.addInfoMessage(summary, this.entity);
         } catch (EJBException e){
             log.warn(e.getMessage()+this.entity.toString());
             frontendMessagesView.addWarnMessage(e,this.entity);
@@ -290,13 +307,15 @@ public class VetViewImpl implements VetView {
         try {
             this.entity.removeSpecialties();
             for (Specialty specialtyTransient : this.specialtiesPickList.getTarget()) {
-                log.debug(" added transient via saveEditedEntity: "+specialtyTransient.toString());
+                log.debug(" added transient via saveEditedEntity: "+specialtyTransient.getPrimaryKeyWithId());
                 Specialty specialty = specialtyService.findSpecialtyByName(specialtyTransient.getName());
                 this.entity.addSpecialty(specialty);
             }
             this.entity = entityService.update(this.entity);
             this.selected = this.entity;
-            frontendMessagesView.addInfoMessage("Updated Vetinarian", this.entity.getPrimaryKey());
+            String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.edit.done";
+            String summary = messagesBundle.getString(summaryKey);
+            frontendMessagesView.addInfoMessage(summary, this.entity);
         } catch (EJBException e){
             log.warn(e.getMessage()+this.entity.toString());
             frontendMessagesView.addWarnMessage(e,this.entity);
@@ -315,11 +334,15 @@ public class VetViewImpl implements VetView {
                     this.entity = null;
                 }
                 this.selected = null;
-                frontendMessagesView.addInfoMessage("Deleted", msgInfo);
+                String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.delete.done";
+                String summary = messagesBundle.getString(summaryKey);
+                frontendMessagesView.addInfoMessage(summary, msgInfo);
             }
             loadList();
         } catch (EJBTransactionRolledbackException e) {
-            frontendMessagesView.addWarnMessage("cannot delete, object still in use", this.selected);
+            String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.delete.denied";
+            String summary = messagesBundle.getString(summaryKey);
+            frontendMessagesView.addWarnMessage(summary, this.selected);
         } catch (EJBException e){
             frontendMessagesView.addErrorMessage(e.getLocalizedMessage(),this.selected);
         }
