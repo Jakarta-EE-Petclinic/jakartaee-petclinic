@@ -59,7 +59,9 @@
                 <h:form id="addNewSpecialtyForm" styleClass="addNewEntityForm">
                     <p:panel id="addNewSpecialtyPanel" styleClass="contentPanel"
                          header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.addNew']}">
-                        <p:messages id="addNewSpecialtyMessages" />
+                        <p:messages id="messagesOutNew" showDetail="true" closable="true">
+                            <p:autoUpdate />
+                        </p:messages>
                         <div class="ui-g">
                             <div class="ui-g-4 tw-form-group">
                                 <p:outputLabel for="specialtyNameNew" value="#{msg['name']}" />
@@ -102,7 +104,9 @@
                             id="editSpecialtyFormPanel"
                             styleClass="contentPanel"
                             header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.edit']}">
-                        <p:messages id="editSpecialtyMessages" />
+                        <p:messages id="messagesOutEdit" showDetail="true" closable="true">
+                            <p:autoUpdate />
+                        </p:messages>
                         <div class="ui-g">
                             <div class="ui-g-4 tw-form-group">
                                 <p:outputLabel for="specialtyNameEdit" value="#{msg['name']}" />
@@ -144,6 +148,9 @@
                 <h:form id="deleteSpecialtyForm" styleClass="deleteEntityForm">
                     <p:panel id="deleteSpecialtyPanel" styleClass="contentPanel"
                              header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.delete']}">
+                        <p:messages id="messagesOutDelete" showDetail="true" closable="true">
+                            <p:autoUpdate />
+                        </p:messages>
                         <div class="ui-g">
                             <div class="ui-g-4 tw-form-group">
                                 <p:outputLabel for="nameDelete" value="#{msg['name']}" />
@@ -184,6 +191,9 @@
                  styleClass="contentPanel"
                  header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentPanel.specialty.list']}">
             <h:form id="findEntityForm">
+                <p:messages id="messagesOut" showDetail="true" closable="true" rendered="#{specialtyViewFlow.flowStateList}">
+                    <p:autoUpdate />
+                </p:messages>
                 <div class="ui-g newAndSearchGrid">
                     <div class="ui-g-2">
                         <p:commandButton

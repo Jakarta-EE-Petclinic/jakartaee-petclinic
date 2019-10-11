@@ -163,8 +163,8 @@ function runManaged() {
 function runRemote() {
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
-  #runRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
-  runRemoteLiberty $TESTS_PROFILE $BROWSER_PROFILE
+  runRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  #runRemoteLiberty $TESTS_PROFILE $BROWSER_PROFILE
   #runRemoteGlassfish $TESTS_PROFILE $BROWSER_PROFILE
 }
 

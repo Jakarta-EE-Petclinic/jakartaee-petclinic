@@ -58,7 +58,9 @@
                 <h:form id="addNewVetForm" styleClass="addNewEntityForm">
                     <p:panel id="addNewVetPanel" styleClass="contentPanel"
                              header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.addNew']}">
-                        <p:messages id="addNewVetMessages" />
+                        <p:messages id="messagesOutNew" showDetail="true" closable="true">
+                            <p:autoUpdate />
+                        </p:messages>
                         <div class="ui-g">
                             <div class="ui-g-6 ui-g-nopad">
                                 <div class="ui-g-12">
@@ -117,7 +119,9 @@
                             id="editSpecialtyFormPanel"
                             styleClass="contentPanel"
                             header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.edit']}">
-                        <p:messages id="editVetMessages" />
+                        <p:messages id="messagesOutEdit" showDetail="true" closable="true">
+                            <p:autoUpdate />
+                        </p:messages>
                         <div class="ui-g">
                             <div class="ui-g-6 ui-g-nopad">
                                 <div class="ui-g-12 tw-form-group">
@@ -175,7 +179,9 @@
                 <h:form id="deleteSpecialtyForm" styleClass="deleteEntityForm">
                     <p:panel id="deleteSpecialtyPanel" styleClass="contentPanel"
                              header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.delete']}">
-                        <p:messages id="deleteVetMessages" />
+                        <p:messages id="messagesOutDelete" showDetail="true" closable="true">
+                            <p:autoUpdate />
+                        </p:messages>
                         <div class="ui-g">
                             <div class="ui-g-6 ui-g-nopad">
                                 <div class="ui-g-12 tw-form-group">
@@ -232,6 +238,9 @@
             <p:panel id="contentPanel"
                      styleClass="contentPanel"
                      header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentPanel.veterinarian.list']}">
+                <p:messages id="messagesOut" showDetail="true" closable="true" rendered="#{vetViewFlow.flowStateList}">
+                    <p:autoUpdate />
+                </p:messages>
                 <h:form id="findEntityForm">
                     <div class="ui-g tableGrid">
                         <div class="ui-g-2">

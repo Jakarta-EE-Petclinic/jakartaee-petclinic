@@ -10,6 +10,12 @@ function startRemoteAppServerWildfly18(){
   ./standalone.sh
 }
 
+function stopRemoteAppServerWildfly18() {
+  echo "-----------------------------------------"
+  echo "reminder: hit CTRL-C to stop this Server"
+  echo "-----------------------------------------"
+}
+
 function stopRemoteAppServerGlassfish51(){
   echo "-------------------------------------"
   echo "stop remote AppServer Glassfish 5.1"
@@ -65,12 +71,17 @@ function startRemoteAppServerOpenLibertyWlp(){
 }
 
 function startAppServer(){
-  #startRemoteAppServerWildfly18
-  startRemoteAppServerOpenLibertyWlp
+  echo "-----------------------------------------"
+  echo "start remote AppServer"
+  startRemoteAppServerWildfly18
+  #startRemoteAppServerOpenLibertyWlp
   #startRemoteAppServerGlassfish51
 }
 
 function stopAppServer(){
-  stopRemoteAppServerOpenLibertyWlp
+  echo "-----------------------------------------"
+  echo "stop remote AppServer"
+  stopRemoteAppServerWildfly18
+  #stopRemoteAppServerOpenLibertyWlp
   #stopRemoteAppServerGlassfish51
 }

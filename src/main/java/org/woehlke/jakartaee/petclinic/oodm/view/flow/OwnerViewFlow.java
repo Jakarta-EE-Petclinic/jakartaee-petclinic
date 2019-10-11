@@ -3,7 +3,6 @@ package org.woehlke.jakartaee.petclinic.oodm.view.flow;
 import org.woehlke.jakartaee.petclinic.frontend.web.owner.HasOwnerViewFlowState;
 import org.woehlke.jakartaee.petclinic.frontend.web.owner.OwnerViewFlowState;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -16,51 +15,58 @@ public class OwnerViewFlow implements HasOwnerViewFlowState, Serializable {
 
     private OwnerViewFlowState flowState;
 
+    private OwnerViewFlowState getFlowState() {
+        if(this.flowState == null){
+            this.flowState = OwnerViewFlowState.LIST;
+        }
+        return this.flowState;
+    }
+
     @Override
     public boolean isFlowStateShow(){
-        return this.flowState == OwnerViewFlowState.SHOW;
+        return this.getFlowState() == OwnerViewFlowState.SHOW;
     }
 
     @Override
     public boolean isFlowStateList(){
-        return this.flowState == OwnerViewFlowState.LIST;
+        return this.getFlowState() == OwnerViewFlowState.LIST;
     }
 
     @Override
     public boolean isFlowStateNew(){
-        return  this.flowState == OwnerViewFlowState.NEW;
+        return  this.getFlowState() == OwnerViewFlowState.NEW;
     }
 
     @Override
     public boolean isFlowStateEdit(){
-        return  this.flowState == OwnerViewFlowState.EDIT;
+        return  this.getFlowState() == OwnerViewFlowState.EDIT;
     }
 
     @Override
     public boolean isFlowStateDelete(){
-        return  this.flowState == OwnerViewFlowState.DELETE;
+        return  this.getFlowState() == OwnerViewFlowState.DELETE;
     }
 
     @Override
     public boolean isFlowStateSearchResult(){
-        return  this.flowState == OwnerViewFlowState.LIST_SEARCH_RESULT;
+        return  this.getFlowState() == OwnerViewFlowState.LIST_SEARCH_RESULT;
     }
 
     @Override
     public boolean isFlowStateNewPet(){
-        return  this.flowState == OwnerViewFlowState.NEW_PET;
+        return  this.getFlowState() == OwnerViewFlowState.NEW_PET;
     }
 
     @Override
     public boolean isFlowStateEditPet(){
-        return  this.flowState == OwnerViewFlowState.EDIT_PET;
+        return  this.getFlowState() == OwnerViewFlowState.EDIT_PET;
     }
 
     @Override
-    public boolean isFlowStateNewVisit(){ return this.flowState == OwnerViewFlowState.NEW_VISIT; }
+    public boolean isFlowStateNewVisit(){ return this.getFlowState() == OwnerViewFlowState.NEW_VISIT; }
 
     @Override
-    public void setFlowStateNewVisit(){ this.flowState = OwnerViewFlowState.NEW_VISIT; }
+    public void setFlowStateNewVisit(){  this.flowState = OwnerViewFlowState.NEW_VISIT; }
 
     @Override
     public void setFlowStateShow(){

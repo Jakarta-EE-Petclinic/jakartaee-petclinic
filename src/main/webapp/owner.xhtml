@@ -21,6 +21,9 @@
                 <p:panel id="contentPanelAddNewOwner"
                          header="#{msg['addNewOwner']}"
                          styleClass="contentPanel">
+                    <p:messages id="messagesOutNewOwner" showDetail="true" closable="true">
+                        <p:autoUpdate />
+                    </p:messages>
                 <h:form id="addNewOwnerForm">
                     <div class="ui-g">
                         <div class="ui-g-2">
@@ -122,6 +125,9 @@
                 <p:panel id="contentPanelEditOwner"
                          header="#{msg['editOwner']}"
                          styleClass="contentPanel">
+                    <p:messages id="messagesOutEditOwner" showDetail="true" closable="true">
+                        <p:autoUpdate />
+                    </p:messages>
                 <h:form id="editOwnerForm">
                     <div class="ui-g">
                         <div class="ui-g-2">
@@ -225,6 +231,9 @@
                          header="#{msg['editPet']}"
                          styleClass="contentPanel">
                 <h:form id="editPetForm">
+                    <p:messages id="messagesOutEditOwnersPet" showDetail="true" closable="true">
+                        <p:autoUpdate />
+                    </p:messages>
                     <p:panelGrid id="grid" columns="2" styleClass="table table-striped">
                         <h:outputLabel value="#{msg['owner']}" for="firstName"/>
                         <h:panelGroup>
@@ -287,6 +296,9 @@
             <p:panel id="contentPanelAddNewOwnersPet"
                      header="#{msg['addNewPet']}"
                      styleClass="contentPanel">
+                <p:messages id="messagesOutAddNewOwnersPet" showDetail="true" closable="true">
+                    <p:autoUpdate />
+                </p:messages>
                 <h:form id="addNewPetForm">
                     <p:panelGrid columns="2" cellpadding="5">
                         <p:outputLabel value="#{msg['owner']}"
@@ -351,6 +363,9 @@
             <ui:fragment rendered="#{ownerViewFlow.renderPanelAddNewOwnersPetVisit}">
                 <h:form id="addVisitForm">
                 <p:panel id="contentPanelPetAndOwner" header="#{msg['pet']}">
+                    <p:messages id="messagesOutAddNewVisit" showDetail="true" closable="true">
+                        <p:autoUpdate />
+                    </p:messages>
                     <p:panelGrid id="gridPetAndOwner" columns="2" styleClass="table table-striped">
                         <h:outputText value="#{msg['name']}" />
                         <h:outputText id="petName" value="#{ownerView.pet.name}" />
@@ -437,6 +452,9 @@
                 <p:panel id="contentPanelOwner"
                          header="#{msg['owner']}"
                          styleClass="contentPanel">
+                    <p:messages id="messagesOutShowOwner" showDetail="true" closable="true">
+                        <p:autoUpdate />
+                    </p:messages>
                     <div class="ui-g">
                         <div class="ui-g-2">
                             <p:outputLabel value="#{msg['firstName']}" for="firstName"/>
@@ -645,6 +663,9 @@
                 <p:panel id="contentPanelOwnerList"
                      styleClass="contentPanel"
                      header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentPanel.owner.list']}">
+                    <p:messages id="messagesOutOwnerList" showDetail="true" closable="true" rendered="#{ownerViewFlow.flowStateList}">
+                        <p:autoUpdate />
+                    </p:messages>
                 <h:form id="findEntityForm">
                     <p:panelGrid id="newAndSearchGrid" columns="4" styleClass="newAndSearchGrid">
                         <p:commandButton
