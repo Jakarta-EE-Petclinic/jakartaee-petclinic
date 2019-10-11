@@ -338,6 +338,12 @@ public class OwnerViewImpl implements OwnerView {
     }
 
     @Override
+    public String cancelShow() {
+        this.ownerViewFlow.setFlowStateList();
+        return JSF_PAGE;
+    }
+
+    @Override
     public String cancelEdited() {
         this.ownerViewFlow.setFlowStateShow();
         return JSF_PAGE;

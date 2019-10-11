@@ -11,29 +11,36 @@ public abstract class CrudViewFlow implements HasCrudFlowState, Serializable {
 
     private CrudViewFlowState flowState;
 
+    protected CrudViewFlowState getFlowState() {
+        if(this.flowState == null){
+            this.flowState = CrudViewFlowState.LIST;
+        }
+        return flowState;
+    }
+
     @Override
     public boolean isFlowStateList(){
-        return  this.flowState == CrudViewFlowState.LIST;
+        return CrudViewFlowState.LIST == this.getFlowState();
     }
 
     @Override
     public boolean isFlowStateNew(){
-        return  this.flowState == CrudViewFlowState.NEW;
+        return CrudViewFlowState.NEW == this.getFlowState();
     }
 
     @Override
     public boolean isFlowStateEdit(){
-        return  this.flowState == CrudViewFlowState.EDIT;
+        return CrudViewFlowState.EDIT == this.getFlowState();
     }
 
     @Override
     public boolean isFlowStateDelete(){
-        return  this.flowState == CrudViewFlowState.DELETE;
+        return CrudViewFlowState.DELETE == this.getFlowState();
     }
 
     @Override
     public boolean isFlowStateSearchResult(){
-        return  this.flowState == CrudViewFlowState.LIST_SEARCH_RESULT;
+        return CrudViewFlowState.LIST_SEARCH_RESULT == this.getFlowState();
     }
 
 

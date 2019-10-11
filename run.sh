@@ -67,7 +67,7 @@ function runRemoteLiberty(){
   echo "./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:deploy"
   echo "------------------"
   ./mvnw -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:deploy
-  echo "http://localhost:9080/petclinic/"
+  echo "http://10.4.25.161:8080/petclinic/ (IP-Number may vary)"
 }
 
 function testRemoteWildfly(){

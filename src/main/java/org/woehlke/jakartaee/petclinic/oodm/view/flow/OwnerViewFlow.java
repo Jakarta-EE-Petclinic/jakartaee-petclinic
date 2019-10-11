@@ -3,6 +3,7 @@ package org.woehlke.jakartaee.petclinic.oodm.view.flow;
 import org.woehlke.jakartaee.petclinic.frontend.web.owner.HasOwnerViewFlowState;
 import org.woehlke.jakartaee.petclinic.frontend.web.owner.OwnerViewFlowState;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;

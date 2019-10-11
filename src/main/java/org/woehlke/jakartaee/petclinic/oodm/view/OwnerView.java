@@ -19,4 +19,5 @@ public interface OwnerView extends CrudView<Owner>,
     long serialVersionUID = 3691413509555926089L;
 
     String showSelectedEntity();
+    String cancelShow();
 }
