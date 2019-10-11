@@ -11,7 +11,7 @@
         </locale-config>
         <resource-bundle>
             <base-name>org.woehlke.jakartaee.petclinic.Messages</base-name>
-            <var>bundle</var>
+            <var>msg</var>
         </resource-bundle>
     </application>
 
