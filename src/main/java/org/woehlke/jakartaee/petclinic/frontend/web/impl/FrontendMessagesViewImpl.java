@@ -136,7 +136,7 @@ public class FrontendMessagesViewImpl implements FrontendMessagesView {
             if(clientId != null){
                 logInfos.add("addFrontendMessageForEntity.clientId:   " + clientId);
             }
-            detail = "entity: " + entity.getPrimaryKey();
+            detail = entity.getPrimaryKey();
         } else {
             String msg = "entity == null ";
             logInfos.add(msg);
