@@ -47,11 +47,11 @@
         <!-- Maven and its Plugins -->
         <version.maven>3.3.9</version.maven>
         <!-- Java EE and Jakarta EE Application Server: Wildfly, OpenLiberty, Glassfish -->
-        <jakartaee8.server.wildfly.version>17.0.1.Final</jakartaee8.server.wildfly.version>
+        <jakartaee8.server.wildfly.version>18.0.0.Final</jakartaee8.server.wildfly.version>
         <jakartaee8.server.openliberty.runtime>19.0.0.9</jakartaee8.server.openliberty.runtime>
         <jakartaee8.server.glassfish.version>1.1.1</jakartaee8.server.glassfish.version>
         <libertyInstallDir>${user.home}/j/srv/openliberty-19.0.0.9/wlp</libertyInstallDir>
-        <wildflyInstallDir>${user.home}/j/srv/wildfly-17.0.1.Final</wildflyInstallDir>
+        <wildflyInstallDir>${user.home}/j/srv/wildfly-18.0.0.Final</wildflyInstallDir>
         <glassfishInstallDir>${user.home}/j/srv/glassfish-5.1.0</glassfishInstallDir>
         <libertyServerName>petclinicServer</libertyServerName>
         <!-- Integration Testing ~with Arquillian and Selenium -->
