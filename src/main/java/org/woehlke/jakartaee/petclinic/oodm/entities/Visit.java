@@ -98,8 +98,9 @@ public class Visit implements TwEntities<Visit> {
 
     @NotNull
     @XmlElement(required=true)
-    @Column(name = COL_VISIT_DATE, columnDefinition = "DATE" ,nullable = false)
-    protected LocalDate date;
+    @Column(name = COL_VISIT_DATE, nullable = false)
+    @Temporal(TemporalType.DATE)
+    protected Date date;
 
 
     @NotEmpty
@@ -162,11 +163,11 @@ public class Visit implements TwEntities<Visit> {
         this.uuid = uuid;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

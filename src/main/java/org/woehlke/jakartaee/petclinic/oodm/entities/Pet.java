@@ -107,7 +107,8 @@ public class Pet implements TwEntities<Pet> {
     @NotNull
     @XmlElement(required=true)
     @Column(name = COL_BIRTH_DATE, columnDefinition = "DATE", nullable = false)
-    protected LocalDate birthDate;
+    @Temporal(TemporalType.DATE)
+    protected Date birthDate;
 
     @IndexedEmbedded
     @NotNull
@@ -181,11 +182,11 @@ public class Pet implements TwEntities<Pet> {
         this.name = name;
     }
 
-    public LocalDate getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
