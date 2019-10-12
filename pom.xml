@@ -58,7 +58,7 @@
         <!-- Integration Testing ~with Arquillian and Selenium -->
         <version.arquillian_universe>1.2.0.2</version.arquillian_universe>
         <version.selenium>3.141.59</version.selenium>
-        <skipIntegrationTests>true</skipIntegrationTests>
+        <skipIntegrationTests>false</skipIntegrationTests>
         <webdriverBrowser>chrome</webdriverBrowser>
         <org.wildfly.arquillian.version>2.2.0.Final</org.wildfly.arquillian.version>
         <!-- build -->
