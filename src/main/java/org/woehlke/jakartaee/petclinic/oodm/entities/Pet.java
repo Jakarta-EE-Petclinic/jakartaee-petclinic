@@ -106,8 +106,7 @@ public class Pet implements TwEntities<Pet> {
 
     @NotNull
     @XmlElement(required=true)
-    @Column(name = COL_BIRTH_DATE,nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(name = COL_BIRTH_DATE, columnDefinition = "DATE", nullable = false)
     protected LocalDate birthDate;
 
     @IndexedEmbedded

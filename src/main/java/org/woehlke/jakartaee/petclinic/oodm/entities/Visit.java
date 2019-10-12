@@ -98,14 +98,13 @@ public class Visit implements TwEntities<Visit> {
 
     @NotNull
     @XmlElement(required=true)
-    @Column(name = COL_VISIT_DATE)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(name = COL_VISIT_DATE, columnDefinition = "DATE" ,nullable = false)
     protected LocalDate date;
 
 
     @NotEmpty
     @XmlElement(required=true)
-    @Column(name = COL_DESCRIPTION)
+    @Column(name = COL_DESCRIPTION ,nullable = false)
     @Field(
         index = org.hibernate.search.annotations.Index.YES,
         analyze = org.hibernate.search.annotations.Analyze.YES,
