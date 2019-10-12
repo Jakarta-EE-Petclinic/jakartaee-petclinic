@@ -183,7 +183,7 @@ function main(){
   echo "-------------------"
   echo " main"
   echo "-------------------"
-  #resolveDependencies $TESTS_PROFILE $BROWSER_PROFILE
+  resolveDependencies $TESTS_PROFILE $BROWSER_PROFILE
   runRemote  $TESTS_PROFILE $BROWSER_PROFILE
   #runManaged  $TESTS_PROFILE $BROWSER_PROFILE
   echo "-------------------"
