@@ -183,8 +183,8 @@ function main(){
   echo "-------------------"
   echo " main"
   echo "-------------------"
-  #resolveDependencies $TESTS_PROFILE $BROWSER_PROFILE
-  runRemote  $TESTS_PROFILE $BROWSER_PROFILE
+  resolveDependencies $TESTS_PROFILE $BROWSER_PROFILE
+  #runRemote  $TESTS_PROFILE $BROWSER_PROFILE
   #runManaged  $TESTS_PROFILE $BROWSER_PROFILE
   echo "-------------------"
   echo " DONE and READY"
@@ -198,7 +198,7 @@ BROWSER_PROFILE=it-browser-chrome
 #BROWSER_PROFILE=it-browser-htmlunit
 #BROWSER_PROFILE=it-browser-phantomjsdriver
 
-TESTS_PROFILE=it-skip-tests
-#TESTS_PROFILE=it-run-tests
+#TESTS_PROFILE=it-skip-tests
+TESTS_PROFILE=it-run-tests
 
 main $TESTS_PROFILE $BROWSER_PROFILE

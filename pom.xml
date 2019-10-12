@@ -58,7 +58,7 @@
         <!-- Integration Testing ~with Arquillian and Selenium -->
         <version.arquillian_universe>1.2.0.2</version.arquillian_universe>
         <version.selenium>3.141.59</version.selenium>
-        <skipIntegrationTests>false</skipIntegrationTests>
+        <skipIntegrationTests>true</skipIntegrationTests>
         <webdriverBrowser>chrome</webdriverBrowser>
         <org.wildfly.arquillian.version>3.0.0.Beta1-SNAPSHOT</org.wildfly.arquillian.version>
         <!-- build -->
@@ -1331,20 +1331,6 @@
                 <dependency>
                     <groupId>org.seleniumhq.selenium</groupId>
                     <artifactId>selenium-opera-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-
-        <profile>
-            <id>it-browser-htmlunit</id>
-            <properties>
-                <webdriverBrowser>htmlunit</webdriverBrowser>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>htmlunit-driver</artifactId>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
