@@ -249,6 +249,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!--
             <dependency>
                 <groupId>org.wildfly.bom</groupId>
                 <artifactId>wildfly-jakartaee8-builder</artifactId>
@@ -256,6 +257,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            -->
             <!-- Jakarta EE Runtime: OpenLiberty -->
             <dependency>
                 <groupId>io.openliberty</groupId>
