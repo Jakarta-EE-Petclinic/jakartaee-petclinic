@@ -1337,20 +1337,6 @@
         </profile>
 
         <profile>
-            <id>it-browser-phantomjsdriver</id>
-            <properties>
-                <webdriverBrowser>phantomjsdriver</webdriverBrowser>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>com.codeborne</groupId>
-                    <artifactId>phantomjsdriver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-
-        <profile>
             <id>it-default</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
