@@ -43,48 +43,98 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <jakartaee.version>8.0.0</jakartaee.version>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <!-- Maven and its Plugins -->
         <version.maven>3.3.9</version.maven>
         <!-- Java EE and Jakarta EE Application Server: Wildfly, OpenLiberty, Glassfish -->
-        <jakartaee8.server.wildfly.version>18.0.0.Final</jakartaee8.server.wildfly.version>
+        <jakartaee8.server.wildfly.version>17.0.1.Final</jakartaee8.server.wildfly.version>
         <jakartaee8.server.openliberty.runtime>19.0.0.9</jakartaee8.server.openliberty.runtime>
-        <jakartaee8.server.glassfish.version>1.1.1</jakartaee8.server.glassfish.version>
-        <libertyInstallDir>${user.home}/j/srv/openliberty-19.0.0.9/wlp</libertyInstallDir>
-        <wildflyInstallDir>${user.home}/j/srv/wildfly-18.0.0.Final</wildflyInstallDir>
-        <glassfishInstallDir>${user.home}/j/srv/glassfish-5.1.0</glassfishInstallDir>
+        <jakartaee8.server.glassfish.version>5.1.0</jakartaee8.server.glassfish.version>
+        <libertyInstallDir>${user.home}/j/srv/openliberty-${jakartaee8.server.openliberty.runtime}/wlp</libertyInstallDir>
+        <wildflyInstallDir>${user.home}/j/srv/wildfly-${jakartaee8.server.wildfly.version}</wildflyInstallDir>
+        <glassfishInstallDir>${user.home}/j/srv/glassfish-${jakartaee8.server.glassfish.version}</glassfishInstallDir>
         <libertyServerName>petclinicServer</libertyServerName>
         <!-- Integration Testing ~with Arquillian and Selenium -->
-        <version.arquillian.core>1.4.1.Final</version.arquillian.core>
-        <version.arquillian.drone>2.5.1</version.arquillian.drone>
-        <version.graphene.webdriver>2.3.2</version.graphene.webdriver>
+        <version.arquillian_universe>1.1.13.5</version.arquillian_universe>
         <skipIntegrationTests>false</skipIntegrationTests>
         <webdriverBrowser>chrome</webdriverBrowser>
         <!-- build -->
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <postgresql.driver.version>42.2.7</postgresql.driver.version>
+        <!-- Jakarta EE APIs -->
+        <!-- Web Profile -->
+        <!--
+        <jakarta.servlet-api.version>4.0.3</jakarta.servlet-api.version>
+        <jakarta.servlet.jsp-api.version>2.3.6</jakarta.servlet.jsp-api.version>
+        <jakarta.servlet.jsp.jstl-api.version>1.2.7</jakarta.servlet.jsp.jstl-api.version>
+        <jakarta.faces-api.version>2.3.2</jakarta.faces-api.version>
+        <jakarta.el-api.version>3.0.3</jakarta.el-api.version>
+        <jakarta.websocket-api.version>1.1.2</jakarta.websocket-api.version>
+        <jakarta.json-api.version>1.1.6</jakarta.json-api.version>
+        <jakarta.json.bind-api.version>1.0.2</jakarta.json.bind-api.version>
+        <jakarta.annotation-api.version>1.3.5</jakarta.annotation-api.version>
+        <jakarta.ejb-api.version>3.2.6</jakarta.ejb-api.version>
+        <jakarta.transaction-api.version>1.3.3</jakarta.transaction-api.version>
+        <jakarta.persistence-api.version>2.2.3</jakarta.persistence-api.version>
+        <jakarta-persistence-api.version>2.2.3</jakarta-persistence-api.version>
+        <jakarta.validation-api.version>2.0.2</jakarta.validation-api.version>
+        <jakarta.interceptor-api.version>1.2.5</jakarta.interceptor-api.version>
+        <jakarta.enterprise.cdi-api.version>2.0.2</jakarta.enterprise.cdi-api.version>
+        <jakarta.inject.version>1.0</jakarta.inject.version>
+        <jakarta.security.auth.message-api.version>1.1.3</jakarta.security.auth.message-api.version>
+        <jakarta.security.enterprise-api.version>1.0.2</jakarta.security.enterprise-api.version>
+        <jakarta.ws.rs-api.version>2.1.6</jakarta.ws.rs-api.version>
+        -->
+        <jakarta.messaging-api.version>2.0.3</jakarta.messaging-api.version>
+        <!--  Full platform -->
+        <!--
+        <jakarta.jms-api.version>2.0.3</jakarta.jms-api.version>
+        <jakarta.mail-api.version>1.6.4</jakarta.mail-api.version>
+        <jakarta.resource-api.version>1.7.4</jakarta.resource-api.version>
+        <jakarta.management.j2ee-api.version>1.1.4</jakarta.management.j2ee-api.version>
+        <jakarta.authorization-api.version>1.5.0</jakarta.authorization-api.version>
+        <jakarta.enterprise.concurrent-api.version>1.1.2</jakarta.enterprise.concurrent-api.version>
+        <jakarta.batch-api.version>1.0.2</jakarta.batch-api.version>
+        -->
+        <!-- Optional APIs -->
+        <jakarta.enterprise.deploy-api.version>1.7.2</jakarta.enterprise.deploy-api.version>
+        <jakarta.xml.registry-api.version>1.0.10</jakarta.xml.registry-api.version>
+        <jakarta.xml.rpc-api.version>1.1.4</jakarta.xml.rpc-api.version>
+
+        <!-- Other dependencies -->
+        <mojarra.version>2.3.9</mojarra.version>
+        <copyright-plugin.version>1.50</copyright-plugin.version>
+
+        <!-- Compile-time dependencies -->
+        <jakarta.xml.bind-api.version>2.3.2</jakarta.xml.bind-api.version>
+        <jakarta.xml.ws-api.version>2.3.2</jakarta.xml.ws-api.version>
+        <!-- maven plugins -->
+        <pmd.version>6.15.0</pmd.version>
     </properties>
 
     <repositories>
         <repository>
-            <id>maven-central</id>
-            <name>Maven Central</name>
-            <url>http://repo1.maven.org/maven2/</url>
+            <id>Central</id>
+            <name>Central Repository</name>
+            <url>https://repo1.maven.org/maven2/</url>
         </repository>
         <repository>
             <id>primefaces-repo</id>
             <name>PrimeFaces Maven Repository</name>
-            <url>http://repository.primefaces.org</url>
+            <url>https://repository.primefaces.org</url>
         </repository>
+        <!--
         <repository>
             <id>jitpack.io</id>
             <name>Easy to use package repository for Git</name>
             <url>https://jitpack.io</url>
         </repository>
+        -->
         <repository>
             <id>jboss-public-repository-group</id>
             <name>JBoss Public Maven Repository Group</name>
-            <url>http://repository.jboss.org/nexus/content/groups/public</url>
+            <url>https://repository.jboss.org/nexus/content/groups/public</url>
             <releases>
                 <enabled>true</enabled>
                 <updatePolicy>never</updatePolicy>
@@ -108,9 +158,29 @@
 
     <pluginRepositories>
         <pluginRepository>
+            <id>Central</id>
+            <name>Central Repository</name>
+            <url>https://repo1.maven.org/maven2/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>primefaces-repo</id>
+            <name>PrimeFaces Maven Repository</name>
+            <url>https://repository.primefaces.org</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>java.net-public</id>
+            <name>Maven Java Net Snapshots and Releases</name>
+            <url>https://maven.java.net/content/groups/public/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>jboss-3rd-party-repository</id>
+            <name>JBoss 3rd-party Repository</name>
+            <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/</url>
+        </pluginRepository>
+        <pluginRepository>
             <id>jboss-public-repository-group</id>
             <name>JBoss Public Maven Repository Group</name>
-            <url>http://repository.jboss.org/nexus/content/groups/public</url>
+            <url>https://repository.jboss.org/nexus/content/groups/public</url>
             <releases>
                 <enabled>true</enabled>
                 <updatePolicy>never</updatePolicy>
@@ -120,6 +190,13 @@
                 <updatePolicy>never</updatePolicy>
             </snapshots>
         </pluginRepository>
+        <!--
+        <pluginRepository>
+            <id>jitpack.io</id>
+            <name>Easy to use package repository for Git</name>
+            <url>https://jitpack.io</url>
+        </pluginRepository>
+        -->
     </pluginRepositories>
 
     <dependencyManagement>
@@ -127,41 +204,37 @@
             <!-- Jakarta EE 8 API -->
             <dependency>
                 <groupId>jakarta.platform</groupId>
+                <artifactId>jakartaee-api-parent</artifactId>
+                <version>8.0.1-SNAPSHOT</version>
+                <type>pom</type>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.platform</groupId>
+                <artifactId>jakarta.jakartaee-bom</artifactId>
+                <version>8.0.1-SNAPSHOT</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.platform</groupId>
                 <artifactId>jakarta.jakartaee-api</artifactId>
-                <version>8.0.0</version>
+                <version>8.0.1-SNAPSHOT</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>javax.faces</groupId>
-                <artifactId>javax.faces-api</artifactId>
-                <version>2.3</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.glassfish</groupId>
-                <artifactId>javax.faces</artifactId>
-                <version>2.3.8</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>4.0.1</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax</groupId>
-                <artifactId>javaee-web-api</artifactId>
-                <version>8.0.1</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.spec.javax.faces</groupId>
-                <artifactId>jboss-jsf-api_2.3_spec</artifactId>
-                <version>2.3.9.SP02</version>
+                <groupId>jakarta.platform</groupId>
+                <artifactId>jakarta.jakartaee-web-api</artifactId>
+                <version>8.0.1-SNAPSHOT</version>
                 <scope>provided</scope>
             </dependency>
             <!-- Jakarta EE Runtime: Wildfly -->
+            <dependency>
+                <groupId>org.wildfly</groupId>
+                <artifactId>wildfly-dist</artifactId>
+                <version>${jakartaee8.server.wildfly.version}</version>
+                <type>zip</type>
+            </dependency>
             <dependency>
                 <groupId>org.wildfly</groupId>
                 <artifactId>wildfly-parent</artifactId>
@@ -177,25 +250,26 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.wildfly</groupId>
-                <artifactId>wildfly-dist</artifactId>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>wildfly-jakartaee8-builder</artifactId>
                 <version>${jakartaee8.server.wildfly.version}</version>
-                <type>zip</type>
-            </dependency>
-            <!-- Jakarta EE Runtime: OpenLiberty -->
-            <dependency>
-                <groupId>io.openliberty.features</groupId>
-                <artifactId>features-bom</artifactId>
-                <version>${jakartaee8.server.openliberty.runtime}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- Jakarta EE Runtime: OpenLiberty -->
             <dependency>
                 <groupId>io.openliberty</groupId>
                 <artifactId>openliberty-javaee8</artifactId>
                 <version>${jakartaee8.server.openliberty.runtime}</version>
                 <type>zip</type>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.openliberty.features</groupId>
+                <artifactId>features-bom</artifactId>
+                <version>${jakartaee8.server.openliberty.runtime}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>io.openliberty.arquillian</groupId>
@@ -209,8 +283,22 @@
                 <version>1.0.6</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>io.openliberty.arquillian</groupId>
+                <artifactId>liberty-support-feature</artifactId>
+                <version>1.0.6</version>
+                <scope>test</scope>
+            </dependency>
             <!-- TODO: Jakarta EE Runtime: Glassfish -->
             <!-- Integration Testing with Arquillian -->
+            <dependency>
+                <groupId>org.arquillian</groupId>
+                <artifactId>arquillian-universe</artifactId>
+                <version>${version.arquillian_universe}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+<!--
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
@@ -239,50 +327,9 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian.graphene</groupId>
-                <artifactId>graphene-webdriver</artifactId>
-                <version>${version.graphene.webdriver}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian.extension</groupId>
-                <artifactId>arquillian-drone-webdriver-depchain</artifactId>
-                <version>${version.arquillian.drone}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian.graphene</groupId>
-                <artifactId>graphene-webdriver-impl</artifactId>
-                <version>${version.graphene.webdriver}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian.extension</groupId>
-                <artifactId>arquillian-drone-impl</artifactId>
-                <version>${version.arquillian.drone}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian.extension</groupId>
-                <artifactId>arquillian-drone-webdriver</artifactId>
-                <version>${version.arquillian.drone}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.arquillian.spacelift</groupId>
-                <artifactId>arquillian-spacelift</artifactId>
-                <version>1.0.2</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.omnifaces</groupId>
-                <artifactId>arquillian-primefaces</artifactId>
-                <version>0.3</version>
-                <scope>test</scope>
-            </dependency>
+-->
+
+
             <dependency>
                 <groupId>org.apache.maven</groupId>
                 <artifactId>maven-aether-provider</artifactId>
@@ -307,6 +354,8 @@
                 <version>${version.maven}</version>
                 <scope>test</scope>
             </dependency>
+
+
             <dependency>
                 <groupId>org.wildfly.arquillian</groupId>
                 <artifactId>wildfly-arquillian-container-managed</artifactId>
@@ -331,18 +380,9 @@
                 <version>2.2.0.Final</version>
                 <scope>test</scope>
             </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian.junit</groupId>
-                <artifactId>arquillian-junit-container</artifactId>
-                <version>${version.arquillian.core}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian.protocol</groupId>
-                <artifactId>arquillian-protocol-servlet</artifactId>
-                <version>${version.arquillian.core}</version>
-                <scope>test</scope>
-            </dependency>
+
+
+
             <!-- Integration Testing with Arquillian: 3rd Party Dependencies -->
             <dependency>
                 <groupId>junit</groupId>
@@ -421,21 +461,21 @@
                 <version>7.0</version>
             </dependency>
             <dependency>
+                <groupId>org.primefaces.themes</groupId>
+                <artifactId>all-themes</artifactId>
+                <version>1.0.10</version>
+            </dependency>
+            <dependency>
                 <groupId>org.primefaces.extensions</groupId>
                 <artifactId>primefaces-arquillian</artifactId>
                 <version>7.0.0</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.primefaces.themes</groupId>
-                <artifactId>all-themes</artifactId>
-                <version>1.0.10</version>
-            </dependency>
-            <!-- Validation-->
-            <dependency>
-                <groupId>org.hibernate.validator</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>6.0.17.Final</version>
+                <groupId>org.omnifaces</groupId>
+                <artifactId>arquillian-primefaces</artifactId>
+                <version>0.3</version>
+                <scope>test</scope>
             </dependency>
             <!-- Search -->
             <dependency>
@@ -497,12 +537,6 @@
                 <artifactId>postgresql</artifactId>
                 <version>${postgresql.driver.version}</version>
             </dependency>
-            <!-- REST-API with JSON -->
-            <dependency>
-                <groupId>javax.json.bind</groupId>
-                <artifactId>javax.json.bind-api</artifactId>
-                <version>1.0</version>
-            </dependency>
             <dependency>
                 <groupId>org.eclipse</groupId>
                 <artifactId>yasson</artifactId>
@@ -519,7 +553,169 @@
     <dependencies>
         <dependency>
             <groupId>jakarta.platform</groupId>
+            <artifactId>jakartaee-api-parent</artifactId>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-web-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet.jsp</groupId>
+            <artifactId>jakarta.servlet.jsp-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.el</groupId>
+            <artifactId>jakarta.el-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.faces</groupId>
+            <artifactId>jakarta.faces-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.websocket</groupId>
+            <artifactId>jakarta.websocket-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.json</groupId>
+            <artifactId>jakarta.json-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.json.bind</groupId>
+            <artifactId>jakarta.json.bind-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.ejb</groupId>
+            <artifactId>jakarta.ejb-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.transaction</groupId>
+            <artifactId>jakarta.transaction-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.interceptor</groupId>
+            <artifactId>jakarta.interceptor-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.inject</groupId>
+            <artifactId>jakarta.inject-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.security.auth.message</groupId>
+            <artifactId>jakarta.security.auth.message-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.security.enterprise</groupId>
+            <artifactId>jakarta.security.enterprise-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!--  Full Platform  -->
+        <dependency>
+            <groupId>jakarta.jms</groupId>
+            <artifactId>jakarta.jms-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.mail</groupId>
+            <artifactId>jakarta.mail-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.resource</groupId>
+            <artifactId>jakarta.resource-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.management.j2ee</groupId>
+            <artifactId>jakarta.management.j2ee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.authorization</groupId>
+            <artifactId>jakarta.authorization-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.enterprise.concurrent</groupId>
+            <artifactId>jakarta.enterprise.concurrent-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.batch</groupId>
+            <artifactId>jakarta.batch-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!--  Optional APIs  -->
+        <dependency>
+            <groupId>jakarta.enterprise.deploy</groupId>
+            <artifactId>jakarta.enterprise.deploy-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.xml.registry</groupId>
+            <artifactId>jakarta.xml.registry-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.xml.rpc</groupId>
+            <artifactId>jakarta.xml.rpc-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <!-- JSF -->
@@ -531,10 +727,10 @@
             <groupId>org.primefaces.themes</groupId>
             <artifactId>all-themes</artifactId>
         </dependency>
-        <!-- Validation -->
         <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>primefaces-arquillian</artifactId>
+            <scope>test</scope>
         </dependency>
         <!-- Search -->
         <dependency>
@@ -584,28 +780,37 @@
             <artifactId>esapi</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.wildfly</groupId>
-            <artifactId>wildfly-dist</artifactId>
-            <type>zip</type>
-        </dependency>
-        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.primefaces.extensions</groupId>
-            <artifactId>primefaces-arquillian</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.omnifaces</groupId>
-            <artifactId>arquillian-primefaces</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.arquillian.universe</groupId>
+            <artifactId>arquillian-junit</artifactId>
+            <scope>test</scope>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.arquillian.universe</groupId>
+            <artifactId>arquillian-graphene-recorder</artifactId>
+            <scope>test</scope>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.arquillian.universe</groupId>
+            <artifactId>arquillian-warp-jsf</artifactId>
+            <scope>test</scope>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.arquillian.universe</groupId>
+            <artifactId>arquillian-chameleon</artifactId>
+            <scope>test</scope>
+            <type>pom</type>
         </dependency>
     </dependencies>
 
@@ -723,6 +928,34 @@
                     <artifactId>maven-toolchains-plugin</artifactId>
                     <version>3.0.0</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-pmd-plugin</artifactId>
+                    <version>3.10.0</version>
+                    <dependencies>
+                        <!-- this allows to control the PMD version used by maven-pmd-plugin -->
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-core</artifactId>
+                            <version>${pmd.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-java</artifactId>
+                            <version>${pmd.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-javascript</artifactId>
+                            <version>${pmd.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-jsp</artifactId>
+                            <version>${pmd.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -757,6 +990,55 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.17</version>
+                <configuration>
+                    <consoleOutput>true</consoleOutput>
+                    <configLocation>./checkstyle.xml</configLocation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>checkstyle</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <failOnViolation>true</failOnViolation>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>8.18</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>pmd-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <printFailingErrors>true</printFailingErrors>
+                    <rulesets>
+                        <ruleset>pmd-ruleset.xml</ruleset>
+                    </rulesets>
+                    <analysisCache>false</analysisCache>
+                    <includeTests>true</includeTests>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -1021,11 +1303,6 @@
                     <scope>test</scope>
                 </dependency>
                 <dependency>
-                    <groupId>org.arquillian.spacelift</groupId>
-                    <artifactId>arquillian-spacelift</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
                     <groupId>org.wildfly.arquillian</groupId>
                     <artifactId>wildfly-arquillian-container-managed</artifactId>
                     <scope>test</scope>
@@ -1207,11 +1484,6 @@
                 <dependency>
                     <groupId>com.codeborne</groupId>
                     <artifactId>phantomjsdriver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.arquillian.spacelift</groupId>
-                    <artifactId>arquillian-spacelift</artifactId>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
@@ -1573,11 +1845,6 @@
                     <scope>test</scope>
                 </dependency>
                 <dependency>
-                    <groupId>org.arquillian.spacelift</groupId>
-                    <artifactId>arquillian-spacelift</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
                     <groupId>org.wildfly.arquillian</groupId>
                     <artifactId>wildfly-arquillian-container-managed</artifactId>
                     <scope>test</scope>
@@ -1600,11 +1867,6 @@
                 <dependency>
                     <groupId>org.jboss.shrinkwrap.resolver</groupId>
                     <artifactId>shrinkwrap-resolver-api-maven-embedded</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                    <artifactId>shrinkwrap-resolver-impl-maven-embedded</artifactId>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
@@ -1737,11 +1999,6 @@
                 <dependency>
                     <groupId>com.codeborne</groupId>
                     <artifactId>phantomjsdriver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.arquillian.spacelift</groupId>
-                    <artifactId>arquillian-spacelift</artifactId>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
@@ -1924,6 +2181,25 @@
 
         <profile>
             <id>assembly-cloud-heroku</id>
+        </profile>
+
+        <profile>
+            <id>check-serial-version-uid</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <useIncrementalCompilation>false</useIncrementalCompilation>
+                            <showWarnings>true</showWarnings>
+                            <compilerArgs>
+                                <arg>-Xlint:serial</arg>
+                            </compilerArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 

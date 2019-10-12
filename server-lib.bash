@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-function startRemoteAppServerWildfly18(){
+function startRemoteAppServerWildfly17(){
   echo "-----------------------------------------"
-  echo "start remote AppServer Wildfly 18"
+  echo "start remote AppServer Wildfly 17"
   echo "-----------------------------------------"
   echo "reminder: hit CTRL-C to stop this Server"
   echo "-----------------------------------------"
-  cd ~/j/srv/wildfly-18.0.0.Final/bin
+  cd ~/j/srv/wildfly-17.0.1.Final/bin
   ./standalone.sh
 }
 
-function stopRemoteAppServerWildfly18() {
+function stopRemoteAppServerWildfly17() {
   echo "-----------------------------------------"
   echo "reminder: hit CTRL-C to stop this Server"
   echo "-----------------------------------------"
@@ -73,7 +73,7 @@ function startRemoteAppServerOpenLibertyWlp(){
 function startAppServer(){
   echo "-----------------------------------------"
   echo "start remote AppServer"
-  startRemoteAppServerWildfly18
+  startRemoteAppServerWildfly17
   #startRemoteAppServerOpenLibertyWlp
   #startRemoteAppServerGlassfish51
 }
@@ -81,7 +81,7 @@ function startAppServer(){
 function stopAppServer(){
   echo "-----------------------------------------"
   echo "stop remote AppServer"
-  stopRemoteAppServerWildfly18
+  stopRemoteAppServerWildfly17
   #stopRemoteAppServerOpenLibertyWlp
   #stopRemoteAppServerGlassfish51
 }
