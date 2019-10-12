@@ -56,56 +56,24 @@
         <glassfishInstallDir>${user.home}/j/srv/glassfish-${jakartaee8.server.glassfish.version}</glassfishInstallDir>
         <libertyServerName>petclinicServer</libertyServerName>
         <!-- Integration Testing ~with Arquillian and Selenium -->
-        <version.arquillian_universe>1.1.13.5</version.arquillian_universe>
+        <version.arquillian_universe>1.2.0.2</version.arquillian_universe>
+        <version.selenium>3.141.59</version.selenium>
         <skipIntegrationTests>false</skipIntegrationTests>
         <webdriverBrowser>chrome</webdriverBrowser>
+        <org.wildfly.arquillian.version>3.0.0.Beta1-SNAPSHOT</org.wildfly.arquillian.version>
         <!-- build -->
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <postgresql.driver.version>42.2.7</postgresql.driver.version>
         <!-- Jakarta EE APIs -->
-        <!-- Web Profile -->
-        <!--
-        <jakarta.servlet-api.version>4.0.3</jakarta.servlet-api.version>
-        <jakarta.servlet.jsp-api.version>2.3.6</jakarta.servlet.jsp-api.version>
-        <jakarta.servlet.jsp.jstl-api.version>1.2.7</jakarta.servlet.jsp.jstl-api.version>
-        <jakarta.faces-api.version>2.3.2</jakarta.faces-api.version>
-        <jakarta.el-api.version>3.0.3</jakarta.el-api.version>
-        <jakarta.websocket-api.version>1.1.2</jakarta.websocket-api.version>
-        <jakarta.json-api.version>1.1.6</jakarta.json-api.version>
-        <jakarta.json.bind-api.version>1.0.2</jakarta.json.bind-api.version>
-        <jakarta.annotation-api.version>1.3.5</jakarta.annotation-api.version>
-        <jakarta.ejb-api.version>3.2.6</jakarta.ejb-api.version>
-        <jakarta.transaction-api.version>1.3.3</jakarta.transaction-api.version>
-        <jakarta.persistence-api.version>2.2.3</jakarta.persistence-api.version>
-        <jakarta-persistence-api.version>2.2.3</jakarta-persistence-api.version>
-        <jakarta.validation-api.version>2.0.2</jakarta.validation-api.version>
-        <jakarta.interceptor-api.version>1.2.5</jakarta.interceptor-api.version>
-        <jakarta.enterprise.cdi-api.version>2.0.2</jakarta.enterprise.cdi-api.version>
-        <jakarta.inject.version>1.0</jakarta.inject.version>
-        <jakarta.security.auth.message-api.version>1.1.3</jakarta.security.auth.message-api.version>
-        <jakarta.security.enterprise-api.version>1.0.2</jakarta.security.enterprise-api.version>
-        <jakarta.ws.rs-api.version>2.1.6</jakarta.ws.rs-api.version>
-        -->
+	    <jakarta-persistence-api.version>2.2.3</jakarta-persistence-api.version>
         <jakarta.messaging-api.version>2.0.3</jakarta.messaging-api.version>
-        <!--  Full platform -->
-        <!--
-        <jakarta.jms-api.version>2.0.3</jakarta.jms-api.version>
-        <jakarta.mail-api.version>1.6.4</jakarta.mail-api.version>
-        <jakarta.resource-api.version>1.7.4</jakarta.resource-api.version>
-        <jakarta.management.j2ee-api.version>1.1.4</jakarta.management.j2ee-api.version>
-        <jakarta.authorization-api.version>1.5.0</jakarta.authorization-api.version>
-        <jakarta.enterprise.concurrent-api.version>1.1.2</jakarta.enterprise.concurrent-api.version>
-        <jakarta.batch-api.version>1.0.2</jakarta.batch-api.version>
-        -->
         <!-- Optional APIs -->
         <jakarta.enterprise.deploy-api.version>1.7.2</jakarta.enterprise.deploy-api.version>
         <jakarta.xml.registry-api.version>1.0.10</jakarta.xml.registry-api.version>
         <jakarta.xml.rpc-api.version>1.1.4</jakarta.xml.rpc-api.version>
-
         <!-- Other dependencies -->
         <mojarra.version>2.3.9</mojarra.version>
         <copyright-plugin.version>1.50</copyright-plugin.version>
-
         <!-- Compile-time dependencies -->
         <jakarta.xml.bind-api.version>2.3.2</jakarta.xml.bind-api.version>
         <jakarta.xml.ws-api.version>2.3.2</jakarta.xml.ws-api.version>
@@ -205,27 +173,27 @@
             <dependency>
                 <groupId>jakarta.platform</groupId>
                 <artifactId>jakartaee-api-parent</artifactId>
-                <version>8.0.1-SNAPSHOT</version>
+                <version>8.0.0-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>jakarta.platform</groupId>
                 <artifactId>jakarta.jakartaee-bom</artifactId>
-                <version>8.0.1-SNAPSHOT</version>
+                <version>8.0.0-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>jakarta.platform</groupId>
                 <artifactId>jakarta.jakartaee-api</artifactId>
-                <version>8.0.1-SNAPSHOT</version>
+                <version>8.0.0-SNAPSHOT</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>jakarta.platform</groupId>
                 <artifactId>jakarta.jakartaee-web-api</artifactId>
-                <version>8.0.1-SNAPSHOT</version>
+                <version>8.0.0-SNAPSHOT</version>
                 <scope>provided</scope>
             </dependency>
             <!-- Jakarta EE Runtime: Wildfly -->
@@ -300,7 +268,48 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
-<!--
+            <dependency>
+                <groupId>org.arquillian.universe</groupId>
+                <artifactId>arquillian-drone</artifactId>
+                <version>${version.arquillian_universe}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.arquillian.universe</groupId>
+                <artifactId>arquillian-graphene</artifactId>
+                <version>${version.arquillian_universe}</version>
+                <type>pom</type>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.arquillian.universe</groupId>
+                <artifactId>arquillian-graphene-recorder</artifactId>
+                <version>${version.arquillian_universe}</version>
+                <type>pom</type>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.arquillian.universe</groupId>
+                <artifactId>arquillian-warp</artifactId>
+                <version>${version.arquillian_universe}</version>
+                <type>pom</type>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.arquillian.universe</groupId>
+                <artifactId>arquillian-warp-jsf</artifactId>
+                <version>${version.arquillian_universe}</version>
+                <type>pom</type>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.arquillian.universe</groupId>
+                <artifactId>arquillian-chameleon</artifactId>
+                <version>${version.arquillian_universe}</version>
+                <type>pom</type>
+                <scope>test</scope>
+            </dependency>
+            <!--
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
@@ -316,22 +325,13 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.jboss.arquillian.selenium</groupId>
-                <artifactId>selenium-bom</artifactId>
-                <version>3.13.0</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
                 <artifactId>shrinkwrap-resolver-bom</artifactId>
                 <version>3.1.3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
--->
-
-
+            -->
             <dependency>
                 <groupId>org.apache.maven</groupId>
                 <artifactId>maven-aether-provider</artifactId>
@@ -356,12 +356,11 @@
                 <version>${version.maven}</version>
                 <scope>test</scope>
             </dependency>
-
-
+            <!-- org.wildfly.arquillian -->
             <dependency>
                 <groupId>org.wildfly.arquillian</groupId>
                 <artifactId>wildfly-arquillian-container-managed</artifactId>
-                <version>2.2.0.Final</version>
+                <version>${org.wildfly.arquillian.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -372,19 +371,16 @@
             </dependency>
             <dependency>
                 <groupId>org.wildfly.arquillian</groupId>
-                <artifactId>wildfly-arquillian-container-domain-remote</artifactId>
+                <artifactId>wildfly-arquillian-common</artifactId>
                 <version>2.2.0.Final</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.wildfly.arquillian</groupId>
-                <artifactId>wildfly-arquillian-common</artifactId>
+                <artifactId>elytron-standalone</artifactId>
                 <version>2.2.0.Final</version>
                 <scope>test</scope>
             </dependency>
-
-
-
             <!-- Integration Testing with Arquillian: 3rd Party Dependencies -->
             <dependency>
                 <groupId>junit</groupId>
@@ -549,10 +545,156 @@
                 <artifactId>javax.json</artifactId>
                 <version>1.1</version>
             </dependency>
+            <dependency>
+                <groupId>com.puppycrawl.tools</groupId>
+                <artifactId>checkstyle</artifactId>
+                <version>8.18</version>
+	    </dependency>
+
+        <!--
+           TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28
+           <dependency>
+               <groupId>org.jboss.arquillian.selenium</groupId>
+               <artifactId>selenium-bom</artifactId>
+               <version>${version.selenium}</version>
+               <type>pom</type>
+               <scope>import</scope>
+           </dependency>
+           -->
+
+        <!-- Selenium Server TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28 -->
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-server</artifactId>
+        <version>${version.selenium}</version>
+      </dependency>
+
+      <!-- Selenium dependecies   TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28 -->
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-api</artifactId>
+        <version>${version.selenium}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>${version.selenium}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-support</artifactId>
+        <version>${version.selenium}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-leg-rc</artifactId>
+        <version>${version.selenium}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>lift</artifactId>
+        <version>${version.selenium}</version>
+      </dependency>
+
+      <!-- Drivers TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28  -->
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-chrome-driver</artifactId>
+        <version>${version.selenium}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-firefox-driver</artifactId>
+        <version>${version.selenium}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-ie-driver</artifactId>
+        <version>${version.selenium}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-edge-driver</artifactId>
+        <version>${version.selenium}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-safari-driver</artifactId>
+        <version>${version.selenium}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-remote-driver</artifactId>
+        <version>${version.selenium}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-opera-driver</artifactId>
+        <version>${version.selenium}</version>
+      </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+        <!-- JSF -->
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces.themes</groupId>
+            <artifactId>all-themes</artifactId>
+        </dependency>
+        <!-- Search -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search-engine</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search-orm</artifactId>
+        </dependency>
+        <!-- Frontend webjars for HTML, CSS and JS -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>font-awesome</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-appserver</artifactId>
+        </dependency>
+        <!-- unknown -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.owasp.encoder</groupId>
+            <artifactId>encoder</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.owasp.esapi</groupId>
+            <artifactId>esapi</artifactId>
+        </dependency>
+        <!-- provided -->
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakartaee-api-parent</artifactId>
@@ -632,6 +774,7 @@
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
+	        <version>${jakarta-persistence-api.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -709,6 +852,7 @@
         <dependency>
             <groupId>jakarta.enterprise.deploy</groupId>
             <artifactId>jakarta.enterprise.deploy-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.xml.registry</groupId>
@@ -720,70 +864,20 @@
             <artifactId>jakarta.xml.rpc-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- JSF -->
         <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
+            <groupId>org.jboss.shrinkwrap</groupId>
+            <artifactId>shrinkwrap-api</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.primefaces.themes</groupId>
-            <artifactId>all-themes</artifactId>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>primefaces-arquillian</artifactId>
             <scope>test</scope>
-        </dependency>
-        <!-- Search -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-search-engine</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-search-orm</artifactId>
-        </dependency>
-        <!-- Frontend webjars for HTML, CSS and JS -->
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>bootstrap</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>font-awesome</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>jquery</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-appserver</artifactId>
-        </dependency>
-        <!-- unknown -->
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.owasp.encoder</groupId>
-            <artifactId>encoder</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.owasp.esapi</groupId>
-            <artifactId>esapi</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -791,28 +885,29 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.arquillian.universe</groupId>
-            <artifactId>arquillian-junit</artifactId>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
             <scope>test</scope>
-            <type>pom</type>
         </dependency>
         <dependency>
-            <groupId>org.arquillian.universe</groupId>
-            <artifactId>arquillian-graphene-recorder</artifactId>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-api</artifactId>
             <scope>test</scope>
-            <type>pom</type>
         </dependency>
         <dependency>
-            <groupId>org.arquillian.universe</groupId>
-            <artifactId>arquillian-warp-jsf</artifactId>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-support</artifactId>
             <scope>test</scope>
-            <type>pom</type>
         </dependency>
         <dependency>
-            <groupId>org.arquillian.universe</groupId>
-            <artifactId>arquillian-chameleon</artifactId>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-leg-rc</artifactId>
             <scope>test</scope>
-            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>lift</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -825,11 +920,13 @@
                     <artifactId>maven-enforcer-plugin</artifactId>
                     <version>3.0.0-M2</version>
                 </plugin>
+                <!--
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>jaxb2-maven-plugin</artifactId>
                     <version>2.5.0</version>
                 </plugin>
+                -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
@@ -932,6 +1029,11 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>2.17</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-pmd-plugin</artifactId>
                     <version>3.10.0</version>
                     <dependencies>
@@ -993,55 +1095,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.17</version>
-                <configuration>
-                    <consoleOutput>true</consoleOutput>
-                    <configLocation>./checkstyle.xml</configLocation>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>checkstyle</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                        <configuration>
-                            <failOnViolation>true</failOnViolation>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.puppycrawl.tools</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>8.18</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>pmd-check</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <printFailingErrors>true</printFailingErrors>
-                    <rulesets>
-                        <ruleset>pmd-ruleset.xml</ruleset>
-                    </rulesets>
-                    <analysisCache>false</analysisCache>
-                    <includeTests>true</includeTests>
-                </configuration>
-            </plugin>
+            <!--
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
@@ -1068,6 +1122,7 @@
                     </schemaSourceExcludeFilters>
                 </configuration>
             </plugin>
+            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -1114,11 +1169,111 @@
                 <skipIntegrationTests>true</skipIntegrationTests>
             </properties>
         </profile>
+
+
         <profile>
             <id>it-run-tests</id>
             <properties>
                 <skipIntegrationTests>false</skipIntegrationTests>
             </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.arquillian.universe</groupId>
+                    <artifactId>arquillian-junit</artifactId>
+                    <type>pom</type>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.arquillian.universe</groupId>
+                    <artifactId>arquillian-drone</artifactId>
+                    <type>pom</type>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.arquillian.universe</groupId>
+                    <artifactId>arquillian-graphene</artifactId>
+                    <type>pom</type>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.arquillian.universe</groupId>
+                    <artifactId>arquillian-graphene-recorder</artifactId>
+                    <type>pom</type>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.arquillian.universe</groupId>
+                    <artifactId>arquillian-warp</artifactId>
+                    <type>pom</type>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.arquillian.universe</groupId>
+                    <artifactId>arquillian-warp-jsf</artifactId>
+                    <type>pom</type>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.arquillian.universe</groupId>
+                    <artifactId>arquillian-chameleon</artifactId>
+                    <type>pom</type>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.arquillian.junit</groupId>
+                    <artifactId>arquillian-junit-container</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <!--
+                TODO:
+                <dependency>
+                    <groupId>org.jboss.arquillian.graphene</groupId>
+                    <artifactId>graphene-webdriver-impl</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                 TODO:
+                <dependency>
+                    <groupId>org.jboss.arquillian.protocol</groupId>
+                    <artifactId>arquillian-protocol-servlet</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                -->
+                <dependency>
+                    <groupId>org.apache.httpcomponents</groupId>
+                    <artifactId>httpcore</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.httpcomponents</groupId>
+                    <artifactId>httpclient</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-server</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-java</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-api</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-support</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-remote-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
         </profile>
 
 
@@ -1130,38 +1285,84 @@
             <properties>
                 <webdriverBrowser>chrome</webdriverBrowser>
             </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-chrome-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
         </profile>
+
         <profile>
             <id>it-browser-firefox</id>
             <properties>
                 <webdriverBrowser>firefox</webdriverBrowser>
             </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-firefox-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
         </profile>
+
         <profile>
             <id>it-browser-safari</id>
             <properties>
                 <webdriverBrowser>safari</webdriverBrowser>
             </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-safari-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
         </profile>
+
         <profile>
             <id>it-browser-opera</id>
             <properties>
                 <webdriverBrowser>opera</webdriverBrowser>
             </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-opera-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
         </profile>
+
         <profile>
             <id>it-browser-htmlunit</id>
             <properties>
                 <webdriverBrowser>htmlunit</webdriverBrowser>
             </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>htmlunit-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
         </profile>
+
         <profile>
             <id>it-browser-phantomjsdriver</id>
             <properties>
                 <webdriverBrowser>phantomjsdriver</webdriverBrowser>
             </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.codeborne</groupId>
+                    <artifactId>phantomjsdriver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
         </profile>
-
 
         <profile>
             <id>it-default</id>
@@ -1200,6 +1401,11 @@
         <profile>
             <id>it-wildfly-managed</id>
             <dependencies>
+                <dependency>
+                    <groupId>org.wildfly.arquillian</groupId>
+                    <artifactId>wildfly-arquillian-container-managed</artifactId>
+                    <scope>test</scope>
+                </dependency>
                 <!-- logging -->
                 <dependency>
                     <groupId>commons-logging</groupId>
@@ -1207,31 +1413,13 @@
                     <scope>test</scope>
                 </dependency>
                 <!-- Integration Testing with Arquillian -->
-                <dependency>
-                    <groupId>org.jboss.arquillian.junit</groupId>
-                    <artifactId>arquillian-junit-container</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
-                    <scope>test</scope>
-                </dependency>
+                <!--
                 <dependency>
                     <groupId>org.jboss.arquillian.protocol</groupId>
                     <artifactId>arquillian-protocol-servlet</artifactId>
                     <scope>test</scope>
                 </dependency>
-                <dependency>
-                    <groupId>org.apache.httpcomponents</groupId>
-                    <artifactId>httpcore</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.httpcomponents</groupId>
-                    <artifactId>httpclient</artifactId>
-                    <scope>test</scope>
-                </dependency>
+                -->
                 <!--
                 <dependency>
                     <groupId>xml-apis</groupId>
@@ -1239,76 +1427,13 @@
                     <scope>test</scope>
                 </dependency>
                 -->
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-server</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-java</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-api</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-support</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-remote-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-chrome-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-firefox-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-opera-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-safari-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>htmlunit-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>com.codeborne</groupId>
-                    <artifactId>phantomjsdriver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.arquillian.graphene</groupId>
-                    <artifactId>graphene-webdriver-impl</artifactId>
-                    <scope>test</scope>
-                </dependency>
+                <!--
                 <dependency>
                     <groupId>org.jboss.arquillian.extension</groupId>
                     <artifactId>arquillian-drone-webdriver</artifactId>
                     <scope>test</scope>
                 </dependency>
-                <dependency>
-                    <groupId>org.wildfly.arquillian</groupId>
-                    <artifactId>wildfly-arquillian-container-managed</artifactId>
-                    <scope>test</scope>
-                </dependency>
+                -->
                 <dependency>
                     <groupId>org.wildfly.arquillian</groupId>
                     <artifactId>wildfly-arquillian-common</artifactId>
@@ -1380,6 +1505,37 @@
                             </environmentVariables>
                         </configuration>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <skipTests>${skipIntegrationTests}</skipTests>
+                            <environmentVariables>
+                                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                                <JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</JBOSS_HOME>
+                                <jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</jboss.home>
+                                <jbossas.startup.timeout>300</jbossas.startup.timeout>
+                                <http.port>8080</http.port>
+                                <https.port>8443</https.port>
+                            </environmentVariables>
+                            <systemPropertyVariables>
+                                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                                <JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</JBOSS_HOME>
+                                <jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</jboss.home>
+                                <jbossas.startup.timeout>300</jbossas.startup.timeout>
+                                <http.port>8080</http.port>
+                                <https.port>8443</https.port>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -1387,118 +1543,6 @@
         <profile>
             <id>it-openliberty-managed</id>
             <dependencies>
-                <!-- logging -->
-                <!--
-                <dependency>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                -->
-                <!-- Integration Testing with Arquillian -->
-                <dependency>
-                    <groupId>org.jboss.arquillian.graphene</groupId>
-                    <artifactId>graphene-webdriver-impl</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.arquillian.extension</groupId>
-                    <artifactId>arquillian-drone-webdriver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.arquillian.junit</groupId>
-                    <artifactId>arquillian-junit-container</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.arquillian.protocol</groupId>
-                    <artifactId>arquillian-protocol-servlet</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.httpcomponents</groupId>
-                    <artifactId>httpcore</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.httpcomponents</groupId>
-                    <artifactId>httpclient</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <!--
-                <dependency>
-                    <groupId>xml-apis</groupId>
-                    <artifactId>xml-apis</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                -->
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-server</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-java</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-api</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-support</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-remote-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-chrome-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-firefox-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-opera-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-safari-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>htmlunit-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>com.codeborne</groupId>
-                    <artifactId>phantomjsdriver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                    <artifactId>shrinkwrap-resolver-depchain</artifactId>
-                    <type>pom</type>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                    <artifactId>shrinkwrap-resolver-api-maven-embedded</artifactId>
-                    <scope>test</scope>
-                </dependency>
                 <dependency>
                     <groupId>io.openliberty.arquillian</groupId>
                     <artifactId>arquillian-liberty-managed</artifactId>
@@ -1509,6 +1553,10 @@
                     <artifactId>openliberty-javaee8</artifactId>
                     <type>zip</type>
                     <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
                 </dependency>
                 <dependency>
                     <groupId>io.openliberty.features</groupId>
@@ -1528,6 +1576,67 @@
                     <type>esa</type>
                     <scope>provided</scope>
                 </dependency>
+                <dependency>
+                    <groupId>io.openliberty.features</groupId>
+                    <artifactId>springBoot-2.0</artifactId>
+                    <type>esa</type>
+                    <scope>provided</scope>
+                </dependency>
+                <!-- shrinkwrap -->
+                <dependency>
+                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                    <artifactId>shrinkwrap-resolver-depchain</artifactId>
+                    <type>pom</type>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                    <artifactId>shrinkwrap-resolver-api-maven-embedded</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <!-- -->
+                <dependency>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>cxf-rt-rs-client</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>cxf-rt-rs-extension-providers</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <!-- logging -->
+                <!--
+                <dependency>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                -->
+                <!-- Integration Testing with Arquillian -->
+                <!--
+                <dependency>
+                    <groupId>xml-apis</groupId>
+                    <artifactId>xml-apis</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                -->
+                <!--
+                  TODO:
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>htmlunit-driver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                -->
+                <!--
+                TODO:
+                <dependency>
+                    <groupId>com.codeborne</groupId>
+                    <artifactId>phantomjsdriver</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                -->
                 <!--
                 <dependency>
                     <groupId>io.openliberty.features</groupId>
@@ -1560,22 +1669,6 @@
                     <scope>provided</scope>
                 </dependency>
                 -->
-                <dependency>
-                    <groupId>io.openliberty.features</groupId>
-                    <artifactId>springBoot-2.0</artifactId>
-                    <type>esa</type>
-                    <scope>provided</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.cxf</groupId>
-                    <artifactId>cxf-rt-rs-client</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.cxf</groupId>
-                    <artifactId>cxf-rt-rs-extension-providers</artifactId>
-                    <scope>test</scope>
-                </dependency>
             </dependencies>
             <build>
                 <finalName>petclinic</finalName>
@@ -1747,6 +1840,27 @@
         <profile>
             <id>it-wildfly-remote</id>
             <dependencies>
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.wildfly.arquillian</groupId>
+                    <artifactId>wildfly-arquillian-container-remote</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                     <groupId>org.wildfly.arquillian</groupId>
+                     <artifactId>elytron-standalone</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <!--
+                <dependency>
+                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                    <artifactId>shrinkwrap-resolver-api-maven-embedded</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                -->
                 <!-- logging -->
                 <dependency>
                     <groupId>commons-logging</groupId>
@@ -1755,23 +1869,8 @@
                 </dependency>
                 <!-- Integration Testing with Arquillian -->
                 <dependency>
-                    <groupId>org.jboss.arquillian.junit</groupId>
-                    <artifactId>arquillian-junit-container</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
                     <groupId>org.jboss.arquillian.protocol</groupId>
                     <artifactId>arquillian-protocol-servlet</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.httpcomponents</groupId>
-                    <artifactId>httpcore</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.httpcomponents</groupId>
-                    <artifactId>httpclient</artifactId>
                     <scope>test</scope>
                 </dependency>
                 <!--
@@ -1781,101 +1880,13 @@
                     <scope>test</scope>
                 </dependency>
                 -->
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-server</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-java</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-api</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-support</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-remote-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-chrome-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-firefox-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-opera-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-safari-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>htmlunit-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>com.codeborne</groupId>
-                    <artifactId>phantomjsdriver</artifactId>
-                    <scope>test</scope>
-                </dependency>
+                <!--
                 <dependency>
                     <groupId>org.jboss.arquillian.graphene</groupId>
                     <artifactId>graphene-webdriver-impl</artifactId>
                     <scope>test</scope>
                 </dependency>
-                <dependency>
-                    <groupId>org.jboss.arquillian.extension</groupId>
-                    <artifactId>arquillian-drone-webdriver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.wildfly.arquillian</groupId>
-                    <artifactId>wildfly-arquillian-container-managed</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.wildfly.arquillian</groupId>
-                    <artifactId>wildfly-arquillian-common</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.wildfly.arquillian</groupId>
-                    <artifactId>wildfly-arquillian-protocol-jmx</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.wildfly.arquillian</groupId>
-                    <artifactId>wildfly-arquillian-testenricher-msc</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                    <artifactId>shrinkwrap-resolver-api-maven-embedded</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.wildfly.arquillian</groupId>
-                    <artifactId>wildfly-arquillian-container-domain-remote</artifactId>
-                    <scope>test</scope>
-                </dependency>
+                -->
             </dependencies>
             <build>
                 <finalName>petclinic</finalName>
@@ -1917,28 +1928,26 @@
         <profile>
             <id>it-openliberty-remote</id>
             <dependencies>
-                <!-- logging -->
-                <!--
                 <dependency>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
+                    <groupId>io.openliberty.arquillian</groupId>
+                    <artifactId>arquillian-liberty-remote</artifactId>
                     <scope>test</scope>
                 </dependency>
-                -->
-                <!-- Integration Testing with Arquillian -->
                 <dependency>
                     <groupId>org.jboss.arquillian.junit</groupId>
                     <artifactId>arquillian-junit-container</artifactId>
                     <scope>test</scope>
                 </dependency>
+                <!--
                 <dependency>
-                    <groupId>org.apache.httpcomponents</groupId>
-                    <artifactId>httpcore</artifactId>
+                    <groupId>org.jboss.arquillian.graphene</groupId>
+                    <artifactId>graphene-webdriver-impl</artifactId>
                     <scope>test</scope>
                 </dependency>
+                -->
                 <dependency>
-                    <groupId>org.apache.httpcomponents</groupId>
-                    <artifactId>httpclient</artifactId>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>cxf-rt-rs-extension-providers</artifactId>
                     <scope>test</scope>
                 </dependency>
                 <!--
@@ -1948,133 +1957,14 @@
                     <scope>test</scope>
                 </dependency>
                 -->
+                <!-- logging -->
+                <!--
                 <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-server</artifactId>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
                     <scope>test</scope>
                 </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-java</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-api</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-support</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-remote-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-chrome-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-firefox-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-opera-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-safari-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>htmlunit-driver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>com.codeborne</groupId>
-                    <artifactId>phantomjsdriver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.arquillian.graphene</groupId>
-                    <artifactId>graphene-webdriver-impl</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.arquillian.extension</groupId>
-                    <artifactId>arquillian-drone-webdriver</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                    <artifactId>shrinkwrap-resolver-api-maven-embedded</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>io.openliberty.arquillian</groupId>
-                    <artifactId>arquillian-liberty-remote</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>io.openliberty</groupId>
-                    <artifactId>openliberty-javaee8</artifactId>
-                    <type>zip</type>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>io.openliberty.features</groupId>
-                    <artifactId>javaee-8.0</artifactId>
-                    <type>esa</type>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>io.openliberty.features</groupId>
-                    <artifactId>sessionDatabase-1.0</artifactId>
-                    <type>esa</type>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>io.openliberty.features</groupId>
-                    <artifactId>json-1.0</artifactId>
-                    <type>esa</type>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>io.openliberty.features</groupId>
-                    <artifactId>appSecurity-3.0</artifactId>
-                    <type>esa</type>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>io.openliberty.features</groupId>
-                    <artifactId>audit-1.0</artifactId>
-                    <type>esa</type>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>io.openliberty.features</groupId>
-                    <artifactId>passwordUtilities-1.0</artifactId>
-                    <type>esa</type>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.cxf</groupId>
-                    <artifactId>cxf-rt-rs-client</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.cxf</groupId>
-                    <artifactId>cxf-rt-rs-extension-providers</artifactId>
-                    <scope>test</scope>
-                </dependency>
+                -->
             </dependencies>
             <build>
                 <finalName>petclinic</finalName>
@@ -2084,28 +1974,13 @@
                         <artifactId>liberty-maven-plugin</artifactId>
                         <extensions>true</extensions>
                         <configuration>
-                            <installDirectory>${user.home}/j/srv/openliberty-19.0.0.9/wlp</installDirectory>
-                            <serverHome>${user.home}/j/srv/openliberty-19.0.0.9/wlp</serverHome>
+                            <installDirectory>${libertyInstallDir}</installDirectory>
+                            <serverHome>${libertyInstallDir}</serverHome>
                             <serverName>defaultServer</serverName>
-                            <features>
-                                <acceptLicense>true</acceptLicense>
-                                <feature>javaee-8.0</feature>
-                                <feature>json-1.0</feature>
-                                <feature>sessionDatabase-1.0</feature>
-                                <feature>springBoot-2.0</feature>
-                            </features>
                             <configFile>src/main/liberty/config/server.xml</configFile>
                             <looseApplication>true</looseApplication>
                             <packageFile>${project.build.directory}/${app.name}.war</packageFile>
                             <include>usr</include>
-                            <bootstrapProperties>
-                                <default.http.port>8080</default.http.port>
-                                <default.https.port>8443</default.https.port>
-                                <app.context.root>${app.name}</app.context.root>
-                                <packageFile>${project.build.directory}/${app.name}.war</packageFile>
-                                <postgresql.jar.dir>${project.build.directory}/${app.name}/WEB-INF/lib</postgresql.jar.dir>
-                                <postgresql.jar.file>postgresql-${postgresql.driver.version}.jar</postgresql.jar.file>
-                            </bootstrapProperties>
                             <appsDirectory>apps</appsDirectory>
                             <stripVersion>true</stripVersion>
                             <installAppPackages>project</installAppPackages>
@@ -2149,7 +2024,7 @@
                         <configuration>
                             <skipTests>true</skipTests>
                             <environmentVariables>
-                                <OPENLIBERTY_HOME>${project.build.directory}/wlp</OPENLIBERTY_HOME>
+                                <OPENLIBERTY_HOME>${libertyInstallDir}</OPENLIBERTY_HOME>
                             </environmentVariables>
                         </configuration>
                     </plugin>
@@ -2159,7 +2034,7 @@
                         <configuration>
                             <skipTests>${skipIntegrationTests}</skipTests>
                             <environmentVariables>
-                                <OPENLIBERTY_HOME>${project.build.directory}/wlp</OPENLIBERTY_HOME>
+                                <OPENLIBERTY_HOME>${libertyInstallDir}</OPENLIBERTY_HOME>
                             </environmentVariables>
                         </configuration>
                         <executions>
@@ -2178,17 +2053,60 @@
         </profile>
 
         <profile>
-            <id>assembly-cloud-openshift</id>
-        </profile>
-
-        <profile>
-            <id>assembly-cloud-heroku</id>
-        </profile>
-
-        <profile>
-            <id>check-serial-version-uid</id>
+            <id>check-code</id>
             <build>
+                <finalName>petclinic</finalName>
                 <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-pmd-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>pmd-check</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <printFailingErrors>true</printFailingErrors>
+                            <rulesets>
+                                <ruleset>pmd-ruleset.xml</ruleset>
+                            </rulesets>
+                            <analysisCache>false</analysisCache>
+                            <includeTests>true</includeTests>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                        <configuration>
+                            <consoleOutput>true</consoleOutput>
+                            <configLocation>./checkstyle.xml</configLocation>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>checkstyle</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                                <configuration>
+                                    <failOnViolation>true</failOnViolation>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.puppycrawl.tools</groupId>
+                                <artifactId>checkstyle</artifactId>
+                                <version>8.18</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>

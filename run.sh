@@ -46,6 +46,12 @@ function checkAllDependencies(){
   done
 }
 
+function buildSiblings(){
+  cd $HOME/IdeaProjects/jakartaee-api
+  $MAVEN -Pstaging install
+  cd $HOME/IdeaProjects/jakartaee-petclinic
+}
+
 function testRemoteLiberty(){
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
@@ -151,8 +157,8 @@ function runManagedLiberty(){
 function resolveDependencies() {
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
-  checkAllDependencies
-  #checkDependencies $TESTS_PROFILE $BROWSER_PROFILE
+  #checkAllDependencies
+  checkDependencies $TESTS_PROFILE $BROWSER_PROFILE
 }
 
 function runManaged() {
@@ -177,7 +183,7 @@ function main(){
   echo "-------------------"
   echo " main"
   echo "-------------------"
-  resolveDependencies $TESTS_PROFILE $BROWSER_PROFILE
+  #resolveDependencies $TESTS_PROFILE $BROWSER_PROFILE
   runRemote  $TESTS_PROFILE $BROWSER_PROFILE
   #runManaged  $TESTS_PROFILE $BROWSER_PROFILE
   echo "-------------------"

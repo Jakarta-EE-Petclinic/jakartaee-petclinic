@@ -205,7 +205,8 @@ public class OwnerPage extends AbstractPrimePage {
 
     public void assertFirstVisitToFirstPet(LocalDate visitDate, String description) {
         LocalDate visitDateTmp = visitDate.minusDays(1);
-        Assert.assertEquals(DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.ENGLISH).format(visitDateTmp),firstPetsFirstVisitDate.getText());
+        String visitDateString = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.ENGLISH).format(visitDateTmp);
+        Assert.assertEquals(visitDateString,firstPetsFirstVisitDate.getText());
         Assert.assertEquals(description,firstPetsFirstVisitDescription.getText());
     }
 

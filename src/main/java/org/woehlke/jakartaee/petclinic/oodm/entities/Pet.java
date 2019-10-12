@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.*;
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -106,8 +107,8 @@ public class Pet implements TwEntities<Pet> {
     @NotNull
     @XmlElement(required=true)
     @Column(name = COL_BIRTH_DATE,nullable = false)
-    @Temporal( TemporalType.DATE )
-    private Date birthDate;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    protected LocalDate birthDate;
 
     @IndexedEmbedded
     @NotNull
@@ -181,11 +182,11 @@ public class Pet implements TwEntities<Pet> {
         this.name = name;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -243,7 +244,7 @@ public class Pet implements TwEntities<Pet> {
                 "id=" + id +
                 ", uuid=" + uuid +
                 ", name='" + name + '\'' +
-                ", birthDate=" + ((birthDate !=null) ? birthDate.toLocaleString() : null) +
+                ", birthDate=" + ((birthDate !=null) ? birthDate.toString() : null) +
                 ", type=" + ((type !=null)?type.getPrimaryKeyWithId():null) +
                 ", owner=" + ((owner != null) ? owner.getPrimaryKeyWithId() : null) +
                 ", visits=" + ((visits!=null)?visits.size():null) +

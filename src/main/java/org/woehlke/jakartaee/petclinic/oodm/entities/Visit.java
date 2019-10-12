@@ -3,16 +3,20 @@ package org.woehlke.jakartaee.petclinic.oodm.entities;
 import org.hibernate.search.annotations.*;
 import org.woehlke.jakartaee.petclinic.oodm.entities.common.TwEntities;
 import org.woehlke.jakartaee.petclinic.oodm.entities.listener.VisitListener;
+import sun.util.resources.cldr.bs.TimeZoneNames_bs;
+import sun.util.resources.de.TimeZoneNames_de;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.*;
+import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -95,8 +99,9 @@ public class Visit implements TwEntities<Visit> {
     @NotNull
     @XmlElement(required=true)
     @Column(name = COL_VISIT_DATE)
-    @Temporal( TemporalType.DATE )
-    private Date date;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    protected LocalDate date;
+
 
     @NotEmpty
     @XmlElement(required=true)
@@ -145,8 +150,7 @@ public class Visit implements TwEntities<Visit> {
     @Override
     public String getPrimaryKey() {
         String primaryKey = description;
-        String localDate = LocalDate.of(date.getYear()+1900,date.getMonth()+1,date.getDate()+1).format(DateTimeFormatter.ISO_LOCAL_DATE);
-        return primaryKey + " ( "+localDate+" )";
+        return primaryKey + " ( "+date+" )";
     }
 
     @Transient
@@ -159,11 +163,11 @@ public class Visit implements TwEntities<Visit> {
         this.uuid = uuid;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

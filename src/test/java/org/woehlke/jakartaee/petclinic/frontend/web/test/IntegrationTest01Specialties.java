@@ -2,7 +2,6 @@ package org.woehlke.jakartaee.petclinic.frontend.web.test;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jboss.arquillian.container.test.api.BeforeDeployment;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -35,11 +34,13 @@ import static org.jboss.arquillian.graphene.Graphene.goTo;
 public class IntegrationTest01Specialties extends AbstractPrimePageTest {
 
     private static Logger log = LogManager.getLogger(IntegrationTest01Specialties.class.getName());
-    
+
+    /*
     @BeforeDeployment
     public static void beforeDeployment(){
         log.info("beforeDeployment");
     }
+    */
 
     @Deployment
     public static WebArchive createDeployment() {
