@@ -14,7 +14,6 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO work with keys and fetch text from Resource-Bunble message.properties
 @Named("frontendMessagesView")
 @SessionScoped
 public class FrontendMessagesViewImpl implements FrontendMessagesView {
