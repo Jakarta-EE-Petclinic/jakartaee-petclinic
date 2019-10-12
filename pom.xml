@@ -60,7 +60,7 @@
         <version.selenium>3.141.59</version.selenium>
         <skipIntegrationTests>true</skipIntegrationTests>
         <webdriverBrowser>chrome</webdriverBrowser>
-        <org.wildfly.arquillian.version>3.0.0.Beta1-SNAPSHOT</org.wildfly.arquillian.version>
+        <org.wildfly.arquillian.version>2.2.0.Final</org.wildfly.arquillian.version>
         <!-- build -->
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <postgresql.driver.version>42.2.7</postgresql.driver.version>
@@ -72,13 +72,18 @@
         <jakarta.xml.registry-api.version>1.0.10</jakarta.xml.registry-api.version>
         <jakarta.xml.rpc-api.version>1.1.4</jakarta.xml.rpc-api.version>
         <!-- Other dependencies -->
+        <!--
         <mojarra.version>2.3.9</mojarra.version>
         <copyright-plugin.version>1.50</copyright-plugin.version>
+        -->
         <!-- Compile-time dependencies -->
-        <jakarta.xml.bind-api.version>2.3.2</jakarta.xml.bind-api.version>
-        <jakarta.xml.ws-api.version>2.3.2</jakarta.xml.ws-api.version>
+        <!--
+          <jakarta.xml.bind-api.version>2.3.2</jakarta.xml.bind-api.version>
+          <jakarta.xml.ws-api.version>2.3.2</jakarta.xml.ws-api.version>
+        -->
         <!-- maven plugins -->
         <pmd.version>6.15.0</pmd.version>
+        <junit.version>4.12</junit.version>
     </properties>
 
     <repositories>
@@ -366,26 +371,26 @@
             <dependency>
                 <groupId>org.wildfly.arquillian</groupId>
                 <artifactId>wildfly-arquillian-container-remote</artifactId>
-                <version>2.2.0.Final</version>
+                <version>${org.wildfly.arquillian.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.wildfly.arquillian</groupId>
                 <artifactId>wildfly-arquillian-common</artifactId>
-                <version>2.2.0.Final</version>
+                <version>${org.wildfly.arquillian.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.wildfly.arquillian</groupId>
                 <artifactId>elytron-standalone</artifactId>
-                <version>2.2.0.Final</version>
+                <version>${org.wildfly.arquillian.version}</version>
                 <scope>test</scope>
             </dependency>
             <!-- Integration Testing with Arquillian: 3rd Party Dependencies -->
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.12</version>
+                <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
