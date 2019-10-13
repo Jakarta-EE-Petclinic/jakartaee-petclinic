@@ -11,5 +11,5 @@ import org.woehlke.jakartaee.petclinic.oodm.entities.Pet;
  * To change this template use File | Settings | File Templates.
  */
 public interface PetDao extends CrudDao<Pet> {
-    long serialVersionUID = -7894365380280920804L;
+	long serialVersionUID = -7894365380280920804L;
 }

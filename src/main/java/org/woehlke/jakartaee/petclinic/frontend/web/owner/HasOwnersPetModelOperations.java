@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public interface HasOwnersPetModelOperations extends Serializable {
 
-    long serialVersionUID = -6954521350743401666L;
+	long serialVersionUID = -6954521350743401666L;
 
     /*
     void reloadEntityFromSelected();

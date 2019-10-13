@@ -27,47 +27,47 @@ import java.io.Serializable;
 @Path("/vet")
 public class VetWebservice implements Serializable {
 
-    private static final long serialVersionUID = 607664665910620584L;
+	private static final long serialVersionUID = 607664665910620584L;
 
-    private static Logger log = LogManager.getLogger(VetWebservice.class.getName());
+	private static Logger log = LogManager.getLogger(VetWebservice.class.getName());
 
-    @EJB
-    private VetDao vetDao;
+	@EJB
+	private VetDao vetDao;
 
-    @GET
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    @Path("/list")
-    public VetList getList(){
-        log.debug("getList");
-        VetList o = new VetList(vetDao.getAll());
-        return o;
-    }
+	@GET
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Path("/list")
+	public VetList getList() {
+		log.debug("getList");
+		VetList o = new VetList(vetDao.getAll());
+		return o;
+	}
 
-    @GET
-    @Produces({ MediaType.APPLICATION_JSON})
-    @Path("/list/json")
-    public VetList getListJson(){
-        return this.getList();
-    }
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/list/json")
+	public VetList getListJson() {
+		return this.getList();
+	}
 
-    @GET
-    @Produces({ MediaType.APPLICATION_XML})
-    @Path("/list/xml")
-    public VetList getListXml(){
-        return this.getList();
-    }
+	@GET
+	@Produces({MediaType.APPLICATION_XML})
+	@Path("/list/xml")
+	public VetList getListXml() {
+		return this.getList();
+	}
 
-    @GET
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    @Path("/{id}")
-    public Vet getEntity(@PathParam("id") Long id){
-        log.debug("getEntity");
-        Vet o = null;
-        try {
-            o = vetDao.findById(id);
-        } catch (Exception ex) {
-            log.warn("getEntity: ",ex);
-        }
-        return o;
-    }
+	@GET
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Path("/{id}")
+	public Vet getEntity(@PathParam("id") Long id) {
+		log.debug("getEntity");
+		Vet o = null;
+		try {
+			o = vetDao.findById(id);
+		} catch (Exception ex) {
+			log.warn("getEntity: ", ex);
+		}
+		return o;
+	}
 }

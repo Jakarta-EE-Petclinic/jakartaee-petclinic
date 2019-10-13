@@ -18,42 +18,42 @@ import java.time.format.DateTimeFormatter;
 @ApplicationScoped
 public class SchedulerBean implements Serializable {
 
-    private static final long serialVersionUID = 8425286360447275162L;
+	private static final long serialVersionUID = 8425286360447275162L;
 
-    private static Logger log = LogManager.getLogger(SchedulerBean.class.getName());
+	private static Logger log = LogManager.getLogger(SchedulerBean.class.getName());
 
-    @EJB
-    private SearchIndexService searchIndexService;
+	@EJB
+	private SearchIndexService searchIndexService;
 
-    @Schedules ({
-            @Schedule(
-                    minute="15",
-                    persistent=false
-            )
-    })
-    public void automaticallyScheduled() {
-        LocalDateTime now = LocalDateTime.now();
-        log.debug("automaticallyScheduled: "+now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        searchIndexService.resetSearchIndex();
-    }
+	@Schedules({
+			@Schedule(
+					minute = "15",
+					persistent = false
+			)
+	})
+	public void automaticallyScheduled() {
+		LocalDateTime now = LocalDateTime.now();
+		log.debug("automaticallyScheduled: " + now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+		searchIndexService.resetSearchIndex();
+	}
 
-    @PostConstruct
-    public void postConstruct(){
-        log.debug("postConstruct");
-    }
+	@PostConstruct
+	public void postConstruct() {
+		log.debug("postConstruct");
+	}
 
-    @PreDestroy
-    public void preDestroy(){
-        log.debug("preDestroy");
-    }
+	@PreDestroy
+	public void preDestroy() {
+		log.debug("preDestroy");
+	}
 
-    @PrePassivate
-    public void prePassivate(){
-        log.debug("prePassivate");
-    }
+	@PrePassivate
+	public void prePassivate() {
+		log.debug("prePassivate");
+	}
 
-    @PostActivate
-    public void postActivate(){
-        log.debug("postActivate");
-    }
+	@PostActivate
+	public void postActivate() {
+		log.debug("postActivate");
+	}
 }

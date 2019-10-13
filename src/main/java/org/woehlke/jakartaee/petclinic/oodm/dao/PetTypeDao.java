@@ -13,7 +13,7 @@ import org.woehlke.jakartaee.petclinic.oodm.entities.PetType;
  */
 public interface PetTypeDao extends CrudDao<PetType>, Searchable<PetType> {
 
-    long serialVersionUID = -8106442452154966621L;
+	long serialVersionUID = -8106442452154966621L;
 
-    PetType findByName(String name);
+	PetType findByName(String name);
 }

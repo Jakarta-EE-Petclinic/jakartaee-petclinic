@@ -26,63 +26,63 @@ import java.util.UUID;
 @Stateless
 public class VisitDaoImpl implements VisitDao {
 
-    private static final long serialVersionUID = 892248114140040519L;
+	private static final long serialVersionUID = 892248114140040519L;
 
-    private static Logger log = LogManager.getLogger(VisitDaoImpl.class.getName());
+	private static Logger log = LogManager.getLogger(VisitDaoImpl.class.getName());
 
-    @PersistenceContext(unitName=PERSISTENCE_UNIT_NAME)
-    private EntityManager entityManager;
+	@PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
+	private EntityManager entityManager;
 
-    @Override
-    public List<Visit> getAll() {
-        String qlString = "select p from Visit p order by p.date";
-        TypedQuery<Visit> q = entityManager.createQuery(qlString, Visit.class);
-        List<Visit> list =  q.getResultList();
-        return list;
-    }
+	@Override
+	public List<Visit> getAll() {
+		String qlString = "select p from Visit p order by p.date";
+		TypedQuery<Visit> q = entityManager.createQuery(qlString, Visit.class);
+		List<Visit> list = q.getResultList();
+		return list;
+	}
 
-    @Override
-    public Visit findById(long id) {
-        return entityManager.find(Visit.class, id);
-    }
+	@Override
+	public Visit findById(long id) {
+		return entityManager.find(Visit.class, id);
+	}
 
-    @Override
-    public Visit addNew(Visit visit) {
-        visit.setUuid(UUID.randomUUID());
-        log.debug("addNewVisit: "+visit.toString());
-        entityManager.persist(visit);
-        return visit;
-    }
+	@Override
+	public Visit addNew(Visit visit) {
+		visit.setUuid(UUID.randomUUID());
+		log.debug("addNewVisit: " + visit.toString());
+		entityManager.persist(visit);
+		return visit;
+	}
 
-    @Override
-    public Visit update(Visit visit) {
-        return entityManager.merge(visit);
-    }
+	@Override
+	public Visit update(Visit visit) {
+		return entityManager.merge(visit);
+	}
 
-    @Override
-    public void delete(long id) {
-        Visit visit = entityManager.find(Visit.class, id);
-        entityManager.remove(visit);
-    }
+	@Override
+	public void delete(long id) {
+		Visit visit = entityManager.find(Visit.class, id);
+		entityManager.remove(visit);
+	}
 
 
-    @PostConstruct
-    public void postConstruct(){
-        log.debug("postConstruct");
-    }
+	@PostConstruct
+	public void postConstruct() {
+		log.debug("postConstruct");
+	}
 
-    @PreDestroy
-    public void preDestroy(){
-        log.debug("preDestroy");
-    }
+	@PreDestroy
+	public void preDestroy() {
+		log.debug("preDestroy");
+	}
 
-    @PrePassivate
-    public void prePassivate(){
-        log.debug("prePassivate");
-    }
+	@PrePassivate
+	public void prePassivate() {
+		log.debug("prePassivate");
+	}
 
-    @PostActivate
-    public void postActivate(){
-        log.debug("postActivate");
-    }
+	@PostActivate
+	public void postActivate() {
+		log.debug("postActivate");
+	}
 }

@@ -8,12 +8,12 @@ import java.io.Serializable;
 
 
 public interface VetView extends CrudView<Vet>,
-        HasLanguage,
-        HasSearch,
-        HasViewModelOperations,
-        Serializable {
+		HasLanguage,
+		HasSearch,
+		HasViewModelOperations,
+		Serializable {
 
-    Specialty findSpecialtyByName(String name);
+	long serialVersionUID = -4141782100256382881L;
 
-    long serialVersionUID = -4141782100256382881L;
+	Specialty findSpecialtyByName(String name);
 }

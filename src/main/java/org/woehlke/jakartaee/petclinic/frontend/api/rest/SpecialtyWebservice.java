@@ -20,48 +20,48 @@ import java.io.Serializable;
 @Path("/specialty")
 public class SpecialtyWebservice implements Serializable {
 
-    private static final long serialVersionUID = 607664665910620584L;
+	private static final long serialVersionUID = 607664665910620584L;
 
-    private static Logger log = LogManager.getLogger(SpecialtyWebservice.class.getName());
+	private static Logger log = LogManager.getLogger(SpecialtyWebservice.class.getName());
 
-    @EJB
-    private SpecialtyDao specialtyDao;
+	@EJB
+	private SpecialtyDao specialtyDao;
 
-    @GET
-    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    @Path("/list")
-    public SpecialtyList getList(){
-        log.debug("getList");
-        SpecialtyList list = new SpecialtyList(specialtyDao.getAll());
-        return list;
-    }
+	@GET
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Path("/list")
+	public SpecialtyList getList() {
+		log.debug("getList");
+		SpecialtyList list = new SpecialtyList(specialtyDao.getAll());
+		return list;
+	}
 
-    @GET
-    @Produces({ MediaType.APPLICATION_JSON})
-    @Path("/list/json")
-    public SpecialtyList getListJson(){
-        return this.getList();
-    }
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/list/json")
+	public SpecialtyList getListJson() {
+		return this.getList();
+	}
 
-    @GET
-    @Produces({ MediaType.APPLICATION_XML})
-    @Path("/list/xml")
-    public SpecialtyList getListXml(){
-        return this.getList();
-    }
+	@GET
+	@Produces({MediaType.APPLICATION_XML})
+	@Path("/list/xml")
+	public SpecialtyList getListXml() {
+		return this.getList();
+	}
 
-    @GET
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    @Path("/{id}")
-    public Specialty getEntity(@PathParam("id") Long id){
-        log.debug("getEntity");
-        Specialty o = null;
-        try {
-            o = specialtyDao.findById(id);
-        } catch (Exception ex) {
-            log.warn("getEntity: ",ex);
-        }
-        return o;
-    }
+	@GET
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Path("/{id}")
+	public Specialty getEntity(@PathParam("id") Long id) {
+		log.debug("getEntity");
+		Specialty o = null;
+		try {
+			o = specialtyDao.findById(id);
+		} catch (Exception ex) {
+			log.warn("getEntity: ", ex);
+		}
+		return o;
+	}
 
 }

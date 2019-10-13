@@ -4,17 +4,25 @@ import java.io.Serializable;
 
 public interface HasCrudFlowState extends Serializable {
 
-    long serialVersionUID = -2732706731385890693L;
+	long serialVersionUID = -2732706731385890693L;
 
-    boolean isFlowStateList();
-    boolean isFlowStateNew();
-    boolean isFlowStateEdit();
-    boolean isFlowStateDelete();
-    boolean isFlowStateSearchResult();
+	boolean isFlowStateList();
 
-    void setFlowStateList();
-    void setFlowStateNew();
-    void setFlowStateEdit();
-    void setFlowStateDelete();
-    void setFlowStateSearchResult();
+	boolean isFlowStateNew();
+
+	boolean isFlowStateEdit();
+
+	boolean isFlowStateDelete();
+
+	boolean isFlowStateSearchResult();
+
+	void setFlowStateList();
+
+	void setFlowStateNew();
+
+	void setFlowStateEdit();
+
+	void setFlowStateDelete();
+
+	void setFlowStateSearchResult();
 }

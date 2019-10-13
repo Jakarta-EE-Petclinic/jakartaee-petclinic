@@ -22,152 +22,145 @@ import java.util.UUID;
 @Entity
 @Indexed
 @Table(
-    name = Specialty.TABLENAME,
-    uniqueConstraints = {
-        @UniqueConstraint(
-            name=Specialty.TABLENAME+"_unique_uuid",
-            columnNames = { Specialty.COL_UUID }
-        ),
-        @UniqueConstraint(
-            name=Specialty.TABLENAME+"_unique_names",
-            columnNames = {
-                Specialty.COL_NAME
-            }
-        )
-    }
+		name = Specialty.TABLENAME,
+		uniqueConstraints = {
+				@UniqueConstraint(
+						name = Specialty.TABLENAME + "_unique_uuid",
+						columnNames = {Specialty.COL_UUID}
+				),
+				@UniqueConstraint(
+						name = Specialty.TABLENAME + "_unique_names",
+						columnNames = {
+								Specialty.COL_NAME
+						}
+				)
+		}
 )
 @NamedQueries({
-    @NamedQuery(
-        name = "Specialty.getAll",
-        query = "select s from Specialty s order by s.name"
-    )
+		@NamedQuery(
+				name = "Specialty.getAll",
+				query = "select s from Specialty s order by s.name"
+		)
 })
-@XmlRootElement(name="Specialty")
+@XmlRootElement(name = "Specialty")
 @XmlType(
-        name = "Specialty",
-        namespace = "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/Specialty",
-        propOrder = {
-                "id", "uuid", "name"
-        }
+		name = "Specialty",
+		namespace = "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/Specialty",
+		propOrder = {
+				"id", "uuid", "name"
+		}
 )
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Specialty implements TwEntities<Specialty> {
 
-    private static final long serialVersionUID = -836560513920170089L;
+	public final static String TABLENAME = "specialties";
+	public final static String COL_ID = "id";
+	public final static String COL_UUID = "uuid";
+	public final static String COL_NAME = "name";
+	private static final long serialVersionUID = -836560513920170089L;
+	@Id
+	@XmlElement(required = true)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@XmlElement(required = true)
+	@Column(name = COL_UUID, nullable = false, unique = true)
+	@Field(
+			index = org.hibernate.search.annotations.Index.YES,
+			analyze = org.hibernate.search.annotations.Analyze.NO,
+			store = org.hibernate.search.annotations.Store.YES
+	)
+	private UUID uuid;
+	@NotEmpty
+	@XmlElement(required = true)
+	@Column(name = COL_NAME, unique = true, nullable = false)
+	@Field(
+			index = org.hibernate.search.annotations.Index.YES,
+			analyze = org.hibernate.search.annotations.Analyze.YES,
+			store = org.hibernate.search.annotations.Store.YES
+	)
+	private String name;
 
-    public final static String TABLENAME = "specialties";
+	public Specialty() {
+	}
 
-    public final static String COL_ID = "id";
+	public Specialty(@NotEmpty @NotNull String name) {
+		this.name = name;
+	}
 
-    public final static String COL_UUID = "uuid";
+	@Override
+	public String getTableName() {
+		return TABLENAME;
+	}
 
-    public final static String COL_NAME = "name";
+	@Override
+	public String[] getColumnNames() {
+		String[] thisColumnNames = {
+				COL_ID, COL_UUID, COL_NAME
+		};
+		return thisColumnNames;
+	}
 
-    public Specialty(){
-    }
+	@Override
+	public String getPrimaryKey() {
+		return this.getName();
+	}
 
-    public Specialty(@NotEmpty @NotNull String name) {
-        this.name = name;
-    }
+	@Transient
+	public String getPrimaryKeyWithId() {
+		return this.getPrimaryKey() + "(" + this.getId() + "," + this.getUuid() + ")";
+	}
 
-    @Id
-    @XmlElement(required=true)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	public Long getId() {
+		return id;
+	}
 
-    @XmlElement(required=true)
-    @Column(name = COL_UUID,nullable = false, unique = true)
-    @Field(
-            index = org.hibernate.search.annotations.Index.YES,
-            analyze = org.hibernate.search.annotations.Analyze.NO,
-            store = org.hibernate.search.annotations.Store.YES
-    )
-    private UUID uuid;
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    @NotEmpty
-    @XmlElement(required=true)
-    @Column(name = COL_NAME, unique = true, nullable = false)
-    @Field(
-            index = org.hibernate.search.annotations.Index.YES,
-            analyze = org.hibernate.search.annotations.Analyze.YES,
-            store = org.hibernate.search.annotations.Store.YES
-    )
-    private String name;
+	@Override
+	public UUID getUuid() {
+		return uuid;
+	}
 
-    @Override
-    public String getTableName() {
-        return TABLENAME;
-    }
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
+	}
 
-    @Override
-    public String[] getColumnNames() {
-        String[] thisColumnNames = {
-                COL_ID, COL_UUID, COL_NAME
-        };
-        return thisColumnNames;
-    }
+	public String getName() {
+		return name;
+	}
 
-    @Override
-    public String getPrimaryKey() {
-        return this.getName();
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    @Transient
-    public String getPrimaryKeyWithId(){
-        return this.getPrimaryKey()+"("+this.getId()+","+this.getUuid()+")";
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
+	@Override
 	public int compareTo(Specialty other) {
 		return this.getPrimaryKey().compareTo(other.getPrimaryKey());
 	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Specialty)) return false;
-        Specialty specialty = (Specialty) o;
-        return Objects.equals(getId(), specialty.getId()) &&
-                Objects.equals(getUuid(), specialty.getUuid()) &&
-                getName().equals(specialty.getName());
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Specialty)) return false;
+		Specialty specialty = (Specialty) o;
+		return Objects.equals(getId(), specialty.getId()) &&
+				Objects.equals(getUuid(), specialty.getUuid()) &&
+				getName().equals(specialty.getName());
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getUuid(), getName());
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hash(getId(), getUuid(), getName());
+	}
 
-    @Override
-    public String toString() {
-        return "Specialty{" +
-                "id=" + id +
-                ", uuid=" + uuid +
-                ", name='" + name + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "Specialty{" +
+				"id=" + id +
+				", uuid=" + uuid +
+				", name='" + name + '\'' +
+				'}';
+	}
 }

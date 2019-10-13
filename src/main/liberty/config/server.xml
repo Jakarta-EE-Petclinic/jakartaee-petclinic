@@ -1,7 +1,7 @@
 <server description="defaultServer">
     <!-- tag::features[] -->
     <featureManager>
-	    <feature>javaee-8.0</feature>
+        <feature>javaee-8.0</feature>
         <feature>json-1.0</feature>
         <feature>sessionDatabase-1.0</feature>
         <!--
@@ -11,17 +11,19 @@
     <!-- end::features[] -->
 
     <basicRegistry id="basic" realm="BasicRealm">
-        <user name="admin" password="adminpwd" />
-        <user name="tw" password="twpwd" />
+        <user name="admin" password="adminpwd"/>
+        <user name="tw" password="twpwd"/>
     </basicRegistry>
 
-    <administrator-role><user>admin</user></administrator-role>
+    <administrator-role>
+        <user>admin</user>
+    </administrator-role>
 
-    <applicationManager autoExpand="true" />
+    <applicationManager autoExpand="true"/>
 
-    <httpSession idLength="56" />
+    <httpSession idLength="56"/>
 
-    <keyStore id="defaultKeyStore" password="mpKeystore" />
+    <keyStore id="defaultKeyStore" password="mpKeystore"/>
 
     <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
     <httpEndpoint

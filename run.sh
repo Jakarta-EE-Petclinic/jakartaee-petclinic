@@ -154,6 +154,15 @@ function runManagedLiberty(){
   $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:run-server
 }
 
+function runQa() {
+  TESTS_PROFILE=$1
+  BROWSER_PROFILE=$2
+  LOGFILE="log/runQa.log.txt"
+  mkdir -p log
+  $MAVEN -Pcheck-code -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install > $LOGFILE
+  cat $LOGFILE
+}
+
 function resolveDependencies() {
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
@@ -177,20 +186,6 @@ function runRemote() {
   #runRemoteGlassfish $TESTS_PROFILE $BROWSER_PROFILE
 }
 
-function main(){
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
-  echo "-------------------"
-  echo " main"
-  echo "-------------------"
-  resolveDependencies $TESTS_PROFILE $BROWSER_PROFILE
-  runRemote  $TESTS_PROFILE $BROWSER_PROFILE
-  #runManaged  $TESTS_PROFILE $BROWSER_PROFILE
-  echo "-------------------"
-  echo " DONE and READY"
-  echo "-------------------"
-}
-
 BROWSER_PROFILE=it-browser-chrome
 #BROWSER_PROFILE=it-browser-firefox
 #BROWSER_PROFILE=it-browser-safari
@@ -200,5 +195,20 @@ BROWSER_PROFILE=it-browser-chrome
 
 #TESTS_PROFILE=it-skip-tests
 TESTS_PROFILE=it-run-tests
+
+function main(){
+  TESTS_PROFILE=$1
+  BROWSER_PROFILE=$2
+  echo "-------------------"
+  echo " main"
+  echo "-------------------"
+  #resolveDependencies $TESTS_PROFILE $BROWSER_PROFILE
+  runQa $TESTS_PROFILE $BROWSER_PROFILE
+  #runRemote  $TESTS_PROFILE $BROWSER_PROFILE
+  #runManaged  $TESTS_PROFILE $BROWSER_PROFILE
+  echo "-------------------"
+  echo " DONE and READY"
+  echo "-------------------"
+}
 
 main $TESTS_PROFILE $BROWSER_PROFILE

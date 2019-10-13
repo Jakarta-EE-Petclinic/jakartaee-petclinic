@@ -19,47 +19,47 @@ import java.io.Serializable;
 @Path("/owner")
 public class OwnerWebservice implements Serializable {
 
-    private static final long serialVersionUID = 532726561254887897L;
+	private static final long serialVersionUID = 532726561254887897L;
 
-    private static Logger log = LogManager.getLogger(OwnerWebservice.class.getName());
+	private static Logger log = LogManager.getLogger(OwnerWebservice.class.getName());
 
-    @EJB
-    private OwnerDao ownerDao;
+	@EJB
+	private OwnerDao ownerDao;
 
-    @GET
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    @Path("/list")
-    public OwnerList getList(){
-        log.debug("getList");
-        OwnerList list = new OwnerList(ownerDao.getAll());
-        return list;
-    }
+	@GET
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Path("/list")
+	public OwnerList getList() {
+		log.debug("getList");
+		OwnerList list = new OwnerList(ownerDao.getAll());
+		return list;
+	}
 
-    @GET
-    @Produces({ MediaType.APPLICATION_JSON})
-    @Path("/list/json")
-    public OwnerList getListJson(){
-        return this.getList();
-    }
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/list/json")
+	public OwnerList getListJson() {
+		return this.getList();
+	}
 
-    @GET
-    @Produces({ MediaType.APPLICATION_XML})
-    @Path("/list/xml")
-    public OwnerList getListXml(){
-        return this.getList();
-    }
+	@GET
+	@Produces({MediaType.APPLICATION_XML})
+	@Path("/list/xml")
+	public OwnerList getListXml() {
+		return this.getList();
+	}
 
-    @GET
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    @Path("/{id}")
-    public Owner getEntity(@PathParam("id") Long id){
-        log.debug("getEntity");
-        Owner o = null;
-        try {
-            o = ownerDao.findById(id);
-        } catch (Exception ex) {
-            log.warn("getEntity: ",ex);
-        }
-        return o;
-    }
+	@GET
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Path("/{id}")
+	public Owner getEntity(@PathParam("id") Long id) {
+		log.debug("getEntity");
+		Owner o = null;
+		try {
+			o = ownerDao.findById(id);
+		} catch (Exception ex) {
+			log.warn("getEntity: ", ex);
+		}
+		return o;
+	}
 }

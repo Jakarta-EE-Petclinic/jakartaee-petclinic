@@ -1,6 +1,6 @@
 /* (c) 2019 Thomas Woehlke */
 
-i.fas,i.far,label {
+i.fas, i.far, label {
     margin-right: 6px;
 }
 
@@ -8,12 +8,12 @@ i.fas,i.far,label {
     vertical-align: top;
 }
 
-.foo>tbody>tr>td {
+.foo > tbody > tr > td {
     vertical-align: top;
 }
 
 .contentPanel {
-    margin-bottom:20px;
+    margin-bottom: 20px;
 }
 
 .contentTitleHeadline {

@@ -23,155 +23,147 @@ import java.util.UUID;
 @Entity
 @Indexed
 @Table(
-    name = PetType.TABLENAME,
-    uniqueConstraints = {
-        @UniqueConstraint(
-            name=PetType.TABLENAME+"_unique_uuid",
-            columnNames = { PetType.COL_UUID }
-        ),
-        @UniqueConstraint(
-            name=PetType.TABLENAME+"_unique_names",
-            columnNames = {
-                PetType.COL_NAME
-            }
-        )
-    }
+		name = PetType.TABLENAME,
+		uniqueConstraints = {
+				@UniqueConstraint(
+						name = PetType.TABLENAME + "_unique_uuid",
+						columnNames = {PetType.COL_UUID}
+				),
+				@UniqueConstraint(
+						name = PetType.TABLENAME + "_unique_names",
+						columnNames = {
+								PetType.COL_NAME
+						}
+				)
+		}
 )
 @NamedQueries({
-    @NamedQuery(
-        name = "PetType.getAll",
-        query = "select pt from PetType pt order by pt.name"
-    )
+		@NamedQuery(
+				name = "PetType.getAll",
+				query = "select pt from PetType pt order by pt.name"
+		)
 })
 @EntityListeners(PetTypeListener.class)
 @XmlRootElement(
-        name="PetType"
+		name = "PetType"
 )
 @XmlType(
-        name = "PetType",
-        namespace = "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/PetType",
-        propOrder = {
-                "id", "uuid", "name"
-        }
+		name = "PetType",
+		namespace = "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/PetType",
+		propOrder = {
+				"id", "uuid", "name"
+		}
 )
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PetType implements TwEntities<PetType> {
 
-    private static final long serialVersionUID = -2213412509142145275L;
+	public final static String TABLENAME = "types";
+	public final static String COL_ID = "id";
+	public final static String COL_UUID = "uuid";
+	public final static String COL_NAME = "name";
+	private static final long serialVersionUID = -2213412509142145275L;
+	@Id
+	@XmlElement(required = true)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@XmlElement(required = true)
+	@Column(name = COL_UUID, nullable = false, unique = true)
+	@Field(
+			index = org.hibernate.search.annotations.Index.YES,
+			analyze = org.hibernate.search.annotations.Analyze.NO,
+			store = org.hibernate.search.annotations.Store.YES
+	)
+	private UUID uuid;
+	@NotEmpty
+	@XmlElement(required = true)
+	@Column(name = COL_NAME, nullable = false, unique = true)
+	@Field(
+			index = org.hibernate.search.annotations.Index.YES,
+			analyze = org.hibernate.search.annotations.Analyze.YES,
+			store = org.hibernate.search.annotations.Store.YES
+	)
+	private String name;
 
-    public final static String TABLENAME = "types";
+	public PetType() {
+	}
 
-    public final static String COL_ID = "id";
+	public PetType(@NotEmpty @NotNull String name) {
+		this.name = name;
+	}
 
-    public final static String COL_UUID = "uuid";
+	@Transient
+	public String getTableName() {
+		return TABLENAME;
+	}
 
-    public final static String COL_NAME = "name";
+	@Transient
+	public String[] getColumnNames() {
+		String[] thisColumnNames = {
+				COL_ID, COL_UUID, COL_NAME
+		};
+		return thisColumnNames;
+	}
 
-    public PetType() {
-    }
+	@Transient
+	public String getPrimaryKey() {
+		return this.getName();
+	}
 
-    public PetType(@NotEmpty @NotNull String name) {
-        this.name = name;
-    }
+	@Transient
+	public String getPrimaryKeyWithId() {
+		return this.getPrimaryKey() + "(" + this.getId() + "," + this.getUuid() + ")";
+	}
 
-    @Id
-    @XmlElement(required=true)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	public Long getId() {
+		return id;
+	}
 
-    @XmlElement(required=true)
-    @Column(name = COL_UUID,nullable = false, unique = true)
-    @Field(
-            index = org.hibernate.search.annotations.Index.YES,
-            analyze = org.hibernate.search.annotations.Analyze.NO,
-            store = org.hibernate.search.annotations.Store.YES
-    )
-    private UUID uuid;
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    @NotEmpty
-    @XmlElement(required=true)
-    @Column(name = COL_NAME, nullable = false, unique = true)
-    @Field(
-            index = org.hibernate.search.annotations.Index.YES,
-            analyze = org.hibernate.search.annotations.Analyze.YES,
-            store = org.hibernate.search.annotations.Store.YES
-    )
-    private String name;
+	public UUID getUuid() {
+		return uuid;
+	}
 
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
+	}
 
-    @Transient
-    public String getTableName(){
-        return TABLENAME;
-    }
+	public String getName() {
+		return name;
+	}
 
-    @Transient
-    public String[] getColumnNames(){
-        String[] thisColumnNames = {
-                COL_ID, COL_UUID, COL_NAME
-        };
-        return thisColumnNames;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    @Transient
-    public String getPrimaryKey(){
-        return this.getName();
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof PetType)) return false;
+		PetType petType = (PetType) o;
+		return Objects.equals(getId(), petType.getId()) &&
+				Objects.equals(getUuid(), petType.getUuid()) &&
+				getName().equals(petType.getName());
+	}
 
-    @Transient
-    public String getPrimaryKeyWithId(){
-        return this.getPrimaryKey()+"("+this.getId()+","+this.getUuid()+")";
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hash(getId(), getUuid(), getName());
+	}
 
-    public Long getId() {
-        return id;
-    }
+	@Override
+	public String toString() {
+		return "PetType{" +
+				"id=" + id +
+				", uuid=" + uuid +
+				", name='" + name + '\'' +
+				'}';
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PetType)) return false;
-        PetType petType = (PetType) o;
-        return Objects.equals(getId(), petType.getId()) &&
-                Objects.equals(getUuid(), petType.getUuid()) &&
-                getName().equals(petType.getName());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getUuid(), getName());
-    }
-
-    @Override
-    public String toString() {
-        return "PetType{" +
-                "id=" + id +
-                ", uuid=" + uuid +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
-    @Override
-    public int compareTo(PetType o) {
-        return this.getPrimaryKey().compareTo(o.getPrimaryKey());
-    }
+	@Override
+	public int compareTo(PetType o) {
+		return this.getPrimaryKey().compareTo(o.getPrimaryKey());
+	}
 }

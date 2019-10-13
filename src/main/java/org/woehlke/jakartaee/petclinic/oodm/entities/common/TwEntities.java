@@ -6,21 +6,21 @@ import java.util.UUID;
 
 public interface TwEntities<T extends TwEntities> extends Serializable, Comparable<T> {
 
-    long serialVersionUID = -3378330831315654285L;
+	long serialVersionUID = -3378330831315654285L;
 
-    Long getId();
+	Long getId();
 
-    UUID getUuid();
+	UUID getUuid();
 
-    @Transient
-    String getTableName();
+	@Transient
+	String getTableName();
 
-    @Transient
-    String[] getColumnNames();
+	@Transient
+	String[] getColumnNames();
 
-    @Transient
-    String getPrimaryKey();
+	@Transient
+	String getPrimaryKey();
 
-    @Transient
-    String getPrimaryKeyWithId();
+	@Transient
+	String getPrimaryKeyWithId();
 }

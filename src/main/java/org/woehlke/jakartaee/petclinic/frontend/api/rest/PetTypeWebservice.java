@@ -19,47 +19,47 @@ import java.io.Serializable;
 @Path("/petType")
 public class PetTypeWebservice implements Serializable {
 
-    private static final long serialVersionUID = -105453087511255998L;
+	private static final long serialVersionUID = -105453087511255998L;
 
-    private static Logger log = LogManager.getLogger(PetTypeWebservice.class.getName());
+	private static Logger log = LogManager.getLogger(PetTypeWebservice.class.getName());
 
-    @EJB
-    private PetTypeDao petTypeDao;
+	@EJB
+	private PetTypeDao petTypeDao;
 
-    @GET
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    @Path("/list")
-    public PetTypeList getList(){
-        log.debug("getList");
-        PetTypeList list = new PetTypeList(petTypeDao.getAll());
-        return list;
-    }
+	@GET
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Path("/list")
+	public PetTypeList getList() {
+		log.debug("getList");
+		PetTypeList list = new PetTypeList(petTypeDao.getAll());
+		return list;
+	}
 
-    @GET
-    @Produces({ MediaType.APPLICATION_JSON})
-    @Path("/list/json")
-    public PetTypeList getListJson(){
-        return this.getList();
-    }
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/list/json")
+	public PetTypeList getListJson() {
+		return this.getList();
+	}
 
-    @GET
-    @Produces({ MediaType.APPLICATION_XML})
-    @Path("/list/xml")
-    public PetTypeList getListXml(){
-        return this.getList();
-    }
+	@GET
+	@Produces({MediaType.APPLICATION_XML})
+	@Path("/list/xml")
+	public PetTypeList getListXml() {
+		return this.getList();
+	}
 
-    @GET
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    @Path("/{id}")
-    public PetType getEntity(@PathParam("id") Long id){
-        log.debug("getEntity");
-        PetType o = null;
-        try {
-            o = petTypeDao.findById(id);
-        } catch (Exception ex) {
-            log.warn("getEntity: ",ex);
-        }
-        return o;
-    }
+	@GET
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Path("/{id}")
+	public PetType getEntity(@PathParam("id") Long id) {
+		log.debug("getEntity");
+		PetType o = null;
+		try {
+			o = petTypeDao.findById(id);
+		} catch (Exception ex) {
+			log.warn("getEntity: ", ex);
+		}
+		return o;
+	}
 }

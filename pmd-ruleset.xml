@@ -9,7 +9,7 @@
     <rule ref="category/java/bestpractices.xml">
         <exclude name="AbstractClassWithoutAbstractMethod"/>
         <exclude name="SystemPrintln"/>
-        <exclude name="AvoidReassigningParameters" />
+        <exclude name="AvoidReassigningParameters"/>
     </rule>
     <rule ref="category/java/codestyle.xml">
         <exclude name="AtLeastOneConstructor"/>
@@ -18,12 +18,12 @@
         <exclude name="MethodArgumentCouldBeFinal"/>
         <exclude name="OnlyOneReturn"/>
         <exclude name="ConfusingTernary"/>
-        <exclude name="ShortClassName" />
-        <exclude name="UselessParentheses" />
+        <exclude name="ShortClassName"/>
+        <exclude name="UselessParentheses"/>
     </rule>
     <rule ref="category/java/codestyle.xml/LongVariable">
         <properties>
-            <property name="minimum" value="25" />
+            <property name="minimum" value="25"/>
         </properties>
     </rule>
     <rule ref="category/java/codestyle.xml/ShortVariable">
@@ -40,9 +40,9 @@
         <exclude name="AbstractClassWithoutAnyMethod"/>
         <exclude name="AvoidCatchingGenericException"/>
         <exclude name="LawOfDemeter"/>
-        <exclude name="TooManyFields" />
-        <exclude name="TooManyMethods" />
-        <exclude name="DataClass" />
+        <exclude name="TooManyFields"/>
+        <exclude name="TooManyMethods"/>
+        <exclude name="DataClass"/>
     </rule>
     <rule ref="category/java/documentation.xml">
         <exclude name="UncommentedEmptyConstructor"/>
@@ -53,8 +53,8 @@
         <exclude name="BeanMembersShouldSerialize"/>
         <exclude name="DataflowAnomalyAnalysis"/>
         <exclude name="NullAssignment"/>
-        <exclude name="AvoidLiteralsInIfCondition" />
-        <exclude name="EmptyCatchBlock" />
+        <exclude name="AvoidLiteralsInIfCondition"/>
+        <exclude name="EmptyCatchBlock"/>
     </rule>
     <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals">
         <properties>
@@ -65,8 +65,8 @@
         <exclude name="UseConcurrentHashMap"/>
     </rule>
     <rule ref="category/java/performance.xml">
-        <exclude name="UseStringBufferForStringAppends" />
-        <exclude name="SimplifyStartsWith" />
-        <exclude name="AvoidInstantiatingObjectsInLoops" />
+        <exclude name="UseStringBufferForStringAppends"/>
+        <exclude name="SimplifyStartsWith"/>
+        <exclude name="AvoidInstantiatingObjectsInLoops"/>
     </rule>
 </ruleset>

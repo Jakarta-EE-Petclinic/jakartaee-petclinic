@@ -6,26 +6,35 @@ import java.io.Serializable;
 
 public interface HasOwnerViewFlowState extends HasCrudFlowState, Serializable {
 
-    long serialVersionUID = 6654391340545426308L;
+	long serialVersionUID = 6654391340545426308L;
 
-    boolean isFlowStateShow();
-    void setFlowStateShow();
+	boolean isFlowStateShow();
 
-    boolean isFlowStateNewPet();
-    void setFlowStateNewPet();
+	void setFlowStateShow();
 
-    boolean isFlowStateEditPet();
-    void setFlowStateEditPet();
+	boolean isFlowStateNewPet();
 
-    boolean isFlowStateNewVisit();
-    void setFlowStateNewVisit();
+	void setFlowStateNewPet();
 
-    boolean isRenderPanelAddNewOwner();
-    boolean isRenderPanelEditOwner();
-    boolean isRenderPanelOwner();
-    boolean isRenderPanelOwnerList();
+	boolean isFlowStateEditPet();
 
-    boolean isRenderPanelEditOwnersPet();
-    boolean isRenderPanelAddNewOwnersPet();
-    boolean isRenderPanelAddNewOwnersPetVisit();
+	void setFlowStateEditPet();
+
+	boolean isFlowStateNewVisit();
+
+	void setFlowStateNewVisit();
+
+	boolean isRenderPanelAddNewOwner();
+
+	boolean isRenderPanelEditOwner();
+
+	boolean isRenderPanelOwner();
+
+	boolean isRenderPanelOwnerList();
+
+	boolean isRenderPanelEditOwnersPet();
+
+	boolean isRenderPanelAddNewOwnersPet();
+
+	boolean isRenderPanelAddNewOwnersPetVisit();
 }

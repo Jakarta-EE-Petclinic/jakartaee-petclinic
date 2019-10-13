@@ -7,14 +7,16 @@ import java.util.List;
 
 public interface CrudService<T extends TwEntities> extends Serializable {
 
-    long serialVersionUID = 8240918516324226703L;
+	long serialVersionUID = 8240918516324226703L;
 
-    List<T> getAll();
-    T findById(long id);
+	List<T> getAll();
 
-    T addNew(T entity);
-    T update(T entity);
+	T findById(long id);
 
-    void delete(long id);
+	T addNew(T entity);
+
+	T update(T entity);
+
+	void delete(long id);
 
 }

@@ -7,26 +7,35 @@ import java.util.List;
 
 public interface CrudView<T extends TwEntities> extends HasSearch, HasLanguage, Serializable {
 
-    long serialVersionUID = -4976697275728754000L;
+	long serialVersionUID = -4976697275728754000L;
 
-    String showNewForm();
-    String saveNew();
-    String cancelNew();
+	String showNewForm();
 
-    String showEditForm();
-    String saveEdited();
-    String cancelEdited();
+	String saveNew();
 
-    String showDeleteForm();
-    String performDelete();
-    String cancelDelete();
+	String cancelNew();
 
-    T getSelected();
-    void setSelected(T selected);
+	String showEditForm();
 
-    T getEntity();
-    void setEntity(T entity);
+	String saveEdited();
 
-    void setList(List<T> list);
-    List<T> getList();
+	String cancelEdited();
+
+	String showDeleteForm();
+
+	String performDelete();
+
+	String cancelDelete();
+
+	T getSelected();
+
+	void setSelected(T selected);
+
+	T getEntity();
+
+	void setEntity(T entity);
+
+	List<T> getList();
+
+	void setList(List<T> list);
 }
