@@ -1421,14 +1421,52 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
-							<skipTests>true</skipTests>
+							<skipTests>${skipIntegrationTests}</skipTests>
+							<environmentVariables>
+								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}
+								</JBOSS_HOME>
+								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}
+								</jboss.home>
+								<jbossas.startup.timeout>300</jbossas.startup.timeout>
+								<http.port>8080</http.port>
+								<https.port>8443</https.port>
+							</environmentVariables>
 						</configuration>
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-failsafe-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>integration-test</goal>
+									<goal>verify</goal>
+								</goals>
+							</execution>
+						</executions>
 						<configuration>
-							<skipTests>true</skipTests>
+							<skipTests>${skipIntegrationTests}</skipTests>
+							<environmentVariables>
+								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}
+								</JBOSS_HOME>
+								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}
+								</jboss.home>
+								<jbossas.startup.timeout>300</jbossas.startup.timeout>
+								<http.port>8080</http.port>
+								<https.port>8443</https.port>
+							</environmentVariables>
+							<systemPropertyVariables>
+								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}
+								</JBOSS_HOME>
+								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}
+								</jboss.home>
+								<jbossas.startup.timeout>300</jbossas.startup.timeout>
+								<http.port>8080</http.port>
+								<https.port>8443</https.port>
+							</systemPropertyVariables>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -1557,43 +1595,6 @@
 						</configuration>
 					</plugin>
 				</plugins>
-			</build>
-		</profile>
-
-		<profile>
-			<id>schemagen-json-xml</id>
-			<build>
-				<finalName>petclinic</finalName>
-				<pluginManagement>
-					<plugins>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>jaxb2-maven-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>schemagen</id>
-								<goals>
-									<goal>schemagen</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<schemaSourceExcludeFilters>
-								<noJaxbIndex implementation="org.codehaus.mojo.jaxb2.shared.filters.pattern.PatternFileFilter">
-									<patterns>
-										<pattern>org.woehlke.jakartaee.petclinic.application</pattern>
-										<pattern>org.woehlke.jakartaee.petclinic.frontend</pattern>
-										<pattern>org.woehlke.jakartaee.petclinic.oodm.dao</pattern>
-										<pattern>org.woehlke.jakartaee.petclinic.oodm.services</pattern>
-										<pattern>org.woehlke.jakartaee.petclinic.oodm.view</pattern>
-										<pattern>org.woehlke.jakartaee.petclinic.oodm.entities.listener</pattern>
-									</patterns>
-								</noJaxbIndex>
-							</schemaSourceExcludeFilters>
-						</configuration>
-					</plugin>
-					</plugins>
-				</pluginManagement>
 			</build>
 		</profile>
 
@@ -2388,6 +2389,43 @@
 						</executions>
 					</plugin>
 				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>schemagen-json-xml</id>
+			<build>
+				<finalName>petclinic</finalName>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>jaxb2-maven-plugin</artifactId>
+							<executions>
+								<execution>
+									<id>schemagen</id>
+									<goals>
+										<goal>schemagen</goal>
+									</goals>
+								</execution>
+							</executions>
+							<configuration>
+								<schemaSourceExcludeFilters>
+									<noJaxbIndex implementation="org.codehaus.mojo.jaxb2.shared.filters.pattern.PatternFileFilter">
+										<patterns>
+											<pattern>org.woehlke.jakartaee.petclinic.application</pattern>
+											<pattern>org.woehlke.jakartaee.petclinic.frontend</pattern>
+											<pattern>org.woehlke.jakartaee.petclinic.oodm.dao</pattern>
+											<pattern>org.woehlke.jakartaee.petclinic.oodm.services</pattern>
+											<pattern>org.woehlke.jakartaee.petclinic.oodm.view</pattern>
+											<pattern>org.woehlke.jakartaee.petclinic.oodm.entities.listener</pattern>
+										</patterns>
+									</noJaxbIndex>
+								</schemaSourceExcludeFilters>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
 			</build>
 		</profile>
 

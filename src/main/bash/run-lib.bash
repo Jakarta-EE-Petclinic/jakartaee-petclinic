@@ -166,7 +166,7 @@ function runRemoteWildfly(){
 function runManagedWildfly(){
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
-  SRV_PROFILE=run-wildfly-managed
+  SRV_PROFILE=test-wildfly-managed
   checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
   echo " run Managed Wildfly $TESTS_PROFILE $BROWSER_PROFILE"
