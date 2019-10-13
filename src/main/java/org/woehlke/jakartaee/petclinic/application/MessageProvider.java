@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 
 public class MessageProvider implements Serializable {
 
+  private static final long serialVersionUID = 3363265300512735983L;
+
   public ResourceBundle getBundle() {
     FacesContext context = FacesContext.getCurrentInstance();
     return context.getApplication().getResourceBundle(context, "msg");

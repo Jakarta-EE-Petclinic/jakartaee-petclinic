@@ -1236,20 +1236,6 @@
 					<artifactId>arquillian-junit-container</artifactId>
 					<scope>test</scope>
 				</dependency>
-				<!--
-				TODO:
-				<dependency>
-						<groupId>org.jboss.arquillian.graphene</groupId>
-						<artifactId>graphene-webdriver-impl</artifactId>
-						<scope>test</scope>
-				</dependency>
-				 TODO:
-				<dependency>
-						<groupId>org.jboss.arquillian.protocol</groupId>
-						<artifactId>arquillian-protocol-servlet</artifactId>
-						<scope>test</scope>
-				</dependency>
-				-->
 				<dependency>
 					<groupId>org.apache.httpcomponents</groupId>
 					<artifactId>httpcore</artifactId>
@@ -1390,34 +1376,11 @@
 					<artifactId>wildfly-arquillian-container-managed</artifactId>
 					<scope>test</scope>
 				</dependency>
-				<!-- logging -->
 				<dependency>
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
 					<scope>test</scope>
 				</dependency>
-				<!-- Integration Testing with Arquillian -->
-				<!--
-				<dependency>
-						<groupId>org.jboss.arquillian.protocol</groupId>
-						<artifactId>arquillian-protocol-servlet</artifactId>
-						<scope>test</scope>
-				</dependency>
-				-->
-				<!--
-				<dependency>
-						<groupId>xml-apis</groupId>
-						<artifactId>xml-apis</artifactId>
-						<scope>test</scope>
-				</dependency>
-				-->
-				<!--
-				<dependency>
-						<groupId>org.jboss.arquillian.extension</groupId>
-						<artifactId>arquillian-drone-webdriver</artifactId>
-						<scope>test</scope>
-				</dependency>
-				-->
 				<dependency>
 					<groupId>org.wildfly.arquillian</groupId>
 					<artifactId>wildfly-arquillian-common</artifactId>
@@ -1584,7 +1547,6 @@
 					<artifactId>shrinkwrap-resolver-api-maven-embedded</artifactId>
 					<scope>test</scope>
 				</dependency>
-				<!-- -->
 				<dependency>
 					<groupId>org.apache.cxf</groupId>
 					<artifactId>cxf-rt-rs-client</artifactId>
@@ -1595,70 +1557,6 @@
 					<artifactId>cxf-rt-rs-extension-providers</artifactId>
 					<scope>test</scope>
 				</dependency>
-				<!-- logging -->
-				<!--
-				<dependency>
-						<groupId>commons-logging</groupId>
-						<artifactId>commons-logging</artifactId>
-						<scope>test</scope>
-				</dependency>
-				-->
-				<!-- Integration Testing with Arquillian -->
-				<!--
-				<dependency>
-						<groupId>xml-apis</groupId>
-						<artifactId>xml-apis</artifactId>
-						<scope>test</scope>
-				</dependency>
-				-->
-				<!--
-					TODO:
-				<dependency>
-						<groupId>org.seleniumhq.selenium</groupId>
-						<artifactId>htmlunit-driver</artifactId>
-						<scope>test</scope>
-				</dependency>
-				-->
-				<!--
-				TODO:
-				<dependency>
-						<groupId>com.codeborne</groupId>
-						<artifactId>phantomjsdriver</artifactId>
-						<scope>test</scope>
-				</dependency>
-				-->
-				<!--
-				<dependency>
-						<groupId>io.openliberty.features</groupId>
-						<artifactId>appSecurity-3.0</artifactId>
-						<type>esa</type>
-						<scope>provided</scope>
-				</dependency>
-				<dependency>
-						<groupId>io.openliberty.features</groupId>
-						<artifactId>audit-1.0</artifactId>
-						<type>esa</type>
-						<scope>provided</scope>
-				</dependency>
-				<dependency>
-						<groupId>io.openliberty.features</groupId>
-						<artifactId>servlet-3.1</artifactId>
-						<type>esa</type>
-						<scope>provided</scope>
-				</dependency>
-				<dependency>
-						<groupId>io.openliberty.features</groupId>
-						<artifactId>servlet-4.0</artifactId>
-						<type>esa</type>
-						<scope>provided</scope>
-				</dependency>
-				<dependency>
-						<groupId>io.openliberty.features</groupId>
-						<artifactId>passwordUtilities-1.0</artifactId>
-						<type>esa</type>
-						<scope>provided</scope>
-				</dependency>
-				-->
 			</dependencies>
 			<build>
 				<finalName>petclinic</finalName>
@@ -1845,13 +1743,6 @@
 					<artifactId>elytron-standalone</artifactId>
 					<scope>test</scope>
 				</dependency>
-				<!--
-				<dependency>
-						<groupId>org.jboss.shrinkwrap.resolver</groupId>
-						<artifactId>shrinkwrap-resolver-api-maven-embedded</artifactId>
-						<scope>test</scope>
-				</dependency>
-				-->
 				<!-- logging -->
 				<dependency>
 					<groupId>commons-logging</groupId>
@@ -1864,13 +1755,6 @@
 					<artifactId>arquillian-protocol-servlet</artifactId>
 					<scope>test</scope>
 				</dependency>
-				<!--
-				<dependency>
-						<groupId>xml-apis</groupId>
-						<artifactId>xml-apis</artifactId>
-						<scope>test</scope>
-				</dependency>
-				-->
 				<!--
 				<dependency>
 						<groupId>org.jboss.arquillian.graphene</groupId>
@@ -1941,21 +1825,6 @@
 					<artifactId>cxf-rt-rs-extension-providers</artifactId>
 					<scope>test</scope>
 				</dependency>
-				<!--
-				<dependency>
-						<groupId>xml-apis</groupId>
-						<artifactId>xml-apis</artifactId>
-						<scope>test</scope>
-				</dependency>
-				-->
-				<!-- logging -->
-				<!--
-				<dependency>
-						<groupId>commons-logging</groupId>
-						<artifactId>commons-logging</artifactId>
-						<scope>test</scope>
-				</dependency>
-				-->
 			</dependencies>
 			<build>
 				<finalName>petclinic</finalName>
@@ -2044,7 +1913,93 @@
 		</profile>
 
 		<profile>
-			<id>check-code</id>
+			<id>prepare-serialver</id>
+			<build>
+				<finalName>petclinic</finalName>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>purge-local-repository</goal>
+									<goal>resolve</goal>
+									<goal>resolve-plugins</goal>
+									<goal>sources</goal>
+									<goal>unpack-dependencies</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<excludeTypes>pom,zip</excludeTypes>
+							<outputDirectory>${project.build.directory}/prepareserialver</outputDirectory>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>prepareserialvercompile</id>
+								<phase>compile</phase>
+								<goals>
+									<goal>compile</goal>
+								</goals>
+								<configuration>
+									<useIncrementalCompilation>false</useIncrementalCompilation>
+									<outputDirectory>${project.build.directory}/prepareserialver</outputDirectory>
+									<showWarnings>true</showWarnings>
+									<failOnWarning>false</failOnWarning>
+									<compilerArgs>
+										<arg>-Xlint:serial</arg>
+									</compilerArgs>
+								</configuration>
+							</execution>
+							<execution>
+								<id>prepareserialvertestcompile</id>
+								<phase>compile</phase>
+								<goals>
+									<goal>testCompile</goal>
+								</goals>
+								<configuration>
+									<useIncrementalCompilation>false</useIncrementalCompilation>
+									<outputDirectory>${project.build.directory}/prepareserialver</outputDirectory>
+									<showWarnings>true</showWarnings>
+									<failOnWarning>false</failOnWarning>
+									<compilerArgs>
+										<arg>-Xlint:serial</arg>
+									</compilerArgs>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>check-serialver</id>
+			<build>
+				<finalName>petclinic</finalName>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<configuration>
+							<useIncrementalCompilation>false</useIncrementalCompilation>
+							<showWarnings>true</showWarnings>
+							<compilerArgs>
+								<arg>-Xlint:serial</arg>
+							</compilerArgs>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>check-code-quality</id>
 			<build>
 				<finalName>petclinic</finalName>
 				<plugins>
@@ -2063,7 +2018,7 @@
 						<configuration>
 							<printFailingErrors>true</printFailingErrors>
 							<rulesets>
-								<ruleset>pmd-ruleset.xml</ruleset>
+								<ruleset>etc/pmd-ruleset.xml</ruleset>
 							</rulesets>
 							<analysisCache>false</analysisCache>
 							<includeTests>true</includeTests>
@@ -2071,18 +2026,33 @@
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-compiler-plugin</artifactId>
+						<artifactId>maven-checkstyle-plugin</artifactId>
 						<configuration>
-							<useIncrementalCompilation>false</useIncrementalCompilation>
-							<showWarnings>true</showWarnings>
-							<compilerArgs>
-								<arg>-Xlint:serial</arg>
-							</compilerArgs>
+							<consoleOutput>true</consoleOutput>
+							<configLocation>./etc/checkstyle.xml</configLocation>
 						</configuration>
+						<executions>
+							<execution>
+								<id>checkstyle</id>
+								<phase>validate</phase>
+								<goals>
+									<goal>check</goal>
+								</goals>
+								<configuration>
+									<failOnViolation>false</failOnViolation>
+								</configuration>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>com.puppycrawl.tools</groupId>
+								<artifactId>checkstyle</artifactId>
+								<version>8.18</version>
+							</dependency>
+						</dependencies>
 					</plugin>
 				</plugins>
 			</build>
 		</profile>
 	</profiles>
-
 </project>
