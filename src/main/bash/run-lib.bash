@@ -107,6 +107,76 @@ function buildSiblings(){
   cd $HOME/IdeaProjects/jakartaee-petclinic
 }
 
+function startRemoteAppServerWildfly17(){
+  echo "-----------------------------------------"
+  echo "start remote AppServer Wildfly 17"
+  echo "-----------------------------------------"
+  echo "reminder: hit CTRL-C to stop this Server"
+  echo "-----------------------------------------"
+  cd ~/j/srv/wildfly-17.0.1.Final/bin
+  ./standalone.sh
+}
+
+function stopRemoteAppServerWildfly17() {
+  echo "-----------------------------------------"
+  echo "reminder: hit CTRL-C to stop this Server"
+  echo "-----------------------------------------"
+}
+
+function stopRemoteAppServerGlassfish51(){
+  echo "-------------------------------------"
+  echo "stop remote AppServer Glassfish 5.1"
+  echo "-------------------------------------"
+  cd ~/j/srv/glassfish-5.1.0/bin
+  ./asadmin stop-domain
+  ./asadmin stop-database
+}
+
+function startRemoteAppServerGlassfish51(){
+  echo "-------------------------------------"
+  echo "start remote AppServer Glassfish 5.1"
+  echo "-------------------------------------"
+  cd ~/j/srv/glassfish-5.1.0/bin
+  ./asadmin start-database
+  ./asadmin start-domain
+  echo "http://localhost:8080/"
+}
+
+function stopRemoteAppServerOpenLibertyWlp(){
+  echo "-----------------------------------------"
+  echo "stop remote AppServer Open Liberty WLP"
+  echo "-----------------------------------------"
+  cd ~/j/srv/openliberty-19.0.0.9/wlp/bin
+  ./server stop
+}
+
+function setupRemoteAppServerOpenLibertyWlpDeployServerXml(){
+  mkdir -p ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/lib
+  cp -f src/main/liberty/config/server.xml ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/
+}
+
+function setupRemoteAppServerOpenLibertyWlpDeployServerXmlDeployDatabaseJar(){
+  $MAVEN clean install -DskipTests=true
+  cp -f target/petclinic/WEB-INF/lib/postgresql-42.2.7.jar ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/lib/postgresql.jar
+}
+
+function setupRemoteAppServerOpenLibertyWlp(){
+  setupRemoteAppServerOpenLibertyWlpDeployServerXml
+  #setupRemoteAppServerOpenLibertyWlpDeployServerXmlDeployDatabaseJar
+}
+
+function startRemoteAppServerOpenLibertyWlp(){
+  echo "-----------------------------------------"
+  echo "start remote AppServer Open Liberty WLP"
+  echo "-----------------------------------------"
+  setupRemoteAppServerOpenLibertyWlp
+  cd ~/j/srv/openliberty-19.0.0.9/wlp/bin
+  ./server start
+  echo "http://localhost:9080/"
+  #tail -f ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/logs/messages.log &
+  tail -f ~/j/srv/openliberty-19.0.0.9/wlp/usr/servers/defaultServer/logs/console.log
+}
+
 function testRemoteLiberty(){
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
@@ -250,11 +320,11 @@ function runManagedGlassfish(){
   BROWSER_PROFILE=$2
   SRV_PROFILE=it-glassfish-managed
   checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
-  echo "------------------------"
-  echo "run Managed Glassfish"
-  echo "------------------------"
+  echo "-----------------------------------------"
+  echo " run Managed Glassfish"
+  echo "-----------------------------------------"
   echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install"
-  echo "------------------------"
+  echo "-----------------------------------------"
   $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install
 }
 
@@ -263,13 +333,14 @@ function runRemoteGlassfish(){
   BROWSER_PROFILE=$2
   SRV_PROFILE=it-glassfish-remote
   checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
-  echo "------------------------"
+  echo "-----------------------------------------"
   echo "run Remote Glassfish"
-  echo "------------------------"
+  echo "-----------------------------------------"
   echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install"
-  echo "------------------------"
+  echo "-----------------------------------------"
   $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install
   echo "http://localhost:8080/petclinic/"
+  echo "-----------------------------------------"
 }
 
 function runQa() {
@@ -284,4 +355,72 @@ function resolveDependencies() {
   BROWSER_PROFILE=$2
   #checkAllDependencies
   checkDependencies $TESTS_PROFILE $BROWSER_PROFILE
+}
+
+function startAppServer(){
+  echo "-----------------------------------------"
+  echo "start remote AppServer"
+  #startRemoteAppServerWildfly17
+  startRemoteAppServerOpenLibertyWlp
+  #startRemoteAppServerGlassfish51
+  echo "-----------------------------------------"
+}
+
+function stopAppServer(){
+  echo "-----------------------------------------"
+  echo "stop remote AppServer"
+  #stopRemoteAppServerWildfly17
+  stopRemoteAppServerOpenLibertyWlp
+  #stopRemoteAppServerGlassfish51
+  echo "-----------------------------------------"
+}
+
+function runManaged() {
+  TESTS_PROFILE=$1
+  BROWSER_PROFILE=$2
+  #runManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  runManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
+  #runManagedGlassfish $TESTS_PROFILE $BROWSER_PROFILE
+}
+
+function runRemote() {
+  TESTS_PROFILE=$1
+  BROWSER_PROFILE=$2
+  #runRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  runRemoteLiberty $TESTS_PROFILE $BROWSER_PROFILE
+  #runRemoteGlassfish $TESTS_PROFILE $BROWSER_PROFILE
+}
+
+function testManaged() {
+  TESTS_PROFILE=$1
+  BROWSER_PROFILE=$2
+  #testManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  #testManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
+  #testManagedGlassfish $TESTS_PROFILE $BROWSER_PROFILE
+}
+
+function testRemote() {
+  TESTS_PROFILE=$1
+  BROWSER_PROFILE=$2
+  #testRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  #testRemoteLiberty $TESTS_PROFILE $BROWSER_PROFILE
+  #testRemoteGlassfish $TESTS_PROFILE $BROWSER_PROFILE
+}
+
+function main(){
+  TESTS_PROFILE=$1
+  BROWSER_PROFILE=$2
+  echo "-------------------"
+  echo " main"
+  echo "-------------------"
+  #resolveDependencies $TESTS_PROFILE $BROWSER_PROFILE
+  #runQa $TESTS_PROFILE $BROWSER_PROFILE
+  #setSerialVersionId
+  #runRemote $TESTS_PROFILE $BROWSER_PROFILE
+  runManaged $TESTS_PROFILE $BROWSER_PROFILE
+  #testManaged $TESTS_PROFILE $BROWSER_PROFILE
+  #testRemote $TESTS_PROFILE $BROWSER_PROFILE
+  echo "-------------------"
+  echo " DONE and READY"
+  echo "-------------------"
 }

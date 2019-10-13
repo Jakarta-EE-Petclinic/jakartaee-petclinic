@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-source src/main/bash/server-lib.bash
+source src/main/bash/run-lib.bash
 
 startAppServer
