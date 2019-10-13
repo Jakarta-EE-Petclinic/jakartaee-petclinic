@@ -4,11 +4,19 @@
 export MAVEN=mvn
 export LOGFILE=log/run.log.txt
 
-export ALL_SRV_PROFILES_REMOTE="it-wildfly-remote it-openliberty-remote it-glassfish-remote"
-export ALL_SRV_PROFILES_MANAGED="it-wildfly-managed it-openliberty-managed"
+export ALL_SRV_PROFILES_REMOTE="run-wildfly-remote run-openliberty-remote run-glassfish-remote"
+export ALL_SRV_PROFILES_MANAGED="run-wildfly-managed run-openliberty-managed"
 export ALL_SRV_PROFILES="it-default $ALL_SRV_PROFILES_REMOTE $ALL_SRV_PROFILES_MANAGED"
 export ALL_TESTS_PROFILES="it-skip-tests it-skip-tests"
 export ALL_BROWSER_PROFILES="it-browser-chrome it-browser-firefox it-browser-safari it-browser-opera"
+
+export BROWSER_PROFILE_CHROME=it-browser-chrome
+export BROWSER_PROFILE_FIREFOX=it-browser-firefox
+export BROWSER_PROFILE_SAFARI=it-browser-safari
+export BROWSER_PROFILE_OPERA=it-browser-opera
+
+export TESTS_PROFILE_SKIP=it-skip-tests
+export TESTS_PROFILE_RUN=it-run-tests
 
 function echoEnv() {
   echo "CLASSPATH: $CLASSPATH"
@@ -177,6 +185,19 @@ function runManagedWildfly(){
   echo "--------------------------------------------------------------------------"
 }
 
+function stopManagedWildfly(){
+  TESTS_PROFILE=$1
+  BROWSER_PROFILE=$2
+  SRV_PROFILE=test-wildfly-managed
+  echo "--------------------------------------------------------------------------"
+  echo " run Managed Wildfly $TESTS_PROFILE $BROWSER_PROFILE"
+  echo "--------------------------------------------------------------------------"
+  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE wildfly:shutdown"
+  echo "--------------------------------------------------------------------------"
+  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE wildfly:shutdown
+  echo "--------------------------------------------------------------------------"
+}
+
 function testManagedLiberty(){
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
@@ -208,6 +229,19 @@ function runManagedLiberty(){
   echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:run-server"
   echo "--------------------------------------------------------------------------"
   $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:run-server
+  echo "--------------------------------------------------------------------------"
+}
+
+function stopManagedLiberty(){
+  TESTS_PROFILE=$1
+  BROWSER_PROFILE=$2
+  SRV_PROFILE=run-openliberty-managed
+  echo "--------------------------------------------------------------------------"
+  echo " stop Managed Liberty $TESTS_PROFILE $BROWSER_PROFILE"
+  echo "--------------------------------------------------------------------------"
+  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:stop-server"
+  echo "--------------------------------------------------------------------------"
+  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:stop-server
   echo "--------------------------------------------------------------------------"
 }
 
