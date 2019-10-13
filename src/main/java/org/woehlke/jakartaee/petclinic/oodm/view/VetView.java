@@ -1,5 +1,6 @@
 package org.woehlke.jakartaee.petclinic.oodm.view;
 
+import org.primefaces.model.DualListModel;
 import org.woehlke.jakartaee.petclinic.frontend.web.common.CrudView;
 import org.woehlke.jakartaee.petclinic.frontend.web.common.HasLanguage;
 import org.woehlke.jakartaee.petclinic.frontend.web.common.HasSearch;
@@ -19,4 +20,8 @@ public interface VetView extends CrudView<Vet>,
   long serialVersionUID = -4141782100256382881L;
 
   Specialty findSpecialtyByName(String name);
+
+  DualListModel<Specialty> getSpecialtiesPickList();
+
+  void setSpecialtiesPickList(DualListModel<Specialty> specialtiesPickList);
 }

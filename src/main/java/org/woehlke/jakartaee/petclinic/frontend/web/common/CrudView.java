@@ -4,6 +4,7 @@ import org.woehlke.jakartaee.petclinic.oodm.entities.common.TwEntities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public interface CrudView<T extends TwEntities> extends HasSearch, HasLanguage, Serializable {
 
@@ -38,4 +39,6 @@ public interface CrudView<T extends TwEntities> extends HasSearch, HasLanguage, 
   List<T> getList();
 
   void setList(List<T> list);
+
+  ResourceBundle getMsg();
 }

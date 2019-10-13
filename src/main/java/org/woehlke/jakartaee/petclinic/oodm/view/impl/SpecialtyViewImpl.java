@@ -54,7 +54,7 @@ public class SpecialtyViewImpl implements SpecialtyView {
 
   private String searchterm;
 
-
+  @Override
   @PostConstruct
   public void init() {
     log.trace("postConstruct");
@@ -229,10 +229,12 @@ public class SpecialtyViewImpl implements SpecialtyView {
     }
   }
 
+  @Override
   public LanguageView getLanguageView() {
     return languageView;
   }
 
+  @Override
   public void setLanguageView(LanguageView languageView) {
     this.languageView = languageView;
   }
@@ -245,10 +247,12 @@ public class SpecialtyViewImpl implements SpecialtyView {
     this.frontendMessagesView = frontendMessagesView;
   }
 
+  @Override
   public String getSearchterm() {
     return searchterm;
   }
 
+  @Override
   public void setSearchterm(String searchterm) {
     this.searchterm = searchterm;
   }
@@ -273,6 +277,7 @@ public class SpecialtyViewImpl implements SpecialtyView {
     this.selected = selected;
   }
 
+  @Override
   public ResourceBundle getMsg() {
     return this.provider.getBundle();
   }
@@ -295,6 +300,7 @@ public class SpecialtyViewImpl implements SpecialtyView {
     this.list = list;
   }
 
+  @Override
   @PreDestroy
   public void preDestroy() {
     log.trace("preDestroy");

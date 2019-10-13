@@ -64,7 +64,7 @@ public class VetViewImpl implements VetView {
 
   private DualListModel<Specialty> specialtiesPickList;
 
-
+  @Override
   @PostConstruct
   public void init() {
     log.trace("postConstruct");
@@ -94,10 +94,12 @@ public class VetViewImpl implements VetView {
     this.specialtiesPickList = new DualListModel<>(srcList, targetList);
   }
 
+  @Override
   public DualListModel<Specialty> getSpecialtiesPickList() {
     return specialtiesPickList;
   }
 
+  @Override
   public void setSpecialtiesPickList(DualListModel<Specialty> specialtiesPickList) {
     this.specialtiesPickList = specialtiesPickList;
   }
@@ -107,18 +109,22 @@ public class VetViewImpl implements VetView {
     return specialtyService.findSpecialtyByName(name);
   }
 
+  @Override
   public org.woehlke.jakartaee.petclinic.oodm.entities.Vet getEntity() {
     return entity;
   }
 
+  @Override
   public void setEntity(org.woehlke.jakartaee.petclinic.oodm.entities.Vet entity) {
     this.entity = entity;
   }
 
+  @Override
   public org.woehlke.jakartaee.petclinic.oodm.entities.Vet getSelected() {
     return selected;
   }
 
+  @Override
   public void setSelected(org.woehlke.jakartaee.petclinic.oodm.entities.Vet selected) {
     this.selected = selected;
   }
@@ -131,6 +137,7 @@ public class VetViewImpl implements VetView {
     this.frontendMessagesView = frontendMessagesView;
   }
 
+  @Override
   public ResourceBundle getMsg() {
     return this.provider.getBundle();
   }
@@ -146,6 +153,7 @@ public class VetViewImpl implements VetView {
     return JSF_PAGE;
   }
 
+  @Override
   public String saveNew() {
     this.saveNewEntity();
     this.vetViewFlow.setFlowStateList();
@@ -158,6 +166,7 @@ public class VetViewImpl implements VetView {
     return JSF_PAGE;
   }
 
+  @Override
   public List<org.woehlke.jakartaee.petclinic.oodm.entities.Vet> getList() {
     if (this.vetViewFlow.isFlowStateSearchResult()) {
       performSearch();
@@ -167,6 +176,7 @@ public class VetViewImpl implements VetView {
     return this.list;
   }
 
+  @Override
   public void setList(List<org.woehlke.jakartaee.petclinic.oodm.entities.Vet> list) {
     this.list = list;
   }
@@ -179,6 +189,7 @@ public class VetViewImpl implements VetView {
     return JSF_PAGE;
   }
 
+  @Override
   public String saveEdited() {
     this.saveEditedEntity();
     this.vetViewFlow.setFlowStateList();
@@ -211,10 +222,12 @@ public class VetViewImpl implements VetView {
     return JSF_PAGE;
   }
 
+  @Override
   public String getSearchterm() {
     return searchterm;
   }
 
+  @Override
   public void setSearchterm(String searchterm) {
     this.searchterm = searchterm;
   }
@@ -261,6 +274,7 @@ public class VetViewImpl implements VetView {
     this.languageView = languageView;
   }
 
+  @Override
   @PreDestroy
   public void preDestroy() {
     log.trace("preDestroy");
