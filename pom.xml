@@ -1733,11 +1733,12 @@
 								<default.https.port>8443</default.https.port>
 								<app.context.root>${app.name}</app.context.root>
 								<packageFile>${project.build.directory}/${app.name}.war</packageFile>
-								<postgresql.jar.dir>${project.build.directory}/${app.name}/WEB-INF/lib
-								</postgresql.jar.dir>
+								<postgresql.jar.dir>${project.build.directory}/${app.name}/WEB-INF/lib</postgresql.jar.dir>
 								<postgresql.jar.file>postgresql-${postgresql.driver.version}.jar</postgresql.jar.file>
 								<wlpHome>${project.build.directory}/liberty/wlp</wlpHome>
+								<timeout>300</timeout>
 							</bootstrapProperties>
+							<timeout>300</timeout>
 							<appsDirectory>apps</appsDirectory>
 							<stripVersion>true</stripVersion>
 							<installAppPackages>project</installAppPackages>
