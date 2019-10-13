@@ -248,11 +248,11 @@
 							</h:panelGroup>
 							<h:panelGroup>
 								<p:outputLabel value="#{msg['birthdate']}" for="petBirthDateEditOwnersPet"/>
-								<p:calendar id="petBirthDateEditOwnersPet"
-								            styleClass="twCalendar"
-								            value="#{ownerView.pet.birthDate}"
-								            showIcon="true"
-								            showButtonBar="true"/>
+								<p:datePicker id="petBirthDateEditOwnersPet"
+								              styleClass="twCalendar"
+								              value="#{ownerView.pet.birthDate}"
+								              showIcon="true"
+								              showButtonBar="true"/>
 							</h:panelGroup>
 							<h:panelGroup>
 								<p:outputLabel value="#{msg['petType']}" for="petTypeEditOwnersPet"/>
@@ -315,7 +315,7 @@
 							</h:panelGroup>
 							<h:panelGroup>
 								<h:outputText value="#{msg['birthdate']}" for="petBirthDateAddNewOwnersPet"/>
-								<p:calendar id="petBirthDateAddNewOwnersPet"
+								<p:datePicker id="petBirthDateAddNewOwnersPet"
 								            styleClass="twCalendar"
 								            value="#{ownerView.pet.birthDate}"
 								            showIcon="true"
@@ -383,7 +383,7 @@
 					<p:panel id="contentPanelNewVisit" header="#{msg['addVisit']}">
 						<p:panelGrid id="gridNewVisit" columns="2">
 							<p:outputLabel value="#{msg['date']}" for="visitDate"/>
-							<p:calendar id="visitDate"
+							<p:datePicker id="visitDate"
 							            styleClass="twCalendar"
 							            value="#{ownerView.visit.date}"
 							            showIcon="true"
