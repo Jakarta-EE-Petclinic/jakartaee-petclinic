@@ -17,8 +17,8 @@ TESTS_PROFILE2=it-run-tests
 function runManaged() {
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
+  runManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
   #runManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
-  #runManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
   #runManagedGlassfish $TESTS_PROFILE $BROWSER_PROFILE
 }
 
@@ -30,6 +30,22 @@ function runRemote() {
   #runRemoteGlassfish $TESTS_PROFILE $BROWSER_PROFILE
 }
 
+function testManaged() {
+  TESTS_PROFILE=$1
+  BROWSER_PROFILE=$2
+  #testManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  #testManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
+  #testManagedGlassfish $TESTS_PROFILE $BROWSER_PROFILE
+}
+
+function testRemote() {
+  TESTS_PROFILE=$1
+  BROWSER_PROFILE=$2
+  #testRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  #testRemoteLiberty $TESTS_PROFILE $BROWSER_PROFILE
+  #testRemoteGlassfish $TESTS_PROFILE $BROWSER_PROFILE
+}
+
 function main(){
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
@@ -39,8 +55,10 @@ function main(){
   #resolveDependencies $TESTS_PROFILE $BROWSER_PROFILE
   #runQa $TESTS_PROFILE $BROWSER_PROFILE
   #setSerialVersionId
-  runRemote  $TESTS_PROFILE $BROWSER_PROFILE
-  #runManaged  $TESTS_PROFILE $BROWSER_PROFILE
+  #runRemote $TESTS_PROFILE $BROWSER_PROFILE
+  runManaged $TESTS_PROFILE $BROWSER_PROFILE
+  #testManaged $TESTS_PROFILE $BROWSER_PROFILE
+  #testRemote $TESTS_PROFILE $BROWSER_PROFILE
   echo "-------------------"
   echo " DONE and READY"
   echo "-------------------"

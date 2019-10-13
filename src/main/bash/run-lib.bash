@@ -102,7 +102,7 @@ function buildSiblings(){
 function testRemoteLiberty(){
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
-  SRV_PROFILE=it-openliberty-remote
+  SRV_PROFILE=test-openliberty-remote
   checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
   echo " test Remote Liberty $TESTS_PROFILE $BROWSER_PROFILE"
@@ -118,7 +118,7 @@ function testRemoteLiberty(){
 function runRemoteLiberty(){
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
-  SRV_PROFILE=it-openliberty-remote
+  SRV_PROFILE=run-openliberty-remote
   checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
   echo " run Remote Liberty $TESTS_PROFILE $BROWSER_PROFILE"
@@ -134,7 +134,7 @@ function runRemoteLiberty(){
 function testRemoteWildfly(){
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
-  SRV_PROFILE=it-wildfly-remote
+  SRV_PROFILE=test-wildfly-remote
   checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
   echo " test Remote Wildfly $TESTS_PROFILE $BROWSER_PROFILE"
@@ -150,7 +150,7 @@ function testRemoteWildfly(){
 function runRemoteWildfly(){
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
-  SRV_PROFILE=it-wildfly-remote
+  SRV_PROFILE=run-wildfly-remote
   checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
   echo " run Remote Wildfly $TESTS_PROFILE $BROWSER_PROFILE"
@@ -166,27 +166,23 @@ function runRemoteWildfly(){
 function runManagedWildfly(){
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
-  SRV_PROFILE=it-wildfly-managed
+  SRV_PROFILE=run-wildfly-managed
   checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
   echo " run Managed Wildfly $TESTS_PROFILE $BROWSER_PROFILE"
   echo "--------------------------------------------------------------------------"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install wildfly:start wildfly:deploy"
+  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install"
   echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE wildfly:start wildfly:deploy"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE wildfly:shutdown"
   echo "--------------------------------------------------------------------------"
   $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install
   $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE wildfly:start wildfly:deploy
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE wildfly:shutdown
   echo "--------------------------------------------------------------------------"
 }
 
 function testManagedLiberty(){
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
-  SRV_PROFILE=it-openliberty-managed
+  SRV_PROFILE=test-openliberty-managed
   checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
   echo " test Managed Liberty $TESTS_PROFILE $BROWSER_PROFILE"
@@ -206,7 +202,7 @@ function testManagedLiberty(){
 function runManagedLiberty(){
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
-  SRV_PROFILE=it-openliberty-managed
+  SRV_PROFILE=run-openliberty-managed
   checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
   echo " run Managed Liberty $TESTS_PROFILE $BROWSER_PROFILE"
