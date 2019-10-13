@@ -104,7 +104,6 @@ public class OwnerPage extends AbstractPrimePage {
   @FindBy(id = "editPetForm:petName")
   private InputText petName;
 
-  //TODO: Remove Dependency to Richfaces RichFacesCalendar
   @FindBy(id = "editPetForm:petBirthDate")
   private Calendar petBirthDate;
 
@@ -142,7 +141,6 @@ public class OwnerPage extends AbstractPrimePage {
   @FindBy(id = "addVisitForm:ownerLastName")
   private WebElement ownerLastName;
 
-  //TODO: Remove Dependency to Richfaces RichFacesCalendar
   @FindBy(id = "addVisitForm:visitDate")
   private Calendar visitDate;
 
