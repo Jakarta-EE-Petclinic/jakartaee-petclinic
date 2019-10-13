@@ -5,7 +5,7 @@ Jakarta EE 8 Petclinic -  a JSF and Jakarta EE Version of Spring Petclinic -  an
 
 ## running the Application
 * Managed
-    * Wildfly ... TODO
+    * Wildfly ... OK
     * OpenLiberty ... OK
     * Glassfish ... TODO
 * Remote
