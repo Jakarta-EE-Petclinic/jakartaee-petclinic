@@ -2,9 +2,9 @@ package org.woehlke.jakartaee.petclinic.frontend.api.rest;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.woehlke.jakartaee.petclinic.oodm.entities.model.VetList;
 import org.woehlke.jakartaee.petclinic.oodm.dao.VetDao;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Vet;
+import org.woehlke.jakartaee.petclinic.oodm.entities.model.VetList;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -13,7 +13,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
 import java.io.Serializable;
 
 /**

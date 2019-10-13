@@ -3,9 +3,9 @@ package org.woehlke.jakartaee.petclinic.frontend.api.rest;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.woehlke.jakartaee.petclinic.oodm.entities.model.SpecialtyList;
 import org.woehlke.jakartaee.petclinic.oodm.dao.SpecialtyDao;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Specialty;
+import org.woehlke.jakartaee.petclinic.oodm.entities.model.SpecialtyList;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

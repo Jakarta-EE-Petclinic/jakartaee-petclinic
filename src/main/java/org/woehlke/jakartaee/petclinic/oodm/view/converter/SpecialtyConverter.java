@@ -3,11 +3,9 @@ package org.woehlke.jakartaee.petclinic.oodm.view.converter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Specialty;
-import org.woehlke.jakartaee.petclinic.oodm.services.SpecialtyService;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

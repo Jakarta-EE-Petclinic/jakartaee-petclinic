@@ -1,7 +1,8 @@
 package org.woehlke.jakartaee.petclinic.oodm.entities;
 
-import org.hibernate.search.annotations.*;
-
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 import org.woehlke.jakartaee.petclinic.oodm.entities.common.TwEntities;
 import org.woehlke.jakartaee.petclinic.oodm.entities.listener.PetListener;
 
@@ -9,7 +10,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.*;
-import java.time.LocalDate;
 import java.util.*;
 
 /**

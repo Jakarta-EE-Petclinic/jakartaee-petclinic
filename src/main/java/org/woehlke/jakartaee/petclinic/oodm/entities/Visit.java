@@ -1,22 +1,17 @@
 package org.woehlke.jakartaee.petclinic.oodm.entities;
 
-import org.hibernate.search.annotations.*;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 import org.woehlke.jakartaee.petclinic.oodm.entities.common.TwEntities;
 import org.woehlke.jakartaee.petclinic.oodm.entities.listener.VisitListener;
-import sun.util.resources.cldr.bs.TimeZoneNames_bs;
-import sun.util.resources.de.TimeZoneNames_de;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.*;
-import java.text.DateFormat;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.Date;
+import java.util.Objects;
+import java.util.UUID;
 
 /**
  * Created with IntelliJ IDEA.

@@ -3,20 +3,20 @@ package org.woehlke.jakartaee.petclinic.oodm.view.impl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.woehlke.jakartaee.petclinic.frontend.web.LanguageView;
-import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
 import org.woehlke.jakartaee.petclinic.application.MessageProvider;
+import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
+import org.woehlke.jakartaee.petclinic.frontend.web.LanguageView;
 import org.woehlke.jakartaee.petclinic.oodm.entities.PetType;
 import org.woehlke.jakartaee.petclinic.oodm.services.PetTypeService;
 import org.woehlke.jakartaee.petclinic.oodm.view.PetTypeView;
 import org.woehlke.jakartaee.petclinic.oodm.view.flow.PetTypeViewFlow;
 
-import javax.enterprise.context.SessionScoped;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.ejb.EJBTransactionRolledbackException;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;

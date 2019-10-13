@@ -2,6 +2,8 @@
 
 #export MAVEN=./mvnw
 export MAVEN=mvn
+export LOGFILE=log/run.log.txt
+mkdir -p log
 
 function checkDependencies() {
     TESTS_PROFILE=$1
@@ -157,8 +159,6 @@ function runManagedLiberty(){
 function runQa() {
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
-  LOGFILE="log/runQa.log.txt"
-  mkdir -p log
   $MAVEN -Pcheck-code -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install > $LOGFILE
   cat $LOGFILE
 }
