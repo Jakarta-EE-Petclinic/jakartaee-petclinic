@@ -33,7 +33,7 @@ import static org.jboss.arquillian.graphene.Graphene.goTo;
 @RunAsClient
 public class IntegrationTest01Specialties extends AbstractPrimePageTest {
 
-    private static Logger log = LogManager.getLogger(IntegrationTest01Specialties.class.getName());
+	private static Logger log = LogManager.getLogger(IntegrationTest01Specialties.class.getName());
 
     /*
     @BeforeDeployment
@@ -41,117 +41,114 @@ public class IntegrationTest01Specialties extends AbstractPrimePageTest {
         log.info("beforeDeployment");
     }
     */
+	@Page
+	private HomePage homePage;
+	@Page
+	private SpecialtyPage specialtyPage;
 
-    @Deployment
-    public static WebArchive createDeployment() {
-        log.info("createDeployment");
-        File warFile = new File("target/petclinic.war");
-        return ShrinkWrap.createFromZipFile(WebArchive.class, warFile);
-    }
+	@Deployment
+	public static WebArchive createDeployment() {
+		log.info("createDeployment");
+		File warFile = new File("target/petclinic.war");
+		return ShrinkWrap.createFromZipFile(WebArchive.class, warFile);
+	}
 
-    @Page
-    private HomePage homePage;
+	@Test
+	@InSequence(1)
+	@RunAsClient
+	@OverProtocol("Servlet 3.0")
+	public void testOpeningHomePage() {
+		log.info("testOpeningHomePage");
+		goTo(HomePage.class);
+		homePage.assertTitle();
+	}
 
-    @Page
-    private SpecialtyPage specialtyPage;
+	@Test
+	@InSequence(2)
+	@RunAsClient
+	@OverProtocol("Servlet 3.0")
+	public void testOpeningSpecialtiesPage() {
+		log.info("testOpeningSpecialtiesPage");
+		goTo(SpecialtyPage.class);
+		specialtyPage.assertPageIsLoaded();
+	}
 
+	@Ignore
+	@Test
+	@InSequence(3)
+	@RunAsClient
+	@OverProtocol("Servlet 3.0")
+	public void testNewSpecialtyPage() {
+		log.info("testNewSpecialtyPage");
+		goTo(SpecialtyPage.class);
+		specialtyPage.assertPageIsLoaded();
+		specialtyPage.clickAddNewSpecialty();
+		specialtyPage.assertPageIsLoaded();
+		specialtyPage.addNewContent("dentist");
+		specialtyPage.assertPageIsLoaded();
+		//specialtyListPage.assertNewContentFound("dentist");
+	}
 
-    @Test
-    @InSequence(1)
-    @RunAsClient
-    @OverProtocol("Servlet 3.0")
-    public void testOpeningHomePage() {
-        log.info("testOpeningHomePage");
-        goTo(HomePage.class);
-        homePage.assertTitle();
-    }
+	@Ignore
+	@Test
+	@InSequence(4)
+	@RunAsClient
+	@OverProtocol("Servlet 3.0")
+	public void testEditSpecialtyPage() {
+		log.info("testEditSpecialtyPage");
+		goTo(SpecialtyPage.class);
+		specialtyPage.assertPageIsLoaded();
+		specialtyPage.clickEditSpecialty();
+		specialtyPage.assertPageIsLoaded();
+		specialtyPage.editContent("specialist");
+		specialtyPage.assertPageIsLoaded();
+		//specialtyListPage.assertEditedContentFound("specialist");
+	}
 
-    @Test
-    @InSequence(2)
-    @RunAsClient
-    @OverProtocol("Servlet 3.0")
-    public void testOpeningSpecialtiesPage() {
-        log.info("testOpeningSpecialtiesPage");
-        goTo(SpecialtyPage.class);
-        specialtyPage.assertPageIsLoaded();
-    }
+	@Ignore
+	@Test
+	@InSequence(5)
+	@RunAsClient
+	@OverProtocol("Servlet 3.0")
+	public void testDeleteSpecialtyPage() {
+		log.info("testDeleteSpecialtyPage");
+		goTo(SpecialtyPage.class);
+		specialtyPage.assertPageIsLoaded();
+		specialtyPage.clickDeleteSpecialty();
+		specialtyPage.assertPageIsLoaded();
+		//specialtyListPage.assertDeletedContentNotFound();
+	}
 
-    @Ignore
-    @Test
-    @InSequence(3)
-    @RunAsClient
-    @OverProtocol("Servlet 3.0")
-    public void testNewSpecialtyPage() {
-        log.info("testNewSpecialtyPage");
-        goTo(SpecialtyPage.class);
-        specialtyPage.assertPageIsLoaded();
-        specialtyPage.clickAddNewSpecialty();
-        specialtyPage.assertPageIsLoaded();
-        specialtyPage.addNewContent("dentist");
-        specialtyPage.assertPageIsLoaded();
-        //specialtyListPage.assertNewContentFound("dentist");
-    }
+	@Ignore
+	@Test
+	@InSequence(6)
+	@RunAsClient
+	@OverProtocol("Servlet 3.0")
+	public void testFillSpecialtyPager() {
+		log.info("testFillSpecialtyPager");
+		goTo(SpecialtyPage.class);
+		String[] specialtyList = {
+				"specialty01", "specialty02",
+				"specialty03", "specialty04",
+				"specialty05", "specialty06",
+		};
+		for (String specialty : specialtyList) {
+			specialtyPage.assertPageIsLoaded();
+			specialtyPage.clickAddNewSpecialty();
+			specialtyPage.assertPageIsLoaded();
+			specialtyPage.addNewContent(specialty);
+		}
+		specialtyPage.assertPageIsLoaded();
+	}
 
-    @Ignore
-    @Test
-    @InSequence(4)
-    @RunAsClient
-    @OverProtocol("Servlet 3.0")
-    public void testEditSpecialtyPage() {
-        log.info("testEditSpecialtyPage");
-        goTo(SpecialtyPage.class);
-        specialtyPage.assertPageIsLoaded();
-        specialtyPage.clickEditSpecialty();
-        specialtyPage.assertPageIsLoaded();
-        specialtyPage.editContent("specialist");
-        specialtyPage.assertPageIsLoaded();
-        //specialtyListPage.assertEditedContentFound("specialist");
-    }
-
-    @Ignore
-    @Test
-    @InSequence(5)
-    @RunAsClient
-    @OverProtocol("Servlet 3.0")
-    public void testDeleteSpecialtyPage() {
-        log.info("testDeleteSpecialtyPage");
-        goTo(SpecialtyPage.class);
-        specialtyPage.assertPageIsLoaded();
-        specialtyPage.clickDeleteSpecialty();
-        specialtyPage.assertPageIsLoaded();
-        //specialtyListPage.assertDeletedContentNotFound();
-    }
-
-    @Ignore
-    @Test
-    @InSequence(6)
-    @RunAsClient
-    @OverProtocol("Servlet 3.0")
-    public void testFillSpecialtyPager() {
-        log.info("testFillSpecialtyPager");
-        goTo(SpecialtyPage.class);
-        String[] specialtyList = {
-                "specialty01","specialty02",
-                "specialty03","specialty04",
-                "specialty05","specialty06",
-        };
-        for(String specialty:specialtyList){
-            specialtyPage.assertPageIsLoaded();
-            specialtyPage.clickAddNewSpecialty();
-            specialtyPage.assertPageIsLoaded();
-            specialtyPage.addNewContent(specialty);
-        }
-        specialtyPage.assertPageIsLoaded();
-    }
-
-    //TODO:
-    @Ignore
-    @Test
-    @InSequence(7)
-    @RunAsClient
-    @OverProtocol("Servlet 3.0")
-    public void testSpecialtyPager() {
-        log.info("testSpecialtyPager");
+	//TODO:
+	@Ignore
+	@Test
+	@InSequence(7)
+	@RunAsClient
+	@OverProtocol("Servlet 3.0")
+	public void testSpecialtyPager() {
+		log.info("testSpecialtyPager");
         /*
         specialtyListPage.assertPagerNextIsLoaded();
         specialtyListPage.clickPagerNext();
@@ -159,16 +156,16 @@ public class IntegrationTest01Specialties extends AbstractPrimePageTest {
         specialtyListPage.clickPagerPrev();
         specialtyListPage.assertPagerNextIsLoaded();
         */
-    }
+	}
 
-    //TODO:
-    @Ignore
-    @Test
-    @InSequence(8)
-    @RunAsClient
-    @OverProtocol("Servlet 3.0")
-    public void testSpecialtySorter() {
-        log.info("testSpecialtySorter");
+	//TODO:
+	@Ignore
+	@Test
+	@InSequence(8)
+	@RunAsClient
+	@OverProtocol("Servlet 3.0")
+	public void testSpecialtySorter() {
+		log.info("testSpecialtySorter");
           /*
         specialtyListPage.assertSorterIsLoaded();
         specialtyListPage.assertOrder();
@@ -178,6 +175,6 @@ public class IntegrationTest01Specialties extends AbstractPrimePageTest {
         specialtyListPage.clickSorter();
         specialtyListPage.assertOrder();
            */
-    }
+	}
 
 }

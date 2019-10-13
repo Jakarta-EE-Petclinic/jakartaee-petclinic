@@ -9,9 +9,9 @@ import org.primefaces.extensions.arquillian.AbstractPrimePage;
 @Location("help.jsf")
 public class HelpPage extends AbstractPrimePage {
 
-    private static Logger log = LogManager.getLogger(HelpPage.class.getName());
+	private static Logger log = LogManager.getLogger(HelpPage.class.getName());
 
-    public void assertTitle(){
-        Assert.assertEquals("Jakarta EE Petclinic", webDriver.getTitle());
-    }
+	public void assertTitle() {
+		Assert.assertEquals("Jakarta EE Petclinic", webDriver.getTitle());
+	}
 }

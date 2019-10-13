@@ -1,20 +1,18 @@
 package org.woehlke.jakartaee.petclinic.frontend.web.test.pages;
 
 //import org.jboss.arquillian.graphene.Graphene;
+
 import org.apache.logging.log4j.LogManager;
-        import org.apache.logging.log4j.Logger;
-        import org.jboss.arquillian.graphene.page.Location;
+import org.apache.logging.log4j.Logger;
+import org.jboss.arquillian.graphene.page.Location;
 import org.junit.Assert;
-//import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.primefaces.extensions.arquillian.AbstractPrimePage;
 import org.primefaces.extensions.arquillian.component.CommandButton;
 import org.primefaces.extensions.arquillian.component.InputText;
 
-import java.time.LocalDate;
-import java.util.List;
+//import org.openqa.selenium.NoSuchElementException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,42 +24,42 @@ import java.util.List;
 @Location("specialty.jsf")
 public class SpecialtyPage extends AbstractPrimePage {
 
-    private static Logger log = LogManager.getLogger(SpecialtyPage.class.getName());
+	private static Logger log = LogManager.getLogger(SpecialtyPage.class.getName());
 
-    @FindBy(id="contentTitleHeadline")
-    private WebElement contentTitleHeadline;
+	@FindBy(id = "contentTitleHeadline")
+	private WebElement contentTitleHeadline;
 
-    @FindBy(id="findEntityForm:newAndSearchGrid:showNewFormButton")
-    private CommandButton showNewFormButton;
+	@FindBy(id = "findEntityForm:newAndSearchGrid:showNewFormButton")
+	private CommandButton showNewFormButton;
 
-    @FindBy(id="findEntityForm:newAndSearchGrid:inputTextSearchterm")
-    private InputText inputTextSearchterm;
+	@FindBy(id = "findEntityForm:newAndSearchGrid:inputTextSearchterm")
+	private InputText inputTextSearchterm;
 
-    @FindBy(id="findEntityForm:newAndSearchGrid:searchButton")
-    private CommandButton searchButton;
+	@FindBy(id = "findEntityForm:newAndSearchGrid:searchButton")
+	private CommandButton searchButton;
 
-    @FindBy(id="entityDataTableForm:footerGrid:showEditFormButton")
-    private CommandButton showEditFormButton;
+	@FindBy(id = "entityDataTableForm:footerGrid:showEditFormButton")
+	private CommandButton showEditFormButton;
 
-    @FindBy(id="entityDataTableForm:footerGrid:deleteSelectedButton")
-    private CommandButton deleteSelectedButton;
+	@FindBy(id = "entityDataTableForm:footerGrid:deleteSelectedButton")
+	private CommandButton deleteSelectedButton;
 
-    @FindBy(id="editSpecialty")
-    private WebElement editSpecialty;
+	@FindBy(id = "editSpecialty")
+	private WebElement editSpecialty;
 
-    @FindBy(id="editSpecialtyForm:name")
-    private InputText name;
+	@FindBy(id = "editSpecialtyForm:name")
+	private InputText name;
 
-    @FindBy(id="editSpecialtyForm:save")
-    private CommandButton save;
+	@FindBy(id = "editSpecialtyForm:save")
+	private CommandButton save;
 
-    public void assertPageIsLoaded(){
-        Assert.assertTrue(contentTitleHeadline.isDisplayed());
-    }
+	public void assertPageIsLoaded() {
+		Assert.assertTrue(contentTitleHeadline.isDisplayed());
+	}
 
-    public void clickAddNewSpecialty(){
-        showNewFormButton.click();
-    }
+	public void clickAddNewSpecialty() {
+		showNewFormButton.click();
+	}
 
     /*
     public void assertNewContentFound(String content) {
@@ -69,9 +67,9 @@ public class SpecialtyPage extends AbstractPrimePage {
     }
     */
 
-    public void clickEditSpecialty() {
-        showEditFormButton.click();
-    }
+	public void clickEditSpecialty() {
+		showEditFormButton.click();
+	}
 
     /*
     public void assertEditedContentFound(String content) {
@@ -79,9 +77,9 @@ public class SpecialtyPage extends AbstractPrimePage {
     }
     */
 
-    public void clickDeleteSpecialty() {
-        deleteSelectedButton.click();
-    }
+	public void clickDeleteSpecialty() {
+		deleteSelectedButton.click();
+	}
 
     /*
     public void assertDeletedContentNotFound() {
@@ -101,15 +99,15 @@ public class SpecialtyPage extends AbstractPrimePage {
     }
     */
 
-    public void editContent(String content) {
-        name.clear();
-        name.sendKeys(content);
-        save.click();
-    }
+	public void editContent(String content) {
+		name.clear();
+		name.sendKeys(content);
+		save.click();
+	}
 
-    public void addNewContent(String content) {
-        name.clear();
-        name.sendKeys(content);
-        save.click();
-    }
+	public void addNewContent(String content) {
+		name.clear();
+		name.sendKeys(content);
+		save.click();
+	}
 }
