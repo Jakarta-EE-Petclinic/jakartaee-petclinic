@@ -73,15 +73,15 @@ function startRemoteAppServerOpenLibertyWlp(){
 function startAppServer(){
   echo "-----------------------------------------"
   echo "start remote AppServer"
-  startRemoteAppServerWildfly17
-  #startRemoteAppServerOpenLibertyWlp
+  #startRemoteAppServerWildfly17
+  startRemoteAppServerOpenLibertyWlp
   #startRemoteAppServerGlassfish51
 }
 
 function stopAppServer(){
   echo "-----------------------------------------"
   echo "stop remote AppServer"
-  stopRemoteAppServerWildfly17
-  #stopRemoteAppServerOpenLibertyWlp
+  #stopRemoteAppServerWildfly17
+  stopRemoteAppServerOpenLibertyWlp
   #stopRemoteAppServerGlassfish51
 }

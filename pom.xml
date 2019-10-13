@@ -641,8 +641,25 @@
 				<artifactId>selenium-opera-driver</artifactId>
 				<version>${version.selenium}</version>
 			</dependency>
-
-
+			<dependency>
+				<groupId>org.glassfish.main.extras</groupId>
+				<artifactId>glassfish-embedded-all</artifactId>
+				<version>${jakartaee8.server.glassfish.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.main.extras</groupId>
+				<artifactId>javaee-pom</artifactId>
+				<version>${jakartaee8.server.glassfish.version}</version>
+				<type>pom</type>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.main.extras</groupId>
+				<artifactId>javaee</artifactId>
+				<version>${jakartaee8.server.glassfish.version}</version>
+				<scope>test</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -1730,12 +1747,13 @@
 			<id>it-wildfly-remote</id>
 			<dependencies>
 				<dependency>
-					<groupId>org.postgresql</groupId>
-					<artifactId>postgresql</artifactId>
-				</dependency>
-				<dependency>
 					<groupId>org.wildfly.arquillian</groupId>
 					<artifactId>wildfly-arquillian-container-remote</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.protocol</groupId>
+					<artifactId>arquillian-protocol-servlet</artifactId>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -1749,12 +1767,6 @@
 					<artifactId>commons-logging</artifactId>
 					<scope>test</scope>
 				</dependency>
-				<!-- Integration Testing with Arquillian -->
-				<dependency>
-					<groupId>org.jboss.arquillian.protocol</groupId>
-					<artifactId>arquillian-protocol-servlet</artifactId>
-					<scope>test</scope>
-				</dependency>
 				<!--
 				<dependency>
 						<groupId>org.jboss.arquillian.graphene</groupId>
@@ -1762,6 +1774,63 @@
 						<scope>test</scope>
 				</dependency>
 				-->
+			</dependencies>
+			<build>
+				<finalName>petclinic</finalName>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.wildfly.plugins</groupId>
+						<artifactId>wildfly-maven-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<skipTests>${skipIntegrationTests}</skipTests>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>integration-test</goal>
+									<goal>verify</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<skipTests>${skipIntegrationTests}</skipTests>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>it-glassfish-remote</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.glassfish.main.extras</groupId>
+					<artifactId>glassfish-embedded-all</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.glassfish.main.extras</groupId>
+					<artifactId>javaee-pom</artifactId>
+					<type>pom</type>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.glassfish.main.extras</groupId>
+					<artifactId>javaee</artifactId>
+					<scope>test</scope>
+				</dependency>
 			</dependencies>
 			<build>
 				<finalName>petclinic</finalName>
@@ -1848,7 +1917,6 @@
 							<sourceDirectoryString>${project.basedir}/src/main/webapp</sourceDirectoryString>
 							<appArchive>${project.build.directory}/${app.name}.war</appArchive>
 							<skipTestServer>true</skipTestServer>
-							<!-- begin configure-arquillian -->
 							<arquillianProperties>
 								<defaultProtocol>Servlet 3.1</defaultProtocol>
 								<verifyApps>arquillian-test</verifyApps>
@@ -1857,7 +1925,6 @@
 								<openlibertyHome>${libertyInstallDir}</openlibertyHome>
 							</arquillianProperties>
 							<skipIfArquillianXmlExists>true</skipIfArquillianXmlExists>
-							<!-- end configure-arquillian -->
 						</configuration>
 						<executions>
 							<execution>
@@ -1867,15 +1934,6 @@
 									<goal>configure-arquillian</goal>
 								</goals>
 							</execution>
-							<!--
-							<execution>
-									<id>install</id>
-									<phase>install</phase>
-									<goals>
-											<goal>test-start-server</goal>
-									</goals>
-							</execution>
-							-->
 						</executions>
 					</plugin>
 					<plugin>
