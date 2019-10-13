@@ -8,35 +8,35 @@ import java.util.List;
 
 public interface OwnersPetView extends Serializable {
 
-	long serialVersionUID = 889970231263134104L;
+  long serialVersionUID = 889970231263134104L;
 
-	String showOwnerPetNewForm();
+  String showOwnerPetNewForm();
 
-	String saveOwnerPetNew();
+  String saveOwnerPetNew();
 
-	String cancelOwnerPetNew();
+  String cancelOwnerPetNew();
 
-	String showOwnerPetEditForm();
+  String showOwnerPetEditForm();
 
-	String saveOwnerPetEdit();
+  String saveOwnerPetEdit();
 
-	String cancelOwnerPetEdit();
+  String cancelOwnerPetEdit();
 
-	Pet getPet();
+  Pet getPet();
 
-	void setPet(Pet pet);
+  void setPet(Pet pet);
 
-	Pet getPetSelected();
+  Pet getPetSelected();
 
-	void setPetSelected(Pet petSelected);
+  void setPetSelected(Pet petSelected);
 
-	long getPetTypeId();
+  long getPetTypeId();
 
-	void setPetTypeId(long petTypeId);
+  void setPetTypeId(long petTypeId);
 
-	List<PetType> getPetTypeList();
+  List<PetType> getPetTypeList();
 
-	void setPetTypeList(List<PetType> petTypeList);
+  void setPetTypeList(List<PetType> petTypeList);
 
-	List<PetType> getAllPetTypes();
+  List<PetType> getAllPetTypes();
 }

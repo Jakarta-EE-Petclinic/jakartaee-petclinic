@@ -9,10 +9,10 @@ import org.woehlke.jakartaee.petclinic.oodm.entities.PetType;
 import java.io.Serializable;
 
 public interface PetTypeView extends CrudView<PetType>,
-		HasLanguage,
-		HasSearch,
-		HasViewModelOperations,
-		Serializable {
+    HasLanguage,
+    HasSearch,
+    HasViewModelOperations,
+    Serializable {
 
-	long serialVersionUID = -7305835717012880655L;
+  long serialVersionUID = -7305835717012880655L;
 }

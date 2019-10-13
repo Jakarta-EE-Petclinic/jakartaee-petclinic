@@ -10,49 +10,49 @@ import java.util.List;
 import java.util.Objects;
 
 @XmlRootElement(
-		name = "PetTypeList"
+    name = "PetTypeList"
 )
 @XmlType(
-		name = "PetTypeList",
-		namespace = "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/model/PetTypeList",
-		propOrder = {
-				"petTypeList"
-		}
+    name = "PetTypeList",
+    namespace = "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/model/PetTypeList",
+    propOrder = {
+        "petTypeList"
+    }
 )
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PetTypeList implements Serializable {
 
-	private static final long serialVersionUID = -5455359835551484530L;
+  private static final long serialVersionUID = -5455359835551484530L;
 
-	@XmlElement(required = true)
-	private List<PetType> petTypeList;
+  @XmlElement(required = true)
+  private List<PetType> petTypeList;
 
-	public PetTypeList() {
-		this.petTypeList = new ArrayList<>();
-	}
+  public PetTypeList() {
+    this.petTypeList = new ArrayList<>();
+  }
 
-	public PetTypeList(@NotNull List<PetType> petTypeList) {
-		this.petTypeList = petTypeList;
-	}
+  public PetTypeList(@NotNull List<PetType> petTypeList) {
+    this.petTypeList = petTypeList;
+  }
 
-	public List<PetType> getPetTypeList() {
-		return petTypeList;
-	}
+  public List<PetType> getPetTypeList() {
+    return petTypeList;
+  }
 
-	public void setPetTypeList(List<PetType> petTypeList) {
-		this.petTypeList = petTypeList;
-	}
+  public void setPetTypeList(List<PetType> petTypeList) {
+    this.petTypeList = petTypeList;
+  }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof PetTypeList)) return false;
-		PetTypeList that = (PetTypeList) o;
-		return getPetTypeList().equals(that.getPetTypeList());
-	}
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof PetTypeList)) return false;
+    PetTypeList that = (PetTypeList) o;
+    return getPetTypeList().equals(that.getPetTypeList());
+  }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(getPetTypeList());
-	}
+  @Override
+  public int hashCode() {
+    return Objects.hash(getPetTypeList());
+  }
 }

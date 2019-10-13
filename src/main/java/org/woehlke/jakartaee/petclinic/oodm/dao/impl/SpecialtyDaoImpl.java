@@ -28,115 +28,115 @@ import java.util.UUID;
 @Stateless
 public class SpecialtyDaoImpl implements SpecialtyDao {
 
-	private static final long serialVersionUID = 1355422039564914705L;
+  private static final long serialVersionUID = 1355422039564914705L;
 
-	private static Logger log = LogManager.getLogger(SpecialtyDaoImpl.class.getName());
+  private static Logger log = LogManager.getLogger(SpecialtyDaoImpl.class.getName());
 
-	@PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
-	private EntityManager entityManager;
+  @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
+  private EntityManager entityManager;
 
-	@Override
-	public List<Specialty> getAll() {
-		String qlString = "select s from Specialty s order by s.name";
-		TypedQuery<Specialty> q = entityManager.createQuery(qlString, Specialty.class);
-		List<Specialty> list = q.getResultList();
-		return list;
-	}
+  @Override
+  public List<Specialty> getAll() {
+    String qlString = "select s from Specialty s order by s.name";
+    TypedQuery<Specialty> q = entityManager.createQuery(qlString, Specialty.class);
+    List<Specialty> list = q.getResultList();
+    return list;
+  }
 
-	@Override
-	public void delete(long id) {
-		Specialty specialty = entityManager.find(Specialty.class, id);
-		entityManager.remove(specialty);
-	}
+  @Override
+  public void delete(long id) {
+    Specialty specialty = entityManager.find(Specialty.class, id);
+    entityManager.remove(specialty);
+  }
 
-	@Override
-	public Specialty addNew(Specialty specialty) {
-		specialty.setUuid(UUID.randomUUID());
-		log.debug("addNewSpecialty: " + specialty.toString());
-		entityManager.persist(specialty);
-		log.debug("persisted:       " + specialty.toString());
-		return specialty;
-	}
+  @Override
+  public Specialty addNew(Specialty specialty) {
+    specialty.setUuid(UUID.randomUUID());
+    log.debug("addNewSpecialty: " + specialty.toString());
+    entityManager.persist(specialty);
+    log.debug("persisted:       " + specialty.toString());
+    return specialty;
+  }
 
-	@Override
-	public Specialty findById(long id) {
-		Specialty specialty = entityManager.find(Specialty.class, id);
-		return specialty;
-	}
+  @Override
+  public Specialty findById(long id) {
+    Specialty specialty = entityManager.find(Specialty.class, id);
+    return specialty;
+  }
 
-	@Override
-	public Specialty findSpecialtyByName(String name) {
-		String ql = "select  s from Specialty s where s.name=:name";
-		TypedQuery<Specialty> query = entityManager.createQuery(ql, Specialty.class);
-		query.setParameter("name", name);
-		Specialty specialty = query.getSingleResult();
-		return specialty;
-	}
+  @Override
+  public Specialty findSpecialtyByName(String name) {
+    String ql = "select  s from Specialty s where s.name=:name";
+    TypedQuery<Specialty> query = entityManager.createQuery(ql, Specialty.class);
+    query.setParameter("name", name);
+    Specialty specialty = query.getSingleResult();
+    return specialty;
+  }
 
-	@Override
-	public Specialty update(Specialty specialty) {
-		log.debug("update: " + specialty.toString());
-		specialty = entityManager.merge(specialty);
-		log.debug("merged: " + specialty.toString());
-		return specialty;
-	}
+  @Override
+  public Specialty update(Specialty specialty) {
+    log.debug("update: " + specialty.toString());
+    specialty = entityManager.merge(specialty);
+    log.debug("merged: " + specialty.toString());
+    return specialty;
+  }
 
-	@Override
-	public List<Specialty> search(String searchterm) {
-		log.debug("search for: " + searchterm);
-		FullTextEntityManager fullTextEntityManager =
-				org.hibernate.search.jpa.Search.getFullTextEntityManager(entityManager);
-		QueryBuilder qb = fullTextEntityManager.getSearchFactory()
-				.buildQueryBuilder().forEntity(Specialty.class).get();
-		org.apache.lucene.search.Query query = qb
-				.keyword()
-				.onFields("name")
-				.matching(searchterm)
-				.createQuery();
-		// wrap Lucene query in a javax.persistence.Query
-		javax.persistence.Query persistenceQuery =
-				fullTextEntityManager.createFullTextQuery(query, Specialty.class);
-		// execute search
-		@SuppressWarnings("unchecked")
-		List<Specialty> result = persistenceQuery.getResultList();
-		log.debug("found: " + result.size());
-		for (Specialty o : result) {
-			log.debug("found: " + o.getName());
-		}
-		return result;
-	}
+  @Override
+  public List<Specialty> search(String searchterm) {
+    log.debug("search for: " + searchterm);
+    FullTextEntityManager fullTextEntityManager =
+        org.hibernate.search.jpa.Search.getFullTextEntityManager(entityManager);
+    QueryBuilder qb = fullTextEntityManager.getSearchFactory()
+        .buildQueryBuilder().forEntity(Specialty.class).get();
+    org.apache.lucene.search.Query query = qb
+        .keyword()
+        .onFields("name")
+        .matching(searchterm)
+        .createQuery();
+    // wrap Lucene query in a javax.persistence.Query
+    javax.persistence.Query persistenceQuery =
+        fullTextEntityManager.createFullTextQuery(query, Specialty.class);
+    // execute search
+    @SuppressWarnings("unchecked")
+    List<Specialty> result = persistenceQuery.getResultList();
+    log.debug("found: " + result.size());
+    for (Specialty o : result) {
+      log.debug("found: " + o.getName());
+    }
+    return result;
+  }
 
-	@Override
-	public void resetSearchIndex() {
-		FullTextEntityManager fullTextEntityManager =
-				org.hibernate.search.jpa.Search.getFullTextEntityManager(entityManager);
-		String qlString = "select o from Specialty o";
-		TypedQuery<Specialty> findAllActionItems = fullTextEntityManager.createQuery(qlString, Specialty.class);
-		for (Specialty petType : findAllActionItems.getResultList()) {
-			fullTextEntityManager.index(petType);
-		}
-		fullTextEntityManager.flushToIndexes();
-		//fullTextEntityManager.clear();
-	}
+  @Override
+  public void resetSearchIndex() {
+    FullTextEntityManager fullTextEntityManager =
+        org.hibernate.search.jpa.Search.getFullTextEntityManager(entityManager);
+    String qlString = "select o from Specialty o";
+    TypedQuery<Specialty> findAllActionItems = fullTextEntityManager.createQuery(qlString, Specialty.class);
+    for (Specialty petType : findAllActionItems.getResultList()) {
+      fullTextEntityManager.index(petType);
+    }
+    fullTextEntityManager.flushToIndexes();
+    //fullTextEntityManager.clear();
+  }
 
 
-	@PostConstruct
-	public void postConstruct() {
-		log.debug("postConstruct");
-	}
+  @PostConstruct
+  public void postConstruct() {
+    log.debug("postConstruct");
+  }
 
-	@PreDestroy
-	public void preDestroy() {
-		log.debug("preDestroy");
-	}
+  @PreDestroy
+  public void preDestroy() {
+    log.debug("preDestroy");
+  }
 
-	@PrePassivate
-	public void prePassivate() {
-		log.debug("prePassivate");
-	}
+  @PrePassivate
+  public void prePassivate() {
+    log.debug("prePassivate");
+  }
 
-	@PostActivate
-	public void postActivate() {
-		log.debug("postActivate");
-	}
+  @PostActivate
+  public void postActivate() {
+    log.debug("postActivate");
+  }
 }

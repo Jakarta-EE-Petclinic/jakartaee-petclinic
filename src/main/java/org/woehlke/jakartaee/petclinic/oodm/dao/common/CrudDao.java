@@ -7,21 +7,21 @@ import java.util.List;
 
 public interface CrudDao<T extends TwEntities> extends Serializable {
 
-	long serialVersionUID = 5140497751059102450L;
+  long serialVersionUID = 5140497751059102450L;
 
-	/**
-	 * @see ./META-INF/persistence.xml
-	 */
-	String PERSISTENCE_UNIT_NAME = "jakartaeePetclinic";
+  /**
+   * @see ./META-INF/persistence.xml
+   */
+  String PERSISTENCE_UNIT_NAME = "jakartaeePetclinic";
 
-	List<T> getAll();
+  List<T> getAll();
 
-	T findById(long id);
+  T findById(long id);
 
-	T addNew(T entity);
+  T addNew(T entity);
 
-	T update(T entity);
+  T update(T entity);
 
-	void delete(long id);
+  void delete(long id);
 
 }

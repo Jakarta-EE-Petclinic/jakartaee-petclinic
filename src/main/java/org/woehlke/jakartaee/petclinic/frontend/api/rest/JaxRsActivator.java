@@ -15,5 +15,5 @@ import java.io.Serializable;
 @ApplicationPath("/rest")
 public class JaxRsActivator extends Application implements Serializable {
 
-	private static final long serialVersionUID = 6101321761195838117L;
+  private static final long serialVersionUID = 6101321761195838117L;
 }

@@ -10,7 +10,7 @@ import org.woehlke.jakartaee.petclinic.oodm.services.common.SearchableService;
  */
 public interface OwnerService extends CrudService<Owner>, SearchableService<Owner> {
 
-	long serialVersionUID = -5744255576144969978L;
+  long serialVersionUID = -5744255576144969978L;
 
-	Visit addNewVisit(Visit visit);
+  Visit addNewVisit(Visit visit);
 }

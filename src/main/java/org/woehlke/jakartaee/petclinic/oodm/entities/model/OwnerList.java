@@ -10,49 +10,49 @@ import java.util.List;
 import java.util.Objects;
 
 @XmlRootElement(
-		name = "OwnerList"
+    name = "OwnerList"
 )
 @XmlType(
-		name = "OwnerList",
-		namespace = "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/model/OwnerList",
-		propOrder = {
-				"ownerList"
-		}
+    name = "OwnerList",
+    namespace = "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/model/OwnerList",
+    propOrder = {
+        "ownerList"
+    }
 )
 @XmlAccessorType(XmlAccessType.FIELD)
 public class OwnerList implements Serializable {
 
-	private static final long serialVersionUID = 7608980315748812643L;
+  private static final long serialVersionUID = 7608980315748812643L;
 
-	@XmlElement(required = true)
-	private List<Owner> ownerList;
+  @XmlElement(required = true)
+  private List<Owner> ownerList;
 
-	public OwnerList() {
-		this.ownerList = new ArrayList<>();
-	}
+  public OwnerList() {
+    this.ownerList = new ArrayList<>();
+  }
 
-	public OwnerList(@NotNull List<Owner> ownerList) {
-		this.ownerList = ownerList;
-	}
+  public OwnerList(@NotNull List<Owner> ownerList) {
+    this.ownerList = ownerList;
+  }
 
-	public List<Owner> getOwnerList() {
-		return ownerList;
-	}
+  public List<Owner> getOwnerList() {
+    return ownerList;
+  }
 
-	public void setOwnerList(List<Owner> ownerList) {
-		this.ownerList = ownerList;
-	}
+  public void setOwnerList(List<Owner> ownerList) {
+    this.ownerList = ownerList;
+  }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof OwnerList)) return false;
-		OwnerList ownerList1 = (OwnerList) o;
-		return getOwnerList().equals(ownerList1.getOwnerList());
-	}
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof OwnerList)) return false;
+    OwnerList ownerList1 = (OwnerList) o;
+    return getOwnerList().equals(ownerList1.getOwnerList());
+  }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(getOwnerList());
-	}
+  @Override
+  public int hashCode() {
+    return Objects.hash(getOwnerList());
+  }
 }

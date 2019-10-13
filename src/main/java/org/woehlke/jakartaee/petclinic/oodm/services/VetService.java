@@ -7,5 +7,5 @@ import org.woehlke.jakartaee.petclinic.oodm.services.common.SearchableService;
 import java.io.Serializable;
 
 public interface VetService extends CrudService<Vet>, SearchableService<Vet>, Serializable {
-	long serialVersionUID = 6211608636423556157L;
+  long serialVersionUID = 6211608636423556157L;
 }

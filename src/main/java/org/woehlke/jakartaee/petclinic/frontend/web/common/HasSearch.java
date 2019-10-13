@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 public interface HasSearch extends Serializable {
 
-	long serialVersionUID = 7807892292217350921L;
+  long serialVersionUID = 7807892292217350921L;
 
-	String search();
+  String search();
 
-	void performSearch();
+  void performSearch();
 
-	String getSearchterm();
+  String getSearchterm();
 
-	void setSearchterm(String searchterm);
+  void setSearchterm(String searchterm);
 }

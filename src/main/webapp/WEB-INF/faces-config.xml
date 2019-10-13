@@ -4,15 +4,15 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
               version="2.3">
 
-    <application>
-        <locale-config>
-            <default-locale>en</default-locale>
-            <supported-locale>de</supported-locale>
-        </locale-config>
-        <resource-bundle>
-            <base-name>org.woehlke.jakartaee.petclinic.Messages</base-name>
-            <var>msg</var>
-        </resource-bundle>
-    </application>
+	<application>
+		<locale-config>
+			<default-locale>en</default-locale>
+			<supported-locale>de</supported-locale>
+		</locale-config>
+		<resource-bundle>
+			<base-name>org.woehlke.jakartaee.petclinic.Messages</base-name>
+			<var>msg</var>
+		</resource-bundle>
+	</application>
 
 </faces-config>

@@ -13,18 +13,18 @@ import org.woehlke.jakartaee.petclinic.oodm.entities.Owner;
 import java.io.Serializable;
 
 public interface OwnerView extends CrudView<Owner>,
-		OwnersPetView,
-		OwnersPetVisitView,
-		HasOwnerModelOperations,
-		HasOwnersPetModelOperations,
-		HasLanguage,
-		HasSearch,
-		HasTreeNode,
-		Serializable {
+    OwnersPetView,
+    OwnersPetVisitView,
+    HasOwnerModelOperations,
+    HasOwnersPetModelOperations,
+    HasLanguage,
+    HasSearch,
+    HasTreeNode,
+    Serializable {
 
-	long serialVersionUID = 3691413509555926089L;
+  long serialVersionUID = 3691413509555926089L;
 
-	String showSelectedEntity();
+  String showSelectedEntity();
 
-	String cancelShow();
+  String cancelShow();
 }

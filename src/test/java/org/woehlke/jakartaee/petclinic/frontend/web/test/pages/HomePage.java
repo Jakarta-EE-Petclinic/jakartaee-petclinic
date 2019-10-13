@@ -19,31 +19,31 @@ import org.primefaces.extensions.arquillian.AbstractPrimePage;
 @Location("home.jsf")
 public class HomePage extends AbstractPrimePage {
 
-	private static Logger log = LogManager.getLogger(HomePage.class.getName());
+  private static Logger log = LogManager.getLogger(HomePage.class.getName());
 
-	@FindBy(id = "findOwners")
-	private WebElement findOwners;
+  @FindBy(id = "findOwners")
+  private WebElement findOwners;
 
-	@FindBy(id = "findOwnersForm:search")
-	private WebElement search;
+  @FindBy(id = "findOwnersForm:search")
+  private WebElement search;
 
-	@FindBy(id = "findOwnersForm:getNewOwnerForm")
-	private WebElement getNewOwnerForm;
+  @FindBy(id = "findOwnersForm:getNewOwnerForm")
+  private WebElement getNewOwnerForm;
 
-	public void assertTitle() {
-		Assert.assertEquals("Jakarta EE Petclinic", webDriver.getTitle());
-	}
+  public void assertTitle() {
+    Assert.assertEquals("Jakarta EE Petclinic", webDriver.getTitle());
+  }
 
-	public void assertPageIsLoaded() {
-		Graphene.waitModel().until().element(findOwners).is().visible();
-		Assert.assertTrue(findOwners.isDisplayed());
-	}
+  public void assertPageIsLoaded() {
+    Graphene.waitModel().until().element(findOwners).is().visible();
+    Assert.assertTrue(findOwners.isDisplayed());
+  }
 
-	public void clickSearch() {
-		Graphene.guardHttp(search).click();
-	}
+  public void clickSearch() {
+    Graphene.guardHttp(search).click();
+  }
 
-	public void clickNewOwner() {
-		Graphene.guardHttp(getNewOwnerForm).click();
-	}
+  public void clickNewOwner() {
+    Graphene.guardHttp(getNewOwnerForm).click();
+  }
 }

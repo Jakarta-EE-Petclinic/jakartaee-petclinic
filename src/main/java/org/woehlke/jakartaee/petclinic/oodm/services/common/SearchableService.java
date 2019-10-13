@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface SearchableService<T extends TwEntities> extends Serializable {
 
-	long serialVersionUID = -1893303126489909752L;
+  long serialVersionUID = -1893303126489909752L;
 
-	List<T> search(String searchterm);
+  List<T> search(String searchterm);
 }

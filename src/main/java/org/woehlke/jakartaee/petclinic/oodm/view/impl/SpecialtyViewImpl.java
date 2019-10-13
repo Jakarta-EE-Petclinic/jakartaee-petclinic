@@ -32,279 +32,279 @@ import java.util.ResourceBundle;
 @SessionScoped
 public class SpecialtyViewImpl implements SpecialtyView {
 
-	private static final long serialVersionUID = 9080853875975855082L;
-	private final static String JSF_PAGE = "specialty.jsf";
-	private static Logger log = LogManager.getLogger(SpecialtyViewImpl.class.getName());
-	private MessageProvider provider;
-	@EJB
-	private SpecialtyService entityService;
+  private static final long serialVersionUID = 9080853875975855082L;
+  private final static String JSF_PAGE = "specialty.jsf";
+  private static Logger log = LogManager.getLogger(SpecialtyViewImpl.class.getName());
+  private MessageProvider provider;
+  @EJB
+  private SpecialtyService entityService;
 
-	@Inject
-	private LanguageView languageView;
+  @Inject
+  private LanguageView languageView;
 
-	@Inject
-	private FrontendMessagesView frontendMessagesView;
+  @Inject
+  private FrontendMessagesView frontendMessagesView;
 
-	@Inject
-	private SpecialtyViewFlow specialtyViewFlow;
+  @Inject
+  private SpecialtyViewFlow specialtyViewFlow;
 
-	private Specialty entity;
-	private Specialty selected;
-	private List<Specialty> list;
+  private Specialty entity;
+  private Specialty selected;
+  private List<Specialty> list;
 
-	private String searchterm;
-
-
-	@PostConstruct
-	public void init() {
-		log.trace("postConstruct");
-		this.specialtyViewFlow.setFlowStateList();
-		this.provider = new MessageProvider();
-	}
-
-	@Override
-	public void reloadEntityFromSelected() {
-		if (this.selected != null) {
-			this.selected = entityService.findById(this.selected.getId());
-			this.entity = this.selected;
-		}
-	}
-
-	@Override
-	public void loadList() {
-		this.list = entityService.getAll();
-	}
-
-	@Override
-	public void saveNewEntity() {
-		try {
-			this.entity = entityService.addNew(this.entity);
-			this.selected = this.entity;
-			this.specialtyViewFlow.setFlowStateList();
-			String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.search.done";
-			String summary = this.provider.getBundle().getString(summaryKey);
-			frontendMessagesView.addInfoMessage(summary, this.entity.getPrimaryKey());
-		} catch (EJBException e) {
-			this.specialtyViewFlow.setFlowStateNew();
-			frontendMessagesView.addWarnMessage(e.getLocalizedMessage(), this.entity);
-		}
-	}
-
-	@Override
-	public void saveEditedEntity() {
-		try {
-			this.entity = this.entityService.update(this.entity);
-			this.selected = this.entity;
-			this.specialtyViewFlow.setFlowStateList();
-			String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.edit.done";
-			String summary = this.provider.getBundle().getString(summaryKey);
-			frontendMessagesView.addInfoMessage(summary, this.entity);
-		} catch (EJBException e) {
-			this.specialtyViewFlow.setFlowStateEdit();
-			frontendMessagesView.addWarnMessage(e.getLocalizedMessage(), this.entity);
-		}
-	}
-
-	@Override
-	public void deleteSelectedEntity() {
-		try {
-			if (this.selected != null) {
-				String msgInfo = this.selected.getPrimaryKey();
-				entityService.delete(this.selected.getId());
-				if (this.selected.compareTo(this.entity) == 0) {
-					this.entity = null;
-				}
-				this.selected = null;
-				this.specialtyViewFlow.setFlowStateList();
-				String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.delete.done";
-				String summary = this.provider.getBundle().getString(summaryKey);
-				frontendMessagesView.addInfoMessage(summary, msgInfo);
-			}
-		} catch (EJBTransactionRolledbackException e) {
-			this.specialtyViewFlow.setFlowStateDelete();
-			String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.delete.denied";
-			String summary = this.provider.getBundle().getString(summaryKey);
-			frontendMessagesView.addWarnMessage(summary, this.selected);
-		} catch (EJBException e) {
-			this.specialtyViewFlow.setFlowStateDelete();
-			frontendMessagesView.addErrorMessage(e.getLocalizedMessage(), this.selected);
-		}
-	}
-
-	@Override
-	public void newEntity() {
-		String name = "add new name";
-		this.entity = new Specialty();
-	}
-
-	@Override
-	public String showEditForm() {
-		this.reloadEntityFromSelected();
-		this.specialtyViewFlow.setFlowStateEdit();
-		return JSF_PAGE;
-	}
-
-	@Override
-	public String showNewForm() {
-		this.newEntity();
-		this.specialtyViewFlow.setFlowStateNew();
-		return JSF_PAGE;
-	}
-
-	@Override
-	public String saveNew() {
-		this.saveNewEntity();
-		this.specialtyViewFlow.setFlowStateList();
-		return JSF_PAGE;
-	}
-
-	@Override
-	public String saveEdited() {
-		this.saveEditedEntity();
-		this.specialtyViewFlow.setFlowStateList();
-		return JSF_PAGE;
-	}
-
-	@Override
-	public String cancelEdited() {
-		this.specialtyViewFlow.setFlowStateList();
-		return JSF_PAGE;
-	}
-
-	@Override
-	public String cancelNew() {
-		this.specialtyViewFlow.setFlowStateList();
-		return JSF_PAGE;
-	}
-
-	@Override
-	public String showDeleteForm() {
-		this.specialtyViewFlow.setFlowStateDelete();
-		return JSF_PAGE;
-	}
-
-	@Override
-	public String performDelete() {
-		deleteSelectedEntity();
-		this.specialtyViewFlow.setFlowStateList();
-		return JSF_PAGE;
-	}
-
-	@Override
-	public String cancelDelete() {
-		this.specialtyViewFlow.setFlowStateList();
-		return JSF_PAGE;
-	}
-
-	@Override
-	public String search() {
-		this.specialtyViewFlow.setFlowStateSearchResult();
-		return JSF_PAGE;
-	}
+  private String searchterm;
 
 
-	@Override
-	public void performSearch() {
-		String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.search.done";
-		String summary = this.provider.getBundle().getString(summaryKey);
-		if (searchterm == null || searchterm.isEmpty()) {
-			this.specialtyViewFlow.setFlowStateList();
-			String missingKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.missing";
-			String detail = this.provider.getBundle().getString(missingKey);
-			frontendMessagesView.addInfoMessage(summary, detail);
-		} else {
-			try {
-				this.specialtyViewFlow.setFlowStateSearchResult();
-				this.list = entityService.search(searchterm);
-				String foundKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.found";
-				String resultsKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.results";
-				String found = this.provider.getBundle().getString(foundKey);
-				String results = this.provider.getBundle().getString(resultsKey);
-				String detail = found + " " + this.list.size() + " " + results + " " + searchterm;
-				frontendMessagesView.addInfoMessage(summary, detail);
-			} catch (Exception e) {
-				this.specialtyViewFlow.setFlowStateList();
-				frontendMessagesView.addWarnMessage(e.getLocalizedMessage(), searchterm);
-			}
-		}
-	}
+  @PostConstruct
+  public void init() {
+    log.trace("postConstruct");
+    this.specialtyViewFlow.setFlowStateList();
+    this.provider = new MessageProvider();
+  }
 
-	public LanguageView getLanguageView() {
-		return languageView;
-	}
+  @Override
+  public void reloadEntityFromSelected() {
+    if (this.selected != null) {
+      this.selected = entityService.findById(this.selected.getId());
+      this.entity = this.selected;
+    }
+  }
 
-	public void setLanguageView(LanguageView languageView) {
-		this.languageView = languageView;
-	}
+  @Override
+  public void loadList() {
+    this.list = entityService.getAll();
+  }
 
-	public FrontendMessagesView getFrontendMessagesView() {
-		return frontendMessagesView;
-	}
+  @Override
+  public void saveNewEntity() {
+    try {
+      this.entity = entityService.addNew(this.entity);
+      this.selected = this.entity;
+      this.specialtyViewFlow.setFlowStateList();
+      String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.search.done";
+      String summary = this.provider.getBundle().getString(summaryKey);
+      frontendMessagesView.addInfoMessage(summary, this.entity.getPrimaryKey());
+    } catch (EJBException e) {
+      this.specialtyViewFlow.setFlowStateNew();
+      frontendMessagesView.addWarnMessage(e.getLocalizedMessage(), this.entity);
+    }
+  }
 
-	public void setFrontendMessagesView(FrontendMessagesView frontendMessagesView) {
-		this.frontendMessagesView = frontendMessagesView;
-	}
+  @Override
+  public void saveEditedEntity() {
+    try {
+      this.entity = this.entityService.update(this.entity);
+      this.selected = this.entity;
+      this.specialtyViewFlow.setFlowStateList();
+      String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.edit.done";
+      String summary = this.provider.getBundle().getString(summaryKey);
+      frontendMessagesView.addInfoMessage(summary, this.entity);
+    } catch (EJBException e) {
+      this.specialtyViewFlow.setFlowStateEdit();
+      frontendMessagesView.addWarnMessage(e.getLocalizedMessage(), this.entity);
+    }
+  }
 
-	public String getSearchterm() {
-		return searchterm;
-	}
+  @Override
+  public void deleteSelectedEntity() {
+    try {
+      if (this.selected != null) {
+        String msgInfo = this.selected.getPrimaryKey();
+        entityService.delete(this.selected.getId());
+        if (this.selected.compareTo(this.entity) == 0) {
+          this.entity = null;
+        }
+        this.selected = null;
+        this.specialtyViewFlow.setFlowStateList();
+        String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.delete.done";
+        String summary = this.provider.getBundle().getString(summaryKey);
+        frontendMessagesView.addInfoMessage(summary, msgInfo);
+      }
+    } catch (EJBTransactionRolledbackException e) {
+      this.specialtyViewFlow.setFlowStateDelete();
+      String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.delete.denied";
+      String summary = this.provider.getBundle().getString(summaryKey);
+      frontendMessagesView.addWarnMessage(summary, this.selected);
+    } catch (EJBException e) {
+      this.specialtyViewFlow.setFlowStateDelete();
+      frontendMessagesView.addErrorMessage(e.getLocalizedMessage(), this.selected);
+    }
+  }
 
-	public void setSearchterm(String searchterm) {
-		this.searchterm = searchterm;
-	}
+  @Override
+  public void newEntity() {
+    String name = "add new name";
+    this.entity = new Specialty();
+  }
 
-	@Override
-	public Specialty getEntity() {
-		return entity;
-	}
+  @Override
+  public String showEditForm() {
+    this.reloadEntityFromSelected();
+    this.specialtyViewFlow.setFlowStateEdit();
+    return JSF_PAGE;
+  }
 
-	@Override
-	public void setEntity(Specialty entity) {
-		this.entity = entity;
-	}
+  @Override
+  public String showNewForm() {
+    this.newEntity();
+    this.specialtyViewFlow.setFlowStateNew();
+    return JSF_PAGE;
+  }
 
-	@Override
-	public Specialty getSelected() {
-		return selected;
-	}
+  @Override
+  public String saveNew() {
+    this.saveNewEntity();
+    this.specialtyViewFlow.setFlowStateList();
+    return JSF_PAGE;
+  }
 
-	@Override
-	public void setSelected(Specialty selected) {
-		this.selected = selected;
-	}
+  @Override
+  public String saveEdited() {
+    this.saveEditedEntity();
+    this.specialtyViewFlow.setFlowStateList();
+    return JSF_PAGE;
+  }
 
-	public ResourceBundle getMsg() {
-		return this.provider.getBundle();
-	}
+  @Override
+  public String cancelEdited() {
+    this.specialtyViewFlow.setFlowStateList();
+    return JSF_PAGE;
+  }
 
-	public void setMsg(ResourceBundle msg) {
-	}
+  @Override
+  public String cancelNew() {
+    this.specialtyViewFlow.setFlowStateList();
+    return JSF_PAGE;
+  }
 
-	@Override
-	public List<Specialty> getList() {
-		if (this.specialtyViewFlow.isFlowStateSearchResult()) {
-			performSearch();
-		} else {
-			loadList();
-		}
-		return this.list;
-	}
+  @Override
+  public String showDeleteForm() {
+    this.specialtyViewFlow.setFlowStateDelete();
+    return JSF_PAGE;
+  }
 
-	@Override
-	public void setList(List<Specialty> list) {
-		this.list = list;
-	}
+  @Override
+  public String performDelete() {
+    deleteSelectedEntity();
+    this.specialtyViewFlow.setFlowStateList();
+    return JSF_PAGE;
+  }
 
-	@PreDestroy
-	public void preDestroy() {
-		log.trace("preDestroy");
-	}
+  @Override
+  public String cancelDelete() {
+    this.specialtyViewFlow.setFlowStateList();
+    return JSF_PAGE;
+  }
 
-	public SpecialtyViewFlow getSpecialtyViewFlow() {
-		return specialtyViewFlow;
-	}
+  @Override
+  public String search() {
+    this.specialtyViewFlow.setFlowStateSearchResult();
+    return JSF_PAGE;
+  }
 
-	public void setSpecialtyViewFlow(SpecialtyViewFlow specialtyViewFlow) {
-		this.specialtyViewFlow = specialtyViewFlow;
-	}
+
+  @Override
+  public void performSearch() {
+    String summaryKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.search.done";
+    String summary = this.provider.getBundle().getString(summaryKey);
+    if (searchterm == null || searchterm.isEmpty()) {
+      this.specialtyViewFlow.setFlowStateList();
+      String missingKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.missing";
+      String detail = this.provider.getBundle().getString(missingKey);
+      frontendMessagesView.addInfoMessage(summary, detail);
+    } else {
+      try {
+        this.specialtyViewFlow.setFlowStateSearchResult();
+        this.list = entityService.search(searchterm);
+        String foundKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.found";
+        String resultsKey = "org.woehlke.jakartaee.petclinic.frontend.web.entity.list.searchterm.results";
+        String found = this.provider.getBundle().getString(foundKey);
+        String results = this.provider.getBundle().getString(resultsKey);
+        String detail = found + " " + this.list.size() + " " + results + " " + searchterm;
+        frontendMessagesView.addInfoMessage(summary, detail);
+      } catch (Exception e) {
+        this.specialtyViewFlow.setFlowStateList();
+        frontendMessagesView.addWarnMessage(e.getLocalizedMessage(), searchterm);
+      }
+    }
+  }
+
+  public LanguageView getLanguageView() {
+    return languageView;
+  }
+
+  public void setLanguageView(LanguageView languageView) {
+    this.languageView = languageView;
+  }
+
+  public FrontendMessagesView getFrontendMessagesView() {
+    return frontendMessagesView;
+  }
+
+  public void setFrontendMessagesView(FrontendMessagesView frontendMessagesView) {
+    this.frontendMessagesView = frontendMessagesView;
+  }
+
+  public String getSearchterm() {
+    return searchterm;
+  }
+
+  public void setSearchterm(String searchterm) {
+    this.searchterm = searchterm;
+  }
+
+  @Override
+  public Specialty getEntity() {
+    return entity;
+  }
+
+  @Override
+  public void setEntity(Specialty entity) {
+    this.entity = entity;
+  }
+
+  @Override
+  public Specialty getSelected() {
+    return selected;
+  }
+
+  @Override
+  public void setSelected(Specialty selected) {
+    this.selected = selected;
+  }
+
+  public ResourceBundle getMsg() {
+    return this.provider.getBundle();
+  }
+
+  public void setMsg(ResourceBundle msg) {
+  }
+
+  @Override
+  public List<Specialty> getList() {
+    if (this.specialtyViewFlow.isFlowStateSearchResult()) {
+      performSearch();
+    } else {
+      loadList();
+    }
+    return this.list;
+  }
+
+  @Override
+  public void setList(List<Specialty> list) {
+    this.list = list;
+  }
+
+  @PreDestroy
+  public void preDestroy() {
+    log.trace("preDestroy");
+  }
+
+  public SpecialtyViewFlow getSpecialtyViewFlow() {
+    return specialtyViewFlow;
+  }
+
+  public void setSpecialtyViewFlow(SpecialtyViewFlow specialtyViewFlow) {
+    this.specialtyViewFlow = specialtyViewFlow;
+  }
 }

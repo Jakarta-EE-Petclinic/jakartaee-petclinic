@@ -29,105 +29,105 @@ import java.util.UUID;
 @Stateless
 public class OwnerDaoImpl implements OwnerDao {
 
-	private static final long serialVersionUID = -2768460721378705615L;
+  private static final long serialVersionUID = -2768460721378705615L;
 
-	private static Logger log = LogManager.getLogger(OwnerDaoImpl.class.getName());
+  private static Logger log = LogManager.getLogger(OwnerDaoImpl.class.getName());
 
-	@PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
-	private EntityManager entityManager;
+  @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
+  private EntityManager entityManager;
 
-	@Override
-	public List<Owner> getAll() {
-		TypedQuery<Owner> q = entityManager.createQuery(
-				"select o from org.woehlke.jakartaee.petclinic.oodm.entities.Owner o order by o.lastName,o.firstName",
-				Owner.class
-		);
-		List<Owner> list = q.getResultList();
-		return list;
-	}
+  @Override
+  public List<Owner> getAll() {
+    TypedQuery<Owner> q = entityManager.createQuery(
+        "select o from org.woehlke.jakartaee.petclinic.oodm.entities.Owner o order by o.lastName,o.firstName",
+        Owner.class
+    );
+    List<Owner> list = q.getResultList();
+    return list;
+  }
 
-	@Override
-	public void delete(long id) {
-		Owner owner = entityManager.find(Owner.class, id);
-		entityManager.remove(owner);
-	}
+  @Override
+  public void delete(long id) {
+    Owner owner = entityManager.find(Owner.class, id);
+    entityManager.remove(owner);
+  }
 
-	@Override
-	public Owner addNew(Owner owner) {
-		owner.setUuid(UUID.randomUUID());
-		log.debug("addNewOwner: " + owner.toString());
-		entityManager.persist(owner);
-		return owner;
-	}
+  @Override
+  public Owner addNew(Owner owner) {
+    owner.setUuid(UUID.randomUUID());
+    log.debug("addNewOwner: " + owner.toString());
+    entityManager.persist(owner);
+    return owner;
+  }
 
-	@Override
-	public Owner findById(long id) {
-		return entityManager.find(Owner.class, id);
-	}
+  @Override
+  public Owner findById(long id) {
+    return entityManager.find(Owner.class, id);
+  }
 
-	@Override
-	public Owner update(Owner owner) {
-		log.debug("updateOwner: " + owner.toString());
-		return entityManager.merge(owner);
-	}
+  @Override
+  public Owner update(Owner owner) {
+    log.debug("updateOwner: " + owner.toString());
+    return entityManager.merge(owner);
+  }
 
-	@Override
-	public List<Owner> search(String searchterm) {
-		FullTextEntityManager fullTextEntityManager =
-				org.hibernate.search.jpa.Search.getFullTextEntityManager(entityManager);
-		QueryBuilder qb = fullTextEntityManager.getSearchFactory()
-				.buildQueryBuilder().forEntity(Owner.class).get();
-		org.apache.lucene.search.Query query = qb
-				.keyword()
-				.onFields("firstName", "lastName", "city", "pets.name")
-				.matching(searchterm)
-				.createQuery();
-		// wrap Lucene query in a javax.persistence.Query
-		javax.persistence.Query persistenceQuery =
-				fullTextEntityManager.createFullTextQuery(query, Owner.class);
-		// execute search
-		@SuppressWarnings("unchecked")
-		List<Owner> result = persistenceQuery.getResultList();
-		for (Owner o : result) {
-			log.debug("found: " + o.getFullName());
-		}
-		return result;
-	}
+  @Override
+  public List<Owner> search(String searchterm) {
+    FullTextEntityManager fullTextEntityManager =
+        org.hibernate.search.jpa.Search.getFullTextEntityManager(entityManager);
+    QueryBuilder qb = fullTextEntityManager.getSearchFactory()
+        .buildQueryBuilder().forEntity(Owner.class).get();
+    org.apache.lucene.search.Query query = qb
+        .keyword()
+        .onFields("firstName", "lastName", "city", "pets.name")
+        .matching(searchterm)
+        .createQuery();
+    // wrap Lucene query in a javax.persistence.Query
+    javax.persistence.Query persistenceQuery =
+        fullTextEntityManager.createFullTextQuery(query, Owner.class);
+    // execute search
+    @SuppressWarnings("unchecked")
+    List<Owner> result = persistenceQuery.getResultList();
+    for (Owner o : result) {
+      log.debug("found: " + o.getFullName());
+    }
+    return result;
+  }
 
-	@Override
-	public void resetSearchIndex() {
-		FullTextEntityManager fullTextEntityManager =
-				org.hibernate.search.jpa.Search.getFullTextEntityManager(entityManager);
-		String qlString = "select o from Owner o";
-		TypedQuery<Owner> findAllActionItems = fullTextEntityManager.createQuery(
-				qlString,
-				Owner.class
-		);
-		for (Owner owner : findAllActionItems.getResultList()) {
-			fullTextEntityManager.index(owner);
-		}
-		fullTextEntityManager.flushToIndexes();
-		//fullTextEntityManager.clear();
-	}
+  @Override
+  public void resetSearchIndex() {
+    FullTextEntityManager fullTextEntityManager =
+        org.hibernate.search.jpa.Search.getFullTextEntityManager(entityManager);
+    String qlString = "select o from Owner o";
+    TypedQuery<Owner> findAllActionItems = fullTextEntityManager.createQuery(
+        qlString,
+        Owner.class
+    );
+    for (Owner owner : findAllActionItems.getResultList()) {
+      fullTextEntityManager.index(owner);
+    }
+    fullTextEntityManager.flushToIndexes();
+    //fullTextEntityManager.clear();
+  }
 
 
-	@PostConstruct
-	public void postConstruct() {
-		log.debug("postConstruct");
-	}
+  @PostConstruct
+  public void postConstruct() {
+    log.debug("postConstruct");
+  }
 
-	@PreDestroy
-	public void preDestroy() {
-		log.debug("preDestroy");
-	}
+  @PreDestroy
+  public void preDestroy() {
+    log.debug("preDestroy");
+  }
 
-	@PrePassivate
-	public void prePassivate() {
-		log.debug("prePassivate");
-	}
+  @PrePassivate
+  public void prePassivate() {
+    log.debug("prePassivate");
+  }
 
-	@PostActivate
-	public void postActivate() {
-		log.debug("postActivate");
-	}
+  @PostActivate
+  public void postActivate() {
+    log.debug("postActivate");
+  }
 }

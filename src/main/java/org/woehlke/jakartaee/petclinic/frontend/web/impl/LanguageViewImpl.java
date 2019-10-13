@@ -28,100 +28,100 @@ import java.util.Map;
 @SessionScoped
 public class LanguageViewImpl implements LanguageView {
 
-	private static final long serialVersionUID = -5444922829398489233L;
-	private static Logger log = LogManager.getLogger(LanguageViewImpl.class.getName());
-	private final Locale DEFAULT = Locale.ENGLISH;
-	private final Locale[] LOCALE_OPTIONS = {Locale.ENGLISH, Locale.GERMAN};
-	@Inject
-	private FrontendMessagesView frontendMessagesView;
-	private Locale locale;
+  private static final long serialVersionUID = -5444922829398489233L;
+  private static Logger log = LogManager.getLogger(LanguageViewImpl.class.getName());
+  private final Locale DEFAULT = Locale.ENGLISH;
+  private final Locale[] LOCALE_OPTIONS = {Locale.ENGLISH, Locale.GERMAN};
+  @Inject
+  private FrontendMessagesView frontendMessagesView;
+  private Locale locale;
 
-	private String localeSelected;
+  private String localeSelected;
 
-	private Map<String, String> countries = new HashMap<>();
+  private Map<String, String> countries = new HashMap<>();
 
-	public LanguageViewImpl() {
-		this.locale = DEFAULT;
-		this.localeSelected = DEFAULT.getLanguage();
-	}
+  public LanguageViewImpl() {
+    this.locale = DEFAULT;
+    this.localeSelected = DEFAULT.getLanguage();
+  }
 
-	@PostConstruct
-	public void init() {
-		log.trace("postConstruct");
-		countries = this.getCountries();
-	}
+  @PostConstruct
+  public void init() {
+    log.trace("postConstruct");
+    countries = this.getCountries();
+  }
 
-	public Map<String, String> getCountries() {
-		log.trace("getCountries: " + this.locale);
-		this.countries.clear();
-		for (Locale locale : LOCALE_OPTIONS) {
-			this.countries.put(
-					locale.getDisplayLanguage(),
-					locale.getLanguage()
-			);
-		}
-		for (String key : this.countries.keySet()) {
-			log.trace(key + " : " + countries.get(key));
-		}
-		return countries;
-	}
+  public Map<String, String> getCountries() {
+    log.trace("getCountries: " + this.locale);
+    this.countries.clear();
+    for (Locale locale : LOCALE_OPTIONS) {
+      this.countries.put(
+          locale.getDisplayLanguage(),
+          locale.getLanguage()
+      );
+    }
+    for (String key : this.countries.keySet()) {
+      log.trace(key + " : " + countries.get(key));
+    }
+    return countries;
+  }
 
-	public void setCountries(List<SelectItem> countries) {
-	}
+  public void setCountries(List<SelectItem> countries) {
+  }
 
-	public Locale getLocale() {
-		if (this.locale == null) {
-			locale = Locale.ENGLISH;
-		}
-		return locale;
-	}
+  public Locale getLocale() {
+    if (this.locale == null) {
+      locale = Locale.ENGLISH;
+    }
+    return locale;
+  }
 
-	public void setLocale(Locale locale) {
-		this.locale = locale;
-	}
+  public void setLocale(Locale locale) {
+    this.locale = locale;
+  }
 
-	public String getLocaleSelected() {
-		return localeSelected;
-	}
+  public String getLocaleSelected() {
+    return localeSelected;
+  }
 
-	public void setLocaleSelected(String localeSelected) {
-		this.localeSelected = localeSelected;
-	}
+  public void setLocaleSelected(String localeSelected) {
+    this.localeSelected = localeSelected;
+  }
 
-	public FrontendMessagesView getFrontendMessagesView() {
-		return frontendMessagesView;
-	}
+  public FrontendMessagesView getFrontendMessagesView() {
+    return frontendMessagesView;
+  }
 
-	public void setFrontendMessagesView(FrontendMessagesView frontendMessagesView) {
-		this.frontendMessagesView = frontendMessagesView;
-	}
+  public void setFrontendMessagesView(FrontendMessagesView frontendMessagesView) {
+    this.frontendMessagesView = frontendMessagesView;
+  }
 
-	public String getMsgCantDeleteSpecialty() {
-		String msg = "";
-		if (locale.equals(Locale.ENGLISH)) {
-			msg = "cannot delete, Specialty still in use";
-		} else if (locale.equals(Locale.GERMAN)) {
-			msg = "löschen nicht möglich, Fachrichtung wird noch ausgeübt";
-		}
-		return msg;
-	}
+  public String getMsgCantDeleteSpecialty() {
+    String msg = "";
+    if (locale.equals(Locale.ENGLISH)) {
+      msg = "cannot delete, Specialty still in use";
+    } else if (locale.equals(Locale.GERMAN)) {
+      msg = "löschen nicht möglich, Fachrichtung wird noch ausgeübt";
+    }
+    return msg;
+  }
 
-	public String changeLanguage() {
-		Locale myLocale = new Locale(this.localeSelected);
-		String msg = "cool: newLocale: " + this.locale + " -> " + myLocale;
-		log.debug("changed Language " + msg);
-		FacesContext
-				.getCurrentInstance()
-				.getViewRoot()
-				.setLocale(myLocale);
-		this.setLocale(myLocale);
-		this.frontendMessagesView.addInfoMessage("changed Language", msg);
-		return "#";
-	}
+  public String changeLanguage() {
+    Locale myLocale = new Locale(this.localeSelected);
+    String msg = "cool: newLocale: " + this.locale + " -> " + myLocale;
+    log.debug("changed Language " + msg);
+    FacesContext
+        .getCurrentInstance()
+        .getViewRoot()
+        .setLocale(myLocale);
+    this.setLocale(myLocale);
+    this.frontendMessagesView.addInfoMessage("changed Language", msg);
+    return "#";
+  }
 
-	@PreDestroy
-	public void preDestroy() {
-		log.trace("preDestroy");
-	}
+  @PreDestroy
+  public void preDestroy() {
+    log.trace("preDestroy");
+  }
 
 }

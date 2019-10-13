@@ -17,68 +17,68 @@ import java.util.List;
 @Stateless
 public class SpecialtyServiceImpl implements SpecialtyService {
 
-	private static final long serialVersionUID = 6145428275502469961L;
+  private static final long serialVersionUID = 6145428275502469961L;
 
-	private static Logger log = LogManager.getLogger(SpecialtyServiceImpl.class.getName());
+  private static Logger log = LogManager.getLogger(SpecialtyServiceImpl.class.getName());
 
-	@EJB
-	private SpecialtyDao specialtyDao;
+  @EJB
+  private SpecialtyDao specialtyDao;
 
-	@Override
-	public List<Specialty> getAll() {
-		return this.specialtyDao.getAll();
-	}
+  @Override
+  public List<Specialty> getAll() {
+    return this.specialtyDao.getAll();
+  }
 
-	@Override
-	public void delete(long id) {
-		this.specialtyDao.delete(id);
-	}
+  @Override
+  public void delete(long id) {
+    this.specialtyDao.delete(id);
+  }
 
-	@Override
-	public Specialty addNew(Specialty specialty) {
-		log.debug("about to addNew: " + specialty.toString());
-		return this.specialtyDao.addNew(specialty);
-	}
+  @Override
+  public Specialty addNew(Specialty specialty) {
+    log.debug("about to addNew: " + specialty.toString());
+    return this.specialtyDao.addNew(specialty);
+  }
 
-	@Override
-	public Specialty findById(long id) {
-		return this.specialtyDao.findById(id);
-	}
+  @Override
+  public Specialty findById(long id) {
+    return this.specialtyDao.findById(id);
+  }
 
-	@Override
-	public Specialty update(Specialty specialty) {
-		log.debug("about to update: " + specialty.toString());
-		return this.specialtyDao.update(specialty);
-	}
+  @Override
+  public Specialty update(Specialty specialty) {
+    log.debug("about to update: " + specialty.toString());
+    return this.specialtyDao.update(specialty);
+  }
 
-	@Override
-	public List<Specialty> search(String searchterm) {
-		return this.specialtyDao.search(searchterm);
-	}
+  @Override
+  public List<Specialty> search(String searchterm) {
+    return this.specialtyDao.search(searchterm);
+  }
 
-	@Override
-	public Specialty findSpecialtyByName(String name) {
-		return this.specialtyDao.findSpecialtyByName(name);
-	}
+  @Override
+  public Specialty findSpecialtyByName(String name) {
+    return this.specialtyDao.findSpecialtyByName(name);
+  }
 
 
-	@PostConstruct
-	public void postConstruct() {
-		log.debug("postConstruct");
-	}
+  @PostConstruct
+  public void postConstruct() {
+    log.debug("postConstruct");
+  }
 
-	@PreDestroy
-	public void preDestroy() {
-		log.debug("preDestroy");
-	}
+  @PreDestroy
+  public void preDestroy() {
+    log.debug("preDestroy");
+  }
 
-	@PrePassivate
-	public void prePassivate() {
-		log.debug("prePassivate");
-	}
+  @PrePassivate
+  public void prePassivate() {
+    log.debug("prePassivate");
+  }
 
-	@PostActivate
-	public void postActivate() {
-		log.debug("postActivate");
-	}
+  @PostActivate
+  public void postActivate() {
+    log.debug("postActivate");
+  }
 }

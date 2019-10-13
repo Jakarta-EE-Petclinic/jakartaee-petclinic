@@ -11,5 +11,5 @@ import java.io.Serializable;
 @Named("vetViewFlow")
 @SessionScoped
 public class VetViewFlow extends CrudViewFlow implements HasCrudFlowState, Serializable {
-	private static final long serialVersionUID = -4032116498859585466L;
+  private static final long serialVersionUID = -4032116498859585466L;
 }

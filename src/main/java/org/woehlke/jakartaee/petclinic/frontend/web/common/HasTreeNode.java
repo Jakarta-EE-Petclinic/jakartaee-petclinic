@@ -6,11 +6,11 @@ import java.io.Serializable;
 
 public interface HasTreeNode extends Serializable {
 
-	long serialVersionUID = 3033835375543985936L;
+  long serialVersionUID = 3033835375543985936L;
 
-	TreeNode getTreeNodeRoot();
+  TreeNode getTreeNodeRoot();
 
-	void setTreeNodeRoot(TreeNode treeNodeRoot);
+  void setTreeNodeRoot(TreeNode treeNodeRoot);
 
-	void initTreeNodes();
+  void initTreeNodes();
 }

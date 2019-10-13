@@ -1,63 +1,63 @@
 <server description="defaultServer">
-    <!-- tag::features[] -->
-    <featureManager>
-        <feature>javaee-8.0</feature>
-        <feature>json-1.0</feature>
-        <feature>sessionDatabase-1.0</feature>
-        <!--
-        <feature>servlet-3.1</feature>
-        -->
-    </featureManager>
-    <!-- end::features[] -->
+	<!-- tag::features[] -->
+	<featureManager>
+		<feature>javaee-8.0</feature>
+		<feature>json-1.0</feature>
+		<feature>sessionDatabase-1.0</feature>
+		<!--
+		<feature>servlet-3.1</feature>
+		-->
+	</featureManager>
+	<!-- end::features[] -->
 
-    <basicRegistry id="basic" realm="BasicRealm">
-        <user name="admin" password="adminpwd"/>
-        <user name="tw" password="twpwd"/>
-    </basicRegistry>
+	<basicRegistry id="basic" realm="BasicRealm">
+		<user name="admin" password="adminpwd"/>
+		<user name="tw" password="twpwd"/>
+	</basicRegistry>
 
-    <administrator-role>
-        <user>admin</user>
-    </administrator-role>
+	<administrator-role>
+		<user>admin</user>
+	</administrator-role>
 
-    <applicationManager autoExpand="true"/>
+	<applicationManager autoExpand="true"/>
 
-    <httpSession idLength="56"/>
+	<httpSession idLength="56"/>
 
-    <keyStore id="defaultKeyStore" password="mpKeystore"/>
+	<keyStore id="defaultKeyStore" password="mpKeystore"/>
 
-    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
-    <httpEndpoint
-            id="defaultHttpEndpoint"
-            host="*"
-            httpPort="8080"
-            httpsPort="8443"/>
+	<!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
+	<httpEndpoint
+			id="defaultHttpEndpoint"
+			host="*"
+			httpPort="8080"
+			httpsPort="8443"/>
 
-    <variable name="io_openliberty_guides_system_inMaintenance" value="false"/>
+	<variable name="io_openliberty_guides_system_inMaintenance" value="false"/>
 
-    <!--
-    <webApplication location="petclinic.war" contextRoot="/petclinic" />
-    -->
+	<!--
+	<webApplication location="petclinic.war" contextRoot="/petclinic" />
+	-->
 
-    <!-- Postgres Database Configuration -->
-    <dataSource id="DefaultDataSource"
-                jndiName="jdbc/jakartaeePetclinicDC"
-                jdbcDriverRef="postgresql-driver"
-                type="javax.sql.ConnectionPoolDataSource"
-                transactional="true">
-        <properties serverName="localhost"
-                    portNumber="5432"
-                    databaseName="petclinic"
-                    user="java"
-                    password="javapwd"/>
-    </dataSource>
-    <jdbcDriver id="postgresql-driver"
-                javax.sql.XADataSource="org.postgresql.xa.PGXADataSource"
-                javax.sql.ConnectionPoolDataSource="org.postgresql.ds.PGConnectionPoolDataSource"
-                libraryRef="postgresql-library"/>
-    <library id="postgresql-library">
-        <fileset id="PostgreSQLFileset"
-                 dir="lib"
-                 includes="postgresql.jar"/>
-    </library>
+	<!-- Postgres Database Configuration -->
+	<dataSource id="DefaultDataSource"
+	            jndiName="jdbc/jakartaeePetclinicDC"
+	            jdbcDriverRef="postgresql-driver"
+	            type="javax.sql.ConnectionPoolDataSource"
+	            transactional="true">
+		<properties serverName="localhost"
+		            portNumber="5432"
+		            databaseName="petclinic"
+		            user="java"
+		            password="javapwd"/>
+	</dataSource>
+	<jdbcDriver id="postgresql-driver"
+	            javax.sql.XADataSource="org.postgresql.xa.PGXADataSource"
+	            javax.sql.ConnectionPoolDataSource="org.postgresql.ds.PGConnectionPoolDataSource"
+	            libraryRef="postgresql-library"/>
+	<library id="postgresql-library">
+		<fileset id="PostgreSQLFileset"
+		         dir="lib"
+		         includes="postgresql.jar"/>
+	</library>
 
 </server>

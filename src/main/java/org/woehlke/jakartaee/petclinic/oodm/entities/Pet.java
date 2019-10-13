@@ -22,225 +22,225 @@ import java.util.*;
 @Entity
 @Indexed
 @Table(
-		name = Pet.TABLENAME,
-		uniqueConstraints = {
-				@UniqueConstraint(
-						name = Pet.TABLENAME + "_unique_uuid",
-						columnNames = {Pet.COL_UUID}
-				),
-				@UniqueConstraint(
-						name = Pet.TABLENAME + "_unique_names",
-						columnNames = {
-								Pet.COL_NAME,
-								Pet.COL_BIRTH_DATE,
-								Pet.COL_PETTYPE_ID,
-								Pet.COL_OWNER_ID
-						}
-				)
-		}
+    name = Pet.TABLENAME,
+    uniqueConstraints = {
+        @UniqueConstraint(
+            name = Pet.TABLENAME + "_unique_uuid",
+            columnNames = {Pet.COL_UUID}
+        ),
+        @UniqueConstraint(
+            name = Pet.TABLENAME + "_unique_names",
+            columnNames = {
+                Pet.COL_NAME,
+                Pet.COL_BIRTH_DATE,
+                Pet.COL_PETTYPE_ID,
+                Pet.COL_OWNER_ID
+            }
+        )
+    }
 )
 @NamedQueries({
-		@NamedQuery(
-				name = "Pet.getAll",
-				query = "select p from Pet p order by p.name"
-		)
+    @NamedQuery(
+        name = "Pet.getAll",
+        query = "select p from Pet p order by p.name"
+    )
 })
 @EntityListeners(PetListener.class)
 @XmlRootElement(
-		name = "Pet"
+    name = "Pet"
 )
 @XmlType(
-		name = "Pet",
-		namespace = "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/Pet",
-		propOrder = {
-				"id", "uuid", "name", "birthDate", "type", "visits"
-		}
+    name = "Pet",
+    namespace = "http://woehlke.org/org/woehlke/jakartaee/petclinic/oodm/entities/Pet",
+    propOrder = {
+        "id", "uuid", "name", "birthDate", "type", "visits"
+    }
 )
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Pet implements TwEntities<Pet> {
 
-	public final static String TABLENAME = "pets";
-	public final static String COL_ID = "id";
-	public final static String COL_UUID = "uuid";
-	public final static String COL_NAME = "name";
-	public final static String COL_BIRTH_DATE = "birth_date";
-	public final static String COL_PETTYPE_ID = "pettype_id";
-	public final static String COL_OWNER_ID = "owner_id";
-	private static final long serialVersionUID = 1007513582768464905L;
-	@NotNull
-	@XmlElement(required = true)
-	@Column(name = COL_BIRTH_DATE, columnDefinition = "DATE", nullable = false)
-	@Temporal(TemporalType.DATE)
-	protected Date birthDate;
-	@Id
-	@XmlElement(required = true)
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+  public final static String TABLENAME = "pets";
+  public final static String COL_ID = "id";
+  public final static String COL_UUID = "uuid";
+  public final static String COL_NAME = "name";
+  public final static String COL_BIRTH_DATE = "birth_date";
+  public final static String COL_PETTYPE_ID = "pettype_id";
+  public final static String COL_OWNER_ID = "owner_id";
+  private static final long serialVersionUID = 1007513582768464905L;
+  @NotNull
+  @XmlElement(required = true)
+  @Column(name = COL_BIRTH_DATE, columnDefinition = "DATE", nullable = false)
+  @Temporal(TemporalType.DATE)
+  protected Date birthDate;
+  @Id
+  @XmlElement(required = true)
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
 
 
-	@XmlElement(required = true)
-	@Column(name = COL_UUID, nullable = false, unique = true)
-	@Field(
-			index = org.hibernate.search.annotations.Index.YES,
-			analyze = org.hibernate.search.annotations.Analyze.NO,
-			store = org.hibernate.search.annotations.Store.YES
-	)
-	private UUID uuid;
+  @XmlElement(required = true)
+  @Column(name = COL_UUID, nullable = false, unique = true)
+  @Field(
+      index = org.hibernate.search.annotations.Index.YES,
+      analyze = org.hibernate.search.annotations.Analyze.NO,
+      store = org.hibernate.search.annotations.Store.YES
+  )
+  private UUID uuid;
 
-	@NotNull
-	@NotEmpty
-	@XmlElement(required = true)
-	@Column(name = COL_NAME, nullable = false)
-	@Field(
-			index = org.hibernate.search.annotations.Index.YES,
-			analyze = org.hibernate.search.annotations.Analyze.YES,
-			store = org.hibernate.search.annotations.Store.YES
-	)
-	private String name;
-	@IndexedEmbedded
-	@NotNull
-	@XmlElement(required = true)
-	@ManyToOne
-	@JoinColumn(name = COL_PETTYPE_ID)
-	private PetType type;
-	@NotNull
-	@XmlTransient
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = COL_OWNER_ID)
-	private Owner owner;
-	@IndexedEmbedded
-	@XmlElementWrapper(name = "visits", nillable = false, required = true)
-	@XmlElement(name = "visit")
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
-	private Set<Visit> visits = new HashSet<>();
+  @NotNull
+  @NotEmpty
+  @XmlElement(required = true)
+  @Column(name = COL_NAME, nullable = false)
+  @Field(
+      index = org.hibernate.search.annotations.Index.YES,
+      analyze = org.hibernate.search.annotations.Analyze.YES,
+      store = org.hibernate.search.annotations.Store.YES
+  )
+  private String name;
+  @IndexedEmbedded
+  @NotNull
+  @XmlElement(required = true)
+  @ManyToOne
+  @JoinColumn(name = COL_PETTYPE_ID)
+  private PetType type;
+  @NotNull
+  @XmlTransient
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = COL_OWNER_ID)
+  private Owner owner;
+  @IndexedEmbedded
+  @XmlElementWrapper(name = "visits", nillable = false, required = true)
+  @XmlElement(name = "visit")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
+  private Set<Visit> visits = new HashSet<>();
 
-	public Pet() {
-	}
+  public Pet() {
+  }
 
-	@Transient
-	public String getTableName() {
-		return TABLENAME;
-	}
+  @Transient
+  public String getTableName() {
+    return TABLENAME;
+  }
 
-	@Transient
-	public String[] getColumnNames() {
-		String[] thisColumnNames = {
-				COL_ID, COL_UUID,
-				COL_NAME, COL_BIRTH_DATE,
-				COL_PETTYPE_ID, COL_OWNER_ID
-		};
-		return thisColumnNames;
-	}
+  @Transient
+  public String[] getColumnNames() {
+    String[] thisColumnNames = {
+        COL_ID, COL_UUID,
+        COL_NAME, COL_BIRTH_DATE,
+        COL_PETTYPE_ID, COL_OWNER_ID
+    };
+    return thisColumnNames;
+  }
 
-	@Transient
-	public String getPrimaryKey() {
-		return "" + this.getName() + " ( " + this.getType().getName() + ")";
-	}
+  @Transient
+  public String getPrimaryKey() {
+    return "" + this.getName() + " ( " + this.getType().getName() + ")";
+  }
 
-	@Transient
-	public String getPrimaryKeyWithId() {
-		return this.getPrimaryKey() + "(" + this.getId() + "," + this.getUuid() + ")";
-	}
+  @Transient
+  public String getPrimaryKeyWithId() {
+    return this.getPrimaryKey() + "(" + this.getId() + "," + this.getUuid() + ")";
+  }
 
-	public void addVisit(Visit visit) {
-		visits.add(visit);
-	}
+  public void addVisit(Visit visit) {
+    visits.add(visit);
+  }
 
-	public Long getId() {
-		return id;
-	}
+  public Long getId() {
+    return id;
+  }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-	public UUID getUuid() {
-		return uuid;
-	}
+  public UUID getUuid() {
+    return uuid;
+  }
 
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
+  public void setUuid(UUID uuid) {
+    this.uuid = uuid;
+  }
 
-	public String getName() {
-		return name;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public Date getBirthDate() {
-		return birthDate;
-	}
+  public Date getBirthDate() {
+    return birthDate;
+  }
 
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
-	}
+  public void setBirthDate(Date birthDate) {
+    this.birthDate = birthDate;
+  }
 
-	public PetType getType() {
+  public PetType getType() {
 
-		return type;
-	}
+    return type;
+  }
 
-	public void setType(PetType type) {
-		this.type = type;
-	}
+  public void setType(PetType type) {
+    this.type = type;
+  }
 
-	public Owner getOwner() {
-		return owner;
-	}
+  public Owner getOwner() {
+    return owner;
+  }
 
-	public void setOwner(Owner owner) {
-		this.owner = owner;
-	}
+  public void setOwner(Owner owner) {
+    this.owner = owner;
+  }
 
-	public List<Visit> getVisits() {
-		List<Visit> list = new ArrayList<>();
-		for (Visit visit : visits) {
-			list.add(visit);
-		}
-		Collections.sort(list);
-		return list;
-	}
+  public List<Visit> getVisits() {
+    List<Visit> list = new ArrayList<>();
+    for (Visit visit : visits) {
+      list.add(visit);
+    }
+    Collections.sort(list);
+    return list;
+  }
 
-	public void setVisits(Set<Visit> visits) {
-		this.visits = visits;
-	}
+  public void setVisits(Set<Visit> visits) {
+    this.visits = visits;
+  }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof Pet)) return false;
-		Pet pet = (Pet) o;
-		return Objects.equals(getId(), pet.getId()) &&
-				Objects.equals(getUuid(), pet.getUuid()) &&
-				getName().equals(pet.getName()) &&
-				getBirthDate().equals(pet.getBirthDate()) &&
-				getType().equals(pet.getType()) &&
-				Objects.equals(getVisits(), pet.getVisits());
-	}
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Pet)) return false;
+    Pet pet = (Pet) o;
+    return Objects.equals(getId(), pet.getId()) &&
+        Objects.equals(getUuid(), pet.getUuid()) &&
+        getName().equals(pet.getName()) &&
+        getBirthDate().equals(pet.getBirthDate()) &&
+        getType().equals(pet.getType()) &&
+        Objects.equals(getVisits(), pet.getVisits());
+  }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(getId(), getUuid(), getName(), getBirthDate(), getType(), getVisits());
-	}
+  @Override
+  public int hashCode() {
+    return Objects.hash(getId(), getUuid(), getName(), getBirthDate(), getType(), getVisits());
+  }
 
-	@Override
-	public String toString() {
-		return "Pet{" +
-				"id=" + id +
-				", uuid=" + uuid +
-				", name='" + name + '\'' +
-				", birthDate=" + ((birthDate != null) ? birthDate.toString() : null) +
-				", type=" + ((type != null) ? type.getPrimaryKeyWithId() : null) +
-				", owner=" + ((owner != null) ? owner.getPrimaryKeyWithId() : null) +
-				", visits=" + ((visits != null) ? visits.size() : null) +
-				'}';
-	}
+  @Override
+  public String toString() {
+    return "Pet{" +
+        "id=" + id +
+        ", uuid=" + uuid +
+        ", name='" + name + '\'' +
+        ", birthDate=" + ((birthDate != null) ? birthDate.toString() : null) +
+        ", type=" + ((type != null) ? type.getPrimaryKeyWithId() : null) +
+        ", owner=" + ((owner != null) ? owner.getPrimaryKeyWithId() : null) +
+        ", visits=" + ((visits != null) ? visits.size() : null) +
+        '}';
+  }
 
-	@Override
-	public int compareTo(Pet o) {
-		return name.compareTo(o.getName());
-	}
+  @Override
+  public int compareTo(Pet o) {
+    return name.compareTo(o.getName());
+  }
 }

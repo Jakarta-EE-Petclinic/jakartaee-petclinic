@@ -8,21 +8,21 @@ import java.util.Map;
 
 public interface LanguageView extends Serializable {
 
-	long serialVersionUID = 5845484688944674808L;
+  long serialVersionUID = 5845484688944674808L;
 
-	Map<String, String> getCountries();
+  Map<String, String> getCountries();
 
-	void setCountries(List<SelectItem> countries);
+  void setCountries(List<SelectItem> countries);
 
-	Locale getLocale();
+  Locale getLocale();
 
-	void setLocale(Locale locale);
+  void setLocale(Locale locale);
 
-	String getLocaleSelected();
+  String getLocaleSelected();
 
-	void setLocaleSelected(String localeSelected);
+  void setLocaleSelected(String localeSelected);
 
-	String changeLanguage();
+  String changeLanguage();
 
-	String getMsgCantDeleteSpecialty();
+  String getMsgCantDeleteSpecialty();
 }

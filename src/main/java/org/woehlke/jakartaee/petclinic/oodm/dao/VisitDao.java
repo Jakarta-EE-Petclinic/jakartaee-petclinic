@@ -11,5 +11,5 @@ import org.woehlke.jakartaee.petclinic.oodm.entities.Visit;
  * To change this template use File | Settings | File Templates.
  */
 public interface VisitDao extends CrudDao<Visit> {
-	long serialVersionUID = -2002874805548729384L;
+  long serialVersionUID = -2002874805548729384L;
 }

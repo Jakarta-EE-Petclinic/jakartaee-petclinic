@@ -7,9 +7,9 @@ import java.util.ResourceBundle;
 
 public class MessageProvider implements Serializable {
 
-	public ResourceBundle getBundle() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		return context.getApplication().getResourceBundle(context, "msg");
-	}
+  public ResourceBundle getBundle() {
+    FacesContext context = FacesContext.getCurrentInstance();
+    return context.getApplication().getResourceBundle(context, "msg");
+  }
 
 }

@@ -13,5 +13,5 @@ import org.woehlke.jakartaee.petclinic.oodm.entities.Vet;
  */
 public interface VetDao extends CrudDao<Vet>, Searchable<Vet> {
 
-	long serialVersionUID = -8002507178196926932L;
+  long serialVersionUID = -8002507178196926932L;
 }
