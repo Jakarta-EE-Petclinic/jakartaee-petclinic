@@ -7,8 +7,8 @@ source src/main/bash/run-lib.bash
 function runManaged() {
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
-  runManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
-  #runManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
+  #runManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  runManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
   #runManagedGlassfish $TESTS_PROFILE $BROWSER_PROFILE
 }
 

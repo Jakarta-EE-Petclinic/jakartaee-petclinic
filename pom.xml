@@ -1602,11 +1602,6 @@
 			<id>run-openliberty-managed</id>
 			<dependencies>
 				<dependency>
-					<groupId>net.wasdev.wlp.maven.plugins</groupId>
-					<artifactId>liberty-maven-plugin</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
 					<groupId>io.openliberty</groupId>
 					<artifactId>openliberty-javaee8</artifactId>
 					<type>zip</type>

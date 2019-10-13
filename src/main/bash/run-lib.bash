@@ -226,9 +226,9 @@ function runManagedLiberty(){
   echo "--------------------------------------------------------------------------"
   echo " run Managed Liberty $TESTS_PROFILE $BROWSER_PROFILE"
   echo "--------------------------------------------------------------------------"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:run-server"
+  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:start-server liberty:deploy"
   echo "--------------------------------------------------------------------------"
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:run-server
+  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:start-server liberty:deploy
   echo "--------------------------------------------------------------------------"
 }
 

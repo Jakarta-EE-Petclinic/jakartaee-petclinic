@@ -10,7 +10,8 @@ function main(){
   echo "-------------------"
   echo " main"
   echo "-------------------"
-  stopManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  #stopManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  stopManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
   echo "-------------------"
   echo " DONE and READY"
   echo "-------------------"
