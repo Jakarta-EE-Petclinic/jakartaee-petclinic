@@ -19,7 +19,7 @@ buildNumber.properties
 
 deployments
 derby.log
-org.woehlke.javaee8.petclinic.oodm.entities.*
+org.woehlke.jakartaee.petclinic.oodm.entities.*
 javafiles.txt
 createdFiles.lst
 createdFiles*.txt
