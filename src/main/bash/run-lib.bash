@@ -229,7 +229,7 @@ function runRemoteWildfly(){
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
   SRV_PROFILE=run-wildfly-remote
-  checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
+  #checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
   echo " run Remote Wildfly $TESTS_PROFILE $BROWSER_PROFILE"
   echo "--------------------------------------------------------------------------"
@@ -242,7 +242,21 @@ function runRemoteWildfly(){
 }
 
 function runManagedWildfly(){
-  TESTS_PROFILE=$1
+  TESTS_PROFILE=$TESTS_PROFILE_RUN
+  BROWSER_PROFILE=$2
+  SRV_PROFILE=run-wildfly-managed
+  checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
+  echo "--------------------------------------------------------------------------"
+  echo " run Managed Wildfly $TESTS_PROFILE $BROWSER_PROFILE"
+  echo "--------------------------------------------------------------------------"
+  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install wildfly:start wildfly:deploy"
+  echo "--------------------------------------------------------------------------"
+  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install wildfly:start wildfly:deploy
+  echo "--------------------------------------------------------------------------"
+}
+
+function testManagedWildfly(){
+  TESTS_PROFILE=$TESTS_PROFILE_RUN
   BROWSER_PROFILE=$2
   SRV_PROFILE=test-wildfly-managed
   checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
@@ -360,8 +374,8 @@ function resolveDependencies() {
 function startAppServer(){
   echo "-----------------------------------------"
   echo "start remote AppServer"
-  #startRemoteAppServerWildfly17
-  startRemoteAppServerOpenLibertyWlp
+  startRemoteAppServerWildfly17
+  #startRemoteAppServerOpenLibertyWlp
   #startRemoteAppServerGlassfish51
   echo "-----------------------------------------"
 }
@@ -369,8 +383,8 @@ function startAppServer(){
 function stopAppServer(){
   echo "-----------------------------------------"
   echo "stop remote AppServer"
-  #stopRemoteAppServerWildfly17
-  stopRemoteAppServerOpenLibertyWlp
+  stopRemoteAppServerWildfly17
+  #stopRemoteAppServerOpenLibertyWlp
   #stopRemoteAppServerGlassfish51
   echo "-----------------------------------------"
 }
@@ -386,15 +400,15 @@ function runManaged() {
 function runRemote() {
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
-  #runRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
-  runRemoteLiberty $TESTS_PROFILE $BROWSER_PROFILE
+  runRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  #runRemoteLiberty $TESTS_PROFILE $BROWSER_PROFILE
   #runRemoteGlassfish $TESTS_PROFILE $BROWSER_PROFILE
 }
 
 function testManaged() {
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
-  #testManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  testManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
   #testManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
   #testManagedGlassfish $TESTS_PROFILE $BROWSER_PROFILE
 }
@@ -417,8 +431,8 @@ function main(){
   #runQa $TESTS_PROFILE $BROWSER_PROFILE
   #setSerialVersionId
   #runRemote $TESTS_PROFILE $BROWSER_PROFILE
-  runManaged $TESTS_PROFILE $BROWSER_PROFILE
-  #testManaged $TESTS_PROFILE $BROWSER_PROFILE
+  #runManaged $TESTS_PROFILE $BROWSER_PROFILE
+  testManaged $TESTS_PROFILE $BROWSER_PROFILE
   #testRemote $TESTS_PROFILE $BROWSER_PROFILE
   echo "-------------------"
   echo " DONE and READY"

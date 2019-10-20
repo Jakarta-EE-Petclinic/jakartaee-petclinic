@@ -43,8 +43,9 @@
 		<!-- java compiler settings -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<version.java>1.8</version.java>
+		<maven.compiler.source>${version.java}</maven.compiler.source>
+		<maven.compiler.target>${version.java}</maven.compiler.target>
 		<jakartaee.version>8.0.0</jakartaee.version>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 		<!-- Maven and its Plugins -->
@@ -53,14 +54,11 @@
 		<jakartaee8.server.wildfly.version>17.0.1.Final</jakartaee8.server.wildfly.version>
 		<jakartaee8.server.openliberty.runtime>19.0.0.9</jakartaee8.server.openliberty.runtime>
 		<jakartaee8.server.glassfish.version>5.1.0</jakartaee8.server.glassfish.version>
-		<libertyInstallDir>${user.home}/j/srv/openliberty-${jakartaee8.server.openliberty.runtime}/wlp
-		</libertyInstallDir>
+		<libertyInstallDir>${user.home}/j/srv/openliberty-${jakartaee8.server.openliberty.runtime}/wlp</libertyInstallDir>
 		<wildflyInstallDir>${user.home}/j/srv/wildfly-${jakartaee8.server.wildfly.version}</wildflyInstallDir>
 		<glassfishInstallDir>${user.home}/j/srv/glassfish-${jakartaee8.server.glassfish.version}</glassfishInstallDir>
 		<libertyServerName>petclinicServer</libertyServerName>
 		<!-- Integration Testing ~with Arquillian and Selenium -->
-		<version.arquillian_universe>1.2.0.2</version.arquillian_universe>
-		<version.selenium>3.141.59</version.selenium>
 		<skipIntegrationTests>false</skipIntegrationTests>
 		<webdriverBrowser>chrome</webdriverBrowser>
 		<org.wildfly.arquillian.version>2.2.0.Final</org.wildfly.arquillian.version>
@@ -86,7 +84,16 @@
 		-->
 		<!-- maven plugins -->
 		<pmd.version>6.15.0</pmd.version>
-		<junit.version>4.12</junit.version>
+		<!-- -->
+		<version.arquillian_universe>1.2.0.2</version.arquillian_universe>
+		<version.junit>4.12</version.junit>
+		<version.selenium>3.141.59</version.selenium>
+		<shrinkwrap.version>1.2.6</shrinkwrap.version>
+		<shrinkwrap.descriptors.version>2.0.0</shrinkwrap.descriptors.version>
+		<shrinkwrap.resolver.version>2.2.6</shrinkwrap.resolver.version>
+		<version.arquillian_graphene>2.3.2</version.arquillian_graphene>
+		<version.arquillian_drone>2.5.1</version.arquillian_drone>
+		<guava.version>27.0.1-jre</guava.version>
 	</properties>
 
 	<repositories>
@@ -130,6 +137,11 @@
 			<name>JBoss 3rd-party Repository</name>
 			<url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/</url>
 		</repository>
+		<repository>
+			<id>Alfresco</id>
+			<name>Alfresco Repository</name>
+			<url>https://artifacts.alfresco.com/nexus/content/repositories/public/</url>
+		</repository>
 	</repositories>
 
 	<pluginRepositories>
@@ -165,6 +177,11 @@
 				<enabled>false</enabled>
 				<updatePolicy>never</updatePolicy>
 			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>Alfresco</id>
+			<name>Alfresco Repository</name>
+			<url>https://artifacts.alfresco.com/nexus/content/repositories/public/</url>
 		</pluginRepository>
 		<!--
 		<pluginRepository>
@@ -204,6 +221,35 @@
 				<version>8.0.0</version>
 				<scope>provided</scope>
 			</dependency>
+			<!-- Integration Testing with Arquillian -->
+			<dependency>
+				<groupId>org.arquillian</groupId>
+				<artifactId>arquillian-universe</artifactId>
+				<version>${version.arquillian_universe}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.shrinkwrap</groupId>
+				<artifactId>shrinkwrap-bom</artifactId>
+				<version>${shrinkwrap.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+				<artifactId>shrinkwrap-descriptors-bom</artifactId>
+				<version>${shrinkwrap.descriptors.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.shrinkwrap.resolver</groupId>
+				<artifactId>shrinkwrap-resolver-bom</artifactId>
+				<version>${shrinkwrap.resolver.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<!-- Jakarta EE Runtime: Wildfly -->
 			<dependency>
 				<groupId>org.wildfly</groupId>
@@ -225,15 +271,6 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<!--
-			<dependency>
-					<groupId>org.wildfly.bom</groupId>
-					<artifactId>wildfly-jakartaee8-builder</artifactId>
-					<version>${jakartaee8.server.wildfly.version}</version>
-					<type>pom</type>
-					<scope>import</scope>
-			</dependency>
-			-->
 			<!-- Jakarta EE Runtime: OpenLiberty -->
 			<dependency>
 				<groupId>io.openliberty</groupId>
@@ -269,77 +306,6 @@
 			</dependency>
 			<!-- TODO: Jakarta EE Runtime: Glassfish -->
 			<!-- Integration Testing with Arquillian -->
-			<dependency>
-				<groupId>org.arquillian</groupId>
-				<artifactId>arquillian-universe</artifactId>
-				<version>${version.arquillian_universe}</version>
-				<scope>import</scope>
-				<type>pom</type>
-			</dependency>
-			<dependency>
-				<groupId>org.arquillian.universe</groupId>
-				<artifactId>arquillian-drone</artifactId>
-				<version>${version.arquillian_universe}</version>
-				<type>pom</type>
-			</dependency>
-			<dependency>
-				<groupId>org.arquillian.universe</groupId>
-				<artifactId>arquillian-graphene</artifactId>
-				<version>${version.arquillian_universe}</version>
-				<type>pom</type>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.arquillian.universe</groupId>
-				<artifactId>arquillian-graphene-recorder</artifactId>
-				<version>${version.arquillian_universe}</version>
-				<type>pom</type>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.arquillian.universe</groupId>
-				<artifactId>arquillian-warp</artifactId>
-				<version>${version.arquillian_universe}</version>
-				<type>pom</type>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.arquillian.universe</groupId>
-				<artifactId>arquillian-warp-jsf</artifactId>
-				<version>${version.arquillian_universe}</version>
-				<type>pom</type>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.arquillian.universe</groupId>
-				<artifactId>arquillian-chameleon</artifactId>
-				<version>${version.arquillian_universe}</version>
-				<type>pom</type>
-				<scope>test</scope>
-			</dependency>
-			<!--
-			<dependency>
-					<groupId>org.jboss.arquillian</groupId>
-					<artifactId>arquillian-bom</artifactId>
-					<version>${version.arquillian.core}</version>
-					<type>pom</type>
-					<scope>import</scope>
-			</dependency>
-			<dependency>
-					<groupId>org.jboss.arquillian.extension</groupId>
-					<artifactId>arquillian-drone-bom</artifactId>
-					<version>${version.arquillian.drone}</version>
-					<type>pom</type>
-					<scope>import</scope>
-			</dependency>
-			<dependency>
-					<groupId>org.jboss.shrinkwrap.resolver</groupId>
-					<artifactId>shrinkwrap-resolver-bom</artifactId>
-					<version>3.1.3</version>
-					<type>pom</type>
-					<scope>import</scope>
-			</dependency>
-			-->
 			<dependency>
 				<groupId>org.apache.maven</groupId>
 				<artifactId>maven-aether-provider</artifactId>
@@ -393,7 +359,7 @@
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
+				<version>${version.junit}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
@@ -460,6 +426,42 @@
 				<artifactId>log4j-appserver</artifactId>
 				<version>2.12.1</version>
 			</dependency>
+			<!-- other 3rd Party Dependencies for Tests -->
+			<dependency>
+				<groupId>org.reflections</groupId>
+				<artifactId>reflections</artifactId>
+				<version>0.9.9</version>
+			</dependency>
+			<dependency>
+				<groupId>org.pcollections</groupId>
+				<artifactId>pcollections</artifactId>
+				<version>2.1.2</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.auto</groupId>
+				<artifactId>auto-common</artifactId>
+				<version>0.10</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.code.findbugs</groupId>
+				<artifactId>jFormatString</artifactId>
+				<version>3.0.0</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>2.8.6</version>
+				<scope>test</scope>
+			</dependency>
 			<!-- JSF PrimeFaces -->
 			<dependency>
 				<groupId>org.primefaces</groupId>
@@ -471,6 +473,7 @@
 				<artifactId>all-themes</artifactId>
 				<version>1.0.10</version>
 			</dependency>
+			<!-- JSF and PrimeFaces Arquillian Tests -->
 			<dependency>
 				<groupId>org.primefaces.extensions</groupId>
 				<artifactId>primefaces-arquillian</artifactId>
@@ -559,17 +562,16 @@
 				<artifactId>checkstyle</artifactId>
 				<version>8.18</version>
 			</dependency>
-
 			<!--
-				 TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28
-				 <dependency>
-						 <groupId>org.jboss.arquillian.selenium</groupId>
-						 <artifactId>selenium-bom</artifactId>
-						 <version>${version.selenium}</version>
-						 <type>pom</type>
-						 <scope>import</scope>
-				 </dependency>
-				 -->
+		  TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28
+		  <dependency>
+		    <groupId>org.jboss.arquillian.selenium</groupId>
+			  <artifactId>selenium-bom</artifactId>
+				<version>${version.selenium}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			-->
 
 			<!-- Selenium Server TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28 -->
 			<dependency>
@@ -1141,7 +1143,7 @@
 				</configuration>
 				<executions>
 					<execution>
-						<id>war</id>
+						<id>make-love-not-war</id>
 						<phase>process-test-classes</phase>
 						<goals>
 							<goal>war</goal>
@@ -1170,6 +1172,7 @@
 				<skipIntegrationTests>false</skipIntegrationTests>
 			</properties>
 			<dependencies>
+				<!--
 				<dependency>
 					<groupId>org.arquillian.universe</groupId>
 					<artifactId>arquillian-junit</artifactId>
@@ -1252,6 +1255,7 @@
 					<artifactId>selenium-remote-driver</artifactId>
 					<scope>test</scope>
 				</dependency>
+				-->
 			</dependencies>
 		</profile>
 
@@ -1357,11 +1361,6 @@
 					<scope>test</scope>
 				</dependency>
 				<dependency>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
 					<groupId>org.wildfly.arquillian</groupId>
 					<artifactId>wildfly-arquillian-common</artifactId>
 					<scope>test</scope>
@@ -1405,6 +1404,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-dependency-plugin</artifactId>
+						<version>3.1.1</version>
 						<executions>
 							<execution>
 								<id>unpack</id>
@@ -1494,6 +1494,13 @@
 			<id>test-wildfly-managed</id>
 			<dependencies>
 				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-bom</artifactId>
+					<type>pom</type>
+					<scope>test</scope>
+				</dependency>
+				<!-- -->
+				<dependency>
 					<groupId>org.wildfly.arquillian</groupId>
 					<artifactId>wildfly-arquillian-container-managed</artifactId>
 					<scope>test</scope>
@@ -1518,18 +1525,189 @@
 					<artifactId>wildfly-arquillian-testenricher-msc</artifactId>
 					<scope>test</scope>
 				</dependency>
+				<!-- -->
+				<dependency>
+					<groupId>org.jboss.arquillian.graphene</groupId>
+					<artifactId>graphene-webdriver-impl</artifactId>
+					<version>${version.arquillian_graphene}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.extension</groupId>
+					<artifactId>arquillian-drone-impl</artifactId>
+					<version>${version.arquillian_drone}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.junit</groupId>
+					<artifactId>arquillian-junit-standalone</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.test</groupId>
+					<artifactId>arquillian-test-impl-base</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.core</groupId>
+					<artifactId>arquillian-core-impl-base</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.config</groupId>
+					<artifactId>arquillian-config-impl-base</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+					<version>1.4.01</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.protocol</groupId>
+					<artifactId>arquillian-protocol-servlet</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.testenricher</groupId>
+					<artifactId>arquillian-testenricher-resource</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.testenricher</groupId>
+					<artifactId>arquillian-testenricher-initialcontext</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.httpcomponents</groupId>
+					<artifactId>httpcore</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.httpcomponents</groupId>
+					<artifactId>httpclient</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-core</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-api</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-slf4j-impl</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-to-slf4j</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-web</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-appserver</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.reflections</groupId>
+					<artifactId>reflections</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.pcollections</groupId>
+					<artifactId>pcollections</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.google.guava</groupId>
+					<artifactId>guava</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.google.auto</groupId>
+					<artifactId>auto-common</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.google.code.findbugs</groupId>
+					<artifactId>jFormatString</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.google.code.gson</groupId>
+					<artifactId>gson</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<!--
 				<dependency>
 					<groupId>org.jboss.shrinkwrap.resolver</groupId>
 					<artifactId>shrinkwrap-resolver-api-maven-embedded</artifactId>
 					<scope>test</scope>
 				</dependency>
+				 -->
 			</dependencies>
 			<build>
 				<finalName>petclinic</finalName>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<version>3.6.2</version>
+						<configuration>
+							<source>${version.java}</source>
+							<target>${version.java}</target>
+							<parameters />
+							<testExcludes>
+								<exclude>**/testdata/**</exclude>
+							</testExcludes>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>2.1.2</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<phase>package</phase>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-war-plugin</artifactId>
+						<version>3.2.3</version>
+						<configuration>
+							<warSourceDirectory>src/main/webapp</warSourceDirectory>
+							<warName>SportSnapShare</warName>
+							<failOnMissingWebXml>false</failOnMissingWebXml>
+						</configuration>
+						<executions>
+							<execution>
+								<id>make-love-not-war</id>
+								<phase>process-test-classes</phase>
+								<goals>
+									<goal>war</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-dependency-plugin</artifactId>
+						<version>2.8</version>
 						<executions>
 							<execution>
 								<id>unpack</id>
@@ -1553,6 +1731,27 @@
 						</executions>
 					</plugin>
 					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<version>1.7.7</version>
+						<executions>
+							<execution>
+								<id>start-server</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>start</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>stop-server</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>stop</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
 						<groupId>org.wildfly.plugins</groupId>
 						<artifactId>wildfly-maven-plugin</artifactId>
 						<configuration>
@@ -1562,14 +1761,29 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
+						<version>3.0.0-M3</version>
+						<executions>
+							<execution>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>test</goal>
+								</goals>
+								<configuration>
+									<excludes>
+										<exclude>none</exclude>
+									</excludes>
+									<includes>
+										<include>**/*IntegrationTest.java</include>
+									</includes>
+								</configuration>
+							</execution>
+						</executions>
 						<configuration>
-							<skipTests>${skipIntegrationTests}</skipTests>
+							<skipTests>false</skipTests>
 							<environmentVariables>
 								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}
-								</JBOSS_HOME>
-								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}
-								</jboss.home>
+								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</JBOSS_HOME>
+								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
 								<http.port>8080</http.port>
 								<https.port>8443</https.port>
@@ -1579,37 +1793,36 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-failsafe-plugin</artifactId>
-						<executions>
-							<execution>
-								<goals>
-									<goal>integration-test</goal>
-									<goal>verify</goal>
-								</goals>
-							</execution>
-						</executions>
+						<version>3.0.0-M3</version>
 						<configuration>
-							<skipTests>${skipIntegrationTests}</skipTests>
+							<skipTests>false</skipTests>
 							<environmentVariables>
 								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}
-								</JBOSS_HOME>
-								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}
-								</jboss.home>
+								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</JBOSS_HOME>
+								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
 								<http.port>8080</http.port>
 								<https.port>8443</https.port>
 							</environmentVariables>
 							<systemPropertyVariables>
 								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}
-								</JBOSS_HOME>
-								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}
-								</jboss.home>
+								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</JBOSS_HOME>
+								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
 								<http.port>8080</http.port>
 								<https.port>8443</https.port>
 							</systemPropertyVariables>
 						</configuration>
+						<executions>
+							<execution>
+								<id>install</id>
+								<phase>install</phase>
+								<goals>
+									<goal>integration-test</goal>
+									<goal>verify</goal>
+								</goals>
+							</execution>
+						</executions>
 					</plugin>
 				</plugins>
 			</build>
