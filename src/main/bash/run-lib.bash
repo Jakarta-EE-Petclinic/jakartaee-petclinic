@@ -251,7 +251,7 @@ function runManagedWildfly(){
   echo "--------------------------------------------------------------------------"
   echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install wildfly:start wildfly:deploy"
   echo "--------------------------------------------------------------------------"
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install wildfly:start wildfly:deploy
+  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install
   echo "--------------------------------------------------------------------------"
 }
 
