@@ -13,6 +13,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.primefaces.extensions.arquillian.AbstractPrimePageTest;
+import org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.HomePage;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.SpecialtyPage;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.VetPage;
@@ -30,35 +31,30 @@ import static org.jboss.arquillian.graphene.Graphene.goTo;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class IntegrationTest02VetView extends AbstractPrimePageTest {
+public class IntegrationTestConfig02VetView extends AbstractPrimePageTest implements ArquillianTestConfig {
 
-  private static Logger log = LogManager.getLogger(IntegrationTest02VetView.class.getName());
+  private static Logger log = LogManager.getLogger(IntegrationTestConfig02VetView.class.getName());
 
-
-  /*
-  @BeforeDeployment
-  public static void beforeDeployment(){
-      log.info("beforeDeployment");
-  }
-  */
   @Page
   private HomePage homePage;
+
   @Page
   private VetPage vetPage;
+
   @Page
   private SpecialtyPage specialtyPage;
 
-  @Deployment
+  @Deployment(testable = false)
   public static WebArchive createDeployment() {
     log.info("createDeployment");
-    File warFile = new File("target/petclinic.war");
+    File warFile = new File(WAR_FILE);
     return ShrinkWrap.createFromZipFile(WebArchive.class, warFile);
   }
 
   @Test
   @InSequence(1)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testOpeningHomePage() {
     log.info("testOpeningHomePage");
     goTo(HomePage.class);
@@ -68,7 +64,7 @@ public class IntegrationTest02VetView extends AbstractPrimePageTest {
   @Test
   @InSequence(2)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testOpeningVetPage() {
     log.info("testOpeningVetPage");
     goTo(VetPage.class);
@@ -78,7 +74,7 @@ public class IntegrationTest02VetView extends AbstractPrimePageTest {
   @Test
   @InSequence(3)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testNewVetPage() {
     log.info("testNewVetPage");
     goTo(VetPage.class);
@@ -99,7 +95,7 @@ public class IntegrationTest02VetView extends AbstractPrimePageTest {
   @Test
   @InSequence(4)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testEditVetPage() {
     log.info("testEditVetPage");
     goTo(VetPage.class);
@@ -120,7 +116,7 @@ public class IntegrationTest02VetView extends AbstractPrimePageTest {
   @Test
   @InSequence(5)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testDeleteVetPage() {
     log.info("testDeleteVetPage");
     goTo(VetPage.class);
@@ -133,7 +129,7 @@ public class IntegrationTest02VetView extends AbstractPrimePageTest {
   @Test
   @InSequence(6)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testNewVetPageWithSpecialties() {
     log.info("testNewVetPageWithSpecialties");
     goTo(SpecialtyPage.class);
@@ -162,7 +158,7 @@ public class IntegrationTest02VetView extends AbstractPrimePageTest {
   @Test
   @InSequence(7)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testEditVetPageWithSpecialties() {
     log.info("testEditVetPageWithSpecialties");
     goTo(VetPage.class);
@@ -186,7 +182,7 @@ public class IntegrationTest02VetView extends AbstractPrimePageTest {
   @Test
   @InSequence(8)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testEditVetPageWithNewSpecialties() {
     log.info("testEditVetPageWithNewSpecialties");
     goTo(VetPage.class);
@@ -215,7 +211,7 @@ public class IntegrationTest02VetView extends AbstractPrimePageTest {
   @Test
   @InSequence(9)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testFillNewVetPageWithSpecialties() {
     log.info("testFillNewVetPageWithSpecialties");
     goTo(SpecialtyPage.class);
@@ -236,7 +232,7 @@ public class IntegrationTest02VetView extends AbstractPrimePageTest {
   @Test
   @InSequence(10)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testFillNewVetsPage() {
     log.info("testFillNewVetsPage");
     goTo(VetPage.class);
@@ -291,7 +287,7 @@ public class IntegrationTest02VetView extends AbstractPrimePageTest {
   @Test
   @InSequence(11)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testVetsPager() {
     log.info("testVetsPager");
     vetPage.assertPagerNextIsLoaded();
@@ -318,7 +314,7 @@ public class IntegrationTest02VetView extends AbstractPrimePageTest {
   @Test
   @InSequence(13)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testVetsSorterLastname() {
     log.info("testVetsSorterLastname");
     vetPage.clickSorterLastname();
@@ -330,7 +326,7 @@ public class IntegrationTest02VetView extends AbstractPrimePageTest {
   @Test
   @InSequence(14)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testVetsSorterSpecialty() {
     log.info("testVetsSorterSpecialty");
     vetPage.clickSorterSpecialty();

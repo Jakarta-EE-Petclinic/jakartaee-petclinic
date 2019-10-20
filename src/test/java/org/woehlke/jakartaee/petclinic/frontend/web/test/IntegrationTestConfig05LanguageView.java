@@ -16,6 +16,7 @@ import org.junit.runner.RunWith;
 import org.primefaces.extensions.arquillian.AbstractPrimePageTest;
 import org.woehlke.jakartaee.petclinic.frontend.web.LanguageView;
 import org.woehlke.jakartaee.petclinic.frontend.web.impl.LanguageViewImpl;
+import org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.HomePage;
 
 import java.io.File;
@@ -27,32 +28,26 @@ import static org.jboss.arquillian.graphene.Graphene.goTo;
 
 @RunWith(Arquillian.class)
 @RunAsClient
-public class IntegrationTest05LanguageView extends AbstractPrimePageTest {
+public class IntegrationTestConfig05LanguageView extends AbstractPrimePageTest implements ArquillianTestConfig {
 
-  private static Logger log = LogManager.getLogger(IntegrationTest05LanguageView.class.getName());
+  private static Logger log = LogManager.getLogger(IntegrationTestConfig05LanguageView.class.getName());
 
   private LanguageView languageView = new LanguageViewImpl();
 
-  /*
-  @BeforeDeployment
-  public static void beforeDeployment(){
-      log.info("beforeDeployment");
-  }
-  */
   @Page
   private HomePage homePage;
 
-  @Deployment
+  @Deployment(testable = false)
   public static WebArchive createDeployment() {
     log.info("createDeployment");
-    File warFile = new File("target/petclinic.war");
+    File warFile = new File(WAR_FILE);
     return ShrinkWrap.createFromZipFile(WebArchive.class, warFile);
   }
 
   @Test
   @InSequence(1)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testGetLocale() {
     log.info("testGetLocale");
     Locale expected = Locale.ENGLISH;
@@ -63,7 +58,7 @@ public class IntegrationTest05LanguageView extends AbstractPrimePageTest {
   @Test
   @InSequence(2)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testJsfLocale() {
     log.info("testJsfLocale");
     Locale result = org.primefaces.util.LocaleUtils.toLocale(Locale.GERMAN.toString());
@@ -80,7 +75,7 @@ public class IntegrationTest05LanguageView extends AbstractPrimePageTest {
   @Test
   @InSequence(3)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testOpeningHomePage() {
     log.info("testOpeningHomePage");
     goTo(HomePage.class);

@@ -14,6 +14,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.primefaces.extensions.arquillian.AbstractPrimePageTest;
+import org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.HomePage;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.SpecialtyPage;
 
@@ -31,32 +32,29 @@ import static org.jboss.arquillian.graphene.Graphene.goTo;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class IntegrationTest01Specialties extends AbstractPrimePageTest {
+public class IntegrationTestConfig01Specialties extends AbstractPrimePageTest implements ArquillianTestConfig {
 
-  private static Logger log = LogManager.getLogger(IntegrationTest01Specialties.class.getName());
+  private static Logger log = LogManager.getLogger(IntegrationTestConfig01Specialties.class.getName());
 
-  /*
-  @BeforeDeployment
-  public static void beforeDeployment(){
-      log.info("beforeDeployment");
-  }
-  */
+
+
   @Page
   private HomePage homePage;
+
   @Page
   private SpecialtyPage specialtyPage;
 
-  @Deployment
+  @Deployment(testable = false)
   public static WebArchive createDeployment() {
     log.info("createDeployment");
-    File warFile = new File("target/petclinic.war");
+    File warFile = new File(WAR_FILE);
     return ShrinkWrap.createFromZipFile(WebArchive.class, warFile);
   }
 
   @Test
   @InSequence(1)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testOpeningHomePage() {
     log.info("testOpeningHomePage");
     goTo(HomePage.class);
@@ -66,7 +64,7 @@ public class IntegrationTest01Specialties extends AbstractPrimePageTest {
   @Test
   @InSequence(2)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testOpeningSpecialtiesPage() {
     log.info("testOpeningSpecialtiesPage");
     goTo(SpecialtyPage.class);
@@ -77,7 +75,7 @@ public class IntegrationTest01Specialties extends AbstractPrimePageTest {
   @Test
   @InSequence(3)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testNewSpecialtyPage() {
     log.info("testNewSpecialtyPage");
     goTo(SpecialtyPage.class);
@@ -93,7 +91,7 @@ public class IntegrationTest01Specialties extends AbstractPrimePageTest {
   @Test
   @InSequence(4)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testEditSpecialtyPage() {
     log.info("testEditSpecialtyPage");
     goTo(SpecialtyPage.class);
@@ -109,7 +107,7 @@ public class IntegrationTest01Specialties extends AbstractPrimePageTest {
   @Test
   @InSequence(5)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testDeleteSpecialtyPage() {
     log.info("testDeleteSpecialtyPage");
     goTo(SpecialtyPage.class);
@@ -123,7 +121,7 @@ public class IntegrationTest01Specialties extends AbstractPrimePageTest {
   @Test
   @InSequence(6)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testFillSpecialtyPager() {
     log.info("testFillSpecialtyPager");
     goTo(SpecialtyPage.class);
@@ -146,7 +144,7 @@ public class IntegrationTest01Specialties extends AbstractPrimePageTest {
   @Test
   @InSequence(7)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testSpecialtyPager() {
     log.info("testSpecialtyPager");
         /*
@@ -163,7 +161,7 @@ public class IntegrationTest01Specialties extends AbstractPrimePageTest {
   @Test
   @InSequence(8)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testSpecialtySorter() {
     log.info("testSpecialtySorter");
           /*

@@ -1400,9 +1400,16 @@
 					<version>${version.arquillian_drone}</version>
 					<scope>test</scope>
 				</dependency>
+				<!--
 				<dependency>
 					<groupId>org.jboss.arquillian.junit</groupId>
 					<artifactId>arquillian-junit-standalone</artifactId>
+					<scope>test</scope>
+				</dependency>
+				-->
+				<dependency>
+					<groupId>org.jboss.arquillian.junit</groupId>
+					<artifactId>arquillian-junit-container</artifactId>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -1429,6 +1436,7 @@
 				<dependency>
 					<groupId>org.jboss.arquillian.protocol</groupId>
 					<artifactId>arquillian-protocol-servlet</artifactId>
+					<version>1.5.0.Final</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -1516,6 +1524,11 @@
 					<scope>test</scope>
 				</dependency>
 				 -->
+				<dependency>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+					<scope>test</scope>
+				</dependency>
 			</dependencies>
 			<build>
 				<finalName>petclinic</finalName>

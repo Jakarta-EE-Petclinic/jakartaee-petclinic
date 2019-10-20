@@ -13,6 +13,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.primefaces.extensions.arquillian.AbstractPrimePageTest;
+import org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.HomePage;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.OwnerPage;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.PetTypePage;
@@ -32,34 +33,30 @@ import static org.jboss.arquillian.graphene.Graphene.goTo;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class IntegrationTest04OwnerView extends AbstractPrimePageTest {
+public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest implements ArquillianTestConfig {
 
-  private static Logger log = LogManager.getLogger(IntegrationTest04OwnerView.class.getName());
+  private static Logger log = LogManager.getLogger(IntegrationTestConfig04OwnerView.class.getName());
 
-  /*
-  @BeforeDeployment
-  public static void beforeDeployment(){
-      log.info("beforeDeployment");
-  }
-  */
   @Page
   private HomePage homePage;
+
   @Page
   private OwnerPage ownerPage;
+
   @Page
   private PetTypePage petTypePage;
 
-  @Deployment
+  @Deployment(testable = false)
   public static WebArchive createDeployment() {
     log.info("createDeployment");
-    File warFile = new File("target/petclinic.war");
+    File warFile = new File(WAR_FILE);
     return ShrinkWrap.createFromZipFile(WebArchive.class, warFile);
   }
 
   @Test
   @InSequence(1)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testOpeningHomePage() {
     log.info("testOpeningHomePage");
     goTo(HomePage.class);
@@ -70,7 +67,7 @@ public class IntegrationTest04OwnerView extends AbstractPrimePageTest {
   @Test
   @InSequence(2)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testOpenFindOwnersPage() {
     log.info("testOpenFindOwnersPage");
     goTo(HomePage.class);
@@ -81,7 +78,7 @@ public class IntegrationTest04OwnerView extends AbstractPrimePageTest {
   @Test
   @InSequence(3)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testOpenOwnersPage() {
     goTo(HomePage.class);
     homePage.assertPageIsLoaded();
@@ -93,7 +90,7 @@ public class IntegrationTest04OwnerView extends AbstractPrimePageTest {
   @Test
   @InSequence(4)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testOpenNewOwnerPage() {
     goTo(HomePage.class);
     homePage.assertPageIsLoaded();
@@ -105,7 +102,7 @@ public class IntegrationTest04OwnerView extends AbstractPrimePageTest {
   @Test
   @InSequence(5)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testOpenNewOwnerPageFromOwnersList() {
     goTo(HomePage.class);
     homePage.assertPageIsLoaded();
@@ -118,7 +115,7 @@ public class IntegrationTest04OwnerView extends AbstractPrimePageTest {
   @Test
   @InSequence(6)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testAddNewOwner() {
     goTo(HomePage.class);
     homePage.assertPageIsLoaded();
@@ -152,7 +149,7 @@ public class IntegrationTest04OwnerView extends AbstractPrimePageTest {
   @Test
   @InSequence(7)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testEditOwner() {
     goTo(HomePage.class);
     homePage.assertPageIsLoaded();
@@ -182,7 +179,7 @@ public class IntegrationTest04OwnerView extends AbstractPrimePageTest {
   @Test
   @InSequence(8)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testAddNewPet() {
     goTo(PetTypePage.class);
     petTypePage.assertPageIsLoaded();
@@ -214,7 +211,7 @@ public class IntegrationTest04OwnerView extends AbstractPrimePageTest {
   @Test
   @InSequence(9)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testEditPet() {
     goTo(HomePage.class);
     homePage.assertPageIsLoaded();
@@ -233,7 +230,7 @@ public class IntegrationTest04OwnerView extends AbstractPrimePageTest {
   @Test
   @InSequence(10)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testAddVisitToFirstPet() {
     goTo(HomePage.class);
     homePage.assertPageIsLoaded();

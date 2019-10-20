@@ -13,6 +13,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.primefaces.extensions.arquillian.AbstractPrimePageTest;
+import org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.HomePage;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.PetTypePage;
 
@@ -29,25 +30,20 @@ import static org.jboss.arquillian.graphene.Graphene.goTo;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class IntegrationTest03PetTypeView extends AbstractPrimePageTest {
+public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest implements ArquillianTestConfig {
 
-  private static Logger log = LogManager.getLogger(IntegrationTest03PetTypeView.class.getName());
+  private static Logger log = LogManager.getLogger(IntegrationTestConfig03PetTypeView.class.getName());
 
-  /*
-  @BeforeDeployment
-  public static void beforeDeployment(){
-      log.info("beforeDeployment");
-  }
-  */
   @Page
   private HomePage homePage;
+
   @Page
   private PetTypePage petTypePage;
 
-  @Deployment
+  @Deployment(testable = false)
   public static WebArchive createDeployment() {
     log.info("createDeployment");
-    File warFile = new File("target/petclinic.war");
+    File warFile = new File(WAR_FILE);
     return ShrinkWrap.createFromZipFile(WebArchive.class, warFile);
   }
 
