@@ -92,7 +92,7 @@
 		<version.primefaces>7.0</version.primefaces>
 		<version.primefaces.arquillian>7.0.0</version.primefaces.arquillian>
 		<version.hibernate-search>5.11.2.Final</version.hibernate-search>
-		<version.org.apache.cxf>3.3.3</version.org.apache.cxf>
+		<version.org.apache.cxf>3.3.2</version.org.apache.cxf>
 		<version.webjars.jquery>3.4.1</version.webjars.jquery>
 		<version.webjars.bootstrap>4.3.1</version.webjars.bootstrap>
 		<version.webjars.font-awesome>5.10.1</version.webjars.font-awesome>
@@ -988,19 +988,11 @@
 					<artifactId>liberty-maven-plugin</artifactId>
 					<version>${version.liberty-maven-plugin}</version>
 				</plugin>
-
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-enforcer-plugin</artifactId>
 					<version>${version.maven-enforcer-plugin}</version>
 				</plugin>
-				<!--
-				<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>jaxb2-maven-plugin</artifactId>
-						<version>2.5.0</version>
-				</plugin>
-				-->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-dependency-plugin</artifactId>
@@ -1161,37 +1153,71 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!--
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<packagingExcludes>pom.xml</packagingExcludes>
-				</configuration>
-				<executions>
-					<execution>
-						<id>make-love-not-war</id>
-						<phase>process-test-classes</phase>
-						<goals>
-							<goal>war</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			-->
 		</plugins>
 	</build>
 
 	<profiles>
+
+
+
+		<profile>
+			<id>it-browser-chrome</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<webdriverBrowser>chrome</webdriverBrowser>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-chrome-driver</artifactId>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+
+		<profile>
+			<id>it-browser-firefox</id>
+			<properties>
+				<webdriverBrowser>firefox</webdriverBrowser>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-firefox-driver</artifactId>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+
+		<profile>
+			<id>it-browser-safari</id>
+			<properties>
+				<webdriverBrowser>safari</webdriverBrowser>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-safari-driver</artifactId>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+
+		<profile>
+			<id>it-browser-opera</id>
+			<properties>
+				<webdriverBrowser>opera</webdriverBrowser>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-opera-driver</artifactId>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
 
 		<profile>
 			<id>it-default</id>
@@ -1369,6 +1395,7 @@
 			<id>test-wildfly-managed</id>
 			<properties>
 				<skipIntegrationTests>false</skipIntegrationTests>
+				<webdriverBrowser>chrome</webdriverBrowser>
 			</properties>
 			<dependencies>
 				<dependency>
@@ -1525,6 +1552,11 @@
 				<dependency>
 					<groupId>com.google.code.gson</groupId>
 					<artifactId>gson</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-chrome-driver</artifactId>
 					<scope>test</scope>
 				</dependency>
 			</dependencies>
@@ -1916,6 +1948,10 @@
 
 		<profile>
 			<id>test-openliberty-managed</id>
+			<properties>
+				<skipIntegrationTests>false</skipIntegrationTests>
+				<webdriverBrowser>chrome</webdriverBrowser>
+			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>io.openliberty.arquillian</groupId>
@@ -1972,6 +2008,11 @@
 				<dependency>
 					<groupId>org.apache.cxf</groupId>
 					<artifactId>cxf-rt-rs-extension-providers</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-chrome-driver</artifactId>
 					<scope>test</scope>
 				</dependency>
 			</dependencies>
@@ -2709,65 +2750,6 @@
 					</plugin>
 				</plugins>
 			</build>
-		</profile>
-
-		<profile>
-			<id>it-browser-chrome</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<webdriverBrowser>chrome</webdriverBrowser>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-chrome-driver</artifactId>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-
-		<profile>
-			<id>it-browser-firefox</id>
-			<properties>
-				<webdriverBrowser>firefox</webdriverBrowser>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-firefox-driver</artifactId>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-
-		<profile>
-			<id>it-browser-safari</id>
-			<properties>
-				<webdriverBrowser>safari</webdriverBrowser>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-safari-driver</artifactId>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-
-		<profile>
-			<id>it-browser-opera</id>
-			<properties>
-				<webdriverBrowser>opera</webdriverBrowser>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-opera-driver</artifactId>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
 		</profile>
 
 	</profiles>
