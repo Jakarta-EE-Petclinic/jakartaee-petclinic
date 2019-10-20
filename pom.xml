@@ -1651,9 +1651,14 @@
 					<plugin>
 						<groupId>org.wildfly.plugins</groupId>
 						<artifactId>wildfly-maven-plugin</artifactId>
-						<version>2.0.0.Final</version>
+						<version>2.0.1.Final</version>
 						<configuration>
 							<filename>${project.build.finalName}.war</filename>
+							<artifact>
+								<groupId>org.wildfly</groupId>
+								<artifactId>wildfly-dist</artifactId>
+								<version>${version.jakartaee8.server.wildfly}</version>
+							</artifact>
 							<add-user>
 								<users>
 									<user>
@@ -1682,6 +1687,7 @@
 						</configuration>
 						<executions>
 							<execution>
+								<id>deploy-server</id>
 								<phase>install</phase>
 								<goals>
 									<goal>deploy</goal>
