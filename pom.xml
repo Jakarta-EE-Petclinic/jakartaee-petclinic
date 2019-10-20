@@ -102,12 +102,9 @@
 		<version.maven-source-plugin>3.1.0</version.maven-source-plugin>
 		<version.maven-install-plugin>3.0.0-M1</version.maven-install-plugin>
 		<version.maven-war-plugin>3.2.3</version.maven-war-plugin>
-		<version.maven-war-plugin>3.2.3</version.maven-war-plugin>
-		<version.surefire-junit4>3.0.0-M3</version.surefire-junit4>
 		<version.maven-surefire-plugin>3.0.0-M3</version.maven-surefire-plugin>
+		<version.maven-surefire-plugin.junit4>3.0.0-M3</version.maven-surefire-plugin.junit4>
 		<version.maven-failsafe-plugin>3.0.0-M3</version.maven-failsafe-plugin>
-		<version.wildfly-maven-plugin>2.0.1.Final</version.wildfly-maven-plugin>
-		<version.liberty-maven-plugin>3.0.M1</version.liberty-maven-plugin>
 		<version.maven-invoker-plugin>3.1.0</version.maven-invoker-plugin>
 		<version.maven-javadoc-plugin>3.1.1</version.maven-javadoc-plugin>
 		<version.maven-shade-plugin>3.2.1</version.maven-shade-plugin>
@@ -117,6 +114,8 @@
 		<version.maven-help-plugins>3.2.0</version.maven-help-plugins>
 		<version.maven-toolchains-plugin>3.0.0</version.maven-toolchains-plugin>
 		<version.maven-checkstyle-plugin>2.17</version.maven-checkstyle-plugin>
+		<version.wildfly-maven-plugin>2.0.1.Final</version.wildfly-maven-plugin>
+		<version.liberty-maven-plugin>3.0.M1</version.liberty-maven-plugin>
 	</properties>
 
 	<repositories>
@@ -1018,7 +1017,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-install-plugin</artifactId>
-					<version>$version.maven-install-plugin</version>
+					<version>${version.maven-install-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -1028,7 +1027,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>surefire-junit4</artifactId>
-					<version>${version.surefire-junit4}</version>
+					<version>${version.maven-surefire-plugin.junit4}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
