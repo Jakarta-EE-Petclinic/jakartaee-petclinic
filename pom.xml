@@ -1569,12 +1569,10 @@
 				<dependency>
 					<groupId>org.primefaces.extensions</groupId>
 					<artifactId>primefaces-arquillian</artifactId>
-					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.omnifaces</groupId>
 					<artifactId>arquillian-primefaces</artifactId>
-					<scope>test</scope>
 				</dependency>
 			</dependencies>
 			<build>
@@ -1690,30 +1688,33 @@
 							</add-user>
 						</configuration>
 						<executions>
-							<execution>
-								<id>deploy-server</id>
-								<phase>install</phase>
-								<goals>
-									<goal>deploy</goal>
-								</goals>
-							</execution>
 							<!--
-												<execution>
-													<id>start-server</id>
-													<phase>pre-integration-test</phase>
-													<goals>
-														<goal>start</goal>
-														<goal>deploy</goal>
-													</goals>
-												</execution>
-												<execution>
-													<id>stop-server</id>
-													<phase>post-integration-test</phase>
-													<goals>
-														<goal>shutdown</goal>
-													</goals>
-												</execution>
-													-->
+						<execution>
+							<id>deploy-server</id>
+							<phase>install</phase>
+							<goals>
+								<goal>deploy</goal>
+							</goals>
+						</execution>
+		-->
+											<execution>
+												<id>start-server</id>
+												<phase>pre-integration-test</phase>
+												<goals>
+													<goal>start</goal>
+													<!--
+												<goal>deploy</goal>
+												-->
+												</goals>
+											</execution>
+											<execution>
+												<id>stop-server</id>
+												<phase>post-integration-test</phase>
+												<goals>
+													<goal>shutdown</goal>
+												</goals>
+											</execution>
+
 						</executions>
 					</plugin>
 					<plugin>
