@@ -1821,8 +1821,8 @@
 								<version>${version.jakartaee8.server.openliberty}</version>
 								<type>zip</type>
 							</assemblyArtifact>
-							<installDirectory>${project.build.directory}/liberty/wlp</installDirectory>
-							<serverHome>${project.build.directory}/liberty/wlp</serverHome>
+							<installDirectory>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</installDirectory>
+							<serverHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</serverHome>
 							<serverName>${runtime.jakartaee8.server.openliberty.ServerName}</serverName>
 							<features>
 								<acceptLicense>true</acceptLicense>
@@ -2095,9 +2095,6 @@
 										<feature>sessionDatabase-1.0</feature>
 										<feature>springBoot-2.0</feature>
 									</features>
-									<!--
-									<outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/</outputDirectory>
-									-->
 								</configuration>
 							</execution>
 						</executions>
@@ -2113,12 +2110,19 @@
 							</execution>
 						</executions>
 						<configuration>
-							<skipTests>${skipIntegrationTests}</skipTests>
+							<skipTests>false</skipTests>
 							<environmentVariables>
 								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
 								<wlp.home>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlp.home>
 								<OPENLIBERTY_HOME>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</OPENLIBERTY_HOME>
 							</environmentVariables>
+							<systemPropertyVariables>
+								<liberty.test.port>9080</liberty.test.port>
+								<war.name>${app.name}</war.name>
+								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
+								<wlp.home>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlp.home>
+								<OPENLIBERTY_HOME>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</OPENLIBERTY_HOME>
+							</systemPropertyVariables>
 						</configuration>
 					</plugin>
 					<plugin>
@@ -2136,12 +2140,14 @@
 							<skipTests>false</skipTests>
 							<environmentVariables>
 								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
+								<wlp.home>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlp.home>
 								<OPENLIBERTY_HOME>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</OPENLIBERTY_HOME>
 							</environmentVariables>
 							<systemPropertyVariables>
 								<liberty.test.port>9080</liberty.test.port>
 								<war.name>${app.name}</war.name>
 								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
+								<wlp.home>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlp.home>
 								<OPENLIBERTY_HOME>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</OPENLIBERTY_HOME>
 							</systemPropertyVariables>
 						</configuration>

@@ -351,57 +351,29 @@ function resolveDependencies() {
   checkDependencies $BROWSER_PROFILE
 }
 
-function startAppServer(){
+function stopManagedServer(){
   echo "-----------------------------------------"
-  echo "start remote AppServer"
-  startRemoteAppServerWildfly17
-  #startRemoteAppServerOpenLibertyWlp
-  #startRemoteAppServerGlassfish51
-  #startRemoteAppServerPayara
-  echo "-----------------------------------------"
-}
-
-function stopAppServer(){
-  echo "-----------------------------------------"
-  echo "stop remote AppServer"
-  stopRemoteAppServerWildfly17
-  #stopRemoteAppServerOpenLibertyWlp
-  #stopRemoteAppServerGlassfish51
-  #stopRemoteAppServerPayara
+  echo "stop managed AppServer"
+	stopManagedWildfly
+  #stopManagedLiberty
+  #stopManagedGlassfish
+  #stopManagedPayara
   echo "-----------------------------------------"
 }
 
-function runManaged() {
-  BROWSER_PROFILE=$1
-  runManagedWildfly $BROWSER_PROFILE
-  runManagedLiberty $BROWSER_PROFILE
-  #runManagedGlassfish $BROWSER_PROFILE
-  #runManagedPayara $BROWSER_PROFILE
+function startWithMessage(){
+	MESSAGE=$1
+  echo "-----------------------------------------"
+  echo " $MESSAGE"
+  echo "-----------------------------------------"
 }
 
-function runRemote() {
-  BROWSER_PROFILE=$1
-  runRemoteWildfly $BROWSER_PROFILE
-  #runRemoteLiberty $BROWSER_PROFILE
-  #runRemoteGlassfish $BROWSER_PROFILE
-  #runRemotePayara $BROWSER_PROFILE
+function doneAndReady(){
+  echo "-----------------------------------------"
+  echo " DONE and READY"
+  echo "-----------------------------------------"
 }
 
-function testManaged() {
-  BROWSER_PROFILE=$1
-  testManagedWildfly $BROWSER_PROFILE
-  #testManagedLiberty $BROWSER_PROFILE
-  #testManagedGlassfish $BROWSER_PROFILE
-  #testManagedPayara $BROWSER_PROFILE
-}
-
-function testRemote() {
-  BROWSER_PROFILE=$1
-  #testRemoteWildfly $BROWSER_PROFILE
-  #testRemoteLiberty $BROWSER_PROFILE
-  #testRemoteGlassfish $BROWSER_PROFILE
-  #testRemotePayara $BROWSER_PROFILE
-}
 
 function main(){
   BROWSER_PROFILE=$1
