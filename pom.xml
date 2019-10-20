@@ -1682,6 +1682,7 @@
 						<configuration>
 							<skipTests>false</skipTests>
 							<environmentVariables>
+								<webdriverBrowser>chrome</webdriverBrowser>
 								<JBOSS_HOME>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</JBOSS_HOME>
 								<jboss.home>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
@@ -1689,6 +1690,7 @@
 								<https.port>8443</https.port>
 							</environmentVariables>
 							<systemPropertyVariables>
+								<webdriverBrowser>chrome</webdriverBrowser>
 								<JBOSS_HOME>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</JBOSS_HOME>
 								<jboss.home>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
@@ -1704,6 +1706,7 @@
 						<configuration>
 							<skipTests>false</skipTests>
 							<environmentVariables>
+								<webdriverBrowser>chrome</webdriverBrowser>
 								<JBOSS_HOME>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</JBOSS_HOME>
 								<jboss.home>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
@@ -1711,6 +1714,7 @@
 								<https.port>8443</https.port>
 							</environmentVariables>
 							<systemPropertyVariables>
+								<webdriverBrowser>chrome</webdriverBrowser>
 								<JBOSS_HOME>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</JBOSS_HOME>
 								<jboss.home>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
@@ -2124,6 +2128,7 @@
 							<skipTestServer>false</skipTestServer>
 							<!-- begin configure-arquillian -->
 							<arquillianProperties>
+								<webdriverBrowser>chrome</webdriverBrowser>
 								<deployType>dropins</deployType>
 								<appDeployTimeout>600</appDeployTimeout>
 								<appUndeployTimeout>400</appUndeployTimeout>
@@ -2167,11 +2172,13 @@
 						<configuration>
 							<skipTests>false</skipTests>
 							<environmentVariables>
+								<webdriverBrowser>chrome</webdriverBrowser>
 								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
 								<wlp.home>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlp.home>
 								<OPENLIBERTY_HOME>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</OPENLIBERTY_HOME>
 							</environmentVariables>
 							<systemPropertyVariables>
+								<webdriverBrowser>chrome</webdriverBrowser>
 								<liberty.test.port>9080</liberty.test.port>
 								<war.name>${app.name}</war.name>
 								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
@@ -2196,11 +2203,13 @@
 						<configuration>
 							<skipTests>false</skipTests>
 							<environmentVariables>
+								<webdriverBrowser>chrome</webdriverBrowser>
 								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
 								<wlp.home>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlp.home>
 								<OPENLIBERTY_HOME>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</OPENLIBERTY_HOME>
 							</environmentVariables>
 							<systemPropertyVariables>
+								<webdriverBrowser>chrome</webdriverBrowser>
 								<liberty.test.port>9080</liberty.test.port>
 								<war.name>${app.name}</war.name>
 								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
@@ -2446,6 +2455,7 @@
 							<arquillianProperties>
 								<defaultProtocol>Servlet 3.1</defaultProtocol>
 								<verifyApps>arquillian-test</verifyApps>
+								<webdriverBrowser>chrome</webdriverBrowser>
 								<browser>chrome</browser>
 								<instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
 								<openlibertyHome>${runtime.jakartaee8.server.openliberty.remote}</openlibertyHome>
@@ -2523,6 +2533,7 @@
 								<defaultProtocol>Servlet 3.1</defaultProtocol>
 								<verifyApps>arquillian-test</verifyApps>
 								<browser>chrome</browser>
+								<webdriverBrowser>chrome</webdriverBrowser>
 								<instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
 								<openlibertyHome>${runtime.jakartaee8.server.openliberty.remote}</openlibertyHome>
 							</arquillianProperties>
