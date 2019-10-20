@@ -11,6 +11,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.primefaces.extensions.arquillian.AbstractPrimePageTest;
@@ -50,6 +51,7 @@ public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest {
     return ShrinkWrap.createFromZipFile(WebArchive.class, warFile);
   }
 
+  @Ignore
   @Test
   @InSequence(1)
   @RunAsClient
@@ -60,6 +62,7 @@ public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest {
     homePage.assertTitle();
   }
 
+  @Ignore
   @Test
   @InSequence(2)
   @RunAsClient
@@ -70,7 +73,7 @@ public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest {
     petTypePage.assertPageIsLoaded();
   }
 
-
+  @Ignore
   @Test
   @InSequence(3)
   @RunAsClient
@@ -86,7 +89,7 @@ public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest {
     petTypePage.assertNewContentFound("dog");
   }
 
-
+  @Ignore
   @Test
   @InSequence(4)
   @RunAsClient
@@ -102,6 +105,7 @@ public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest {
     petTypePage.assertEditedContentFound("mouse");
   }
 
+  @Ignore
   @Test
   @InSequence(5)
   @RunAsClient
@@ -115,6 +119,7 @@ public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest {
     petTypePage.assertDeletedContentNotFound();
   }
 
+  @Ignore
   @Test
   @InSequence(6)
   @RunAsClient
@@ -150,7 +155,7 @@ public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest {
     petTypePage.assertPageIsLoaded();
   }
 
-
+  @Ignore
   @Test
   @InSequence(7)
   @RunAsClient
@@ -164,6 +169,7 @@ public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest {
     petTypePage.assertPagerNextIsLoaded();
   }
 
+  @Ignore
   @Test
   @InSequence(8)
   @RunAsClient

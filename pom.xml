@@ -1256,6 +1256,7 @@
 				<skipIntegrationTests>true</skipIntegrationTests>
 			</properties>
 			<dependencies>
+				<!-- -->
 				<dependency>
 					<groupId>org.wildfly.arquillian</groupId>
 					<artifactId>wildfly-arquillian-container-managed</artifactId>
@@ -1276,27 +1277,117 @@
 					<artifactId>wildfly-arquillian-testenricher-msc</artifactId>
 					<scope>test</scope>
 				</dependency>
+				<!-- -->
 				<dependency>
-					<groupId>org.jboss.shrinkwrap.resolver</groupId>
-					<artifactId>shrinkwrap-resolver-api-maven-embedded</artifactId>
+					<groupId>org.jboss.arquillian.graphene</groupId>
+					<artifactId>graphene-webdriver-impl</artifactId>
+					<version>${version.arquillian_graphene}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
-					<groupId>org.postgresql</groupId>
-					<artifactId>postgresql</artifactId>
-					<scope>provided</scope>
+					<groupId>org.jboss.arquillian.extension</groupId>
+					<artifactId>arquillian-drone-impl</artifactId>
+					<version>${version.arquillian_drone}</version>
+					<scope>test</scope>
 				</dependency>
 				<dependency>
-					<groupId>javax.activation</groupId>
-					<artifactId>javax.activation-api</artifactId>
-					<version>1.2.0</version>
-					<scope>provided</scope>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+					<scope>test</scope>
 				</dependency>
 				<dependency>
-					<groupId>javax.persistence</groupId>
-					<artifactId>javax.persistence-api</artifactId>
-					<version>2.2</version>
-					<scope>provided</scope>
+					<groupId>org.jboss.arquillian.junit</groupId>
+					<artifactId>arquillian-junit-container</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.core</groupId>
+					<artifactId>arquillian-core-impl-base</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.config</groupId>
+					<artifactId>arquillian-config-impl-base</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+					<version>1.4.01</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.protocol</groupId>
+					<artifactId>arquillian-protocol-servlet</artifactId>
+					<version>${version.arquillian_core}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.testenricher</groupId>
+					<artifactId>arquillian-testenricher-resource</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.testenricher</groupId>
+					<artifactId>arquillian-testenricher-initialcontext</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.httpcomponents</groupId>
+					<artifactId>httpcore</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.httpcomponents</groupId>
+					<artifactId>httpclient</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-core</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-api</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.reflections</groupId>
+					<artifactId>reflections</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.pcollections</groupId>
+					<artifactId>pcollections</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.google.guava</groupId>
+					<artifactId>guava</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.google.auto</groupId>
+					<artifactId>auto-common</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.google.code.findbugs</groupId>
+					<artifactId>jFormatString</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.google.code.gson</groupId>
+					<artifactId>gson</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-chrome-driver</artifactId>
+					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.hibernate</groupId>
@@ -1307,6 +1398,14 @@
 					<groupId>org.hibernate</groupId>
 					<artifactId>hibernate-search-orm</artifactId>
 					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.primefaces.extensions</groupId>
+					<artifactId>primefaces-arquillian</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.omnifaces</groupId>
+					<artifactId>arquillian-primefaces</artifactId>
 				</dependency>
 			</dependencies>
 			<build>
@@ -1504,24 +1603,6 @@
 					<groupId>org.apache.logging.log4j</groupId>
 					<artifactId>log4j-api</artifactId>
 				</dependency>
-				<!--
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-slf4j-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-to-slf4j</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-appserver</artifactId>
-		</dependency>
-		-->
 				<dependency>
 					<groupId>org.reflections</groupId>
 					<artifactId>reflections</artifactId>
