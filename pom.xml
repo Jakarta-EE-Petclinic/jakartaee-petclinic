@@ -1694,6 +1694,7 @@
 								<JBOSS_HOME>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</JBOSS_HOME>
 								<jboss.home>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
+								<instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
 								<http.port>8080</http.port>
 								<https.port>8443</https.port>
 							</environmentVariables>
@@ -1702,6 +1703,7 @@
 								<JBOSS_HOME>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</JBOSS_HOME>
 								<jboss.home>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
+								<instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
 								<http.port>8080</http.port>
 								<https.port>8443</https.port>
 							</systemPropertyVariables>
@@ -1718,6 +1720,7 @@
 								<JBOSS_HOME>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</JBOSS_HOME>
 								<jboss.home>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
+								<instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
 								<http.port>8080</http.port>
 								<https.port>8443</https.port>
 							</environmentVariables>
@@ -1726,6 +1729,7 @@
 								<JBOSS_HOME>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</JBOSS_HOME>
 								<jboss.home>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
+								<instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
 								<http.port>8080</http.port>
 								<https.port>8443</https.port>
 							</systemPropertyVariables>

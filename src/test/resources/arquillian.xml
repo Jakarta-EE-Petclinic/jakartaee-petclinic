@@ -17,7 +17,7 @@
 		<property name="instantiationTimeoutInSeconds">300</property>
 	</extension>
 
-	<container qualifier="test-liberty-managed">
+	<container qualifier="test-openliberty-managed">
 		<configuration>
 			<property name="deployType">dropins</property>
 			<property name="appDeployTimeout">600</property>
