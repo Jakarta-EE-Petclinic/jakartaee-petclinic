@@ -240,7 +240,9 @@ function runManagedWildfly(){
   echo "--------------------------------------------------------------------------"
   echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install wildfly:start wildfly:deploy"
   echo "--------------------------------------------------------------------------"
-  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install wildfly:start wildfly:deploy
+  echo "--------------------------------------------------------------------------"
+  echo " App Server is running, to Stop it run: ./server-managed-stop.sh"
   echo "--------------------------------------------------------------------------"
 }
 
@@ -299,6 +301,8 @@ function runManagedLiberty(){
   echo "--------------------------------------------------------------------------"
   $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install liberty:start-server liberty:deploy
   echo "--------------------------------------------------------------------------"
+  echo " App Server is running, to Stop it run: ./server-managed-stop.sh"
+  echo "--------------------------------------------------------------------------"
 }
 
 function stopManagedLiberty(){
@@ -317,12 +321,15 @@ function runManagedGlassfish(){
   BROWSER_PROFILE=$1
   SRV_PROFILE=run-glassfish-managed
   checkProfileDependencies $SRV_PROFILE $BROWSER_PROFILE
-  echo "-----------------------------------------"
+  echo "--------------------------------------------------------------------------"
   echo " run Managed Glassfish"
-  echo "-----------------------------------------"
+  echo "--------------------------------------------------------------------------"
   echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install"
-  echo "-----------------------------------------"
+  echo "--------------------------------------------------------------------------"
   $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install
+  echo "--------------------------------------------------------------------------"
+  echo " App Server is running, to Stop it run: ./server-managed-stop.sh"
+  echo "--------------------------------------------------------------------------"
 }
 
 function runRemoteGlassfish(){

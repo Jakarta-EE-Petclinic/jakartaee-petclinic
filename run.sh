@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-mkdir -p log
+source server-managed-run.sh
 
-source src/main/bash/run-lib.bash
-
-main $BROWSER_PROFILE_CHROME
+#source server-managed-stop.sh
