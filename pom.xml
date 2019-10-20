@@ -1412,9 +1412,8 @@
 				<dependency>
 					<groupId>org.apache.logging.log4j</groupId>
 					<artifactId>log4j-bom</artifactId>
-					<version>2.12.1</version>
+					<version>${version.log4j}</version>
 					<type>pom</type>
-					<scope>test</scope>
 				</dependency>
 				<!-- -->
 				<dependency>
@@ -1654,11 +1653,14 @@
 						<version>2.0.1.Final</version>
 						<configuration>
 							<filename>${project.build.finalName}.war</filename>
-							<artifact>
-								<groupId>org.wildfly</groupId>
-								<artifactId>wildfly-dist</artifactId>
-								<version>${version.jakartaee8.server.wildfly}</version>
-							</artifact>
+							<startupTimeout>300</startupTimeout>
+							<timeout>120</timeout>
+							<groupId>org.wildfly</groupId>
+							<artifactId>wildfly-dist</artifactId>
+							<version>${version.jakartaee8.server.wildfly}</version>
+							<jbossHome>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</jbossHome>
+							<username>admin</username>
+							<password>admin.1234</password>
 							<add-user>
 								<users>
 									<user>
@@ -1686,6 +1688,7 @@
 							</add-user>
 						</configuration>
 						<executions>
+							<!--
 							<execution>
 								<id>deploy-server</id>
 								<phase>install</phase>
@@ -1693,11 +1696,13 @@
 									<goal>deploy</goal>
 								</goals>
 							</execution>
+							-->
 							<execution>
 								<id>start-server</id>
 								<phase>pre-integration-test</phase>
 								<goals>
 									<goal>start</goal>
+									<goal>deploy</goal>
 								</goals>
 							</execution>
 							<execution>
