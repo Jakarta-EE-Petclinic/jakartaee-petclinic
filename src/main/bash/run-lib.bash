@@ -4,19 +4,18 @@
 export MAVEN=mvn
 export LOGFILE=log/run.log.txt
 
+export ALL_SERVERS="wildfly openliberty glassfish payara"
+export ALL_BROWSERS="chrome firefox safari opera"
+
 export ALL_SRV_PROFILES_REMOTE="run-wildfly-remote run-openliberty-remote run-glassfish-remote"
 export ALL_SRV_PROFILES_MANAGED="run-wildfly-managed run-openliberty-managed"
 export ALL_SRV_PROFILES="it-default $ALL_SRV_PROFILES_REMOTE $ALL_SRV_PROFILES_MANAGED"
-export ALL_TESTS_PROFILES="it-skip-tests it-skip-tests"
 export ALL_BROWSER_PROFILES="it-browser-chrome it-browser-firefox it-browser-safari it-browser-opera"
 
 export BROWSER_PROFILE_CHROME=it-browser-chrome
 export BROWSER_PROFILE_FIREFOX=it-browser-firefox
 export BROWSER_PROFILE_SAFARI=it-browser-safari
 export BROWSER_PROFILE_OPERA=it-browser-opera
-
-export TESTS_PROFILE_SKIP=it-skip-tests
-export TESTS_PROFILE_RUN=it-run-tests
 
 function echoEnv() {
   echo "CLASSPATH: $CLASSPATH"
@@ -44,13 +43,12 @@ function setSerialVersionId() {
 }
 
 function checkProfileDependencies() {
-    TESTS_PROFILE=$1
-    BROWSER_PROFILE=$2
-    SRV_PROFILE=$3
+    BROWSER_PROFILE=$1
+    SRV_PROFILE=$2
     echo "--------------------------------------------------------------------------"
-    echo " checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE"
+    echo " checkProfileDependencies $SRV_PROFILE $BROWSER_PROFILE"
     echo "--------------------------------------------------------------------------"
-    echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE \\"
+    echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE \\"
     echo "        clean \\"
     echo "        dependency:resolve \\"
     echo "        dependency:sources \\"
@@ -60,7 +58,7 @@ function checkProfileDependencies() {
     echo "        dependency:analyze-duplicate \\"
     echo "        dependency:tree"
     echo "--------------------------------------------------------------------------"
-    $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE \
+    $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE \
       clean \
       dependency:resolve \
       dependency:sources \
@@ -73,14 +71,13 @@ function checkProfileDependencies() {
 }
 
 function checkDependencies() {
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
+  BROWSER_PROFILE=$1
   echo "--------------------------------------------------------------------------"
-  echo " check Dependencies $TESTS_PROFILE $BROWSER_PROFILE"
+  echo " check Dependencies $BROWSER_PROFILE"
   echo "--------------------------------------------------------------------------"
   for SRV_PROFILE in $ALL_SRV_PROFILES
   do
-    checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
+    checkProfileDependencies $SRV_PROFILE $BROWSER_PROFILE
   done
   echo "------------------------------------"
 }
@@ -89,12 +86,9 @@ function checkAllDependencies(){
   echo "--------------------------------------------------------------------------"
   echo " checkAllDependencies"
   echo "--------------------------------------------------------------------------"
-  for TESTS_PROFILE in $ALL_TESTS_PROFILES
+  for BROWSER_PROFILE in $ALL_BROWSER_PROFILES
   do
-    for BROWSER_PROFILE in $ALL_BROWSER_PROFILES
-    do
-        checkDependencies $TESTS_PROFILE $BROWSER_PROFILE
-    done
+      checkDependencies $BROWSER_PROFILE
   done
 }
 
@@ -178,197 +172,183 @@ function startRemoteAppServerOpenLibertyWlp(){
 }
 
 function testRemoteLiberty(){
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
+  BROWSER_PROFILE=$1
   SRV_PROFILE=test-openliberty-remote
-  checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
+  checkProfileDependencies $SRV_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
-  echo " test Remote Liberty $TESTS_PROFILE $BROWSER_PROFILE"
+  echo " test Remote Liberty $BROWSER_PROFILE"
   echo "--------------------------------------------------------------------------"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:deploy"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install liberty:deploy"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE test"
   echo "--------------------------------------------------------------------------"
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:deploy
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install liberty:deploy
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE test
   echo "--------------------------------------------------------------------------"
 }
 
 function runRemoteLiberty(){
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
+  BROWSER_PROFILE=$1
   SRV_PROFILE=run-openliberty-remote
-  checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
+  checkProfileDependencies $SRV_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
-  echo " run Remote Liberty $TESTS_PROFILE $BROWSER_PROFILE"
+  echo " run Remote Liberty $BROWSER_PROFILE"
   echo "--------------------------------------------------------------------------"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:deploy"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install liberty:deploy"
   echo "--------------------------------------------------------------------------"
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:deploy
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install liberty:deploy
   echo "--------------------------------------------------------------------------"
   echo " http://10.4.25.161:8080/petclinic/ (IP-Number may vary)"
   echo "--------------------------------------------------------------------------"
 }
 
 function testRemoteWildfly(){
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
+  BROWSER_PROFILE=$1
   SRV_PROFILE=test-wildfly-remote
-  checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
+  checkProfileDependencies $SRV_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
-  echo " test Remote Wildfly $TESTS_PROFILE $BROWSER_PROFILE"
+  echo " test Remote Wildfly $BROWSER_PROFILE"
   echo "--------------------------------------------------------------------------"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install wildfly:deploy"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install wildfly:deploy"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE test"
   echo "--------------------------------------------------------------------------"
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install wildfly:deploy
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install wildfly:deploy
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE test
   echo "--------------------------------------------------------------------------"
 }
 
 function runRemoteWildfly(){
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
+  BROWSER_PROFILE=$1
   SRV_PROFILE=run-wildfly-remote
-  #checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
+  #checkProfileDependencies $SRV_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
-  echo " run Remote Wildfly $TESTS_PROFILE $BROWSER_PROFILE"
+  echo " run Remote Wildfly $BROWSER_PROFILE"
   echo "--------------------------------------------------------------------------"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install wildfly:deploy"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install wildfly:deploy"
   echo "--------------------------------------------------------------------------"
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install wildfly:deploy
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install wildfly:deploy
   echo "--------------------------------------------------------------------------"
   echo " http://localhost:8080/petclinic/"
   echo "--------------------------------------------------------------------------"
 }
 
 function runManagedWildfly(){
-  TESTS_PROFILE=$TESTS_PROFILE_RUN
-  BROWSER_PROFILE=$2
+  BROWSER_PROFILE=$1
   SRV_PROFILE=run-wildfly-managed
-  checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
+  checkProfileDependencies $SRV_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
-  echo " run Managed Wildfly $TESTS_PROFILE $BROWSER_PROFILE"
+  echo " run Managed Wildfly $BROWSER_PROFILE"
   echo "--------------------------------------------------------------------------"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install wildfly:start wildfly:deploy"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install wildfly:start wildfly:deploy"
   echo "--------------------------------------------------------------------------"
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install
   echo "--------------------------------------------------------------------------"
 }
 
 function testManagedWildfly(){
-  TESTS_PROFILE=$TESTS_PROFILE_RUN
-  BROWSER_PROFILE=$2
+  BROWSER_PROFILE=$1
   SRV_PROFILE=test-wildfly-managed
-  checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
+  checkProfileDependencies $SRV_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
-  echo " run Managed Wildfly $TESTS_PROFILE $BROWSER_PROFILE"
+  echo " run Managed Wildfly $BROWSER_PROFILE"
   echo "--------------------------------------------------------------------------"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install wildfly:start wildfly:deploy"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install wildfly:start wildfly:deploy"
   echo "--------------------------------------------------------------------------"
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install wildfly:start wildfly:deploy
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install
   echo "--------------------------------------------------------------------------"
 }
 
 function stopManagedWildfly(){
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
+  BROWSER_PROFILE=$1
   SRV_PROFILE=test-wildfly-managed
   echo "--------------------------------------------------------------------------"
-  echo " run Managed Wildfly $TESTS_PROFILE $BROWSER_PROFILE"
+  echo " run Managed Wildfly $BROWSER_PROFILE"
   echo "--------------------------------------------------------------------------"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE wildfly:shutdown"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE wildfly:shutdown"
   echo "--------------------------------------------------------------------------"
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE wildfly:shutdown
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE wildfly:shutdown
   echo "--------------------------------------------------------------------------"
 }
 
 function testManagedLiberty(){
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
+  BROWSER_PROFILE=$1
   SRV_PROFILE=test-openliberty-managed
-  checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
+  checkProfileDependencies $SRV_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
-  echo " test Managed Liberty $TESTS_PROFILE $BROWSER_PROFILE"
+  echo " test Managed Liberty $BROWSER_PROFILE"
   echo "--------------------------------------------------------------------------"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:test-start-server"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:test-stop-server"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE liberty:test-start-server"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE test"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE liberty:test-stop-server"
   echo "--------------------------------------------------------------------------"
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:test-start-server
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE test
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:test-stop-server
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE liberty:test-start-server
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE test
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE liberty:test-stop-server
   echo "--------------------------------------------------------------------------"
 }
 
 function runManagedLiberty(){
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
+  BROWSER_PROFILE=$1
   SRV_PROFILE=run-openliberty-managed
-  checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
+  checkProfileDependencies $SRV_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
-  echo " run Managed Liberty $TESTS_PROFILE $BROWSER_PROFILE"
+  echo " run Managed Liberty $BROWSER_PROFILE"
   echo "--------------------------------------------------------------------------"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:start-server liberty:deploy"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install liberty:start-server liberty:deploy"
   echo "--------------------------------------------------------------------------"
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install liberty:start-server liberty:deploy
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install liberty:start-server liberty:deploy
   echo "--------------------------------------------------------------------------"
 }
 
 function stopManagedLiberty(){
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
+  BROWSER_PROFILE=$1
   SRV_PROFILE=run-openliberty-managed
   echo "--------------------------------------------------------------------------"
-  echo " stop Managed Liberty $TESTS_PROFILE $BROWSER_PROFILE"
+  echo " stop Managed Liberty $BROWSER_PROFILE"
   echo "--------------------------------------------------------------------------"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:stop-server"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE liberty:stop-server"
   echo "--------------------------------------------------------------------------"
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE liberty:stop-server
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE liberty:stop-server
   echo "--------------------------------------------------------------------------"
 }
 
 function runManagedGlassfish(){
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
-  SRV_PROFILE=it-glassfish-managed
-  checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
+  BROWSER_PROFILE=$1
+  SRV_PROFILE=run-glassfish-managed
+  checkProfileDependencies $SRV_PROFILE $BROWSER_PROFILE
   echo "-----------------------------------------"
   echo " run Managed Glassfish"
   echo "-----------------------------------------"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install"
   echo "-----------------------------------------"
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install
 }
 
 function runRemoteGlassfish(){
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
-  SRV_PROFILE=it-glassfish-remote
-  checkProfileDependencies $SRV_PROFILE $TESTS_PROFILE $BROWSER_PROFILE
+  BROWSER_PROFILE=$1
+  SRV_PROFILE=run-glassfish-remote
+  checkProfileDependencies $SRV_PROFILE $BROWSER_PROFILE
   echo "-----------------------------------------"
   echo "run Remote Glassfish"
   echo "-----------------------------------------"
-  echo "$MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install"
   echo "-----------------------------------------"
-  $MAVEN -P$SRV_PROFILE -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install
   echo "http://localhost:8080/petclinic/"
   echo "-----------------------------------------"
 }
 
 function runQa() {
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
-  $MAVEN -Pcheck-code -P$TESTS_PROFILE -P$BROWSER_PROFILE clean install > $LOGFILE
+  BROWSER_PROFILE=$1
+  $MAVEN -Pcheck-code -P$BROWSER_PROFILE clean install > $LOGFILE
   cat $LOGFILE
 }
 
 function resolveDependencies() {
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
+  BROWSER_PROFILE=$1
   #checkAllDependencies
-  checkDependencies $TESTS_PROFILE $BROWSER_PROFILE
+  checkDependencies $BROWSER_PROFILE
 }
 
 function startAppServer(){
@@ -392,54 +372,49 @@ function stopAppServer(){
 }
 
 function runManaged() {
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
-  runManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
-  runManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
-  #runManagedGlassfish $TESTS_PROFILE $BROWSER_PROFILE
-  #runManagedPayara $TESTS_PROFILE $BROWSER_PROFILE
+  BROWSER_PROFILE=$1
+  runManagedWildfly $BROWSER_PROFILE
+  runManagedLiberty $BROWSER_PROFILE
+  #runManagedGlassfish $BROWSER_PROFILE
+  #runManagedPayara $BROWSER_PROFILE
 }
 
 function runRemote() {
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
-  runRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
-  #runRemoteLiberty $TESTS_PROFILE $BROWSER_PROFILE
-  #runRemoteGlassfish $TESTS_PROFILE $BROWSER_PROFILE
-  #runRemotePayara $TESTS_PROFILE $BROWSER_PROFILE
+  BROWSER_PROFILE=$1
+  runRemoteWildfly $BROWSER_PROFILE
+  #runRemoteLiberty $BROWSER_PROFILE
+  #runRemoteGlassfish $BROWSER_PROFILE
+  #runRemotePayara $BROWSER_PROFILE
 }
 
 function testManaged() {
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
-  testManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
-  #testManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
-  #testManagedGlassfish $TESTS_PROFILE $BROWSER_PROFILE
-  #testManagedPayara $TESTS_PROFILE $BROWSER_PROFILE
+  BROWSER_PROFILE=$1
+  testManagedWildfly $BROWSER_PROFILE
+  #testManagedLiberty $BROWSER_PROFILE
+  #testManagedGlassfish $BROWSER_PROFILE
+  #testManagedPayara $BROWSER_PROFILE
 }
 
 function testRemote() {
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
-  #testRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
-  #testRemoteLiberty $TESTS_PROFILE $BROWSER_PROFILE
-  #testRemoteGlassfish $TESTS_PROFILE $BROWSER_PROFILE
-  #testRemotePayara $TESTS_PROFILE $BROWSER_PROFILE
+  BROWSER_PROFILE=$1
+  #testRemoteWildfly $BROWSER_PROFILE
+  #testRemoteLiberty $BROWSER_PROFILE
+  #testRemoteGlassfish $BROWSER_PROFILE
+  #testRemotePayara $BROWSER_PROFILE
 }
 
 function main(){
-  TESTS_PROFILE=$1
-  BROWSER_PROFILE=$2
+  BROWSER_PROFILE=$1
   echo "-------------------"
   echo " main"
   echo "-------------------"
-  #resolveDependencies $TESTS_PROFILE $BROWSER_PROFILE
-  #runQa $TESTS_PROFILE $BROWSER_PROFILE
+  #resolveDependencies $BROWSER_PROFILE
+  #runQa $BROWSER_PROFILE
   #setSerialVersionId
-  #runRemote $TESTS_PROFILE $BROWSER_PROFILE
-  runManaged $TESTS_PROFILE $BROWSER_PROFILE
-  #testManaged $TESTS_PROFILE $BROWSER_PROFILE
-  #testRemote $TESTS_PROFILE $BROWSER_PROFILE
+  #runRemote $BROWSER_PROFILE
+  runManaged $BROWSER_PROFILE
+  #testManaged $BROWSER_PROFILE
+  #testRemote $BROWSER_PROFILE
   echo "-------------------"
   echo " DONE and READY"
   echo "-------------------"
