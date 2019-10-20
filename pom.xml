@@ -1621,6 +1621,7 @@
 						<version>3.0.0-M3</version>
 						<executions>
 							<execution>
+								<id>test-surefire</id>
 								<phase>integration-test</phase>
 								<goals>
 									<goal>test</goal>
@@ -1630,7 +1631,7 @@
 										<exclude>none</exclude>
 									</excludes>
 									<includes>
-										<include>**/*IntegrationTest.java</include>
+										<include>**/IntegrationTest*.java</include>
 									</includes>
 								</configuration>
 							</execution>
@@ -1676,7 +1677,7 @@
 						</configuration>
 						<executions>
 							<execution>
-								<id>install</id>
+								<id>install-failsafe</id>
 								<phase>install</phase>
 								<goals>
 									<goal>integration-test</goal>
@@ -2104,6 +2105,8 @@
 						<artifactId>maven-surefire-plugin</artifactId>
 						<executions>
 							<execution>
+								<id>test-surefire</id>
+								<phase>integration-test</phase>
 								<goals>
 									<goal>test</goal>
 								</goals>
@@ -2130,6 +2133,8 @@
 						<artifactId>maven-failsafe-plugin</artifactId>
 						<executions>
 							<execution>
+								<id>test-failsafe</id>
+								<phase>install</phase>
 								<goals>
 									<goal>integration-test</goal>
 									<goal>verify</goal>

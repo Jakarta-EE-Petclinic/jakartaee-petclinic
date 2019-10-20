@@ -249,11 +249,11 @@ function runManagedWildfly(){
 function testManagedWildfly(){
   BROWSER_PROFILE=$1
   SRV_PROFILE=test-wildfly-managed
-  checkProfileDependencies $SRV_PROFILE $BROWSER_PROFILE
+  #checkProfileDependencies $SRV_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
   echo " run Managed Wildfly $BROWSER_PROFILE"
   echo "--------------------------------------------------------------------------"
-  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install wildfly:start wildfly:deploy"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install "
   echo "--------------------------------------------------------------------------"
   $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install
   echo "--------------------------------------------------------------------------"
