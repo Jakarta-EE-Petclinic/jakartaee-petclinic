@@ -1727,9 +1727,11 @@
 						</executions>
 					</plugin>
 					<plugin>
-						<groupId>org.codehaus.cargo</groupId>
-						<artifactId>cargo-maven2-plugin</artifactId>
-						<version>1.7.7</version>
+						<groupId>org.wildfly.plugins</groupId>
+						<artifactId>wildfly-maven-plugin</artifactId>
+						<configuration>
+							<filename>${project.build.finalName}.war</filename>
+						</configuration>
 						<executions>
 							<execution>
 								<id>start-server</id>
@@ -1742,17 +1744,10 @@
 								<id>stop-server</id>
 								<phase>post-integration-test</phase>
 								<goals>
-									<goal>stop</goal>
+									<goal>shutdown</goal>
 								</goals>
 							</execution>
 						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.wildfly.plugins</groupId>
-						<artifactId>wildfly-maven-plugin</artifactId>
-						<configuration>
-							<filename>${project.build.finalName}.war</filename>
-						</configuration>
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
