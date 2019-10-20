@@ -377,6 +377,7 @@ function startAppServer(){
   startRemoteAppServerWildfly17
   #startRemoteAppServerOpenLibertyWlp
   #startRemoteAppServerGlassfish51
+  #startRemoteAppServerPayara
   echo "-----------------------------------------"
 }
 
@@ -386,15 +387,17 @@ function stopAppServer(){
   stopRemoteAppServerWildfly17
   #stopRemoteAppServerOpenLibertyWlp
   #stopRemoteAppServerGlassfish51
+  #stopRemoteAppServerPayara
   echo "-----------------------------------------"
 }
 
 function runManaged() {
   TESTS_PROFILE=$1
   BROWSER_PROFILE=$2
-  #runManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
+  runManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
   runManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
   #runManagedGlassfish $TESTS_PROFILE $BROWSER_PROFILE
+  #runManagedPayara $TESTS_PROFILE $BROWSER_PROFILE
 }
 
 function runRemote() {
@@ -403,6 +406,7 @@ function runRemote() {
   runRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
   #runRemoteLiberty $TESTS_PROFILE $BROWSER_PROFILE
   #runRemoteGlassfish $TESTS_PROFILE $BROWSER_PROFILE
+  #runRemotePayara $TESTS_PROFILE $BROWSER_PROFILE
 }
 
 function testManaged() {
@@ -411,6 +415,7 @@ function testManaged() {
   testManagedWildfly $TESTS_PROFILE $BROWSER_PROFILE
   #testManagedLiberty $TESTS_PROFILE $BROWSER_PROFILE
   #testManagedGlassfish $TESTS_PROFILE $BROWSER_PROFILE
+  #testManagedPayara $TESTS_PROFILE $BROWSER_PROFILE
 }
 
 function testRemote() {
@@ -419,6 +424,7 @@ function testRemote() {
   #testRemoteWildfly $TESTS_PROFILE $BROWSER_PROFILE
   #testRemoteLiberty $TESTS_PROFILE $BROWSER_PROFILE
   #testRemoteGlassfish $TESTS_PROFILE $BROWSER_PROFILE
+  #testRemotePayara $TESTS_PROFILE $BROWSER_PROFILE
 }
 
 function main(){
@@ -431,8 +437,8 @@ function main(){
   #runQa $TESTS_PROFILE $BROWSER_PROFILE
   #setSerialVersionId
   #runRemote $TESTS_PROFILE $BROWSER_PROFILE
-  #runManaged $TESTS_PROFILE $BROWSER_PROFILE
-  testManaged $TESTS_PROFILE $BROWSER_PROFILE
+  runManaged $TESTS_PROFILE $BROWSER_PROFILE
+  #testManaged $TESTS_PROFILE $BROWSER_PROFILE
   #testRemote $TESTS_PROFILE $BROWSER_PROFILE
   echo "-------------------"
   echo " DONE and READY"
