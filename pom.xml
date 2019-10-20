@@ -1687,7 +1687,7 @@
 						<version>3.2.3</version>
 						<configuration>
 							<warSourceDirectory>src/main/webapp</warSourceDirectory>
-							<warName>SportSnapShare</warName>
+							<warName>${project.build.finalName}</warName>
 							<failOnMissingWebXml>false</failOnMissingWebXml>
 						</configuration>
 						<executions>
