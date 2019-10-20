@@ -74,13 +74,19 @@
 		<version.jakarta.xml.registry-api>1.0.10</version.jakarta.xml.registry-api>
 		<version.jakarta.xml.rpc-api>1.1.4</version.jakarta.xml.rpc-api>
 		<version.junit>4.12</version.junit>
-		<version.arquillian.universe>1.2.0.2</version.arquillian.universe>
-		<version.arquillian.graphene>2.3.2</version.arquillian.graphene>
-		<version.arquillian.drone>2.5.1</version.arquillian.drone>
-		<version.selenium>3.141.59</version.selenium>
+		<version.dbunit>2.5.3</version.dbunit>
+		<version.arquillian_core>1.4.1.Final</version.arquillian_core>
+		<version.arquillian_drone>2.5.1</version.arquillian_drone>
+		<version.arquillian_universe>1.2.0.2</version.arquillian_universe>
+		<version.arquillian_graphene>2.3.2</version.arquillian_graphene>
+		<version.arquillian_warp>1.0.0</version.arquillian_warp>
+		<version.arquillian_recorder>1.1.6.Final</version.arquillian_recorder>
+		<version.arquillian_rest>1.0.0.Alpha4</version.arquillian_rest>
 		<version.shrinkwrap>1.2.6</version.shrinkwrap>
-		<version.shrinkwrap.descriptors>2.0.0</version.shrinkwrap.descriptors>
-		<version.shrinkwrap.resolver>2.2.6</version.shrinkwrap.resolver>
+		<version.shrinkwrap_descriptors>2.0.0</version.shrinkwrap_descriptors>
+		<version.shrinkwrap_resolvers>3.1.3</version.shrinkwrap_resolvers>
+		<!-- version.selenium>3.7.1</version.selenium -->
+		<version.selenium>3.141.59</version.selenium>
 		<version.guava>27.0.1-jre</version.guava>
 		<version.log4j>2.12.1</version.log4j>
 		<version.primefaces>7.0</version.primefaces>
@@ -247,7 +253,7 @@
 			<dependency>
 				<groupId>org.arquillian</groupId>
 				<artifactId>arquillian-universe</artifactId>
-				<version>${version.arquillian.universe}</version>
+				<version>${version.arquillian_universe}</version>
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
@@ -261,14 +267,14 @@
 			<dependency>
 				<groupId>org.jboss.shrinkwrap.descriptors</groupId>
 				<artifactId>shrinkwrap-descriptors-bom</artifactId>
-				<version>${version.shrinkwrap.descriptors}</version>
+				<version>${version.shrinkwrap_descriptors}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.jboss.shrinkwrap.resolver</groupId>
 				<artifactId>shrinkwrap-resolver-bom</artifactId>
-				<version>${version.shrinkwrap.resolver}</version>
+				<version>${version.shrinkwrap_resolvers}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -387,7 +393,7 @@
 			<dependency>
 				<groupId>org.jboss.arquillian</groupId>
 				<artifactId>arquillian-junit</artifactId>
-				<version>${version.arquillian.drone}</version>
+				<version>${version.arquillian_drone}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
@@ -1397,23 +1403,18 @@
 				<dependency>
 					<groupId>org.jboss.arquillian.graphene</groupId>
 					<artifactId>graphene-webdriver-impl</artifactId>
-					<version>${version.arquillian.graphene}</version>
+					<version>${version.arquillian_graphene}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.jboss.arquillian.extension</groupId>
 					<artifactId>arquillian-drone-impl</artifactId>
-					<version>${version.arquillian.drone}</version>
+					<version>${version.arquillian_drone}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.jboss.arquillian.junit</groupId>
 					<artifactId>arquillian-junit-container</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.arquillian</groupId>
-					<artifactId>arquillian-junit</artifactId>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -1445,7 +1446,7 @@
 				<dependency>
 					<groupId>org.jboss.arquillian.protocol</groupId>
 					<artifactId>arquillian-protocol-servlet</artifactId>
-					<version>${version.arquillian.drone}</version>
+					<version>${version.arquillian_core}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
