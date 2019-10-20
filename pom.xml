@@ -1772,7 +1772,6 @@
 						<configuration>
 							<skipTests>false</skipTests>
 							<environmentVariables>
-								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
 								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</JBOSS_HOME>
 								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
@@ -1780,7 +1779,6 @@
 								<https.port>8443</https.port>
 							</environmentVariables>
 							<systemPropertyVariables>
-								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
 								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</JBOSS_HOME>
 								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
@@ -1796,7 +1794,6 @@
 						<configuration>
 							<skipTests>false</skipTests>
 							<environmentVariables>
-								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
 								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</JBOSS_HOME>
 								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
@@ -1804,7 +1801,6 @@
 								<https.port>8443</https.port>
 							</environmentVariables>
 							<systemPropertyVariables>
-								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
 								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</JBOSS_HOME>
 								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
