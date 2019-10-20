@@ -1,5 +1,6 @@
 package org.woehlke.jakartaee.petclinic.frontend.web.test;
 
+import net.jcip.annotations.NotThreadSafe;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -13,7 +14,6 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.primefaces.extensions.arquillian.AbstractPrimePageTest;
-import org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.HomePage;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.SpecialtyPage;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.VetPage;
@@ -21,6 +21,8 @@ import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.VetPage;
 import java.io.File;
 
 import static org.jboss.arquillian.graphene.Graphene.goTo;
+import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig.PROTOCOL;
+import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig.WAR_FILE;
 
 /**
  * Created with IntelliJ IDEA.
@@ -31,7 +33,8 @@ import static org.jboss.arquillian.graphene.Graphene.goTo;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class IntegrationTestConfig02VetView extends AbstractPrimePageTest implements ArquillianTestConfig {
+@NotThreadSafe
+public class IntegrationTestConfig02VetView extends AbstractPrimePageTest {
 
   private static Logger log = LogManager.getLogger(IntegrationTestConfig02VetView.class.getName());
 

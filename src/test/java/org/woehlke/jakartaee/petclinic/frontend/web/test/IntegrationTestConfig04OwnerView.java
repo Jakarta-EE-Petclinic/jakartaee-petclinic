@@ -1,5 +1,6 @@
 package org.woehlke.jakartaee.petclinic.frontend.web.test;
 
+import net.jcip.annotations.NotThreadSafe;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -13,7 +14,6 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.primefaces.extensions.arquillian.AbstractPrimePageTest;
-import org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.HomePage;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.OwnerPage;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.PetTypePage;
@@ -35,6 +35,7 @@ import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.Arquillia
  */
 @RunWith(Arquillian.class)
 @RunAsClient
+@NotThreadSafe
 public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest {
 
   private static Logger log = LogManager.getLogger(IntegrationTestConfig04OwnerView.class.getName());

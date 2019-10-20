@@ -91,7 +91,7 @@
 		<version.log4j>2.12.1</version.log4j>
 		<version.primefaces>7.0</version.primefaces>
 		<version.primefaces.arquillian>7.0.0</version.primefaces.arquillian>
-		<version.hibernate-search>5.11.2.Final</version.hibernate-search>
+		<version.hibernate-search>5.10.5.Final</version.hibernate-search>
 		<version.org.apache.cxf>3.3.2</version.org.apache.cxf>
 		<version.webjars.jquery>3.4.1</version.webjars.jquery>
 		<version.webjars.bootstrap>4.3.1</version.webjars.bootstrap>
@@ -1157,8 +1157,6 @@
 
 	<profiles>
 
-
-
 		<profile>
 			<id>it-browser-chrome</id>
 			<activation>
@@ -1300,6 +1298,16 @@
 					<version>2.2</version>
 					<scope>provided</scope>
 				</dependency>
+				<dependency>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-search-engine</artifactId>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-search-orm</artifactId>
+					<scope>provided</scope>
+				</dependency>
 			</dependencies>
 			<build>
 				<finalName>petclinic</finalName>
@@ -1397,12 +1405,6 @@
 				<webdriverBrowser>chrome</webdriverBrowser>
 			</properties>
 			<dependencies>
-				<dependency>
-					<groupId>org.apache.logging.log4j</groupId>
-					<artifactId>log4j-bom</artifactId>
-					<version>${version.log4j}</version>
-					<type>pom</type>
-				</dependency>
 				<!-- -->
 				<dependency>
 					<groupId>org.wildfly.arquillian</groupId>
@@ -1448,11 +1450,6 @@
 					<scope>test</scope>
 				</dependency>
 				<dependency>
-					<groupId>org.jboss.arquillian.test</groupId>
-					<artifactId>arquillian-test-impl-base</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
 					<groupId>org.jboss.arquillian.core</groupId>
 					<artifactId>arquillian-core-impl-base</artifactId>
 					<scope>test</scope>
@@ -1460,11 +1457,6 @@
 				<dependency>
 					<groupId>org.jboss.arquillian.config</groupId>
 					<artifactId>arquillian-config-impl-base</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.arquillian.container</groupId>
-					<artifactId>arquillian-container-test-impl-base</artifactId>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -1512,22 +1504,24 @@
 					<groupId>org.apache.logging.log4j</groupId>
 					<artifactId>log4j-api</artifactId>
 				</dependency>
-				<dependency>
-					<groupId>org.apache.logging.log4j</groupId>
-					<artifactId>log4j-slf4j-impl</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.logging.log4j</groupId>
-					<artifactId>log4j-to-slf4j</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.logging.log4j</groupId>
-					<artifactId>log4j-web</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.logging.log4j</groupId>
-					<artifactId>log4j-appserver</artifactId>
-				</dependency>
+				<!--
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-to-slf4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-appserver</artifactId>
+		</dependency>
+		-->
 				<dependency>
 					<groupId>org.reflections</groupId>
 					<artifactId>reflections</artifactId>
@@ -1560,6 +1554,26 @@
 				<dependency>
 					<groupId>org.seleniumhq.selenium</groupId>
 					<artifactId>selenium-chrome-driver</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-search-engine</artifactId>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-search-orm</artifactId>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.primefaces.extensions</groupId>
+					<artifactId>primefaces-arquillian</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.omnifaces</groupId>
+					<artifactId>arquillian-primefaces</artifactId>
 					<scope>test</scope>
 				</dependency>
 			</dependencies>
@@ -1676,7 +1690,6 @@
 							</add-user>
 						</configuration>
 						<executions>
-							<!--
 							<execution>
 								<id>deploy-server</id>
 								<phase>install</phase>
@@ -1684,28 +1697,36 @@
 									<goal>deploy</goal>
 								</goals>
 							</execution>
-							-->
-							<execution>
-								<id>start-server</id>
-								<phase>pre-integration-test</phase>
-								<goals>
-									<goal>start</goal>
-									<goal>deploy</goal>
-								</goals>
-							</execution>
-							<execution>
-								<id>stop-server</id>
-								<phase>post-integration-test</phase>
-								<goals>
-									<goal>shutdown</goal>
-								</goals>
-							</execution>
+							<!--
+												<execution>
+													<id>start-server</id>
+													<phase>pre-integration-test</phase>
+													<goals>
+														<goal>start</goal>
+														<goal>deploy</goal>
+													</goals>
+												</execution>
+												<execution>
+													<id>stop-server</id>
+													<phase>post-integration-test</phase>
+													<goals>
+														<goal>shutdown</goal>
+													</goals>
+												</execution>
+													-->
 						</executions>
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<version>3.0.0-M3</version>
+						<dependencies>
+							<dependency>
+								<groupId>org.apache.maven.surefire</groupId>
+								<artifactId>surefire-junit47</artifactId>
+								<version>3.0.0-M3</version>
+							</dependency>
+						</dependencies>
 						<executions>
 							<execution>
 								<id>test-surefire</id>
@@ -1734,6 +1755,7 @@
 								<instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
 								<http.port>8080</http.port>
 								<https.port>8443</https.port>
+								<allowConnectingToRunningServer>true</allowConnectingToRunningServer>
 							</environmentVariables>
 							<systemPropertyVariables>
 								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
@@ -1744,6 +1766,7 @@
 								<instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
 								<http.port>8080</http.port>
 								<https.port>8443</https.port>
+								<allowConnectingToRunningServer>true</allowConnectingToRunningServer>
 							</systemPropertyVariables>
 						</configuration>
 					</plugin>
@@ -1762,6 +1785,7 @@
 								<instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
 								<http.port>8080</http.port>
 								<https.port>8443</https.port>
+								<allowConnectingToRunningServer>true</allowConnectingToRunningServer>
 							</environmentVariables>
 							<systemPropertyVariables>
 								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
@@ -1772,6 +1796,7 @@
 								<instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
 								<http.port>8080</http.port>
 								<https.port>8443</https.port>
+								<allowConnectingToRunningServer>true</allowConnectingToRunningServer>
 							</systemPropertyVariables>
 						</configuration>
 						<executions>

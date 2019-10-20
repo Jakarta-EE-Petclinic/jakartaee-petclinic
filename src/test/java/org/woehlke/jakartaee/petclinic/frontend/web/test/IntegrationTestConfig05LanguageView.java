@@ -1,5 +1,6 @@
 package org.woehlke.jakartaee.petclinic.frontend.web.test;
 
+import net.jcip.annotations.NotThreadSafe;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -16,7 +17,6 @@ import org.junit.runner.RunWith;
 import org.primefaces.extensions.arquillian.AbstractPrimePageTest;
 import org.woehlke.jakartaee.petclinic.frontend.web.LanguageView;
 import org.woehlke.jakartaee.petclinic.frontend.web.impl.LanguageViewImpl;
-import org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.HomePage;
 
 import java.io.File;
@@ -26,10 +26,10 @@ import static org.jboss.arquillian.graphene.Graphene.goTo;
 import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig.PROTOCOL;
 import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig.WAR_FILE;
 
-//import org.jboss.arquillian.container.test.api.BeforeDeployment;
 
 @RunWith(Arquillian.class)
 @RunAsClient
+@NotThreadSafe
 public class IntegrationTestConfig05LanguageView extends AbstractPrimePageTest {
 
   private static Logger log = LogManager.getLogger(IntegrationTestConfig05LanguageView.class.getName());
