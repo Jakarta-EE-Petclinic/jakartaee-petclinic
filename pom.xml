@@ -742,18 +742,6 @@
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-appserver</artifactId>
-		</dependency>
 		<!-- unknown -->
 		<dependency>
 			<groupId>commons-io</groupId>
