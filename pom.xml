@@ -1126,6 +1126,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!--
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -1151,6 +1152,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			-->
 		</plugins>
 	</build>
 
@@ -1661,10 +1663,6 @@
 						<configuration>
 							<source>${version.java}</source>
 							<target>${version.java}</target>
-							<parameters />
-							<testExcludes>
-								<exclude>**/testdata/**</exclude>
-							</testExcludes>
 						</configuration>
 					</plugin>
 					<plugin>
@@ -1693,7 +1691,7 @@
 						<executions>
 							<execution>
 								<id>make-love-not-war</id>
-								<phase>process-test-classes</phase>
+								<phase>pre-integration-test</phase>
 								<goals>
 									<goal>war</goal>
 								</goals>
@@ -1707,7 +1705,7 @@
 						<executions>
 							<execution>
 								<id>unpack</id>
-								<phase>process-test-classes</phase>
+								<phase>pre-integration-test</phase>
 								<goals>
 									<goal>unpack</goal>
 								</goals>
@@ -1732,6 +1730,7 @@
 						<configuration>
 							<filename>${project.build.finalName}.war</filename>
 						</configuration>
+						<!--
 						<executions>
 							<execution>
 								<id>start-server</id>
@@ -1748,6 +1747,7 @@
 								</goals>
 							</execution>
 						</executions>
+						-->
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -1779,6 +1779,14 @@
 								<http.port>8080</http.port>
 								<https.port>8443</https.port>
 							</environmentVariables>
+							<systemPropertyVariables>
+								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</JBOSS_HOME>
+								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</jboss.home>
+								<jbossas.startup.timeout>300</jbossas.startup.timeout>
+								<http.port>8080</http.port>
+								<https.port>8443</https.port>
+							</systemPropertyVariables>
 						</configuration>
 					</plugin>
 					<plugin>
