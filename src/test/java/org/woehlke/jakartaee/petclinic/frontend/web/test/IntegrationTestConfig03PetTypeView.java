@@ -20,6 +20,8 @@ import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.PetTypePage;
 import java.io.File;
 
 import static org.jboss.arquillian.graphene.Graphene.goTo;
+import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig.PROTOCOL;
+import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig.WAR_FILE;
 
 /**
  * Created with IntelliJ IDEA.
@@ -30,7 +32,7 @@ import static org.jboss.arquillian.graphene.Graphene.goTo;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest implements ArquillianTestConfig {
+public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest {
 
   private static Logger log = LogManager.getLogger(IntegrationTestConfig03PetTypeView.class.getName());
 
@@ -40,7 +42,7 @@ public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest im
   @Page
   private PetTypePage petTypePage;
 
-  @Deployment(testable = false)
+  @Deployment
   public static WebArchive createDeployment() {
     log.info("createDeployment");
     File warFile = new File(WAR_FILE);
@@ -50,7 +52,7 @@ public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest im
   @Test
   @InSequence(1)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testOpeningHomePage() {
     log.info("testOpeningHomePage");
     goTo(HomePage.class);
@@ -60,7 +62,7 @@ public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest im
   @Test
   @InSequence(2)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testOpeningPetTypesPage() {
     log.info("testOpeningPetTypesPage");
     goTo(PetTypePage.class);
@@ -71,7 +73,7 @@ public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest im
   @Test
   @InSequence(3)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testNewPetTypePage() {
     log.info("testNewPetTypePage");
     goTo(PetTypePage.class);
@@ -87,7 +89,7 @@ public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest im
   @Test
   @InSequence(4)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testEditPetTypePage() {
     log.info("testEditPetTypePage");
     goTo(PetTypePage.class);
@@ -102,7 +104,7 @@ public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest im
   @Test
   @InSequence(5)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testDeletePetTypePage() {
     log.info("testDeletePetTypePage");
     goTo(PetTypePage.class);
@@ -115,7 +117,7 @@ public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest im
   @Test
   @InSequence(6)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testFillNewPetTypes() {
     log.info("testFillNewPetTypes");
     goTo(PetTypePage.class);
@@ -151,7 +153,7 @@ public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest im
   @Test
   @InSequence(7)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testPetTypesPager() {
     log.info("testPetTypesPager");
     petTypePage.assertPagerNextIsLoaded();
@@ -164,7 +166,7 @@ public class IntegrationTestConfig03PetTypeView extends AbstractPrimePageTest im
   @Test
   @InSequence(8)
   @RunAsClient
-  @OverProtocol("Servlet 3.0")
+  @OverProtocol(PROTOCOL)
   public void testPetTypesSorter() {
     log.info("testPetTypesSorter");
     petTypePage.assertSorterIsLoaded();

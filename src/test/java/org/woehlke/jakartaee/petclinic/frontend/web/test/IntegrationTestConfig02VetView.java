@@ -44,7 +44,7 @@ public class IntegrationTestConfig02VetView extends AbstractPrimePageTest implem
   @Page
   private SpecialtyPage specialtyPage;
 
-  @Deployment(testable = false)
+  @Deployment
   public static WebArchive createDeployment() {
     log.info("createDeployment");
     File warFile = new File(WAR_FILE);

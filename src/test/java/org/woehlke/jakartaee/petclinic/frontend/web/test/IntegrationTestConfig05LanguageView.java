@@ -23,12 +23,14 @@ import java.io.File;
 import java.util.Locale;
 
 import static org.jboss.arquillian.graphene.Graphene.goTo;
+import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig.PROTOCOL;
+import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig.WAR_FILE;
 
 //import org.jboss.arquillian.container.test.api.BeforeDeployment;
 
 @RunWith(Arquillian.class)
 @RunAsClient
-public class IntegrationTestConfig05LanguageView extends AbstractPrimePageTest implements ArquillianTestConfig {
+public class IntegrationTestConfig05LanguageView extends AbstractPrimePageTest {
 
   private static Logger log = LogManager.getLogger(IntegrationTestConfig05LanguageView.class.getName());
 
@@ -37,7 +39,7 @@ public class IntegrationTestConfig05LanguageView extends AbstractPrimePageTest i
   @Page
   private HomePage homePage;
 
-  @Deployment(testable = false)
+  @Deployment
   public static WebArchive createDeployment() {
     log.info("createDeployment");
     File warFile = new File(WAR_FILE);

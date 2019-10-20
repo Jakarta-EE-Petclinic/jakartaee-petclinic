@@ -22,6 +22,8 @@ import java.io.File;
 import java.time.LocalDate;
 
 import static org.jboss.arquillian.graphene.Graphene.goTo;
+import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig.PROTOCOL;
+import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig.WAR_FILE;
 
 
 /**
@@ -33,7 +35,7 @@ import static org.jboss.arquillian.graphene.Graphene.goTo;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest implements ArquillianTestConfig {
+public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest {
 
   private static Logger log = LogManager.getLogger(IntegrationTestConfig04OwnerView.class.getName());
 
@@ -46,7 +48,7 @@ public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest impl
   @Page
   private PetTypePage petTypePage;
 
-  @Deployment(testable = false)
+  @Deployment
   public static WebArchive createDeployment() {
     log.info("createDeployment");
     File warFile = new File(WAR_FILE);

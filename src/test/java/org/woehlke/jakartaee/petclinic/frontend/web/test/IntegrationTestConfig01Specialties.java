@@ -36,15 +36,13 @@ public class IntegrationTestConfig01Specialties extends AbstractPrimePageTest im
 
   private static Logger log = LogManager.getLogger(IntegrationTestConfig01Specialties.class.getName());
 
-
-
   @Page
   private HomePage homePage;
 
   @Page
   private SpecialtyPage specialtyPage;
 
-  @Deployment(testable = false)
+  @Deployment
   public static WebArchive createDeployment() {
     log.info("createDeployment");
     File warFile = new File(WAR_FILE);
