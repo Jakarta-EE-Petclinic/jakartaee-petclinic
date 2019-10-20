@@ -40,60 +40,83 @@
 
 	<properties>
 		<app.name>petclinic</app.name>
-		<!-- java compiler settings -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<version.java>1.8</version.java>
-		<maven.compiler.source>${version.java}</maven.compiler.source>
-		<maven.compiler.target>${version.java}</maven.compiler.target>
-		<jakartaee.version>8.0.0</jakartaee.version>
-		<failOnMissingWebXml>false</failOnMissingWebXml>
-		<!-- Maven and its Plugins -->
-		<version.maven>3.3.9</version.maven>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 		<!-- Java EE and Jakarta EE Application Server: Wildfly, OpenLiberty, Glassfish -->
-		<jakartaee8.server.wildfly.version>17.0.1.Final</jakartaee8.server.wildfly.version>
-		<jakartaee8.server.openliberty.runtime>19.0.0.9</jakartaee8.server.openliberty.runtime>
-		<jakartaee8.server.glassfish.version>5.1.0</jakartaee8.server.glassfish.version>
-		<libertyInstallDir>${user.home}/j/srv/openliberty-${jakartaee8.server.openliberty.runtime}/wlp</libertyInstallDir>
-		<wildflyInstallDir>${user.home}/j/srv/wildfly-${jakartaee8.server.wildfly.version}</wildflyInstallDir>
-		<glassfishInstallDir>${user.home}/j/srv/glassfish-${jakartaee8.server.glassfish.version}</glassfishInstallDir>
-		<libertyServerName>petclinicServer</libertyServerName>
-		<!-- Integration Testing ~with Arquillian and Selenium -->
+		<version.jakartaee8.server.wildfly.arquillian>2.2.0.Final</version.jakartaee8.server.wildfly.arquillian>
+		<version.jakartaee8.server.openliberty.arquillian>1.0.6</version.jakartaee8.server.openliberty.arquillian>
+		<!-- Java EE and Jakarta EE Application Server: Wildfly, OpenLiberty, Glassfish -->
+		<version.jakartaee8.server.wildfly>17.0.1.Final</version.jakartaee8.server.wildfly>
+		<version.jakartaee8.server.openliberty>19.0.0.9</version.jakartaee8.server.openliberty>
+		<version.jakartaee8.server.glassfish>5.1.0</version.jakartaee8.server.glassfish>
+		<version.jakartaee8.server.payara>5.193.1</version.jakartaee8.server.payara>
+		<!-- Java EE and Jakarta EE Application Server: Wildfly, OpenLiberty, Glassfish -->
+		<runtime.jakartaee8.server.wildfly.remote>${user.home}/j/srv/wildfly-${version.jakartaee8.server.wildfly}</runtime.jakartaee8.server.wildfly.remote>
+		<runtime.jakartaee8.server.openliberty.remote>${user.home}/j/srv/openliberty-${version.jakartaee8.server.openliberty}/wlp</runtime.jakartaee8.server.openliberty.remote>
+		<runtime.jakartaee8.server.glassfish.remote>${user.home}/j/srv/glassfish-${version.jakartaee8.server.glassfish}</runtime.jakartaee8.server.glassfish.remote>
+		<runtime.jakartaee8.server.payara.remote>${user.home}/j/srv/payara-{version.jakartaee8.server.payara}/payara5</runtime.jakartaee8.server.payara.remote>
+		<!-- Java EE and Jakarta EE Application Server: Wildfly, OpenLiberty, Glassfish -->
+		<runtime.jakartaee8.server.openliberty.ServerName>petclinicServer</runtime.jakartaee8.server.openliberty.ServerName>
+		<!-- Config -->
+		<failOnMissingWebXml>false</failOnMissingWebXml>
 		<skipIntegrationTests>false</skipIntegrationTests>
 		<webdriverBrowser>chrome</webdriverBrowser>
-		<org.wildfly.arquillian.version>2.2.0.Final</org.wildfly.arquillian.version>
-		<!-- build -->
 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-		<postgresql.driver.version>42.2.7</postgresql.driver.version>
-		<!-- Jakarta EE APIs -->
-		<jakarta-persistence-api.version>2.2.3</jakarta-persistence-api.version>
-		<jakarta.messaging-api.version>2.0.3</jakarta.messaging-api.version>
-		<!-- Optional APIs -->
-		<jakarta.enterprise.deploy-api.version>1.7.2</jakarta.enterprise.deploy-api.version>
-		<jakarta.xml.registry-api.version>1.0.10</jakarta.xml.registry-api.version>
-		<jakarta.xml.rpc-api.version>1.1.4</jakarta.xml.rpc-api.version>
-		<!-- Other dependencies -->
-		<!--
-		<mojarra.version>2.3.9</mojarra.version>
-		<copyright-plugin.version>1.50</copyright-plugin.version>
-		-->
-		<!-- Compile-time dependencies -->
-		<!--
-			<jakarta.xml.bind-api.version>2.3.2</jakarta.xml.bind-api.version>
-			<jakarta.xml.ws-api.version>2.3.2</jakarta.xml.ws-api.version>
-		-->
-		<!-- maven plugins -->
-		<pmd.version>6.15.0</pmd.version>
-		<!-- -->
-		<version.arquillian_universe>1.2.0.2</version.arquillian_universe>
+		<!-- Versions -->
+		<version.maven>3.3.9</version.maven>
+		<version.java>1.8</version.java>
+		<version.jakartaee-api>8.0.0</version.jakartaee-api>
+		<version.jakarta-persistence-api>2.2.3</version.jakarta-persistence-api>
+		<version.jakarta.messaging-api>2.0.3</version.jakarta.messaging-api>
+		<version.jakarta.enterprise.deploy-api>1.7.2</version.jakarta.enterprise.deploy-api>
+		<version.jakarta.xml.registry-api>1.0.10</version.jakarta.xml.registry-api>
+		<version.jakarta.xml.rpc-api>1.1.4</version.jakarta.xml.rpc-api>
 		<version.junit>4.12</version.junit>
+		<version.arquillian_universe>1.2.0.2</version.arquillian_universe>
 		<version.selenium>3.141.59</version.selenium>
-		<shrinkwrap.version>1.2.6</shrinkwrap.version>
-		<shrinkwrap.descriptors.version>2.0.0</shrinkwrap.descriptors.version>
-		<shrinkwrap.resolver.version>2.2.6</shrinkwrap.resolver.version>
+		<version.shrinkwrap>1.2.6</version.shrinkwrap>
+		<version.shrinkwrap.descriptors>2.0.0</version.shrinkwrap.descriptors>
+		<version.shrinkwrap.resolver>2.2.6</version.shrinkwrap.resolver>
 		<version.arquillian_graphene>2.3.2</version.arquillian_graphene>
 		<version.arquillian_drone>2.5.1</version.arquillian_drone>
-		<guava.version>27.0.1-jre</guava.version>
+		<version.guava>27.0.1-jre</version.guava>
+		<version.log4j>2.12.1</version.log4j>
+		<version.primefaces>7.0</version.primefaces>
+		<version.primefaces.arquillian>7.0.0</version.primefaces.arquillian>
+		<version.hibernate-search>5.11.2.Final</version.hibernate-search>
+		<version.org.apache.cxf>3.3.3</version.org.apache.cxf>
+		<version.webjars.jquery>3.4.1</version.webjars.jquery>
+		<version.webjars.bootstrap>4.3.1</version.webjars.bootstrap>
+		<version.webjars.font-awesome>5.10.1</version.webjars.font-awesome>
+		<version.postgresql.driver>42.2.7</version.postgresql.driver>
+		<version.maven-pmd-plugin>3.10.0</version.maven-pmd-plugin>
+		<version.maven-pmd-plugin.version.pmd>6.15.0</version.maven-pmd-plugin.version.pmd>
+		<version.commons-logging>1.2</version.commons-logging>
+		<version.maven-enforcer-plugin>3.0.0-M2</version.maven-enforcer-plugin>
+		<version.maven-dependency-plugin>3.1.1</version.maven-dependency-plugin>
+		<version.maven-clean-plugin>3.1.0</version.maven-clean-plugin>
+		<version.maven-compiler-plugin>3.8.1</version.maven-compiler-plugin>
+		<version.maven-resources-plugin>3.1.0</version.maven-resources-plugin>
+		<version.maven-source-plugin>3.1.0</version.maven-source-plugin>
+		<version.maven-install-plugin>3.0.0-M1</version.maven-install-plugin>
+		<version.maven-war-plugin>3.2.3</version.maven-war-plugin>
+		<version.maven-war-plugin>3.2.3</version.maven-war-plugin>
+		<version.surefire-junit4>3.0.0-M3</version.surefire-junit4>
+		<version.maven-surefire-plugin>3.0.0-M3</version.maven-surefire-plugin>
+		<version.maven-failsafe-plugin>3.0.0-M3</version.maven-failsafe-plugin>
+		<version.wildfly-maven-plugin>2.0.1.Final</version.wildfly-maven-plugin>
+		<version.liberty-maven-plugin>3.0.M1</version.liberty-maven-plugin>
+		<version.maven-invoker-plugin>3.1.0</version.maven-invoker-plugin>
+		<version.maven-javadoc-plugin>3.1.1</version.maven-javadoc-plugin>
+		<version.maven-shade-plugin>3.2.1</version.maven-shade-plugin>
+		<version.maven-jar-plugin>3.1.2</version.maven-jar-plugin>
+		<version.maven-assembly-plugin>3.1.1</version.maven-assembly-plugin>
+		<version.maven-deploy-plugin>3.0.0-M1</version.maven-deploy-plugin>
+		<version.maven-help-plugins>3.2.0</version.maven-help-plugins>
+		<version.maven-toolchains-plugin>3.0.0</version.maven-toolchains-plugin>
+		<version.maven-checkstyle-plugin>2.17</version.maven-checkstyle-plugin>
 	</properties>
 
 	<repositories>
@@ -198,27 +221,27 @@
 			<dependency>
 				<groupId>jakarta.platform</groupId>
 				<artifactId>jakartaee-api-parent</artifactId>
-				<version>8.0.0</version>
+				<version>${version.jakartaee-api}</version>
 				<type>pom</type>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>jakarta.platform</groupId>
 				<artifactId>jakarta.jakartaee-bom</artifactId>
-				<version>8.0.0</version>
+				<version>${version.jakartaee-api}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 			<dependency>
 				<groupId>jakarta.platform</groupId>
 				<artifactId>jakarta.jakartaee-api</artifactId>
-				<version>8.0.0</version>
+				<version>${version.jakartaee-api}</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>jakarta.platform</groupId>
 				<artifactId>jakarta.jakartaee-web-api</artifactId>
-				<version>8.0.0</version>
+				<version>${version.jakartaee-api}</version>
 				<scope>provided</scope>
 			</dependency>
 			<!-- Integration Testing with Arquillian -->
@@ -232,21 +255,21 @@
 			<dependency>
 				<groupId>org.jboss.shrinkwrap</groupId>
 				<artifactId>shrinkwrap-bom</artifactId>
-				<version>${shrinkwrap.version}</version>
+				<version>${version.shrinkwrap}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.jboss.shrinkwrap.descriptors</groupId>
 				<artifactId>shrinkwrap-descriptors-bom</artifactId>
-				<version>${shrinkwrap.descriptors.version}</version>
+				<version>${version.shrinkwrap.descriptors}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.jboss.shrinkwrap.resolver</groupId>
 				<artifactId>shrinkwrap-resolver-bom</artifactId>
-				<version>${shrinkwrap.resolver.version}</version>
+				<version>${version.shrinkwrap.resolver}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -254,20 +277,20 @@
 			<dependency>
 				<groupId>org.wildfly</groupId>
 				<artifactId>wildfly-dist</artifactId>
-				<version>${jakartaee8.server.wildfly.version}</version>
+				<version>${version.jakartaee8.server.wildfly}</version>
 				<type>zip</type>
 			</dependency>
 			<dependency>
 				<groupId>org.wildfly</groupId>
 				<artifactId>wildfly-parent</artifactId>
-				<version>${jakartaee8.server.wildfly.version}</version>
+				<version>${version.jakartaee8.server.wildfly}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.wildfly</groupId>
 				<artifactId>wildfly-feature-pack</artifactId>
-				<version>${jakartaee8.server.wildfly.version}</version>
+				<version>${version.jakartaee8.server.wildfly}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -275,33 +298,33 @@
 			<dependency>
 				<groupId>io.openliberty</groupId>
 				<artifactId>openliberty-javaee8</artifactId>
-				<version>${jakartaee8.server.openliberty.runtime}</version>
+				<version>${version.jakartaee8.server.openliberty}</version>
 				<type>zip</type>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>io.openliberty.features</groupId>
 				<artifactId>features-bom</artifactId>
-				<version>${jakartaee8.server.openliberty.runtime}</version>
+				<version>${version.jakartaee8.server.openliberty}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 			<dependency>
 				<groupId>io.openliberty.arquillian</groupId>
 				<artifactId>arquillian-liberty-managed</artifactId>
-				<version>1.0.6</version>
+				<version>${version.jakartaee8.server.openliberty.arquillian}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>io.openliberty.arquillian</groupId>
 				<artifactId>arquillian-liberty-remote</artifactId>
-				<version>1.0.6</version>
+				<version>${version.jakartaee8.server.openliberty.arquillian}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>io.openliberty.arquillian</groupId>
 				<artifactId>liberty-support-feature</artifactId>
-				<version>1.0.6</version>
+				<version>${version.jakartaee8.server.openliberty.arquillian}</version>
 				<scope>test</scope>
 			</dependency>
 			<!-- TODO: Jakarta EE Runtime: Glassfish -->
@@ -334,25 +357,25 @@
 			<dependency>
 				<groupId>org.wildfly.arquillian</groupId>
 				<artifactId>wildfly-arquillian-container-managed</artifactId>
-				<version>${org.wildfly.arquillian.version}</version>
+				<version>${version.jakartaee8.server.wildfly.arquillian}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.wildfly.arquillian</groupId>
 				<artifactId>wildfly-arquillian-container-remote</artifactId>
-				<version>${org.wildfly.arquillian.version}</version>
+				<version>${version.jakartaee8.server.wildfly.arquillian}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.wildfly.arquillian</groupId>
 				<artifactId>wildfly-arquillian-common</artifactId>
-				<version>${org.wildfly.arquillian.version}</version>
+				<version>${version.jakartaee8.server.wildfly.arquillian}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.wildfly.arquillian</groupId>
 				<artifactId>elytron-standalone</artifactId>
-				<version>${org.wildfly.arquillian.version}</version>
+				<version>${version.jakartaee8.server.wildfly.arquillian}</version>
 				<scope>test</scope>
 			</dependency>
 			<!-- Integration Testing with Arquillian: 3rd Party Dependencies -->
@@ -386,45 +409,45 @@
 			<dependency>
 				<groupId>commons-logging</groupId>
 				<artifactId>commons-logging</artifactId>
-				<version>1.2</version>
+				<version>${version.commons-logging}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-bom</artifactId>
-				<version>2.12.1</version>
+				<version>${version.log4j}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-core</artifactId>
-				<version>2.12.1</version>
+				<version>${version.log4j}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-api</artifactId>
-				<version>2.12.1</version>
+				<version>${version.log4j}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-slf4j-impl</artifactId>
-				<version>2.12.1</version>
+				<version>${version.log4j}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-to-slf4j</artifactId>
-				<version>2.12.1</version>
+				<version>${version.log4j}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-web</artifactId>
-				<version>2.12.1</version>
+				<version>${version.log4j}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-appserver</artifactId>
-				<version>2.12.1</version>
+				<version>${version.log4j}</version>
 			</dependency>
 			<!-- other 3rd Party Dependencies for Tests -->
 			<dependency>
@@ -441,7 +464,7 @@
 			<dependency>
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
-				<version>${guava.version}</version>
+				<version>${version.guava}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
@@ -466,7 +489,7 @@
 			<dependency>
 				<groupId>org.primefaces</groupId>
 				<artifactId>primefaces</artifactId>
-				<version>7.0</version>
+				<version>${version.primefaces}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.primefaces.themes</groupId>
@@ -477,7 +500,7 @@
 			<dependency>
 				<groupId>org.primefaces.extensions</groupId>
 				<artifactId>primefaces-arquillian</artifactId>
-				<version>7.0.0</version>
+				<version>${version.primefaces.arquillian}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
@@ -490,41 +513,41 @@
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-search-engine</artifactId>
-				<version>5.11.2.Final</version>
+				<version>${version.hibernate-search}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-search-orm</artifactId>
-				<version>5.11.2.Final</version>
+				<version>${version.hibernate-search}</version>
 			</dependency>
 			<!-- RS -->
 			<dependency>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-rt-rs-client</artifactId>
-				<version>3.3.3</version>
+				<version>${version.org.apache.cxf}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-rt-rs-extension-providers</artifactId>
-				<version>3.3.3</version>
+				<version>${version.org.apache.cxf}</version>
 				<scope>test</scope>
 			</dependency>
 			<!-- Frontend webjars for HTML, CSS and JS -->
 			<dependency>
 				<groupId>org.webjars</groupId>
 				<artifactId>jquery</artifactId>
-				<version>3.4.1</version>
+				<version>${version.webjars.jquery}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.webjars</groupId>
 				<artifactId>bootstrap</artifactId>
-				<version>4.3.1</version>
+				<version>${version.webjars.bootstrap}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.webjars</groupId>
 				<artifactId>font-awesome</artifactId>
-				<version>5.10.1</version>
+				<version>${version.webjars.font-awesome}</version>
 			</dependency>
 			<!-- unknown -->
 			<dependency>
@@ -545,7 +568,7 @@
 			<dependency>
 				<groupId>org.postgresql</groupId>
 				<artifactId>postgresql</artifactId>
-				<version>${postgresql.driver.version}</version>
+				<version>${version.postgresql.driver}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse</groupId>
@@ -646,20 +669,20 @@
 			<dependency>
 				<groupId>org.glassfish.main.extras</groupId>
 				<artifactId>glassfish-embedded-all</artifactId>
-				<version>${jakartaee8.server.glassfish.version}</version>
+				<version>${version.jakartaee8.server.glassfish}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.glassfish.main.extras</groupId>
 				<artifactId>javaee-pom</artifactId>
-				<version>${jakartaee8.server.glassfish.version}</version>
+				<version>${version.jakartaee8.server.glassfish}</version>
 				<type>pom</type>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.glassfish.main.extras</groupId>
 				<artifactId>javaee</artifactId>
-				<version>${jakartaee8.server.glassfish.version}</version>
+				<version>${version.jakartaee8.server.glassfish}</version>
 				<scope>test</scope>
 			</dependency>
 		</dependencies>
@@ -802,7 +825,7 @@
 		<dependency>
 			<groupId>jakarta.persistence</groupId>
 			<artifactId>jakarta.persistence-api</artifactId>
-			<version>${jakarta-persistence-api.version}</version>
+			<version>${version.jakarta-persistence-api}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -839,7 +862,7 @@
 		<dependency>
 			<groupId>jakarta.jms</groupId>
 			<artifactId>jakarta.jms-api</artifactId>
-			<version>${jakarta.messaging-api.version}</version>
+			<version>${version.jakarta.messaging-api}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -945,9 +968,20 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
+					<groupId>org.wildfly.plugins</groupId>
+					<artifactId>wildfly-maven-plugin</artifactId>
+					<version>${version.wildfly-maven-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>net.wasdev.wlp.maven.plugins</groupId>
+					<artifactId>liberty-maven-plugin</artifactId>
+					<version>${version.liberty-maven-plugin}</version>
+				</plugin>
+
+				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-enforcer-plugin</artifactId>
-					<version>3.0.0-M2</version>
+					<version>${version.maven-enforcer-plugin}</version>
 				</plugin>
 				<!--
 				<plugin>
@@ -959,133 +993,123 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-dependency-plugin</artifactId>
-					<version>3.1.1</version>
+					<version>${version.maven-dependency-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-clean-plugin</artifactId>
-					<version>3.1.0</version>
+					<version>${version.maven-clean-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.8.1</version>
+					<version>${version.maven-compiler-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
-					<version>3.1.0</version>
+					<version>${version.maven-resources-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-source-plugin</artifactId>
-					<version>3.1.0</version>
+					<version>${version.maven-source-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-install-plugin</artifactId>
-					<version>3.0.0-M1</version>
+					<version>$version.maven-install-plugin</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
-					<version>3.2.3</version>
+					<version>${version.maven-war-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>surefire-junit4</artifactId>
-					<version>3.0.0-M3</version>
+					<version>${version.surefire-junit4}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>3.0.0-M3</version>
+					<version>${version.maven-surefire-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-failsafe-plugin</artifactId>
-					<version>3.0.0-M3</version>
-				</plugin>
-				<plugin>
-					<groupId>org.wildfly.plugins</groupId>
-					<artifactId>wildfly-maven-plugin</artifactId>
-					<version>2.0.1.Final</version>
-				</plugin>
-				<plugin>
-					<groupId>net.wasdev.wlp.maven.plugins</groupId>
-					<artifactId>liberty-maven-plugin</artifactId>
-					<version>3.0.M1</version>
+					<version>${version.maven-failsafe-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-invoker-plugin</artifactId>
-					<version>3.1.0</version>
+					<version>${version.maven-invoker-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
-					<version>3.1.1</version>
+					<version>${version.maven-javadoc-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-shade-plugin</artifactId>
-					<version>3.2.1</version>
+					<version>${version.maven-shade-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
-					<version>3.1.2</version>
+					<version>${version.maven-jar-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-assembly-plugin</artifactId>
-					<version>3.1.1</version>
+					<version>${version.maven-assembly-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-deploy-plugin</artifactId>
-					<version>3.0.0-M1</version>
+					<version>${version.maven-deploy-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-help-plugin</artifactId>
-					<version>3.2.0</version>
+					<version>${version.maven-help-plugins}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-toolchains-plugin</artifactId>
-					<version>3.0.0</version>
+					<version>${version.maven-toolchains-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-checkstyle-plugin</artifactId>
-					<version>2.17</version>
+					<version>${version.maven-checkstyle-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-pmd-plugin</artifactId>
-					<version>3.10.0</version>
+					<version>${version.maven-pmd-plugin}</version>
 					<dependencies>
 						<!-- this allows to control the PMD version used by maven-pmd-plugin -->
 						<dependency>
 							<groupId>net.sourceforge.pmd</groupId>
 							<artifactId>pmd-core</artifactId>
-							<version>${pmd.version}</version>
+							<version>${version.maven-pmd-plugin.version.pmd}</version>
 						</dependency>
 						<dependency>
 							<groupId>net.sourceforge.pmd</groupId>
 							<artifactId>pmd-java</artifactId>
-							<version>${pmd.version}</version>
+							<version>${version.maven-pmd-plugin.version.pmd}</version>
 						</dependency>
 						<dependency>
 							<groupId>net.sourceforge.pmd</groupId>
 							<artifactId>pmd-javascript</artifactId>
-							<version>${pmd.version}</version>
+							<version>${version.maven-pmd-plugin.version.pmd}</version>
 						</dependency>
 						<dependency>
 							<groupId>net.sourceforge.pmd</groupId>
 							<artifactId>pmd-jsp</artifactId>
-							<version>${pmd.version}</version>
+							<version>${version.maven-pmd-plugin.version.pmd}</version>
 						</dependency>
 					</dependencies>
 				</plugin>
@@ -1113,10 +1137,10 @@
 									</message>
 								</bannedPlugins>
 								<requireMavenVersion>
-									<version>3.3.9</version>
+									<version>${version.maven}</version>
 								</requireMavenVersion>
 								<requireJavaVersion>
-									<version>1.8</version>
+									<version>${version.java}</version>
 								</requireJavaVersion>
 								<requireOS>
 									<family>unix</family>
@@ -1159,168 +1183,6 @@
 	<profiles>
 
 		<profile>
-			<id>it-skip-tests</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<skipIntegrationTests>true</skipIntegrationTests>
-			</properties>
-		</profile>
-
-		<profile>
-			<id>it-run-tests</id>
-			<properties>
-				<skipIntegrationTests>false</skipIntegrationTests>
-			</properties>
-			<dependencies>
-				<!--
-				<dependency>
-					<groupId>org.arquillian.universe</groupId>
-					<artifactId>arquillian-junit</artifactId>
-					<type>pom</type>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.arquillian.universe</groupId>
-					<artifactId>arquillian-drone</artifactId>
-					<type>pom</type>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.arquillian.universe</groupId>
-					<artifactId>arquillian-graphene</artifactId>
-					<type>pom</type>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.arquillian.universe</groupId>
-					<artifactId>arquillian-graphene-recorder</artifactId>
-					<type>pom</type>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.arquillian.universe</groupId>
-					<artifactId>arquillian-warp</artifactId>
-					<type>pom</type>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.arquillian.universe</groupId>
-					<artifactId>arquillian-warp-jsf</artifactId>
-					<type>pom</type>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.arquillian.universe</groupId>
-					<artifactId>arquillian-chameleon</artifactId>
-					<type>pom</type>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.arquillian.junit</groupId>
-					<artifactId>arquillian-junit-container</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.httpcomponents</groupId>
-					<artifactId>httpcore</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.httpcomponents</groupId>
-					<artifactId>httpclient</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-server</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-java</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-api</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-support</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-remote-driver</artifactId>
-					<scope>test</scope>
-				</dependency>
-				-->
-			</dependencies>
-		</profile>
-
-		<profile>
-			<id>it-browser-chrome</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<webdriverBrowser>chrome</webdriverBrowser>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-chrome-driver</artifactId>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-
-		<profile>
-			<id>it-browser-firefox</id>
-			<properties>
-				<webdriverBrowser>firefox</webdriverBrowser>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-firefox-driver</artifactId>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-
-		<profile>
-			<id>it-browser-safari</id>
-			<properties>
-				<webdriverBrowser>safari</webdriverBrowser>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-safari-driver</artifactId>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-
-		<profile>
-			<id>it-browser-opera</id>
-			<properties>
-				<webdriverBrowser>opera</webdriverBrowser>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-opera-driver</artifactId>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-
-		<profile>
 			<id>it-default</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
@@ -1356,6 +1218,9 @@
 
 		<profile>
 			<id>run-wildfly-managed</id>
+			<properties>
+				<skipIntegrationTests>true</skipIntegrationTests>
+			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>org.wildfly.arquillian</groupId>
@@ -1419,7 +1284,7 @@
 										<artifactItem>
 											<groupId>org.wildfly</groupId>
 											<artifactId>wildfly-dist</artifactId>
-											<version>${jakartaee8.server.wildfly.version}</version>
+											<version>${version.jakartaee8.server.wildfly}</version>
 											<type>zip</type>
 											<overWrite>false</overWrite>
 											<outputDirectory>${project.build.directory}</outputDirectory>
@@ -1432,6 +1297,7 @@
 					<plugin>
 						<groupId>org.wildfly.plugins</groupId>
 						<artifactId>wildfly-maven-plugin</artifactId>
+						<version>2.0.1.Final</version>
 						<configuration>
 							<filename>${project.build.finalName}.war</filename>
 						</configuration>
@@ -1443,9 +1309,9 @@
 							<skipTests>${skipIntegrationTests}</skipTests>
 							<environmentVariables>
 								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}
+								<JBOSS_HOME>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}
 								</JBOSS_HOME>
-								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}
+								<jboss.home>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}
 								</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
 								<http.port>8080</http.port>
@@ -1468,20 +1334,16 @@
 							<skipTests>${skipIntegrationTests}</skipTests>
 							<environmentVariables>
 								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}
-								</JBOSS_HOME>
-								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}
-								</jboss.home>
+								<JBOSS_HOME>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</JBOSS_HOME>
+								<jboss.home>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
 								<http.port>8080</http.port>
 								<https.port>8443</https.port>
 							</environmentVariables>
 							<systemPropertyVariables>
 								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}
-								</JBOSS_HOME>
-								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}
-								</jboss.home>
+								<JBOSS_HOME>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</JBOSS_HOME>
+								<jboss.home>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
 								<http.port>8080</http.port>
 								<https.port>8443</https.port>
@@ -1494,6 +1356,9 @@
 
 		<profile>
 			<id>test-wildfly-managed</id>
+			<properties>
+				<skipIntegrationTests>false</skipIntegrationTests>
+			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>org.apache.logging.log4j</groupId>
@@ -1668,7 +1533,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
-						<version>2.1.2</version>
+						<version>3.1.0</version>
 						<executions>
 							<execution>
 								<id>attach-sources</id>
@@ -1687,6 +1552,7 @@
 							<warSourceDirectory>src/main/webapp</warSourceDirectory>
 							<warName>${project.build.finalName}</warName>
 							<failOnMissingWebXml>false</failOnMissingWebXml>
+							<packagingExcludes>pom.xml</packagingExcludes>
 						</configuration>
 						<executions>
 							<execution>
@@ -1701,7 +1567,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-dependency-plugin</artifactId>
-						<version>2.8</version>
+						<version>3.1.1</version>
 						<executions>
 							<execution>
 								<id>unpack</id>
@@ -1714,7 +1580,7 @@
 										<artifactItem>
 											<groupId>org.wildfly</groupId>
 											<artifactId>wildfly-dist</artifactId>
-											<version>${jakartaee8.server.wildfly.version}</version>
+											<version>${version.jakartaee8.server.wildfly}</version>
 											<type>zip</type>
 											<overWrite>false</overWrite>
 											<outputDirectory>${project.build.directory}</outputDirectory>
@@ -1727,6 +1593,7 @@
 					<plugin>
 						<groupId>org.wildfly.plugins</groupId>
 						<artifactId>wildfly-maven-plugin</artifactId>
+						<version>2.0.1.Final</version>
 						<configuration>
 							<filename>${project.build.finalName}.war</filename>
 						</configuration>
@@ -1772,15 +1639,15 @@
 						<configuration>
 							<skipTests>false</skipTests>
 							<environmentVariables>
-								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</JBOSS_HOME>
-								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</jboss.home>
+								<JBOSS_HOME>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</JBOSS_HOME>
+								<jboss.home>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
 								<http.port>8080</http.port>
 								<https.port>8443</https.port>
 							</environmentVariables>
 							<systemPropertyVariables>
-								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</JBOSS_HOME>
-								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</jboss.home>
+								<JBOSS_HOME>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</JBOSS_HOME>
+								<jboss.home>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
 								<http.port>8080</http.port>
 								<https.port>8443</https.port>
@@ -1794,15 +1661,15 @@
 						<configuration>
 							<skipTests>false</skipTests>
 							<environmentVariables>
-								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</JBOSS_HOME>
-								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</jboss.home>
+								<JBOSS_HOME>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</JBOSS_HOME>
+								<jboss.home>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
 								<http.port>8080</http.port>
 								<https.port>8443</https.port>
 							</environmentVariables>
 							<systemPropertyVariables>
-								<JBOSS_HOME>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</JBOSS_HOME>
-								<jboss.home>${project.build.directory}/wildfly-${jakartaee8.server.wildfly.version}</jboss.home>
+								<JBOSS_HOME>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</JBOSS_HOME>
+								<jboss.home>${project.build.directory}/wildfly-${version.jakartaee8.server.wildfly}</jboss.home>
 								<jbossas.startup.timeout>300</jbossas.startup.timeout>
 								<http.port>8080</http.port>
 								<https.port>8443</https.port>
@@ -1914,10 +1781,10 @@
 										<artifactItem>
 											<groupId>io.openliberty</groupId>
 											<artifactId>openliberty-javaee8</artifactId>
-											<version>${jakartaee8.server.openliberty.runtime}</version>
+											<version>${version.jakartaee8.server.openliberty}</version>
 											<type>zip</type>
 											<overWrite>true</overWrite>
-											<outputDirectory>${project.build.directory}/liberty</outputDirectory>
+											<outputDirectory>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}</outputDirectory>
 										</artifactItem>
 									</artifactItems>
 								</configuration>
@@ -1933,10 +1800,10 @@
 										<artifactItem>
 											<groupId>org.postgresql</groupId>
 											<artifactId>postgresql</artifactId>
-											<version>${postgresql.driver.version}</version>
+											<version>${version.postgresql.driver}</version>
 											<type>jar</type>
 											<overWrite>true</overWrite>
-											<outputDirectory>${project.build.directory}//liberty/wlp/usr/servers/petclinicServer/lib</outputDirectory>
+											<outputDirectory>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp/usr/servers/${runtime.jakartaee8.server.openliberty.ServerName}/lib</outputDirectory>
 											<destFileName>postgresql.jar</destFileName>
 										</artifactItem>
 									</artifactItems>
@@ -1952,12 +1819,12 @@
 							<assemblyArtifact>
 								<groupId>io.openliberty</groupId>
 								<artifactId>openliberty-javaee8</artifactId>
-								<version>${jakartaee8.server.openliberty.runtime}</version>
+								<version>${version.jakartaee8.server.openliberty}</version>
 								<type>zip</type>
 							</assemblyArtifact>
 							<installDirectory>${project.build.directory}/liberty/wlp</installDirectory>
 							<serverHome>${project.build.directory}/liberty/wlp</serverHome>
-							<serverName>${libertyServerName}</serverName>
+							<serverName>${runtime.jakartaee8.server.openliberty.ServerName}</serverName>
 							<features>
 								<acceptLicense>true</acceptLicense>
 								<feature>javaee-8.0</feature>
@@ -1974,7 +1841,7 @@
 								<default.https.port>8443</default.https.port>
 								<app.context.root>${app.name}</app.context.root>
 								<packageFile>${project.build.directory}/${app.name}.war</packageFile>
-								<wlpHome>${project.build.directory}/liberty/wlp</wlpHome>
+								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
 								<timeout>300</timeout>
 							</bootstrapProperties>
 							<timeout>300</timeout>
@@ -2014,9 +1881,6 @@
 										<feature>sessionDatabase-1.0</feature>
 										<feature>springBoot-2.0</feature>
 									</features>
-									<!--
-									<outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/</outputDirectory>
-									-->
 								</configuration>
 							</execution>
 						</executions>
@@ -2135,10 +1999,10 @@
 										<artifactItem>
 											<groupId>io.openliberty</groupId>
 											<artifactId>openliberty-javaee8</artifactId>
-											<version>${jakartaee8.server.openliberty.runtime}</version>
+											<version>${runtime.jakartaee8.server.openliberty.remote}</version>
 											<type>zip</type>
 											<overWrite>true</overWrite>
-											<outputDirectory>${project.build.directory}/liberty</outputDirectory>
+											<outputDirectory>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}</outputDirectory>
 										</artifactItem>
 									</artifactItems>
 								</configuration>
@@ -2154,10 +2018,10 @@
 										<artifactItem>
 											<groupId>org.postgresql</groupId>
 											<artifactId>postgresql</artifactId>
-											<version>${postgresql.driver.version}</version>
+											<version>${runtime.jakartaee8.server.openliberty.remote}</version>
 											<type>jar</type>
 											<overWrite>true</overWrite>
-											<outputDirectory>${project.build.directory}/liberty/wlp/lib</outputDirectory>
+											<outputDirectory>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp/usr/servers/${runtime.jakartaee8.server.openliberty.ServerName}/lib</outputDirectory>
 											<destFileName>postgresql.jar</destFileName>
 										</artifactItem>
 								</artifactItems>
@@ -2173,12 +2037,12 @@
 							<assemblyArtifact>
 								<groupId>io.openliberty</groupId>
 								<artifactId>openliberty-javaee8</artifactId>
-								<version>${jakartaee8.server.openliberty.runtime}</version>
+								<version>${version.jakartaee8.server.openliberty}</version>
 								<type>zip</type>
 							</assemblyArtifact>
-							<installDirectory>${project.build.directory}/liberty/wlp</installDirectory>
-							<serverHome>${project.build.directory}/liberty/wlp</serverHome>
-							<serverName>${libertyServerName}</serverName>
+							<installDirectory>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</installDirectory>
+							<serverHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</serverHome>
+							<serverName>${runtime.jakartaee8.server.openliberty.ServerName}</serverName>
 							<features>
 								<acceptLicense>true</acceptLicense>
 								<feature>javaee-8.0</feature>
@@ -2195,10 +2059,9 @@
 								<default.https.port>8443</default.https.port>
 								<app.context.root>${app.name}</app.context.root>
 								<packageFile>${project.build.directory}/${app.name}.war</packageFile>
-								<postgresql.jar.dir>${project.build.directory}/${app.name}/WEB-INF/lib
-								</postgresql.jar.dir>
-								<postgresql.jar.file>postgresql-${postgresql.driver.version}.jar</postgresql.jar.file>
-								<wlpHome>${project.build.directory}/liberty/wlp</wlpHome>
+								<postgresql.jar.dir>${project.build.directory}/${app.name}/WEB-INF/lib</postgresql.jar.dir>
+								<postgresql.jar.file>postgresql-${version.postgresql.driver}.jar</postgresql.jar.file>
+								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
 							</bootstrapProperties>
 							<appsDirectory>apps</appsDirectory>
 							<stripVersion>true</stripVersion>
@@ -2253,9 +2116,9 @@
 						<configuration>
 							<skipTests>${skipIntegrationTests}</skipTests>
 							<environmentVariables>
-								<wlpHome>${project.build.directory}/liberty/wlp</wlpHome>
-								<wlp.home>${project.build.directory}/liberty/wlp</wlp.home>
-								<OPENLIBERTY_HOME>${project.build.directory}/liberty/wlp</OPENLIBERTY_HOME>
+								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
+								<wlp.home>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlp.home>
+								<OPENLIBERTY_HOME>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</OPENLIBERTY_HOME>
 							</environmentVariables>
 						</configuration>
 					</plugin>
@@ -2271,16 +2134,16 @@
 							</execution>
 						</executions>
 						<configuration>
-							<skipTests>${skipIntegrationTests}</skipTests>
+							<skipTests>false</skipTests>
 							<environmentVariables>
-								<wlpHome>${project.build.directory}/liberty/wlp</wlpHome>
-								<OPENLIBERTY_HOME>${project.build.directory}/liberty/wlp</OPENLIBERTY_HOME>
+								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
+								<OPENLIBERTY_HOME>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</OPENLIBERTY_HOME>
 							</environmentVariables>
 							<systemPropertyVariables>
 								<liberty.test.port>9080</liberty.test.port>
 								<war.name>${app.name}</war.name>
-								<wlpHome>${project.build.directory}/liberty/wlp</wlpHome>
-								<OPENLIBERTY_HOME>${project.build.directory}/liberty/wlp</OPENLIBERTY_HOME>
+								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
+								<OPENLIBERTY_HOME>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</OPENLIBERTY_HOME>
 							</systemPropertyVariables>
 						</configuration>
 					</plugin>
@@ -2366,7 +2229,7 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
-							<skipTests>${skipIntegrationTests}</skipTests>
+							<skipTests>false</skipTests>
 						</configuration>
 					</plugin>
 					<plugin>
@@ -2381,7 +2244,7 @@
 							</execution>
 						</executions>
 						<configuration>
-							<skipTests>${skipIntegrationTests}</skipTests>
+							<skipTests>false</skipTests>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -2461,15 +2324,18 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-dependency-plugin</artifactId>
 					</plugin>
+					<!--
+					TODO: plugin for glassfish
 					<plugin>
 						<groupId>org.wildfly.plugins</groupId>
 						<artifactId>wildfly-maven-plugin</artifactId>
 					</plugin>
+					-->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
-							<skipTests>${skipIntegrationTests}</skipTests>
+							<skipTests>false</skipTests>
 						</configuration>
 					</plugin>
 					<plugin>
@@ -2484,7 +2350,7 @@
 							</execution>
 						</executions>
 						<configuration>
-							<skipTests>${skipIntegrationTests}</skipTests>
+							<skipTests>false</skipTests>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -2501,8 +2367,8 @@
 						<artifactId>liberty-maven-plugin</artifactId>
 						<extensions>true</extensions>
 						<configuration>
-							<installDirectory>${libertyInstallDir}</installDirectory>
-							<serverHome>${libertyInstallDir}</serverHome>
+							<installDirectory>${runtime.jakartaee8.server.openliberty.remote}</installDirectory>
+							<serverHome>${runtime.jakartaee8.server.openliberty.remote}</serverHome>
 							<serverName>defaultServer</serverName>
 							<configFile>src/main/liberty/config/server.xml</configFile>
 							<looseApplication>true</looseApplication>
@@ -2520,7 +2386,7 @@
 								<verifyApps>arquillian-test</verifyApps>
 								<browser>chrome</browser>
 								<instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
-								<openlibertyHome>${libertyInstallDir}</openlibertyHome>
+								<openlibertyHome>${runtime.jakartaee8.server.openliberty.remote}</openlibertyHome>
 							</arquillianProperties>
 							<skipIfArquillianXmlExists>true</skipIfArquillianXmlExists>
 						</configuration>
@@ -2577,8 +2443,8 @@
 						<artifactId>liberty-maven-plugin</artifactId>
 						<extensions>true</extensions>
 						<configuration>
-							<installDirectory>${libertyInstallDir}</installDirectory>
-							<serverHome>${libertyInstallDir}</serverHome>
+							<installDirectory>${runtime.jakartaee8.server.openliberty.remote}</installDirectory>
+							<serverHome>${runtime.jakartaee8.server.openliberty.remote}</serverHome>
 							<serverName>defaultServer</serverName>
 							<configFile>src/main/liberty/config/server.xml</configFile>
 							<looseApplication>true</looseApplication>
@@ -2596,7 +2462,7 @@
 								<verifyApps>arquillian-test</verifyApps>
 								<browser>chrome</browser>
 								<instantiationTimeoutInSeconds>300</instantiationTimeoutInSeconds>
-								<openlibertyHome>${libertyInstallDir}</openlibertyHome>
+								<openlibertyHome>${runtime.jakartaee8.server.openliberty.remote}</openlibertyHome>
 							</arquillianProperties>
 							<skipIfArquillianXmlExists>true</skipIfArquillianXmlExists>
 						</configuration>
@@ -2616,7 +2482,7 @@
 						<configuration>
 							<skipTests>true</skipTests>
 							<environmentVariables>
-								<OPENLIBERTY_HOME>${libertyInstallDir}</OPENLIBERTY_HOME>
+								<OPENLIBERTY_HOME>${runtime.jakartaee8.server.openliberty.remote}</OPENLIBERTY_HOME>
 							</environmentVariables>
 						</configuration>
 					</plugin>
@@ -2624,9 +2490,9 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-failsafe-plugin</artifactId>
 						<configuration>
-							<skipTests>${skipIntegrationTests}</skipTests>
+							<skipTests>false</skipTests>
 							<environmentVariables>
-								<OPENLIBERTY_HOME>${libertyInstallDir}</OPENLIBERTY_HOME>
+								<OPENLIBERTY_HOME>${runtime.jakartaee8.server.openliberty.remote}</OPENLIBERTY_HOME>
 							</environmentVariables>
 						</configuration>
 						<executions>
@@ -2822,6 +2688,65 @@
 					</plugin>
 				</plugins>
 			</build>
+		</profile>
+
+		<profile>
+			<id>it-browser-chrome</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<webdriverBrowser>chrome</webdriverBrowser>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-chrome-driver</artifactId>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+
+		<profile>
+			<id>it-browser-firefox</id>
+			<properties>
+				<webdriverBrowser>firefox</webdriverBrowser>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-firefox-driver</artifactId>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+
+		<profile>
+			<id>it-browser-safari</id>
+			<properties>
+				<webdriverBrowser>safari</webdriverBrowser>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-safari-driver</artifactId>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+
+		<profile>
+			<id>it-browser-opera</id>
+			<properties>
+				<webdriverBrowser>opera</webdriverBrowser>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-opera-driver</artifactId>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
 		</profile>
 
 	</profiles>

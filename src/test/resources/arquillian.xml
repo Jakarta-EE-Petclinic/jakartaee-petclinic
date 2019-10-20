@@ -17,14 +17,21 @@
 		<property name="instantiationTimeoutInSeconds">300</property>
 	</extension>
 
-	<container qualifier="it-openliberty-remote">
+	<container qualifier="run-openliberty-remote">
 		<configuration>
 			<property name="appDeployTimeout">600</property>
 			<property name="appUndeployTimeout">300</property>
 		</configuration>
 	</container>
 
-	<container qualifier="arquillian-liberty-managed">
+	<container qualifier="test-openliberty-remote">
+		<configuration>
+			<property name="appDeployTimeout">600</property>
+			<property name="appUndeployTimeout">300</property>
+		</configuration>
+	</container>
+
+	<container qualifier="run-liberty-managed">
 		<configuration>
 			<property name="deployType">dropins</property>
 			<property name="appDeployTimeout">600</property>
@@ -32,7 +39,21 @@
 		</configuration>
 	</container>
 
-	<container qualifier="it-wildfly-managed">
+	<container qualifier="test-liberty-managed">
+		<configuration>
+			<property name="deployType">dropins</property>
+			<property name="appDeployTimeout">600</property>
+			<property name="appUndeployTimeout">300</property>
+		</configuration>
+	</container>
+
+	<container qualifier="run-wildfly-managed">
+		<configuration>
+			<property name="jbossHome">${jboss.home}</property>
+		</configuration>
+	</container>
+
+	<container qualifier="test-wildfly-managed">
 		<configuration>
 			<property name="jbossHome">${jboss.home}</property>
 		</configuration>
