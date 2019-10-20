@@ -249,7 +249,7 @@ function runManagedWildfly(){
 function testManagedWildfly(){
   BROWSER_PROFILE=$1
   SRV_PROFILE=test-wildfly-managed
-  #checkProfileDependencies $SRV_PROFILE $BROWSER_PROFILE
+  checkProfileDependencies $SRV_PROFILE $BROWSER_PROFILE
   echo "--------------------------------------------------------------------------"
   echo " run Managed Wildfly $BROWSER_PROFILE"
   echo "--------------------------------------------------------------------------"
