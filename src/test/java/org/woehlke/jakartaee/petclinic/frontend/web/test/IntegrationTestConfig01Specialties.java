@@ -52,7 +52,6 @@ public class IntegrationTestConfig01Specialties extends AbstractPrimePageTest {
     return ShrinkWrap.createFromZipFile(WebArchive.class, warFile);
   }
 
-  @Ignore
   @Test
   @InSequence(1)
   @RunAsClient
@@ -63,7 +62,6 @@ public class IntegrationTestConfig01Specialties extends AbstractPrimePageTest {
     homePage.assertTitle();
   }
 
-  @Ignore
   @Test
   @InSequence(2)
   @RunAsClient
@@ -74,7 +72,6 @@ public class IntegrationTestConfig01Specialties extends AbstractPrimePageTest {
     specialtyPage.assertPageIsLoaded();
   }
 
-  @Ignore
   @Test
   @InSequence(3)
   @RunAsClient
