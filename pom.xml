@@ -2382,6 +2382,18 @@
 		</profile>
 
 		<profile>
+			<id>run-glassfish-managed</id>
+		</profile>
+
+		<profile>
+		<id>test-glassfish-managed</id>
+		</profile>
+
+		<profile>
+			<id>run-payara-managed</id>
+		</profile>
+
+		<profile>
 		<id>run-wildfly-remote</id>
 		<build>
 			<finalName>petclinic</finalName>
@@ -2740,6 +2752,14 @@
 					</plugin>
 				</plugins>
 			</build>
+		</profile>
+
+		<profile>
+			<id>run-payara-remote</id>
+		</profile>
+
+		<profile>
+			<id>test-payara-remote</id>
 		</profile>
 
 		<profile>
