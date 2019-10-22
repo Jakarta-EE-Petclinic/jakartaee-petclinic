@@ -10,7 +10,7 @@
 	</engine>
 
 	<extension qualifier="webdriver">
-		<property name="browser">${webdriverBrowser}</property>
+		<property name="browser">${browser}</property>
 	</extension>
 
 	<extension qualifier="drone">

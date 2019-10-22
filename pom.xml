@@ -2356,7 +2356,7 @@
 										<artifactItem>
 											<groupId>org.postgresql</groupId>
 											<artifactId>postgresql</artifactId>
-											<version>${runtime.jakartaee8.server.openliberty.remote}</version>
+											<version>${version.postgresql.driver}</version>
 											<type>jar</type>
 											<overWrite>true</overWrite>
 											<outputDirectory>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp/usr/servers/${runtime.jakartaee8.server.openliberty.ServerName}/lib</outputDirectory>
@@ -2397,8 +2397,8 @@
 								<default.https.port>8443</default.https.port>
 								<app.context.root>${app.name}</app.context.root>
 								<packageFile>${project.build.directory}/${app.name}.war</packageFile>
-								<postgresql.jar.dir>${project.build.directory}/${app.name}/WEB-INF/lib</postgresql.jar.dir>
-								<postgresql.jar.file>postgresql-${version.postgresql.driver}.jar</postgresql.jar.file>
+								<postgresql.jar.dir>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp/usr/servers/${runtime.jakartaee8.server.openliberty.ServerName}/lib</postgresql.jar.dir>
+								<postgresql.jar.file>postgresql.jar</postgresql.jar.file>
 								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
 							</bootstrapProperties>
 							<appsDirectory>apps</appsDirectory>
@@ -2410,7 +2410,6 @@
 							<skipTestServer>false</skipTestServer>
 							<!-- begin configure-arquillian -->
 							<arquillianProperties>
-								<webdriverBrowser>chrome</webdriverBrowser>
 								<deployType>dropins</deployType>
 								<appDeployTimeout>600</appDeployTimeout>
 								<appUndeployTimeout>400</appUndeployTimeout>
