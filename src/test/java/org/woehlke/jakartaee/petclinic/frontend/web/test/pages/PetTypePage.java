@@ -90,13 +90,13 @@ public class PetTypePage extends AbstractPrimePage {
 
   //-------------------
 
-  @FindBy(id = "addNewEntityForm:newPetTypeName")
+  @FindBy(id = "addEntityForm:newPetTypeName")
   private InputText newPetTypeName;
 
-  @FindBy(id = "addNewEntityForm:saveNewButton")
+  @FindBy(id = "addEntityForm:saveNewButton")
   private CommandButton saveNewButton;
 
-  @FindBy(id = "addNewEntityForm:cancelNew")
+  @FindBy(id = "addEntityForm:cancelNew")
   private CommandButton cancelNew;
 
   public void addNewContent(String content) {

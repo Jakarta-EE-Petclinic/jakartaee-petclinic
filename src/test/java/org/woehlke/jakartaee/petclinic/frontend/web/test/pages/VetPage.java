@@ -90,10 +90,10 @@ public class VetPage extends AbstractPrimePage {
 
   //-------------------
 
-  @FindBy(id = "addNewEntityForm:specialtyNameNew")
+  @FindBy(id = "addNewEntityForm:firstNameAddNew")
   private InputText firstNameNew;
 
-  @FindBy(id = "addNewEntityForm:specialtyNameNew")
+  @FindBy(id = "addNewEntityForm:lastNameAddNew")
   private InputText lastNameNew;
 
   @FindBy(id = "addNewEntityForm:saveNewButton")

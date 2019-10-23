@@ -103,7 +103,7 @@ public class SpecialtyPage extends AbstractPrimePage {
   private CommandButton cancelNew;
 
   public void addNewContent(String content) {
-    Graphene.writeIntoElement( specialtyNameNew, content);
+    Graphene.writeIntoElement(specialtyNameNew, content);
   }
 
   public void clickSaveNewButton(){
