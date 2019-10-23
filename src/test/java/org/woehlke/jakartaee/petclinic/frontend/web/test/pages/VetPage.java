@@ -24,6 +24,181 @@ public class VetPage extends AbstractPrimePage {
 
   private static Logger log = LogManager.getLogger(VetPage.class.getName());
 
+  @FindBy(id = "listEntityHeaderId")
+  private WebElement listEntityHeaderId;
+
+  @FindBy(id = "newEntityHeaderId")
+  private WebElement newEntityHeaderId;
+
+  @FindBy(id = "editEntityHeaderId")
+  private WebElement editEntityHeaderId;
+
+  @FindBy(id = "deleteEntityHeaderId")
+  private WebElement deleteEntityHeaderId;
+
+  @FindBy(id = "searchResultEntityHeaderId")
+  private WebElement searchResultEntityHeaderId;
+
+  public void assertListEntityPageIsLoaded() {
+    Assert.assertTrue(listEntityHeaderId.isDisplayed());
+  }
+
+  public void assertNewEntityPageIsLoaded() {
+    Assert.assertTrue(newEntityHeaderId.isDisplayed());
+  }
+
+  public void assertEditEntityPageIsLoaded() {
+    Assert.assertTrue(editEntityHeaderId.isDisplayed());
+  }
+
+  public void assertDeleteEntityPageIsLoaded() {
+    Assert.assertTrue(deleteEntityHeaderId.isDisplayed());
+  }
+
+  public void assertSearchResultEntityPageIsLoaded() {
+    Assert.assertTrue(searchResultEntityHeaderId.isDisplayed());
+  }
+
+  //-------------------
+
+  @FindBy(id = "findEntityForm:showNewFormButton")
+  private CommandButton showNewFormButton;
+
+  @FindBy(id = "findEntityForm:inputTextSearchterm")
+  private InputText inputTextSearchterm;
+
+  @FindBy(id = "findEntityForm:newAndSearchGrid:searchButton")
+  private CommandButton searchButton;
+
+  @FindBy(id = "entityDataTableForm:showEditFormButton")
+  private CommandButton showEditFormButton;
+
+  @FindBy(id = "entityDataTableForm:deleteSelectedButton")
+  private CommandButton deleteSelectedButton;
+
+  public void clickShowNewFormButton(){
+    Graphene.guardHttp(this.showEditFormButton).click();
+  }
+
+  public void clickShowEditFormButton(){
+    Graphene.guardHttp(this.showEditFormButton).click();
+  }
+
+  public void clickDeleteSelectedButton(){
+    Graphene.guardHttp(this.deleteSelectedButton).click();
+  }
+
+  //-------------------
+
+  @FindBy(id = "addNewEntityForm:specialtyNameNew")
+  private InputText firstNameNew;
+
+  @FindBy(id = "addNewEntityForm:specialtyNameNew")
+  private InputText lastNameNew;
+
+  @FindBy(id = "addNewEntityForm:saveNewButton")
+  private CommandButton saveNewButton;
+
+  @FindBy(id = "addNewEntityForm:cancelNew")
+  private CommandButton cancelNew;
+
+
+  public void addNewContent(String firstName, String lastName) {
+    this.firstNameNew.clear();
+    this.firstNameNew.sendKeys(firstName);
+    this.lastNameNew.clear();
+    this.lastNameNew.sendKeys(lastName);
+  }
+
+  public void addNewContentWithAllSpecialties(String firstName, String lastName) {
+    this.firstNameNew.clear();
+    this.firstNameNew.sendKeys(firstName);
+    this.lastNameNew.clear();
+    this.lastNameNew.sendKeys(lastName);
+    //this.pickList.addAll();
+  }
+
+  public void addNewContentWithOneSpecialty(String firstName, String lastName, String specialty) {
+    this.firstNameNew.clear();
+    this.firstNameNew.sendKeys(firstName);
+    this.lastNameNew.clear();
+    this.lastNameNew.sendKeys(lastName);
+    //this.pickList.add(specialty);
+  }
+
+  public void clickSaveNewButton(){
+    Graphene.guardHttp(this.saveNewButton).click();
+  }
+
+  public void clickCancelNewButton(){
+    Graphene.guardHttp(this.saveNewButton).click();
+  }
+
+  public void assertNewContentAdded(String firstName, String lastName) {
+    //TODO:
+    //Assert.assertEquals(content, nameInTable.getText());
+    Assert.assertTrue(true);
+  }
+
+  //-------------------
+
+  @FindBy(id = "addNewEntityForm:specialtyNameEdit")
+  private InputText firstNameEdit;
+
+  @FindBy(id = "addNewEntityForm:specialtyNameEdit")
+  private InputText lastNameEdit;
+
+  @FindBy(id = "editEntityForm:saveEditButton")
+  private CommandButton saveEditButton;
+
+  @FindBy(id = "editEntityForm:cancelEdit")
+  private CommandButton cancelEdit;
+
+  public void editContent(String firstName, String lastName) {
+    this.firstNameEdit.clear();
+    this.firstNameEdit.sendKeys(firstName);
+    this.lastNameEdit.clear();
+    this.lastNameEdit.sendKeys(lastName);
+  }
+
+  public void editContentWithNoneSpecialties(String firstName, String lastName) {
+    this.firstNameEdit.clear();
+    this.firstNameEdit.sendKeys(firstName);
+    this.lastNameEdit.clear();
+    this.lastNameEdit.sendKeys(lastName);
+    //this.pickList.removeAll();
+  }
+
+  public void editContentWithAllSpecialties(String firstName, String lastName) {
+    this.firstNameEdit.clear();
+    this.firstNameEdit.sendKeys(firstName);
+    this.lastNameEdit.clear();
+    this.lastNameEdit.sendKeys(lastName);
+    //this.pickList.addAll();
+  }
+
+  public void clickSaveEditButton(){
+    this.saveEditButton.click();
+  }
+
+  public void clickCancelEdit(){
+    this.cancelEdit.click();
+  }
+
+  public void assertEditedContentAdded(String content) {
+    //TODO:
+    //Assert.assertEquals(content, nameInTable.getText());
+    Assert.assertTrue(true);
+  }
+
+  //-------------------
+
+  public void clickDeleteSpecialty() {
+    Graphene.guardHttp(deleteSelectedButton).click();
+  }
+
+  /*
+
   @FindBy(id = "veterinarians")
   private WebElement veterinarians;
 
@@ -226,57 +401,5 @@ public class VetPage extends AbstractPrimePage {
     Graphene.guardAjax(colSpecialtySort).click();
   }
 
-
-  public void editContent(String firstName, String lastName) {
-    this.firstName.clear();
-    this.firstName.sendKeys(firstName);
-    this.lastName.clear();
-    this.lastName.sendKeys(lastName);
-    save.click();
-  }
-
-  public void editContentWithNoneSpecialties(String firstName, String lastName) {
-    this.firstName.clear();
-    this.firstName.sendKeys(firstName);
-    this.lastName.clear();
-    this.lastName.sendKeys(lastName);
-    //this.pickList.removeAll();
-    save.click();
-  }
-
-  public void editContentWithAllSpecialties(String firstName, String lastName) {
-    this.firstName.clear();
-    this.firstName.sendKeys(firstName);
-    this.lastName.clear();
-    this.lastName.sendKeys(lastName);
-    //this.pickList.addAll();
-    save.click();
-  }
-
-
-  public void addNewContent(String firstName, String lastName) {
-    this.firstName.clear();
-    this.firstName.sendKeys(firstName);
-    this.lastName.clear();
-    this.lastName.sendKeys(lastName);
-    save.click();
-  }
-
-  public void addNewContentWithAllSpecialties(String firstName, String lastName) {
-    this.firstName.clear();
-    this.firstName.sendKeys(firstName);
-    this.lastName.clear();
-    this.lastName.sendKeys(lastName);
-    //this.pickList.addAll();
-    save.click();
-  }
-
-  public void addNewContentWithOneSpecialty(String firstName, String lastName, String specialty) {
-    this.firstName.clear();
-    this.firstName.sendKeys(firstName);
-    this.lastName.clear();
-    this.lastName.sendKeys(lastName);
-    //this.pickList.add(specialty);
-    save.click();
-  }
+*/
 }

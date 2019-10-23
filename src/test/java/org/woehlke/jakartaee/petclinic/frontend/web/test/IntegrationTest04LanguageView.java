@@ -31,9 +31,9 @@ import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.Arquillia
 @RunWith(Arquillian.class)
 @RunAsClient
 @NotThreadSafe
-public class IntegrationTestConfig05LanguageView extends AbstractPrimePageTest {
+public class IntegrationTest04LanguageView extends AbstractPrimePageTest {
 
-  private static Logger log = LogManager.getLogger(IntegrationTestConfig05LanguageView.class.getName());
+  private static Logger log = LogManager.getLogger(IntegrationTest04LanguageView.class.getName());
 
   private LanguageView languageView = new LanguageViewImpl();
 
