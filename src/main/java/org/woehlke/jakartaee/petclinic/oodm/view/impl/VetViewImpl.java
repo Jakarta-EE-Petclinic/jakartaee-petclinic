@@ -38,9 +38,13 @@ import java.util.UUID;
 public class VetViewImpl implements VetView {
 
   private static final long serialVersionUID = 2838339162976374606L;
+
   private final static String JSF_PAGE = "vet.jsf";
+
   private static Logger log = LogManager.getLogger(VetViewImpl.class.getName());
+
   private MessageProvider provider;
+
   @Inject
   private LanguageView languageView;
 
@@ -369,7 +373,7 @@ public class VetViewImpl implements VetView {
   public void newEntity() {
     String firstName = "add new first Name";
     String lastName = "add new last Name";
-    this.entity = new org.woehlke.jakartaee.petclinic.oodm.entities.Vet();
+    this.entity = new Vet(firstName,lastName);
   }
 
   public VetViewFlow getVetViewFlow() {
