@@ -371,9 +371,7 @@ public class VetViewImpl implements VetView {
 
   @Override
   public void newEntity() {
-    String firstName = "add new first Name";
-    String lastName = "add new last Name";
-    this.entity = new Vet(firstName,lastName);
+    this.entity = new Vet();
   }
 
   public VetViewFlow getVetViewFlow() {
