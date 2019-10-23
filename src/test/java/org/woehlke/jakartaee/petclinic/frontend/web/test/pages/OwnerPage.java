@@ -13,6 +13,7 @@ import org.primefaces.extensions.arquillian.component.Calendar;
 import org.primefaces.extensions.arquillian.component.CommandButton;
 import org.primefaces.extensions.arquillian.component.InputText;
 import org.primefaces.extensions.arquillian.component.SelectOneMenu;
+import org.woehlke.jakartaee.petclinic.oodm.entities.Owner;
 
 import java.text.DateFormat;
 import java.time.LocalDate;
@@ -31,6 +32,187 @@ public class OwnerPage extends AbstractPrimePage {
 
   private static Logger log = LogManager.getLogger(OwnerPage.class.getName());
 
+
+  @FindBy(id = "listEntityHeaderId")
+  private WebElement listEntityHeaderId;
+
+  @FindBy(id = "newEntityHeaderId")
+  private WebElement newEntityHeaderId;
+
+  @FindBy(id = "editEntityHeaderId")
+  private WebElement editEntityHeaderId;
+
+  @FindBy(id = "deleteEntityHeaderId")
+  private WebElement deleteEntityHeaderId;
+
+  @FindBy(id = "searchResultEntityHeaderId")
+  private WebElement searchResultEntityHeaderId;
+
+
+  public void assertListEntityPageIsLoaded() {
+    Assert.assertTrue(listEntityHeaderId.isDisplayed());
+  }
+
+  public void assertNewEntityPageIsLoaded() {
+    Assert.assertTrue(newEntityHeaderId.isDisplayed());
+  }
+
+  public void assertEditEntityPageIsLoaded() {
+    Assert.assertTrue(editEntityHeaderId.isDisplayed());
+  }
+
+  public void assertDeleteEntityPageIsLoaded() {
+    Assert.assertTrue(deleteEntityHeaderId.isDisplayed());
+  }
+
+  public void assertSearchResultEntityPageIsLoaded() {
+    Assert.assertTrue(searchResultEntityHeaderId.isDisplayed());
+  }
+
+  //-------------------
+
+  @FindBy(id = "findEntityForm:showNewFormButton")
+  private CommandButton showNewFormButton;
+
+  @FindBy(id = "findEntityForm:inputTextSearchterm")
+  private InputText inputTextSearchterm;
+
+  @FindBy(id = "findEntityForm:newAndSearchGrid:searchButton")
+  private CommandButton searchButton;
+
+  @FindBy(id = "entityDataTableForm:showEditFormButton")
+  private CommandButton showEditFormButton;
+
+  @FindBy(id = "entityDataTableForm:deleteSelectedButton")
+  private CommandButton deleteSelectedButton;
+
+  public void clickShowNewFormButton(){
+    Graphene.guardHttp(this.showNewFormButton).click();
+  }
+
+  public void clickShowEditFormButton(){
+    Graphene.guardHttp(this.showEditFormButton).click();
+  }
+
+  public void clickDeleteSelectedButton(){
+    Graphene.guardHttp(this.deleteSelectedButton).click();
+  }
+
+  //-------------------
+
+  @FindBy(id = "addNewOwnerForm:firstNameAddNewOwner")
+  private InputText firstNameNew;
+
+  @FindBy(id = "addNewOwnerForm:lastNameAddNewOwner")
+  private InputText lastNameNew;
+
+  @FindBy(id = "addNewOwnerForm:addressAddNewOwner")
+  private InputText addressNew;
+
+  @FindBy(id = "addNewOwnerForm:houseNumberAddNewOwner")
+  private InputText houseNumberNew;
+
+  @FindBy(id = "addNewOwnerForm:addressInfoAddNewOwner")
+  private InputText addressInfoNew;
+
+  @FindBy(id = "addNewOwnerForm:cityAddNewOwner")
+  private InputText cityNew;
+
+  @FindBy(id = "addNewOwnerForm:zipCodeAddNewOwner")
+  private InputText zipCodeNew;
+
+  @FindBy(id = "addNewOwnerForm:phoneNumberAddNewOwner")
+  private InputText phoneNumberNew;
+
+  @FindBy(id = "addNewOwnerForm:saveAddNewOwner")
+  private CommandButton saveNewButton;
+
+  @FindBy(id = "addNewOwnerForm:cancelAddNewOwner")
+  private CommandButton cancelNew;
+
+  public void addNewContent(Owner newOwner) {
+    Graphene.writeIntoElement( firstNameNew, newOwner.getFirstName());
+    Graphene.writeIntoElement( addressNew, newOwner.getLastName());
+    Graphene.writeIntoElement( houseNumberNew, newOwner.getHouseNumber());
+    Graphene.writeIntoElement( addressInfoNew, newOwner.getAddressInfo());
+    Graphene.writeIntoElement( cityNew, newOwner.getCity());
+    Graphene.writeIntoElement( zipCodeNew, newOwner.getZipCode());
+    Graphene.writeIntoElement( phoneNumberNew, newOwner.getPhoneNumber());
+  }
+
+  public void clickSaveNewButton(){
+    Graphene.guardHttp(this.saveNewButton).click();
+  }
+
+  public void clickCancelNewButton(){
+    Graphene.guardHttp(this.saveNewButton).click();
+  }
+
+  public void assertNewContentAdded(Owner newOwner) {
+    //TODO:
+    //Assert.assertEquals(content, nameInTable.getText());
+    Assert.assertTrue(true);
+  }
+
+  //-------------------
+
+  @FindBy(id = "editOwnerForm:firstNameEditOwner")
+  private InputText firstNameEdit;
+
+  @FindBy(id = "editOwnerForm:lastNameEditOwner")
+  private InputText lastNameEdit;
+
+  @FindBy(id = "editOwnerForm:addressEditOwner")
+  private InputText addressEdit;
+
+  @FindBy(id = "editOwnerForm:houseNumberEditOwner")
+  private InputText houseNumberEdit;
+
+  @FindBy(id = "editOwnerForm:addressInfoEditOwner")
+  private InputText addressInfoEdit;
+
+  @FindBy(id = "editOwnerForm:cityEditOwner")
+  private InputText cityEdit;
+
+  @FindBy(id = "editOwnerForm:zipCodeEditOwner")
+  private InputText zipCodeEdit;
+
+  @FindBy(id = "editOwnerForm:phoneNumberEditOwner")
+  private InputText phoneNumberEdit;
+
+  @FindBy(id = "editOwnerForm:saveEditOwner")
+  private CommandButton saveEditButton;
+
+  @FindBy(id = "editOwnerForm:cancelEditOwner")
+  private CommandButton cancelEdit;
+
+  public void editContent(Owner editOwner) {
+    Graphene.writeIntoElement( firstNameEdit, editOwner.getFirstName());
+    Graphene.writeIntoElement( lastNameEdit, editOwner.getLastName());
+    Graphene.writeIntoElement( houseNumberEdit, editOwner.getHouseNumber());
+    Graphene.writeIntoElement( addressInfoEdit, editOwner.getAddressInfo());
+    Graphene.writeIntoElement( cityEdit, editOwner.getCity());
+    Graphene.writeIntoElement( zipCodeEdit, editOwner.getZipCode());
+    Graphene.writeIntoElement( phoneNumberEdit, editOwner.getPhoneNumber());
+  }
+
+  public void clickSaveEditButton(){
+    this.saveEditButton.click();
+  }
+
+  public void clickCancelEdit(){
+    this.cancelEdit.click();
+  }
+
+  public void assertEditedContentAdded(Owner editOwner) {
+    //TODO:
+    //Assert.assertEquals(content, nameInTable.getText());
+    Assert.assertTrue(true);
+  }
+
+  //-------------------
+
+  /*
   @FindBy(id = "showOwnerForm")
   private WebElement showOwnerForm;
 
@@ -322,4 +504,6 @@ public class OwnerPage extends AbstractPrimePage {
     this.visitDate.setValue(visitDate);
     Graphene.guardHttp(saveNewVisit).click();
   }
+
+   */
 }

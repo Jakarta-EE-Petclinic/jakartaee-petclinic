@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.page.Location;
 import org.junit.Assert;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.primefaces.extensions.arquillian.AbstractPrimePage;

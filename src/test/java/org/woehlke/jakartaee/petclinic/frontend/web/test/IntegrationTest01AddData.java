@@ -16,6 +16,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.primefaces.extensions.arquillian.AbstractPrimePageTest;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.*;
+import org.woehlke.jakartaee.petclinic.oodm.entities.Owner;
 
 import java.io.File;
 
@@ -60,6 +61,12 @@ public class IntegrationTest01AddData extends AbstractPrimePageTest {
       {"Viktor","Frankl"},
       {"Alexander","Fleming"},
       {"Hippokrates","von Kos"}
+  };
+  private String owners[][] = new String[][]{
+      {"Helmut","Rahn","Dalbergstraße","38","Rathaus","63739","Aschaffenburg","06021 3300"},
+      {"Fritz","Walter","Glatzer Str.","5a","","Sigiriya","Berlin","030 29044208"},
+      {"Toni","Turek","Am Flutgraben","2","Club der Visionaere","12435","Berlin","030 69518942"},
+      {"Bernhard","Klodt","Klingelhöferstraße","14","Bauhaus-Archiv","10785","Berlin","030 2540020"}
   };
 
   @Deployment(testable = false)
@@ -122,6 +129,33 @@ public class IntegrationTest01AddData extends AbstractPrimePageTest {
       vetPage.clickSaveNewButton();
       vetPage.assertListEntityPageIsLoaded();
       vetPage.assertNewContentAdded(firstNameNew,lastNameNew);
+    }
+  }
+
+  @Test
+  @InSequence(4)
+  @RunAsClient
+  @OverProtocol(PROTOCOL)
+  public void testAddNewOwners() {
+    log.info("testAddNewOwners");
+    ownerPage.goTo();
+    ownerPage.assertListEntityPageIsLoaded();
+    for(String owner[] : owners){
+      Owner ownerNew = new Owner();
+      ownerNew.setFirstName(owner[0]);
+      ownerNew.setLastName(owner[1]);
+      ownerNew.setAddress(owner[2]);
+      ownerNew.setHouseNumber(owner[3]);
+      ownerNew.setAddressInfo(owner[4]);
+      ownerNew.setZipCode(owner[5]);
+      ownerNew.setCity(owner[6]);
+      ownerNew.setPhoneNumber(owner[7]);
+      ownerPage.clickShowNewFormButton();
+      ownerPage.assertNewEntityPageIsLoaded();
+      ownerPage.addNewContent(ownerNew);
+      ownerPage.clickSaveNewButton();
+      ownerPage.assertListEntityPageIsLoaded();
+      ownerPage.assertNewContentAdded(ownerNew);
     }
   }
 }
