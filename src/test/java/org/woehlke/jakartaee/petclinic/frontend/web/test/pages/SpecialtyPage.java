@@ -103,9 +103,7 @@ public class SpecialtyPage extends AbstractPrimePage {
   private CommandButton cancelNew;
 
   public void addNewContent(String content) {
-    specialtyNameNew.clear();
-    specialtyNameNew.sendKeys(content);
-    //specialtyNameNew.click();
+    Graphene.writeIntoElement( specialtyNameNew, content);
   }
 
   public void clickSaveNewButton(){
@@ -134,9 +132,7 @@ public class SpecialtyPage extends AbstractPrimePage {
   private CommandButton cancelEdit;
 
   public void editContent(String content) {
-    this.specialtyNameEdit.clear();
-    this.specialtyNameEdit.sendKeys(content);
-    this.specialtyNameEdit.click();
+    Graphene.writeIntoElement( specialtyNameEdit, content);
   }
 
   public void clickSaveEditButton(){

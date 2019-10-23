@@ -90,8 +90,8 @@ public class PetTypePage extends AbstractPrimePage {
 
   //-------------------
 
-  @FindBy(id = "addNewEntityForm:specialtyNameNew")
-  private InputText specialtyNameNew;
+  @FindBy(id = "addNewEntityForm:newPetTypeName")
+  private InputText newPetTypeName;
 
   @FindBy(id = "addNewEntityForm:saveNewButton")
   private CommandButton saveNewButton;
@@ -100,9 +100,7 @@ public class PetTypePage extends AbstractPrimePage {
   private CommandButton cancelNew;
 
   public void addNewContent(String content) {
-    specialtyNameNew.clear();
-    specialtyNameNew.sendKeys(content);
-    //specialtyNameNew.click();
+    Graphene.writeIntoElement( newPetTypeName, content);
   }
 
   public void clickSaveNewButton(){
@@ -121,8 +119,8 @@ public class PetTypePage extends AbstractPrimePage {
 
   //-------------------
 
-  @FindBy(id = "editEntityForm:specialtyNameEdit")
-  private InputText specialtyNameEdit;
+  @FindBy(id = "editEntityForm:editPetTypeName")
+  private InputText editPetTypeName;
 
   @FindBy(id = "editEntityForm:saveEditButton")
   private CommandButton saveEditButton;
@@ -131,9 +129,7 @@ public class PetTypePage extends AbstractPrimePage {
   private CommandButton cancelEdit;
 
   public void editContent(String content) {
-    this.specialtyNameEdit.clear();
-    this.specialtyNameEdit.sendKeys(content);
-    //this.specialtyNameEdit.click();
+    Graphene.writeIntoElement( editPetTypeName, content);
   }
 
   public void clickSaveEditButton(){
