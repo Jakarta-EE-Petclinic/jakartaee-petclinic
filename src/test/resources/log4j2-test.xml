@@ -63,6 +63,9 @@
 		<Logger name="org.jboss.logging" level="info">
 			<AppenderRef ref="Console"/>
 		</Logger>
+		<Logger name="org.apache.http.client" level="info">
+			<AppenderRef ref="Console"/>
+		</Logger>
 		<Root level="info">
 			<AppenderRef ref="Console"/>
 		</Root>
