@@ -77,7 +77,7 @@ public class VetPage extends AbstractPrimePage {
   private CommandButton deleteSelectedButton;
 
   public void clickShowNewFormButton(){
-    Graphene.guardHttp(this.showEditFormButton).click();
+    Graphene.guardHttp(this.showNewFormButton).click();
   }
 
   public void clickShowEditFormButton(){

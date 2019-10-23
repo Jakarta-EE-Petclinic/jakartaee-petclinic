@@ -102,7 +102,7 @@ public class PetTypePage extends AbstractPrimePage {
   public void addNewContent(String content) {
     specialtyNameNew.clear();
     specialtyNameNew.sendKeys(content);
-    specialtyNameNew.click();
+    //specialtyNameNew.click();
   }
 
   public void clickSaveNewButton(){
@@ -121,19 +121,19 @@ public class PetTypePage extends AbstractPrimePage {
 
   //-------------------
 
-  @FindBy(id = "editSpecialtyForm:specialtyNameEdit")
+  @FindBy(id = "editEntityForm:specialtyNameEdit")
   private InputText specialtyNameEdit;
 
-  @FindBy(id = "editSpecialtyForm:saveEditButton")
+  @FindBy(id = "editEntityForm:saveEditButton")
   private CommandButton saveEditButton;
 
-  @FindBy(id = "editSpecialtyForm:cancelEdit")
+  @FindBy(id = "editEntityForm:cancelEdit")
   private CommandButton cancelEdit;
 
   public void editContent(String content) {
     this.specialtyNameEdit.clear();
     this.specialtyNameEdit.sendKeys(content);
-    this.specialtyNameEdit.click();
+    //this.specialtyNameEdit.click();
   }
 
   public void clickSaveEditButton(){
