@@ -104,25 +104,19 @@ public class VetPage extends AbstractPrimePage {
 
 
   public void addNewContent(String firstName, String lastName) {
-    this.firstNameNew.clear();
-    this.firstNameNew.sendKeys(firstName);
-    this.lastNameNew.clear();
-    this.lastNameNew.sendKeys(lastName);
+    Graphene.writeIntoElement( firstNameNew, firstName);
+    Graphene.writeIntoElement( lastNameNew, lastName);
   }
 
   public void addNewContentWithAllSpecialties(String firstName, String lastName) {
-    this.firstNameNew.clear();
-    this.firstNameNew.sendKeys(firstName);
-    this.lastNameNew.clear();
-    this.lastNameNew.sendKeys(lastName);
+    Graphene.writeIntoElement( firstNameNew, firstName);
+    Graphene.writeIntoElement( lastNameNew, lastName);
     //this.pickList.addAll();
   }
 
   public void addNewContentWithOneSpecialty(String firstName, String lastName, String specialty) {
-    this.firstNameNew.clear();
-    this.firstNameNew.sendKeys(firstName);
-    this.lastNameNew.clear();
-    this.lastNameNew.sendKeys(lastName);
+    Graphene.writeIntoElement( firstNameNew, firstName);
+    Graphene.writeIntoElement( lastNameNew, lastName);
     //this.pickList.add(specialty);
   }
 
@@ -155,25 +149,19 @@ public class VetPage extends AbstractPrimePage {
   private CommandButton cancelEdit;
 
   public void editContent(String firstName, String lastName) {
-    this.firstNameEdit.clear();
-    this.firstNameEdit.sendKeys(firstName);
-    this.lastNameEdit.clear();
-    this.lastNameEdit.sendKeys(lastName);
+    Graphene.writeIntoElement( firstNameEdit, firstName);
+    Graphene.writeIntoElement( lastNameEdit, lastName);
   }
 
   public void editContentWithNoneSpecialties(String firstName, String lastName) {
-    this.firstNameEdit.clear();
-    this.firstNameEdit.sendKeys(firstName);
-    this.lastNameEdit.clear();
-    this.lastNameEdit.sendKeys(lastName);
+    Graphene.writeIntoElement( firstNameEdit, firstName);
+    Graphene.writeIntoElement( lastNameEdit, lastName);
     //this.pickList.removeAll();
   }
 
   public void editContentWithAllSpecialties(String firstName, String lastName) {
-    this.firstNameEdit.clear();
-    this.firstNameEdit.sendKeys(firstName);
-    this.lastNameEdit.clear();
-    this.lastNameEdit.sendKeys(lastName);
+    Graphene.writeIntoElement( firstNameEdit, firstName);
+    Graphene.writeIntoElement( lastNameEdit, lastName);
     //this.pickList.addAll();
   }
 
