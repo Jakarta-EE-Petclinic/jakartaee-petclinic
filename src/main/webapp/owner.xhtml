@@ -6,8 +6,58 @@
                 xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="contentTitle">
+
+		<div class="container" id="contentTitle">
+			<ui:fragment rendered="#{ownerView.flowStateList}">
+				<h1 id="listEntityHeader" class="contentTitleHeadline">
+					<i class="fas fa-user-tie contentTitleHeadlineIcon"></i>
+					<h:outputText
+									id="listEntityHeaderId"
+									styleClass="contentTitleHeadlineText"
+									value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.owner.list']}"/>
+				</h1>
+			</ui:fragment>
+			<ui:fragment rendered="#{ownerView.flowStateNew}">
+				<h1 id="newEntityHeader" class="contentTitleHeadline">
+					<i class="fas fa-user-tie contentTitleHeadlineIcon"></i>
+					<h:outputText
+									id="newEntityHeaderId"
+									value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.owner.addNew']}"
+									styleClass="contentTitleHeadlineText"/>
+				</h1>
+			</ui:fragment>
+			<ui:fragment rendered="#{ownerView.flowStateEdit}">
+				<h1 id="editEntityHeader" class="contentTitleHeadline">
+					<i class="fas fa-user-tie contentTitleHeadlineIcon"></i>
+					<h:outputText
+									id="editEntityHeaderId"
+									value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.owner.edit']}"
+									styleClass="contentTitleHeadlineText"/>
+				</h1>
+			</ui:fragment>
+			<ui:fragment rendered="#{ownerView.flowStateDelete}">
+				<h1 id="deleteEntityHeader" class="contentTitleHeadline">
+					<i class="fas fa-user-tie contentTitleHeadlineIcon"></i>
+					<h:outputText
+									id="deleteEntityHeaderId"
+									value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.owner.delete']}"
+									styleClass="contentTitleHeadlineText"/>
+				</h1>
+			</ui:fragment>
+			<ui:fragment rendered="#{ownerView.flowStateSearchResult}">
+				<h1 id="searchResultEntityHeader" class="contentTitleHeadline">
+					<i class="fas fa-user-tie contentTitleHeadlineIcon"></i>
+					<h:outputText
+									id="searchResultEntityHeaderId"
+									value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.owner.search']}"
+									styleClass="contentTitleHeadlineText"/>
+				</h1>
+			</ui:fragment>
+		</div>
+
+
 		<h1 id="showOwner">
-			<i class="fas fa-user-tie"></i>
+
 			<h:outputText value="#{msg['owner']}"/>
 		</h1>
 	</ui:define>
