@@ -132,7 +132,8 @@ public class OwnerPage extends AbstractPrimePage {
 
   public void addNewContent(Owner newOwner) {
     Graphene.writeIntoElement( firstNameNew, newOwner.getFirstName());
-    Graphene.writeIntoElement( addressNew, newOwner.getLastName());
+    Graphene.writeIntoElement( lastNameNew, newOwner.getLastName());
+    Graphene.writeIntoElement( addressNew, newOwner.getAddress());
     Graphene.writeIntoElement( houseNumberNew, newOwner.getHouseNumber());
     Graphene.writeIntoElement( addressInfoNew, newOwner.getAddressInfo());
     Graphene.writeIntoElement( cityNew, newOwner.getCity());
@@ -189,6 +190,7 @@ public class OwnerPage extends AbstractPrimePage {
   public void editContent(Owner editOwner) {
     Graphene.writeIntoElement( firstNameEdit, editOwner.getFirstName());
     Graphene.writeIntoElement( lastNameEdit, editOwner.getLastName());
+    Graphene.writeIntoElement( addressEdit, editOwner.getAddress());
     Graphene.writeIntoElement( houseNumberEdit, editOwner.getHouseNumber());
     Graphene.writeIntoElement( addressInfoEdit, editOwner.getAddressInfo());
     Graphene.writeIntoElement( cityEdit, editOwner.getCity());
