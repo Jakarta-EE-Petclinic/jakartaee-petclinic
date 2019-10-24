@@ -10,6 +10,7 @@
 				<h1 id="listEntityHeader" class="contentTitleHeadline">
 					<i class="fa fa-stethoscope contentTitleHeadlineIcon"/>
 					<h:outputText
+									id="listEntityHeaderId"
 									styleClass="contentTitleHeadlineText"
 									value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.list']}"/>
 				</h1>
@@ -18,6 +19,7 @@
 				<h1 id="newEntityHeader" class="contentTitleHeadline">
 					<i class="fa fa-stethoscope contentTitleHeadlineIcon"/>
 					<h:outputText
+									id="newEntityHeaderId"
 									value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.addNew']}"
 									styleClass="contentTitleHeadlineText"/>
 				</h1>
@@ -26,6 +28,7 @@
 				<h1 id="editEntityHeader" class="contentTitleHeadline">
 					<i class="fa fa-stethoscope contentTitleHeadlineIcon"/>
 					<h:outputText
+									id="editEntityHeaderId"
 									value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.edit']}"
 									styleClass="contentTitleHeadlineText"/>
 				</h1>
@@ -34,6 +37,7 @@
 				<h1 id="deleteEntityHeader" class="contentTitleHeadline">
 					<i class="fa fa-stethoscope contentTitleHeadlineIcon"/>
 					<h:outputText
+									id="deleteEntityHeaderId"
 									value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.delete']}"
 									styleClass="contentTitleHeadlineText"/>
 				</h1>
@@ -42,6 +46,7 @@
 				<h1 id="searchResultEntityHeader" class="contentTitleHeadline">
 					<i class="fa fa-stethoscope contentTitleHeadlineIcon"/>
 					<h:outputText
+									id="searchResultEntityHeaderId"
 									value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.search']}"
 									styleClass="contentTitleHeadlineText"/>
 				</h1>
@@ -52,8 +57,8 @@
 	<ui:define name="content">
 		<div class="container" id="contentContainer">
 			<ui:fragment rendered="#{vetViewFlow.flowStateNew}">
-				<h:form id="addNewVetForm" styleClass="addNewEntityForm">
-					<p:panel id="addNewVetPanel" styleClass="contentPanel"
+				<h:form id="addNewEntityForm" styleClass="addNewEntityForm">
+					<p:panel id="addNewEntityFormPanel" styleClass="contentPanel"
 					         header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.addNew']}">
 						<p:messages id="messagesOutNew" showDetail="true" closable="true">
 							<p:autoUpdate/>
@@ -87,7 +92,7 @@
 												itemLabel="#{specialty.name}"/>
 							</div>
 							<div class="ui-g-2">
-								<p:commandButton id="saveAddNewButton"
+								<p:commandButton id="saveNewButton"
 								                 type="submit"
 								                 styleClass="saveButton"
 								                 icon="fa fa-fw fa-save"
@@ -96,7 +101,7 @@
 								                 action="#{vetView.saveNew}"/>
 							</div>
 							<div class="ui-g-2">
-								<p:commandButton id="cancelAddNew"
+								<p:commandButton id="cancelNew"
 								                 type="cancel"
 								                 styleClass="cancelButton"
 								                 icon="fa fa-fw fa-times-circle"
@@ -111,9 +116,9 @@
 				</h:form>
 			</ui:fragment>
 			<ui:fragment rendered="#{vetViewFlow.flowStateEdit}">
-				<h:form id="editSpecialtyForm">
+				<h:form id="editEntityForm">
 					<p:panel
-									id="editSpecialtyFormPanel"
+									id="editEntityFormPanel"
 									styleClass="contentPanel"
 									header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.edit']}">
 						<p:messages id="messagesOutEdit" showDetail="true" closable="true">
@@ -173,8 +178,8 @@
 			</ui:fragment>
 
 			<ui:fragment rendered="#{vetViewFlow.flowStateDelete}">
-				<h:form id="deleteSpecialtyForm" styleClass="deleteEntityForm">
-					<p:panel id="deleteSpecialtyPanel" styleClass="contentPanel"
+				<h:form id="deleteEntityForm" styleClass="deleteEntityForm">
+					<p:panel id="deleteEntityFormPanel" styleClass="contentPanel"
 					         header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.veterinarian.delete']}">
 						<p:messages id="messagesOutDelete" showDetail="true" closable="true">
 							<p:autoUpdate/>

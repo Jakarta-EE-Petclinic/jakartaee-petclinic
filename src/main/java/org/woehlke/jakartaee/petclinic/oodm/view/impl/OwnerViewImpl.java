@@ -41,23 +41,34 @@ import java.util.ResourceBundle;
 public class OwnerViewImpl implements OwnerView {
 
   private static final long serialVersionUID = -4809817472969005481L;
+
   private final static String JSF_PAGE = "owner.jsf";
+
   private static Logger log = LogManager.getLogger(OwnerViewImpl.class.getName());
+
   private MessageProvider provider;
+
   @EJB
   private OwnerService entityService;
+
   @EJB
   private PetService petService;
+
   @EJB
   private PetTypeService petTypeService;
+
   @EJB
   private VisitService visitService;
+
   @Inject
   private LanguageView languageView;
+
   @Inject
   private FrontendMessagesView frontendMessagesView;
+
   @Inject
   private OwnerViewFlow ownerViewFlow;
+
   private String searchterm;
   private List<Owner> list;
   private Owner entity;

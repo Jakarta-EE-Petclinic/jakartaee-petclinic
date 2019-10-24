@@ -11,6 +11,7 @@
 				<h1 id="listEntityHeader" class="contentTitleHeadline">
 					<i class="fas fa-paw contentTitleHeadlineIcon"/>
 					<h:outputText
+									id="listEntityHeaderId"
 									styleClass="contentTitleHeadlineText"
 									value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.list']}"/>
 				</h1>
@@ -19,6 +20,7 @@
 				<h1 id="newEntityHeader" class="contentTitleHeadline">
 					<i class="fas fa-paw contentTitleHeadlineIcon"/>
 					<h:outputText
+									id="newEntityHeaderId"
 									value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.addNew']}"
 									styleClass="contentTitleHeadlineText"/>
 				</h1>
@@ -27,6 +29,7 @@
 				<h1 id="editEntityHeader" class="contentTitleHeadline">
 					<i class="fas fa-paw contentTitleHeadlineIcon"/>
 					<h:outputText
+									id="editEntityHeaderId"
 									value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.edit']}"
 									styleClass="contentTitleHeadlineText"/>
 				</h1>
@@ -35,6 +38,7 @@
 				<h1 id="deleteEntityHeader" class="contentTitleHeadline">
 					<i class="fas fa-paw contentTitleHeadlineIcon"/>
 					<h:outputText
+									id="deleteEntityHeaderId"
 									value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.delete']}"
 									styleClass="contentTitleHeadlineText"/>
 				</h1>
@@ -43,6 +47,7 @@
 				<h1 id="searchResultEntityHeader" class="contentTitleHeadline">
 					<i class="fas fa-paw contentTitleHeadlineIcon"/>
 					<h:outputText
+									id="searchResultEntityHeaderId"
 									value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.search']}"
 									styleClass="contentTitleHeadlineText"/>
 				</h1>
@@ -53,8 +58,8 @@
 	<ui:define name="content">
 		<div class="container" id="contentContainer">
 			<ui:fragment rendered="#{petTypeViewFlow.flowStateNew}">
-				<h:form id="addNewPetTypeForm" styleClass="addNewEntityForm">
-					<p:panel id="addNewPetTypePanel" styleClass="contentPanel"
+				<h:form id="addEntityForm" styleClass="addNewEntityForm">
+					<p:panel id="addEntityFormPanel" styleClass="contentPanel"
 					         header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.addNew']}">
 						<p:messages id="messagesOutNew" showDetail="true" closable="true">
 							<p:autoUpdate/>
@@ -139,8 +144,8 @@
 				</h:form>
 			</ui:fragment>
 			<ui:fragment rendered="#{petTypeViewFlow.flowStateDelete}">
-				<h:form id="deletePetTypeForm" styleClass="deleteEntityForm">
-					<p:panel id="deletePetTypePanel" styleClass="contentPanel"
+				<h:form id="deleteEntityForm" styleClass="deleteEntityForm">
+					<p:panel id="deleteEntityFormPanel" styleClass="contentPanel"
 					         header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.petType.delete']}">
 						<p:messages id="messagesOutDelete" showDetail="true" closable="true">
 							<p:autoUpdate/>

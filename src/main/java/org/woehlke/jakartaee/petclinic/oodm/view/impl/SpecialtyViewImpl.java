@@ -33,9 +33,13 @@ import java.util.ResourceBundle;
 public class SpecialtyViewImpl implements SpecialtyView {
 
   private static final long serialVersionUID = 9080853875975855082L;
+
   private final static String JSF_PAGE = "specialty.jsf";
+
   private static Logger log = LogManager.getLogger(SpecialtyViewImpl.class.getName());
+
   private MessageProvider provider;
+
   @EJB
   private SpecialtyService entityService;
 

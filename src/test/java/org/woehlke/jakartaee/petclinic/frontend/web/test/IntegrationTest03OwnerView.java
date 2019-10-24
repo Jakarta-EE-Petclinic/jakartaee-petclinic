@@ -11,6 +11,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.primefaces.extensions.arquillian.AbstractPrimePageTest;
@@ -19,7 +20,6 @@ import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.OwnerPage;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.PetTypePage;
 
 import java.io.File;
-import java.time.LocalDate;
 
 import static org.jboss.arquillian.graphene.Graphene.goTo;
 import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig.PROTOCOL;
@@ -36,9 +36,9 @@ import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.Arquillia
 @RunWith(Arquillian.class)
 @RunAsClient
 @NotThreadSafe
-public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest {
+public class IntegrationTest03OwnerView extends AbstractPrimePageTest {
 
-  private static Logger log = LogManager.getLogger(IntegrationTestConfig04OwnerView.class.getName());
+  private static Logger log = LogManager.getLogger(IntegrationTest03OwnerView.class.getName());
 
   @Page
   private HomePage homePage;
@@ -56,6 +56,7 @@ public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest {
     return ShrinkWrap.createFromZipFile(WebArchive.class, warFile);
   }
 
+  @Ignore
   @Test
   @InSequence(1)
   @RunAsClient
@@ -66,7 +67,8 @@ public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest {
     homePage.assertTitle();
   }
 
-
+  /*
+  @Ignore
   @Test
   @InSequence(2)
   @RunAsClient
@@ -78,6 +80,7 @@ public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest {
   }
 
 
+  @Ignore
   @Test
   @InSequence(3)
   @RunAsClient
@@ -89,7 +92,7 @@ public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest {
     ownerPage.assertPageIsLoaded();
   }
 
-
+  @Ignore
   @Test
   @InSequence(4)
   @RunAsClient
@@ -101,7 +104,7 @@ public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest {
     ownerPage.assertPageIsLoaded();
   }
 
-
+  @Ignore
   @Test
   @InSequence(5)
   @RunAsClient
@@ -115,6 +118,7 @@ public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest {
     ownerPage.assertPageIsLoaded();
   }
 
+  @Ignore
   @Test
   @InSequence(6)
   @RunAsClient
@@ -149,6 +153,7 @@ public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest {
     );
   }
 
+  @Ignore
   @Test
   @InSequence(7)
   @RunAsClient
@@ -179,6 +184,7 @@ public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest {
     );
   }
 
+  @Ignore
   @Test
   @InSequence(8)
   @RunAsClient
@@ -211,6 +217,7 @@ public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest {
     ownerPage.assertSecondPetContent("Tomcat", birthDate1_15_05_2013, "cat");
   }
 
+  @Ignore
   @Test
   @InSequence(9)
   @RunAsClient
@@ -230,6 +237,7 @@ public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest {
     ownerPage.assertFirstPetContent("Speedy", birthDate_01_06_2010, "mouse");
   }
 
+  @Ignore
   @Test
   @InSequence(10)
   @RunAsClient
@@ -250,4 +258,6 @@ public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest {
     ownerPage.setNewVisitContent(visitDate_16_01_2014, "get milk");
     ownerPage.assertFirstVisitToFirstPet(visitDate_16_01_2014, "get milk");
   }
+
+  */
 }

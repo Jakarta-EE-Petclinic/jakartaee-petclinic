@@ -12,6 +12,7 @@ import org.jboss.arquillian.junit.InSequence;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.primefaces.extensions.arquillian.AbstractPrimePageTest;
@@ -30,9 +31,9 @@ import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.Arquillia
 @RunWith(Arquillian.class)
 @RunAsClient
 @NotThreadSafe
-public class IntegrationTestConfig05LanguageView extends AbstractPrimePageTest {
+public class IntegrationTest04LanguageView extends AbstractPrimePageTest {
 
-  private static Logger log = LogManager.getLogger(IntegrationTestConfig05LanguageView.class.getName());
+  private static Logger log = LogManager.getLogger(IntegrationTest04LanguageView.class.getName());
 
   private LanguageView languageView = new LanguageViewImpl();
 
@@ -46,6 +47,7 @@ public class IntegrationTestConfig05LanguageView extends AbstractPrimePageTest {
     return ShrinkWrap.createFromZipFile(WebArchive.class, warFile);
   }
 
+  @Ignore
   @Test
   @InSequence(1)
   @RunAsClient
@@ -57,6 +59,7 @@ public class IntegrationTestConfig05LanguageView extends AbstractPrimePageTest {
     log.info("testGetLocale DONE");
   }
 
+  @Ignore
   @Test
   @InSequence(2)
   @RunAsClient
@@ -74,6 +77,7 @@ public class IntegrationTestConfig05LanguageView extends AbstractPrimePageTest {
     log.info("testJsfLocale Done");
   }
 
+  @Ignore
   @Test
   @InSequence(3)
   @RunAsClient
