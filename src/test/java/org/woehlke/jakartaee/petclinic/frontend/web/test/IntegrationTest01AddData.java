@@ -67,7 +67,7 @@ public class IntegrationTest01AddData extends AbstractPrimePageTest {
       {"Fritz","Walter","Glatzer Str.","5a","Sigiriya","10247","Berlin","+493029044208"},
       {"Toni","Turek","Am Flutgraben","2","Club der Visionaere","12435","Berlin","+493069518942"},
       {"Bernhard","Klodt","Klingelhöferstraße","14","Bauhaus-Archiv","10785","Berlin","+49302540020"},
-      {"Rio","Reiser","Tempelhofer Ufer","37-32","","10963","Berlin","+493026995000"}
+      {"Rio","Reiser","Tempelhofer Ufer","37-32","Gedenktafel","10963","Berlin","+493026995000"}
   };
 
   @Deployment(testable = false)
