@@ -284,9 +284,9 @@ function testManagedLiberty(){
   echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE liberty:test-stop-server"
   echo "--------------------------------------------------------------------------"
   $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install
-  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE liberty:test-start-server
-  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE test
-  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE liberty:test-stop-server
+  #$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE liberty:test-start-server
+  #$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE test
+  #$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE liberty:test-stop-server
   echo "--------------------------------------------------------------------------"
 }
 
