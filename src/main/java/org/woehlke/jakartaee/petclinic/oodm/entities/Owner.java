@@ -152,8 +152,7 @@ public class Owner implements TwEntities<Owner> {
   @Column(name = COL_ZIPCODE)
   @NotEmpty
   @Digits(fraction = 0, integer = 5)
-  @Pattern(regexp = "[0-9]{5}",
-      message = "{invalid.zipCode}")
+  @Pattern(regexp = "[0-9]{5}", message = "{invalid.zipCode}")
   @Field(
       index = org.hibernate.search.annotations.Index.YES,
       analyze = org.hibernate.search.annotations.Analyze.NO,
@@ -164,7 +163,7 @@ public class Owner implements TwEntities<Owner> {
   @XmlElement(required = true)
   @Column(name = COL_PHONENUMBER)
   @NotEmpty
-  @Pattern(regexp = "\\+[0-9]{13}",
+  @Pattern(regexp = "\\+[1-9][0-9]{9,14}",
       message = "{invalid.phoneNumber}")
   private String phoneNumber;
 
