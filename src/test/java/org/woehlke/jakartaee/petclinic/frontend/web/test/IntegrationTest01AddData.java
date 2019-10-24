@@ -156,7 +156,7 @@ public class IntegrationTest01AddData extends AbstractPrimePageTest {
       ownerPage.assertNewEntityPageIsLoaded();
       ownerPage.addNewContent(ownerNew);
       ownerPage.clickSaveNewButton();
-      ownerPage.assertListEntityPageIsLoaded();
+      ownerPage.assertShowEntityPageIsLoaded();
       ownerPage.assertNewContentAdded(ownerNew);
     }
   }

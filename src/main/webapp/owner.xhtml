@@ -17,6 +17,15 @@
 									value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.owner.list']}"/>
 				</h1>
 			</ui:fragment>
+			<ui:fragment rendered="#{ownerViewFlow.flowStateShow}">
+				<h1 id="showEntityHeader" class="contentTitleHeadline">
+					<i class="fas fa-user-tie contentTitleHeadlineIcon"/>
+					<h:outputText
+									id="showEntityHeaderId"
+									styleClass="contentTitleHeadlineText"
+									value="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.owner.show']}"/>
+				</h1>
+			</ui:fragment>
 			<ui:fragment rendered="#{ownerViewFlow.flowStateNew}">
 				<h1 id="newEntityHeader" class="contentTitleHeadline">
 					<i class="fas fa-user-tie contentTitleHeadlineIcon"/>

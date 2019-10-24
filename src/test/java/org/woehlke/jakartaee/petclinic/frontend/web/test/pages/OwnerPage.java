@@ -36,6 +36,9 @@ public class OwnerPage extends AbstractPrimePage {
   @FindBy(id = "listEntityHeaderId")
   private WebElement listEntityHeaderId;
 
+  @FindBy(id = "showEntityHeaderId")
+  private WebElement showEntityHeaderId;
+
   @FindBy(id = "newEntityHeaderId")
   private WebElement newEntityHeaderId;
 
@@ -48,6 +51,9 @@ public class OwnerPage extends AbstractPrimePage {
   @FindBy(id = "searchResultEntityHeaderId")
   private WebElement searchResultEntityHeaderId;
 
+  public void asserShowEntityPageIsLoaded() {
+    Assert.assertTrue(listEntityHeaderId.isDisplayed());
+  }
 
   public void assertListEntityPageIsLoaded() {
     Assert.assertTrue(listEntityHeaderId.isDisplayed());
@@ -88,10 +94,12 @@ public class OwnerPage extends AbstractPrimePage {
 
   public void clickShowNewFormButton(){
     Graphene.guardHttp(this.showNewFormButton).click();
+    Graphene.waitModel().until().element(contentPanelAddNewOwner).is().visible();
   }
 
   public void clickShowEditFormButton(){
     Graphene.guardHttp(this.showEditFormButton).click();
+    Graphene.waitModel().until().element(contentPanelEditOwner).is().visible();
   }
 
   public void clickDeleteSelectedButton(){
@@ -99,6 +107,9 @@ public class OwnerPage extends AbstractPrimePage {
   }
 
   //-------------------
+
+  @FindBy(id = "findEntityForm")
+  private WebElement addNewOwnerForm;
 
   @FindBy(id = "addNewOwnerForm:firstNameAddNewOwner")
   private InputText firstNameNew;
@@ -143,10 +154,16 @@ public class OwnerPage extends AbstractPrimePage {
 
   public void clickSaveNewButton(){
     Graphene.guardHttp(this.saveNewButton).click();
+    Graphene.waitModel().until().element(contentPanelOwnerList).is().visible();
   }
 
   public void clickCancelNewButton(){
-    Graphene.guardHttp(this.saveNewButton).click();
+    Graphene.guardHttp(this.cancelNew).click();
+    Graphene.waitModel().until().element(contentPanelOwnerList).is().visible();
+  }
+
+  public void assertShowEntityPageIsLoaded() {
+    Assert.assertTrue(showEntityHeaderId.isDisplayed());
   }
 
   public void assertNewContentAdded(Owner newOwner) {
@@ -211,6 +228,17 @@ public class OwnerPage extends AbstractPrimePage {
     //Assert.assertEquals(content, nameInTable.getText());
     Assert.assertTrue(true);
   }
+
+  //-------------------
+
+  @FindBy(id = "contentPanelOwnerList")
+  private WebElement contentPanelOwnerList;
+
+  @FindBy(id = "contentPanelEditOwner")
+  private WebElement contentPanelEditOwner;
+
+  @FindBy(id = "contentPanelAddNewOwner")
+  private WebElement contentPanelAddNewOwner;
 
   //-------------------
 
