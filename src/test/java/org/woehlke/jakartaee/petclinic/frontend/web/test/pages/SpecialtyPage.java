@@ -4,6 +4,7 @@ package org.woehlke.jakartaee.petclinic.frontend.web.test.pages;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.page.Location;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
@@ -41,6 +42,26 @@ public class SpecialtyPage extends AbstractPrimePage {
   @FindBy(id = "searchResultEntityHeaderId")
   private WebElement searchResultEntityHeaderId;
 
+  public void assertListEntityPageIsLoaded() {
+    Assert.assertTrue(listEntityHeaderId.isDisplayed());
+  }
+
+  public void assertNewEntityPageIsLoaded() {
+    Assert.assertTrue(newEntityHeaderId.isDisplayed());
+  }
+
+  public void assertEditEntityPageIsLoaded() {
+    Assert.assertTrue(editEntityHeaderId.isDisplayed());
+  }
+
+  public void assertDeleteEntityPageIsLoaded() {
+    Assert.assertTrue(deleteEntityHeaderId.isDisplayed());
+  }
+
+  public void assertSearchResultEntityPageIsLoaded() {
+    Assert.assertTrue(searchResultEntityHeaderId.isDisplayed());
+  }
+
   //-------------------
 
   @FindBy(id = "findEntityForm:showNewFormButton")
@@ -58,79 +79,82 @@ public class SpecialtyPage extends AbstractPrimePage {
   @FindBy(id = "entityDataTableForm:deleteSelectedButton")
   private CommandButton deleteSelectedButton;
 
+  public void clickShowNewFormButton(){
+    Graphene.guardHttp(this.showNewFormButton).click();
+  }
+
   public void clickShowEditFormButton(){
-    this.showEditFormButton.click();
+    Graphene.guardHttp(this.showEditFormButton).click();
   }
 
   public void clickDeleteSelectedButton(){
-    this.deleteSelectedButton.click();
-  }
-
-  public void addNewContent(String content) {
-    specialtyNameNew.clear();
-    specialtyNameNew.sendKeys(content);
-    specialtyNameNew.click();
+    Graphene.guardHttp(this.deleteSelectedButton).click();
   }
 
   //-------------------
 
-  @FindBy(id = "editSpecialtyForm:specialtyNameEdit")
+  @FindBy(id = "addNewEntityForm:specialtyNameNew")
+  private InputText specialtyNameNew;
+
+  @FindBy(id = "addNewEntityForm:saveNewButton")
+  private CommandButton saveNewButton;
+
+  @FindBy(id = "addNewEntityForm:cancelNew")
+  private CommandButton cancelNew;
+
+  public void addNewContent(String content) {
+    Graphene.writeIntoElement(specialtyNameNew, content);
+  }
+
+  public void clickSaveNewButton(){
+    Graphene.guardHttp(this.saveNewButton).click();
+  }
+
+  public void clickCancelNewButton(){
+    Graphene.guardHttp(this.saveNewButton).click();
+  }
+
+  public void assertNewContentAdded(String content) {
+    //TODO:
+    //Assert.assertEquals(content, nameInTable.getText());
+    Assert.assertTrue(true);
+  }
+
+  //-------------------
+
+  @FindBy(id = "editEntityForm:specialtyNameEdit")
   private InputText specialtyNameEdit;
 
-  @FindBy(id = "editSpecialtyForm:saveEditButton")
+  @FindBy(id = "editEntityForm:saveEditButton")
   private CommandButton saveEditButton;
 
-  @FindBy(id = "editSpecialtyForm:cancelEdit")
+  @FindBy(id = "editEntityForm:cancelEdit")
   private CommandButton cancelEdit;
 
   public void editContent(String content) {
-    this.specialtyNameEdit.clear();
-    this.specialtyNameEdit.sendKeys(content);
-    this.specialtyNameEdit.click();
+    Graphene.writeIntoElement( specialtyNameEdit, content);
   }
 
   public void clickSaveEditButton(){
-    this.saveEditButton.click();
+    Graphene.guardHttp(this.saveEditButton).click();
   }
 
   public void clickCancelEdit(){
-    this.cancelEdit.click();
+    Graphene.guardHttp(this.cancelEdit).click();
+  }
+
+  public void assertEditedContentAdded(String content) {
+    //TODO:
+    //Assert.assertEquals(content, nameInTable.getText());
+    Assert.assertTrue(true);
   }
 
   //-------------------
-
-  @FindBy(id = "addNewSpecialtyForm:specialtyNameNew")
-  private InputText specialtyNameNew;
-
-  @FindBy(id = "addNewSpecialtyForm:saveNewButton")
-  private CommandButton saveNewButton;
-
-  @FindBy(id = "addNewSpecialtyForm:cancelNew")
-  private CommandButton cancelNew;
-
-  //-------------------
-
-  public void assertPageIsLoaded() {
-    Assert.assertTrue(listEntityHeaderId.isDisplayed());
-  }
-
-  public void clickAddNewSpecialty() {
-    showNewFormButton.click();
-  }
-
-  public void clickEditSpecialty() {
-    showEditFormButton.click();
-  }
 
   public void clickDeleteSpecialty() {
-    deleteSelectedButton.click();
+    Graphene.guardHttp(deleteSelectedButton).click();
   }
 
-    /*
-    public void assertNewContentFound(String content) {
-        Assert.assertEquals(content, nameInTable.getText());
-    }
-    */
 
     /*
     public void assertEditedContentFound(String content) {

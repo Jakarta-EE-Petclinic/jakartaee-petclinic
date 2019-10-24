@@ -24,6 +24,125 @@ public class PetTypePage extends AbstractPrimePage {
 
   private static Logger log = LogManager.getLogger(PetTypePage.class.getName());
 
+  @FindBy(id = "listEntityHeaderId")
+  private WebElement listEntityHeaderId;
+
+  @FindBy(id = "newEntityHeaderId")
+  private WebElement newEntityHeaderId;
+
+  @FindBy(id = "editEntityHeaderId")
+  private WebElement editEntityHeaderId;
+
+  @FindBy(id = "deleteEntityHeaderId")
+  private WebElement deleteEntityHeaderId;
+
+  @FindBy(id = "searchResultEntityHeaderId")
+  private WebElement searchResultEntityHeaderId;
+
+  public void assertListEntityPageIsLoaded() {
+    Assert.assertTrue(listEntityHeaderId.isDisplayed());
+  }
+
+  public void assertNewEntityPageIsLoaded() {
+    Assert.assertTrue(newEntityHeaderId.isDisplayed());
+  }
+
+  public void assertEditEntityPageIsLoaded() {
+    Assert.assertTrue(editEntityHeaderId.isDisplayed());
+  }
+
+  public void assertDeleteEntityPageIsLoaded() {
+    Assert.assertTrue(deleteEntityHeaderId.isDisplayed());
+  }
+
+  public void assertSearchResultEntityPageIsLoaded() {
+    Assert.assertTrue(searchResultEntityHeaderId.isDisplayed());
+  }
+
+  //-------------------
+
+  @FindBy(id = "findEntityForm:showNewFormButton")
+  private CommandButton showNewFormButton;
+
+  @FindBy(id = "findEntityForm:inputTextSearchterm")
+  private InputText inputTextSearchterm;
+
+  @FindBy(id = "findEntityForm:newAndSearchGrid:searchButton")
+  private CommandButton searchButton;
+
+  @FindBy(id = "entityDataTableForm:showEditFormButton")
+  private CommandButton showEditFormButton;
+
+  @FindBy(id = "entityDataTableForm:deleteSelectedButton")
+  private CommandButton deleteSelectedButton;
+
+  public void clickShowNewFormButton(){
+    Graphene.guardHttp(this.showNewFormButton).click();
+  }
+
+  public void clickShowEditFormButton(){
+    Graphene.guardHttp(this.showEditFormButton).click();
+  }
+
+  public void clickDeleteSelectedButton(){
+    Graphene.guardHttp(this.deleteSelectedButton).click();
+  }
+
+  //-------------------
+
+  @FindBy(id = "addEntityForm:newPetTypeName")
+  private InputText newPetTypeName;
+
+  @FindBy(id = "addEntityForm:saveNewButton")
+  private CommandButton saveNewButton;
+
+  @FindBy(id = "addEntityForm:cancelNew")
+  private CommandButton cancelNew;
+
+  public void addNewContent(String content) {
+    Graphene.writeIntoElement( newPetTypeName, content);
+  }
+
+  public void clickSaveNewButton(){
+    Graphene.guardHttp(this.saveNewButton).click();
+  }
+
+  public void clickCancelNewButton(){
+    Graphene.guardHttp(this.saveNewButton).click();
+  }
+
+  public void assertNewContentAdded(String content) {
+    //TODO:
+    //Assert.assertEquals(content, nameInTable.getText());
+    Assert.assertTrue(true);
+  }
+
+  //-------------------
+
+  @FindBy(id = "editEntityForm:editPetTypeName")
+  private InputText editPetTypeName;
+
+  @FindBy(id = "editEntityForm:saveEditButton")
+  private CommandButton saveEditButton;
+
+  @FindBy(id = "editEntityForm:cancelEdit")
+  private CommandButton cancelEdit;
+
+  public void editContent(String content) {
+    Graphene.writeIntoElement( editPetTypeName, content);
+  }
+
+  public void clickSaveEditButton(){
+    Graphene.guardHttp(this.saveEditButton).click();
+  }
+
+  public void clickCancelEdit(){
+    Graphene.guardHttp(this.cancelEdit).click();
+  }
+
+  //-------------------
+
+  /*
   @FindBy(id = "petTypes")
   private WebElement petTypes;
 
@@ -67,10 +186,6 @@ public class PetTypePage extends AbstractPrimePage {
 
   public void clickAddNewPetType() {
     Graphene.guardHttp(getNewPetTypeForm).click();
-  }
-
-  public void assertNewContentFound(String content) {
-    Assert.assertEquals(content, nameInTable.getText());
   }
 
   public void clickEditSpecialty() {
@@ -133,16 +248,5 @@ public class PetTypePage extends AbstractPrimePage {
     Graphene.waitModel().until().element(name5InTable).is().visible();
     Assert.assertTrue(name5InTable.getText().compareTo("pet06") == 0);
   }
-
-  public void editContent(String content) {
-    name.clear();
-    name.sendKeys(content);
-    Graphene.guardHttp(save).click();
-  }
-
-  public void addNewContent(String content) {
-    name.clear();
-    name.sendKeys(content);
-    Graphene.guardHttp(save).click();
-  }
+  */
 }

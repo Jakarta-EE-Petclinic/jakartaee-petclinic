@@ -60,6 +60,8 @@ import java.util.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Vet implements TwEntities<Vet> {
 
+  private static final long serialVersionUID = 6749793465861123385L;
+
   public final static String XML_ROOT_ELEMENT_NAME = "vet";
   public final static String TABLENAME = "vets";
   public final static String COL_ID = "id";
@@ -69,11 +71,12 @@ public class Vet implements TwEntities<Vet> {
   public final static String COL_VET_SPECIALTIES = "vet_specialties";
   public final static String COL_JOIN_VET_ID = "vet_id";
   public final static String COL_JOIN_SPECIALTY_ID = "specialty_id";
-  private static final long serialVersionUID = 6749793465861123385L;
+
   @Id
   @XmlElement(required = true)
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
+
   @XmlElement(required = true)
   @Column(name = COL_UUID, nullable = false, unique = true)
   @Field(
@@ -82,6 +85,7 @@ public class Vet implements TwEntities<Vet> {
       store = org.hibernate.search.annotations.Store.YES
   )
   private UUID uuid;
+
   @NotBlank
   @XmlElement(required = true)
   @Column(name = COL_FIRSTNAME, nullable = false)
@@ -91,6 +95,7 @@ public class Vet implements TwEntities<Vet> {
       store = org.hibernate.search.annotations.Store.YES
   )
   private String firstName;
+
   @NotBlank
   @XmlElement(required = true)
   @Column(name = COL_LASTNAME, nullable = false)
@@ -100,6 +105,7 @@ public class Vet implements TwEntities<Vet> {
       store = org.hibernate.search.annotations.Store.YES
   )
   private String lastName;
+
   @NotNull
   @XmlElementWrapper(name = "specialties", nillable = false, required = true)
   @XmlElement(name = "specialty")

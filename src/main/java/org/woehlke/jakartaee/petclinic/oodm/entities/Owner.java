@@ -73,10 +73,12 @@ public class Owner implements TwEntities<Owner> {
   public final static String COL_ZIPCODE = "zipcode";
   public final static String COL_PHONENUMBER = "phonenumber";
   private static final long serialVersionUID = 7995827646591579744L;
+
   @Id
   @XmlElement(required = true)
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
+
   @XmlElement(required = true)
   @Column(name = COL_UUID, nullable = false)
   @Field(
@@ -85,6 +87,7 @@ public class Owner implements TwEntities<Owner> {
       store = org.hibernate.search.annotations.Store.YES
   )
   private UUID uuid;
+
   @XmlElement(required = true)
   @Column(name = COL_FIRSTNAME, nullable = false)
   @NotEmpty
@@ -94,6 +97,7 @@ public class Owner implements TwEntities<Owner> {
       store = org.hibernate.search.annotations.Store.YES
   )
   private String firstName;
+
   @XmlElement(required = true)
   @Column(name = COL_LASTNAME, nullable = false)
   @NotEmpty
@@ -103,6 +107,7 @@ public class Owner implements TwEntities<Owner> {
       store = org.hibernate.search.annotations.Store.YES
   )
   private String lastName;
+
   @XmlElement(required = true)
   @Column(name = COL_ADDRESS)
   @NotEmpty
@@ -112,6 +117,7 @@ public class Owner implements TwEntities<Owner> {
       store = org.hibernate.search.annotations.Store.YES
   )
   private String address;
+
   @XmlElement(required = true)
   @Column(name = COL_HOUSENUMBER)
   @NotEmpty
@@ -121,6 +127,7 @@ public class Owner implements TwEntities<Owner> {
       store = org.hibernate.search.annotations.Store.YES
   )
   private String houseNumber;
+
   @XmlElement(required = true)
   @Column(name = COL_ADDRESS_INFO)
   @NotEmpty
@@ -130,6 +137,7 @@ public class Owner implements TwEntities<Owner> {
       store = org.hibernate.search.annotations.Store.YES
   )
   private String addressInfo;
+
   @XmlElement(required = true)
   @Column(name = COL_CITY, nullable = false)
   @NotEmpty
@@ -139,24 +147,26 @@ public class Owner implements TwEntities<Owner> {
       store = org.hibernate.search.annotations.Store.YES
   )
   private String city;
+
   @XmlElement(required = true)
   @Column(name = COL_ZIPCODE)
   @NotEmpty
   @Digits(fraction = 0, integer = 5)
-  @Pattern(regexp = "[0-9]{5}",
-      message = "{invalid.zipCode}")
+  @Pattern(regexp = "[0-9]{5}", message = "{invalid.zipCode}")
   @Field(
       index = org.hibernate.search.annotations.Index.YES,
       analyze = org.hibernate.search.annotations.Analyze.NO,
       store = org.hibernate.search.annotations.Store.YES
   )
   private String zipCode;
+
   @XmlElement(required = true)
   @Column(name = COL_PHONENUMBER)
   @NotEmpty
-  @Pattern(regexp = "\\+[0-9]{13}",
+  @Pattern(regexp = "\\+[1-9][0-9]{9,14}",
       message = "{invalid.phoneNumber}")
   private String phoneNumber;
+
   @IndexedEmbedded
   @XmlElementWrapper(name = "pets", nillable = false, required = true)
   @XmlElement(name = "pet")

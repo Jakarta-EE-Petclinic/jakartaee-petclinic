@@ -35,9 +35,9 @@ import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.Arquillia
 @RunWith(Arquillian.class)
 @RunAsClient
 @NotThreadSafe
-public class IntegrationTestConfig02VetView extends AbstractPrimePageTest {
+public class IntegrationTest02VetView extends AbstractPrimePageTest {
 
-  private static Logger log = LogManager.getLogger(IntegrationTestConfig02VetView.class.getName());
+  private static Logger log = LogManager.getLogger(IntegrationTest02VetView.class.getName());
 
   @Page
   private HomePage homePage;
@@ -66,6 +66,7 @@ public class IntegrationTestConfig02VetView extends AbstractPrimePageTest {
     homePage.assertTitle();
   }
 
+/*
   @Ignore
   @Test
   @InSequence(2)
@@ -186,10 +187,8 @@ public class IntegrationTestConfig02VetView extends AbstractPrimePageTest {
         "none"
     );
   }
-
-  /**
-   * Test for #24 new specialties not visible in veterinarians editmode
-   */
+*/
+/*
   @Ignore
   @Test
   @InSequence(8)
@@ -352,5 +351,5 @@ public class IntegrationTestConfig02VetView extends AbstractPrimePageTest {
     vetPage.clickSorterSpecialty();
     vetPage.assertSpecialtyReverseOrder();
   }
-
+  */
 }

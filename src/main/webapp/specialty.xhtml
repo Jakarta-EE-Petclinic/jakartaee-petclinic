@@ -59,8 +59,8 @@
 		<div class="container" id="contentContainer">
 
 			<ui:fragment rendered="#{specialtyViewFlow.flowStateNew}">
-				<h:form id="addNewSpecialtyForm" styleClass="addNewEntityForm">
-					<p:panel id="addNewSpecialtyPanel" styleClass="contentPanel"
+				<h:form id="addNewEntityForm" styleClass="addNewEntityForm">
+					<p:panel id="addNewEntityFormPanel" styleClass="contentPanel"
 					         header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.addNew']}">
 						<p:messages id="messagesOutNew" showDetail="true" closable="true">
 							<p:autoUpdate/>
@@ -102,9 +102,9 @@
 				</h:form>
 			</ui:fragment>
 			<ui:fragment rendered="#{specialtyViewFlow.flowStateEdit}">
-				<h:form id="editSpecialtyForm">
+				<h:form id="editEntityForm">
 					<p:panel
-									id="editSpecialtyFormPanel"
+									id="editEntityFormPanel"
 									styleClass="contentPanel"
 									header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.edit']}">
 						<p:messages id="messagesOutEdit" showDetail="true" closable="true">
@@ -148,8 +148,8 @@
 			</ui:fragment>
 
 			<ui:fragment rendered="#{specialtyViewFlow.flowStateDelete}">
-				<h:form id="deleteSpecialtyForm" styleClass="deleteEntityForm">
-					<p:panel id="deleteSpecialtyPanel" styleClass="contentPanel"
+				<h:form id="deleteEntityForm" styleClass="deleteEntityForm">
+					<p:panel id="deleteEntityFormPanel" styleClass="contentPanel"
 					         header="#{msg['org.woehlke.jakartaee.petclinic.frontend.web.entity.contentTitleHeadline.specialty.delete']}">
 						<p:messages id="messagesOutDelete" showDetail="true" closable="true">
 							<p:autoUpdate/>

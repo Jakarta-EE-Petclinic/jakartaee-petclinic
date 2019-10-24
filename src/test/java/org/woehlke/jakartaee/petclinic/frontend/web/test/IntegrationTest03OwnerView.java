@@ -20,7 +20,6 @@ import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.OwnerPage;
 import org.woehlke.jakartaee.petclinic.frontend.web.test.pages.PetTypePage;
 
 import java.io.File;
-import java.time.LocalDate;
 
 import static org.jboss.arquillian.graphene.Graphene.goTo;
 import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig.PROTOCOL;
@@ -37,9 +36,9 @@ import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.Arquillia
 @RunWith(Arquillian.class)
 @RunAsClient
 @NotThreadSafe
-public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest {
+public class IntegrationTest03OwnerView extends AbstractPrimePageTest {
 
-  private static Logger log = LogManager.getLogger(IntegrationTestConfig04OwnerView.class.getName());
+  private static Logger log = LogManager.getLogger(IntegrationTest03OwnerView.class.getName());
 
   @Page
   private HomePage homePage;
@@ -68,6 +67,7 @@ public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest {
     homePage.assertTitle();
   }
 
+  /*
   @Ignore
   @Test
   @InSequence(2)
@@ -258,4 +258,6 @@ public class IntegrationTestConfig04OwnerView extends AbstractPrimePageTest {
     ownerPage.setNewVisitContent(visitDate_16_01_2014, "get milk");
     ownerPage.assertFirstVisitToFirstPet(visitDate_16_01_2014, "get milk");
   }
+
+  */
 }
