@@ -186,3 +186,8 @@ https://github.com/openshift/origin-server/tree/master/cartridges/openshift-orig
 ## visit Spring Petclinic ##
 * https://github.com/spring-projects/spring-petclinic
 
+## DEV: mvn Profiles ##
+*
+ 
+
+

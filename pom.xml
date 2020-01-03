@@ -1217,7 +1217,7 @@
 		</profile>
 
 		<profile>
-			<id>it-default</id>
+			<id>default</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
@@ -2922,7 +2922,7 @@
 		</profile>
 
 		<profile>
-			<id>prepare-serialver</id>
+			<id>dev-prepare-serialver</id>
 			<build>
 				<finalName>petclinic</finalName>
 				<plugins>
@@ -2988,7 +2988,7 @@
 		</profile>
 
 		<profile>
-			<id>check-serialver</id>
+			<id>dev-check-serialver</id>
 			<build>
 				<finalName>petclinic</finalName>
 				<plugins>
@@ -3008,7 +3008,7 @@
 		</profile>
 
 		<profile>
-			<id>check-code-quality</id>
+			<id>dev-check-code-quality</id>
 			<build>
 				<finalName>petclinic</finalName>
 				<plugins>
