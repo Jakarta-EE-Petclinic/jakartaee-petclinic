@@ -2,14 +2,17 @@
 Jakarta EE 8 Petclinic -  a JSF and Jakarta EE Version of Spring Petclinic -  and Update from Java EE 7 Petclinic
 
 ## What is this?
-* JSF and Jakarta EE 8 Version of Spring Petclinic.
+* JSF and Jakarta EE 8 Version of [Spring Petclinic](https://github.com/spring-projects/spring-petclinic)
+* An Update of [Java EE 7 Petclinic](https://github.com/thomaswoehlke/javaee7-petclinic)
+
+## Where is it?
 * Github: [https://github.com/thomaswoehlke/jakartaee8-petclinic](https://github.com/thomaswoehlke/jakartaee8-petclinic)
 * Demo on OpenShift: [http://jakartaee8petclinic.rhcloud.com/](http://jakartaee8petclinic.rhcloud.com)
 * Blog: [http://thomas-woehlke.blogspot.de/2018/10/jakarta-ee-8-petclinic.html](http://thomas-woehlke.blogspot.de/2018/10/jakarta-ee-8-petclinic.html)
 
 ## Motivation
 * Some experimental Work with JSF, Jakarta EE 8 and Java EE 8. 
-* Comparison between JEE8 and Spring Frameworks.
+* Comparison between Java EE / Jakarta EE and Spring Frameworks.
 
 ## Spring Petclinic
 * Github: [https://github.com/spring-projects/spring-petclinic](https://github.com/spring-projects/spring-petclinic)
