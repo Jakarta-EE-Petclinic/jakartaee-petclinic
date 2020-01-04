@@ -21,11 +21,12 @@ function runManaged(){
   BROWSER_PROFILE=$1
   startWithMessage " RUN Managed Server"
   runManagedWildfly $BROWSER_PROFILE
+  #dockerOpenLiberty
   #runManagedLiberty $BROWSER_PROFILE
   #runManagedGlassfish $BROWSER_PROFILE
   #runManagedPayara $BROWSER_PROFILE
   doneAndReady
 }
 
-dockerOpenLiberty
+
 runManaged $BROWSER_PROFILE_CHROME
