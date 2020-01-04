@@ -707,6 +707,12 @@
 				<version>${version.jakartaee8.server.glassfish}</version>
 				<scope>test</scope>
 			</dependency>
+			<dependency>
+				<groupId>net.jcip</groupId>
+				<artifactId>jcip-annotations</artifactId>
+				<version>1.0</version>
+				<scope>test</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -1929,6 +1935,34 @@
 					<type>esa</type>
 					<scope>provided</scope>
 				</dependency>
+				<dependency>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-core</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-api</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-slf4j-impl</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-to-slf4j</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-web</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-appserver</artifactId>
+				</dependency>
 				<!-- shrinkwrap -->
 				<dependency>
 					<groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -1949,6 +1983,11 @@
 				<dependency>
 					<groupId>org.apache.cxf</groupId>
 					<artifactId>cxf-rt-rs-extension-providers</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>net.jcip</groupId>
+					<artifactId>jcip-annotations</artifactId>
 					<scope>test</scope>
 				</dependency>
 			</dependencies>
