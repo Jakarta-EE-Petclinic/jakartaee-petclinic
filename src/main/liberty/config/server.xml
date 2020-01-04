@@ -29,8 +29,8 @@
 	<httpEndpoint
 			id="defaultHttpEndpoint"
 			host="*"
-			httpPort="8080"
-			httpsPort="8443"/>
+			httpPort="9090"
+			httpsPort="9443"/>
 
 	<variable name="io_openliberty_guides_system_inMaintenance" value="false"/>
 
@@ -46,9 +46,9 @@
 	            transactional="true">
 		<properties serverName="localhost"
 		            portNumber="5432"
-		            databaseName="petclinic"
-		            user="java"
-		            password="javapwd"/>
+		            databaseName="jakartaee_petclinic"
+		            user="postgres"
+		            password="postgrespwd"/>
 	</dataSource>
 	<jdbcDriver id="postgresql-driver"
 	            javax.sql.XADataSource="org.postgresql.xa.PGXADataSource"
