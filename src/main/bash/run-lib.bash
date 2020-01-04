@@ -290,6 +290,21 @@ function testManagedLiberty(){
   echo "--------------------------------------------------------------------------"
 }
 
+function runManagedLibertyDev(){
+  BROWSER_PROFILE=$1
+  SRV_PROFILE=run-openliberty-dev
+  checkProfileDependencies $SRV_PROFILE $BROWSER_PROFILE
+  echo "--------------------------------------------------------------------------"
+  echo " run Managed Liberty DEV $BROWSER_PROFILE"
+  echo "--------------------------------------------------------------------------"
+  echo "$MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install liberty:dev"
+  echo "--------------------------------------------------------------------------"
+  $MAVEN -P$SRV_PROFILE -P$BROWSER_PROFILE clean install liberty:dev
+  echo "--------------------------------------------------------------------------"
+  echo " TODO: change msg: App Server is running, to Stop it run: ./server-managed-stop.sh"
+  echo "--------------------------------------------------------------------------"
+}
+
 function runManagedLiberty(){
   BROWSER_PROFILE=$1
   SRV_PROFILE=run-openliberty-managed
