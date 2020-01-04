@@ -1934,12 +1934,14 @@
 					<type>esa</type>
 					<scope>provided</scope>
 				</dependency>
+				<!--
 				<dependency>
 					<groupId>io.openliberty.features</groupId>
 					<artifactId>springBoot-2.0</artifactId>
 					<type>esa</type>
 					<scope>provided</scope>
 				</dependency>
+				-->
 				<dependency>
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
