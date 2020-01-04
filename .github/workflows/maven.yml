@@ -14,4 +14,4 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B -Pit-browser-chrome -Prun-wildfly-managed clean dependency:resolve dependency:sources dependency:resolve-plugins dependency:analyze dependency:analyze-dep-mgt dependency:analyze-duplicate dependency:tree package --file pom.xml
