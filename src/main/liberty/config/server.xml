@@ -4,9 +4,6 @@
 		<feature>javaee-8.0</feature>
 		<feature>json-1.0</feature>
 		<feature>sessionDatabase-1.0</feature>
-		<!--
-		<feature>servlet-3.1</feature>
-		-->
 	</featureManager>
 	<!-- end::features[] -->
 
@@ -38,7 +35,7 @@
 	<webApplication location="petclinic.war" contextRoot="/petclinic" />
 	-->
 
-	<!-- Postgres Database Configuration -->
+	<!-- Postgres Database Configuration - - >
 	<dataSource id="DefaultDataSource"
 	            jndiName="jdbc/jakartaeePetclinicDC"
 	            jdbcDriverRef="postgresql-driver"
@@ -58,6 +55,20 @@
 		<fileset id="PostgreSQLFileset"
 		         dir="lib"
 		         includes="postgresql.jar"/>
+	</library>
+ -->
+
+	<!-- Derby Database Configuration -->
+	<dataSource id="DefaultDataSource"
+	            jndiName="jdbc/jakartaeePetclinicDC">
+		<jdbcDriver libraryRef="MyJDBCLib"/>
+		<properties.derby.embedded databaseName="myDB" createDatabase="create"/>
+		<containerAuthData user="user1"  password="{xor}Oz0vKDtu" />
+	</dataSource>
+	<library id="MyJDBCLib">
+		<fileset id="MyJDBCLibFileset"
+		         dir="lib"
+		         includes="derby.jar"/>
 	</library>
 
 </server>
