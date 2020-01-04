@@ -720,6 +720,11 @@
 				<artifactId>derby</artifactId>
 				<version>${version.derby.driver}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>1.4.200</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -2067,6 +2072,15 @@
 											<outputDirectory>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp/usr/servers/${runtime.jakartaee8.server.openliberty.ServerName}/lib</outputDirectory>
 											<destFileName>derby.jar</destFileName>
 										</artifactItem>
+										<artifactItem>
+											<groupId>com.h2database</groupId>
+											<artifactId>h2</artifactId>
+											<version>1.4.200</version>
+											<type>jar</type>
+											<overWrite>true</overWrite>
+											<outputDirectory>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp/usr/servers/${runtime.jakartaee8.server.openliberty.ServerName}/lib</outputDirectory>
+											<destFileName>h2.jar</destFileName>
+										</artifactItem>
 									</artifactItems>
 								</configuration>
 							</execution>
@@ -2137,9 +2151,12 @@
 								<phase>prepare-package</phase>
 								-->
 								<goals>
+									<goal>clean</goal>
 									<goal>create</goal>
 									<goal>install-feature</goal>
+									<goal>deploy</goal>
 									<goal>configure-arquillian</goal>
+									<goal>display-url</goal>
 								</goals>
 								<configuration>
 									<features>

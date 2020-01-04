@@ -58,7 +58,7 @@
 	</library>
  -->
 
-	<!-- Derby Database Configuration -->
+	<!-- Derby Database Configuration - - >
 	<dataSource id="DefaultDataSource"
 	            jndiName="jdbc/jakartaeePetclinicDC">
 		<jdbcDriver libraryRef="MyJDBCLib"/>
@@ -69,6 +69,26 @@
 		<fileset id="MyJDBCLibFileset"
 		         dir="lib"
 		         includes="derby.jar"/>
+	</library>
+-->
+
+	<!-- H2 Database -->
+	<dataSource id="DefaultDataSource"
+	            jndiName="jdbc/jakartaeePetclinicDC"
+	            jdbcDriverRef="h2-driver"
+	            type="javax.sql.ConnectionPoolDataSource"
+	            transactional="true">
+		<properties.h2.embedded databaseName="testdb"  createDatabase="create"/>
+		<containerAuthData user="sa"  password="" />
+	</dataSource>
+	<jdbcDriver id="h2-driver"
+	            javax.sql.XADataSource="org.h2.jdbcx.JdbcDataSource"
+	            javax.sql.ConnectionPoolDataSource="org.h2.jdbcx.JdbcDataSource"
+	            libraryRef="h2-library"/>
+	<library id="h2-library">
+		<fileset id="H2Fileset"
+		         dir="lib"
+		         includes="h2.jar"/>
 	</library>
 
 </server>
