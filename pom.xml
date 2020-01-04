@@ -1904,6 +1904,11 @@
 
 		<profile>
 			<id>run-openliberty-managed</id>
+			<!--
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			-->
 			<dependencies>
 				<dependency>
 					<groupId>io.openliberty</groupId>
