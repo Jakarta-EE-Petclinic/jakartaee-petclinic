@@ -607,7 +607,7 @@
 			<dependency>
 				<groupId>com.puppycrawl.tools</groupId>
 				<artifactId>checkstyle</artifactId>
-				<version>8.18</version>
+				<version>8.29</version>
 			</dependency>
 			<!--
 		  TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28
@@ -3439,7 +3439,7 @@
 							<dependency>
 								<groupId>com.puppycrawl.tools</groupId>
 								<artifactId>checkstyle</artifactId>
-								<version>8.18</version>
+								<version>8.29</version>
 							</dependency>
 						</dependencies>
 					</plugin>
