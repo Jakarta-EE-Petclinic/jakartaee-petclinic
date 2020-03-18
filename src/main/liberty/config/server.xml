@@ -29,6 +29,8 @@
 			httpPort="9090"
 			httpsPort="9443"/>
 
+	<variable name="serverStartTimeout" value="200"/>
+
 	<variable name="io_openliberty_guides_system_inMaintenance" value="false"/>
 
 	<!--
