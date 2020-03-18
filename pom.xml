@@ -1243,6 +1243,11 @@
 			</activation>
 			<dependencies>
 				<dependency>
+					<groupId>jakarta.platform</groupId>
+					<artifactId>jakarta.jakartaee-api</artifactId>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
 					<groupId>io.openliberty</groupId>
 					<artifactId>openliberty-javaee8</artifactId>
 					<type>zip</type>
@@ -1611,9 +1616,13 @@
 								<packageFile>${project.build.directory}/${project.artifactId}.war</packageFile>
 								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
 								<timeout>300</timeout>
+								<startServerTimeout>240</startServerTimeout>
+								<stopServerTimeout>240</stopServerTimeout>
 								<wlp.user.dir>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp/usr</wlp.user.dir>
 							</bootstrapProperties>
 							<timeout>300</timeout>
+							<serverStartTimeout>300</serverStartTimeout>
+							<verifyTimeout>300</verifyTimeout>
 							<appsDirectory>apps</appsDirectory>
 							<stripVersion>true</stripVersion>
 							<installAppPackages>project</installAppPackages>

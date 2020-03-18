@@ -29,7 +29,7 @@
 			httpPort="9090"
 			httpsPort="9443"/>
 
-	<variable name="serverStartTimeout" value="200"/>
+	<serverCommands startServerTimeout="240" stopServerTimeout="240" />
 
 	<variable name="io_openliberty_guides_system_inMaintenance" value="false"/>
 
