@@ -4,7 +4,7 @@ import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.UUID;
 
-public interface TwEntities<T extends TwEntities> extends Serializable, Comparable<T> {
+public interface TwEntities extends Serializable {
 
   long serialVersionUID = -3378330831315654285L;
 

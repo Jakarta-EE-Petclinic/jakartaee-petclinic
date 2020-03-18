@@ -57,7 +57,7 @@ import java.util.*;
     }
 )
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Pet implements TwEntities<Pet> {
+public class Pet implements TwEntities, Comparable<Pet> {
 
   public final static String TABLENAME = "pets";
   public final static String COL_ID = "id";

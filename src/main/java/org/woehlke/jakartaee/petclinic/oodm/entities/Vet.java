@@ -58,7 +58,7 @@ import java.util.*;
     }
 )
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Vet implements TwEntities<Vet> {
+public class Vet implements TwEntities, Comparable<Vet> {
 
   private static final long serialVersionUID = 6749793465861123385L;
 

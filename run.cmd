@@ -37,8 +37,8 @@ goto:FINALE
 
 :SETUP
 cmd /c subst /D J:
-rem cmd /c subst J: "C:\Program Files\Java\jdk-13.0.2"
-cmd /c subst J: "C:\Program Files\Java\jdk1.8.0_241"
+cmd /c subst J: "C:\Program Files\Java\jdk-13.0.2"
+rem cmd /c subst J: "C:\Program Files\Java\jdk1.8.0_241"
 echo %JAVA_HOME%
 java -version
 javac -version

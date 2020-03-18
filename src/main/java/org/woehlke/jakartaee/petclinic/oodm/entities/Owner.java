@@ -59,7 +59,7 @@ import java.util.*;
     }
 )
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Owner implements TwEntities<Owner> {
+public class Owner implements TwEntities, Comparable<Owner> {
 
   public final static String TABLENAME = "owners";
   public final static String COL_ID = "id";

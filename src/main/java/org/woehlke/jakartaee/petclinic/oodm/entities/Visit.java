@@ -57,7 +57,7 @@ import java.util.UUID;
     }
 )
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Visit implements TwEntities<Visit> {
+public class Visit implements TwEntities, Comparable<Visit> {
 
   public final static String TABLENAME = "visits";
   public final static String COL_ID = "id";

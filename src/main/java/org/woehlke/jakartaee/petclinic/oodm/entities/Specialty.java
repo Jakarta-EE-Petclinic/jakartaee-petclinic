@@ -51,7 +51,7 @@ import java.util.UUID;
     }
 )
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Specialty implements TwEntities<Specialty> {
+public class Specialty implements TwEntities, Comparable<Specialty> {
 
   public final static String TABLENAME = "specialties";
   public final static String COL_ID = "id";
