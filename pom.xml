@@ -74,6 +74,7 @@
 		<!-- DB -->
 		<version.postgresql.driver>42.2.7</version.postgresql.driver>
 		<version.derby.driver>10.15.1.3</version.derby.driver>
+		<version.h2.database>1.4.200</version.h2.database>
 		<version.hibernate-search>5.10.5.Final</version.hibernate-search>
 		<!-- JSF -->
 		<version.primefaces>7.0</version.primefaces>
@@ -724,7 +725,7 @@
 			<dependency>
 				<groupId>com.h2database</groupId>
 				<artifactId>h2</artifactId>
-				<version>1.4.200</version>
+				<version>${version.h2.database}</version>
 			</dependency>
 		<!--- added on 18.03.2020 by tw -->
 		<dependency>
@@ -1056,14 +1057,12 @@
 					<artifactId>maven-enforcer-plugin</artifactId>
 					<version>${version.maven-enforcer-plugin}</version>
 				</plugin>
-
-
+				<!--
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-invoker-plugin</artifactId>
 					<version>${version.maven-invoker-plugin}</version>
 				</plugin>
-
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
@@ -1099,6 +1098,7 @@
 					<artifactId>maven-toolchains-plugin</artifactId>
 					<version>${version.maven-toolchains-plugin}</version>
 				</plugin>
+				-->
 			</plugins>
 		</pluginManagement>
 		<plugins>
@@ -1118,9 +1118,7 @@
 									<excludes>
 										<exclude>org.apache.maven.plugins:maven-verifier-plugin</exclude>
 									</excludes>
-									<message>Please consider using the maven-invoker-plugin
-										(http://maven.apache.org/plugins/maven-invoker-plugin/)!
-									</message>
+									<message>Please consider using the maven-invoker-plugin (http://maven.apache.org/plugins/maven-invoker-plugin/)!</message>
 								</bannedPlugins>
 								<requireMavenVersion>
 									<version>${version.maven}</version>
@@ -1197,43 +1195,6 @@
 				</dependency>
 			</dependencies>
 		</profile>
-
-		<!-- default -->
-		<!--
-		<profile>
-			<id>default</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<build>
-				<finalName>${project.artifactId}</finalName>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-dependency-plugin</artifactId>
-					</plugin>
-					<plugin>
-						<groupId>org.wildfly.plugins</groupId>
-						<artifactId>wildfly-maven-plugin</artifactId>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<skipTests>true</skipTests>
-						</configuration>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-failsafe-plugin</artifactId>
-						<configuration>
-							<skipTests>true</skipTests>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		-->
 
 		<!-- openliberty-dev-run -->
 		<profile>
@@ -1450,6 +1411,7 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-dependency-plugin</artifactId>
 						<executions>
+							<!--
 							<execution>
 								<id>unpack</id>
 								<phase>process-test-classes</phase>
@@ -1469,41 +1431,40 @@
 									</artifactItems>
 								</configuration>
 							</execution>
+							-->
 							<execution>
-								<id>copy-postgresql</id>
-								<phase>prepare-package</phase>
+								<id>copy-database-driver</id>
+								<phase>compile</phase>
 								<goals>
 									<goal>copy</goal>
 								</goals>
 								<configuration>
 									<artifactItems>
-										<!--
 										<artifactItem>
 											<groupId>org.postgresql</groupId>
 											<artifactId>postgresql</artifactId>
 											<version>${version.postgresql.driver}</version>
 											<type>jar</type>
 											<overWrite>true</overWrite>
-											<outputDirectory>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp/usr/servers/${runtime.jakartaee8.server.openliberty.ServerName}/lib</outputDirectory>
+											<outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/${runtime.jakartaee8.server.openliberty.ServerName}/lib</outputDirectory>
 											<destFileName>postgresql.jar</destFileName>
 										</artifactItem>
-										-->
 										<artifactItem>
 											<groupId>org.apache.derby</groupId>
 											<artifactId>derby</artifactId>
 											<version>${version.derby.driver}</version>
 											<type>jar</type>
 											<overWrite>true</overWrite>
-											<outputDirectory>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp/usr/servers/${runtime.jakartaee8.server.openliberty.ServerName}/lib</outputDirectory>
+											<outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/${runtime.jakartaee8.server.openliberty.ServerName}/lib</outputDirectory>
 											<destFileName>derby.jar</destFileName>
 										</artifactItem>
 										<artifactItem>
 											<groupId>com.h2database</groupId>
 											<artifactId>h2</artifactId>
-											<version>1.4.200</version>
+											<version>${version.h2.database}</version>
 											<type>jar</type>
 											<overWrite>true</overWrite>
-											<outputDirectory>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp/usr/servers/${runtime.jakartaee8.server.openliberty.ServerName}/lib</outputDirectory>
+											<outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/${runtime.jakartaee8.server.openliberty.ServerName}/lib</outputDirectory>
 											<destFileName>h2.jar</destFileName>
 										</artifactItem>
 									</artifactItems>
@@ -1571,7 +1532,7 @@
 						<executions>
 							<execution>
 								<id>war</id>
-								<phase>process-test-classes</phase>
+								<phase>prepare-package</phase>
 								<goals>
 									<goal>war</goal>
 								</goals>
@@ -1583,50 +1544,61 @@
 						<artifactId>liberty-maven-plugin</artifactId>
 						<extensions>true</extensions>
 						<configuration>
-							<assemblyArtifact>
+							<runtimeArtifact>
 								<groupId>io.openliberty</groupId>
 								<artifactId>openliberty-javaee8</artifactId>
 								<version>${version.jakartaee8.server.openliberty}</version>
 								<type>zip</type>
-							</assemblyArtifact>
-							<installDirectory>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</installDirectory>
+							</runtimeArtifact>
+							<runtimeInstallDirectory>${project.build.directory}/liberty</runtimeInstallDirectory>
+							<refresh>true</refresh>
+							<!--
+							<runtimeInstallDirectory>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</runtimeInstallDirectory>
+							-->
 							<!--
 							<serverHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</serverHome>
 							-->
 							<serverName>${runtime.jakartaee8.server.openliberty.ServerName}</serverName>
+							<serverStartTimeout>300</serverStartTimeout>
+							<verifyTimeout>300</verifyTimeout>
+							<skipTests>true</skipTests>
+							<serverXmlFile>${project.basedir}/src/main/liberty/config/server-embedded-db.xml</serverXmlFile>
+							<!--
 							<features>
-								<acceptLicense>true</acceptLicense>
+								<acceptLicense>true</acceptLicense
 								<feature>javaee-8.0</feature>
 								<feature>json-1.0</feature>
 								<feature>sessionDatabase-1.0</feature>
-								<!--
-								<feature>springBoot-2.0</feature>
-								-->
 							</features>
+							-->
+							<!--
 							<configFile>src/main/liberty/config/server.xml</configFile>
+							<serverXmlFile></serverXmlFile>
+							-->
 							<looseApplication>true</looseApplication>
 							<!--
 							<packageFile>${project.build.directory}/${project.artifactId}.war</packageFile>
 							-->
 							<include>usr</include>
+							<!--
 							<bootstrapProperties>
 								<default.http.port>8080</default.http.port>
 								<default.https.port>8443</default.https.port>
 								<app.context.root>${project.artifactId}</app.context.root>
 								<packageFile>${project.build.directory}/${project.artifactId}.war</packageFile>
 								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
+								<wlp.user.dir>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp/usr</wlp.user.dir>
 								<timeout>300</timeout>
 								<startServerTimeout>240</startServerTimeout>
 								<stopServerTimeout>240</stopServerTimeout>
-								<wlp.user.dir>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp/usr</wlp.user.dir>
 							</bootstrapProperties>
-							<timeout>300</timeout>
-							<serverStartTimeout>300</serverStartTimeout>
-							<verifyTimeout>300</verifyTimeout>
+							-->
+							<!--
 							<appsDirectory>apps</appsDirectory>
 							<stripVersion>true</stripVersion>
+							-->
 							<installAppPackages>project</installAppPackages>
-							<refresh>true</refresh>
+
 							<sourceDirectoryString>${project.basedir}/src/main/webapp</sourceDirectoryString>
 							<!--
 							<appArchive>${project.build.directory}/${project.artifactId}.war</appArchive>
@@ -1641,13 +1613,11 @@
 							<skipIfArquillianXmlExists>false</skipIfArquillianXmlExists>
 							<!-- end configure-arquillian -->
 						</configuration>
+						<!--
 						<executions>
 							<execution>
 								<id>install-server</id>
 								<phase>process-test-classes</phase>
-								<!--
-								<phase>prepare-package</phase>
-								-->
 								<goals>
 									<goal>clean</goal>
 									<goal>create</goal>
@@ -1662,13 +1632,11 @@
 										<feature>javaee-8.0</feature>
 										<feature>json-1.0</feature>
 										<feature>sessionDatabase-1.0</feature>
-										<!--
-										<feature>springBoot-2.0</feature>
-										-->
 									</features>
 								</configuration>
 							</execution>
 						</executions>
+						-->
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
