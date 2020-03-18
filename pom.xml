@@ -3718,7 +3718,7 @@
 						<artifactId>maven-dependency-plugin</artifactId>
 						<executions>
 							<execution>
-								<id>src-dependencies</id>
+								<id>id-post-clean</id>
 								<phase>post-clean</phase>
 								<goals>
 									<goal>purge-local-repository</goal>
@@ -3732,6 +3732,7 @@
 									<goal>properties</goal>
 									<goal>copy-dependencies</goal>
 									<goal>unpack-dependencies</goal>
+									<goal>tree</goal>
 								</goals>
 								<configuration>
 									<classifier>sources</classifier>
