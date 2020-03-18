@@ -1291,7 +1291,7 @@
 			</dependencies>
 			<build>
 				<finalName>${project.artifactId}</finalName>
-				<defaultGoal>clean install docker-compose:up liberty:dev</defaultGoal>
+				<defaultGoal>clean install docker-compose:up liberty:dev docker-compose:down</defaultGoal>
 				<pluginManagement>
 					<plugins>
 						<plugin>
@@ -1423,6 +1423,10 @@
 						<configuration>
 							<composeFile>${project.basedir}/docker-compose.yml</composeFile>
 							<verbose>true</verbose>
+							<removeImages>true</removeImages>
+							<removeVolumes>true</removeVolumes>
+							<ignorePullFailures>true</ignorePullFailures>
+							<detachedMode>true</detachedMode>
 						</configuration>
 					</plugin>
 					<plugin>
@@ -1467,6 +1471,7 @@
 											<outputDirectory>${project.basedir}/src/main/liberty/config</outputDirectory>
 											<destFileName>postgresql.jar</destFileName>
 										</artifactItem>
+										<!--
 										<artifactItem>
 											<groupId>org.apache.derby</groupId>
 											<artifactId>derby</artifactId>
@@ -1484,6 +1489,7 @@
 											<outputDirectory>${project.basedir}/src/main/liberty/config</outputDirectory>
 											<destFileName>h2.jar</destFileName>
 										</artifactItem>
+										-->
 									</artifactItems>
 								</configuration>
 							</execution>
