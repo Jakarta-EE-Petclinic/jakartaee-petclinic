@@ -2,79 +2,64 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.woehlke</groupId>
-	<artifactId>jakartaee-petclinic</artifactId>
+	<groupId>org.woehlke.jakartaee</groupId>
+	<artifactId>petclinic</artifactId>
 	<packaging>war</packaging>
 	<version>8.0.0-SNAPSHOT</version>
 
 	<name>Jakarta EE Petclinic</name>
-
-	<description>Jakarta EE 8 Petclinic - a JSF and Jakarta EE Version of Spring Petclinic - and Update from Java EE 7
-		Petclinic
-	</description>
-
-	<url>https://github.com/thomaswoehlke/jakartaee-petclinic</url>
-
+	<description>A JSF and Jakarta EE Version of Spring Petclinic and Update from Java EE 7 Petclinic.</description>
+	<url>https://jakarta-ee-petclinic.github.io/jakartaee-petclinic/</url>
 	<organization>
-		<name>Thomas Woehlke</name>
-		<url>https://github.com/thomaswoehlke</url>
+		<name>Jakarta-EE-Petclinic</name>
+		<url>https://github.com/Jakarta-EE-Petclinic</url>
 	</organization>
-
 	<inceptionYear>2014</inceptionYear>
+
 	<scm>
-		<url>https://github.com/thomaswoehlke/jakartaee8-petclinic.git</url>
-		<connection>scm:git:https://github.com/thomaswoehlke/jakartaee8-petclinic.git</connection>
-		<developerConnection>scm:git:https://github.com/thomaswoehlke/jakartaee8-petclinic.git</developerConnection>
+		<url>https://github.com/Jakarta-EE-Petclinic/jakartaee-petclinic.git</url>
+		<connection>scm:git:git@github.com:Jakarta-EE-Petclinic/jakartaee-petclinic.git</connection>
+		<developerConnection>scm:git:git@github.com:Jakarta-EE-Petclinic/jakartaee-petclinic.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
+
 	<issueManagement>
-		<url>https://github.com/thomaswoehlke/jakartaee-petclinic/issues</url>
-		<system>GitHub Issues</system>
+		<url>https://github.com/Jakarta-EE-Petclinic/jakartaee-petclinic/issues</url>
+		<system>GitHub</system>
 	</issueManagement>
 	<distributionManagement>
 		<site>
 			<id>localhost</id>
-			<url>file:///opt/local/apache2/htdocs/p/jakartaee-petclinic</url>
+			<url>file:///${user.home}/j/apache2/htdocs/p/jakartaee-petclinic</url>
 		</site>
 	</distributionManagement>
 
 	<properties>
-		<app.name>petclinic</app.name>
+		<java.version>1.8</java.version>
+		<version.java>1.8</version.java>
+		<version.maven>3.3.9</version.maven>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<!-- Java EE and Jakarta EE Application Server: Wildfly, OpenLiberty, Glassfish -->
-		<version.jakartaee8.server.wildfly.arquillian>2.2.0.Final</version.jakartaee8.server.wildfly.arquillian>
-		<version.jakartaee8.server.openliberty.arquillian>1.0.6</version.jakartaee8.server.openliberty.arquillian>
-		<!-- Java EE and Jakarta EE Application Server: Wildfly, OpenLiberty, Glassfish -->
-		<version.jakartaee8.server.wildfly>17.0.1.Final</version.jakartaee8.server.wildfly>
-		<version.jakartaee8.server.openliberty>19.0.0.12</version.jakartaee8.server.openliberty>
-		<version.jakartaee8.server.glassfish>5.1.0</version.jakartaee8.server.glassfish>
-		<version.jakartaee8.server.payara>5.193.1</version.jakartaee8.server.payara>
-		<!-- Java EE and Jakarta EE Application Server: Wildfly, OpenLiberty, Glassfish -->
-		<runtime.jakartaee8.server.wildfly.remote>${user.home}/j/srv/wildfly-${version.jakartaee8.server.wildfly}</runtime.jakartaee8.server.wildfly.remote>
-		<runtime.jakartaee8.server.openliberty.remote>${user.home}/j/srv/openliberty-${version.jakartaee8.server.openliberty}/wlp</runtime.jakartaee8.server.openliberty.remote>
-		<runtime.jakartaee8.server.glassfish.remote>${user.home}/j/srv/glassfish-${version.jakartaee8.server.glassfish}</runtime.jakartaee8.server.glassfish.remote>
-		<runtime.jakartaee8.server.payara.remote>${user.home}/j/srv/payara-{version.jakartaee8.server.payara}/payara5</runtime.jakartaee8.server.payara.remote>
-		<!-- Java EE and Jakarta EE Application Server: Wildfly, OpenLiberty, Glassfish -->
-		<runtime.jakartaee8.server.openliberty.ServerName>petclinicServer</runtime.jakartaee8.server.openliberty.ServerName>
-		<!-- Config -->
-		<failOnMissingWebXml>false</failOnMissingWebXml>
-		<skipIntegrationTests>false</skipIntegrationTests>
-		<webdriverBrowser>chrome</webdriverBrowser>
-		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-		<!-- Versions -->
-		<version.maven>3.3.9</version.maven>
-		<version.java>1.8</version.java>
+		<!--- Build Infrastructure -->
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<!-- general -->
+		<version.log4j>2.12.1</version.log4j>
+		<version.commons-logging>1.2</version.commons-logging>
+
+		<version.guava>27.0.1-jre</version.guava>
+		<!-- jakartaee -->
 		<version.jakartaee-api>8.0.0</version.jakartaee-api>
 		<version.jakarta-persistence-api>2.2.3</version.jakarta-persistence-api>
 		<version.jakarta.messaging-api>2.0.3</version.jakarta.messaging-api>
 		<version.jakarta.enterprise.deploy-api>1.7.2</version.jakarta.enterprise.deploy-api>
 		<version.jakarta.xml.registry-api>1.0.10</version.jakarta.xml.registry-api>
 		<version.jakarta.xml.rpc-api>1.1.4</version.jakarta.xml.rpc-api>
+		<!-- Testing -->
 		<version.junit>4.12</version.junit>
 		<version.dbunit>2.5.3</version.dbunit>
+		<!-- version.selenium>3.7.1</version.selenium -->
+		<version.selenium>3.141.59</version.selenium>
 		<version.arquillian_core>1.4.1.Final</version.arquillian_core>
 		<version.arquillian_drone>2.5.1</version.arquillian_drone>
 		<version.arquillian_universe>1.2.0.2</version.arquillian_universe>
@@ -85,22 +70,22 @@
 		<version.shrinkwrap>1.2.6</version.shrinkwrap>
 		<version.shrinkwrap_descriptors>2.0.0</version.shrinkwrap_descriptors>
 		<version.shrinkwrap_resolvers>3.1.3</version.shrinkwrap_resolvers>
-		<!-- version.selenium>3.7.1</version.selenium -->
-		<version.selenium>3.141.59</version.selenium>
-		<version.guava>27.0.1-jre</version.guava>
-		<version.log4j>2.12.1</version.log4j>
+		<!-- DB -->
+		<version.postgresql.driver>42.2.7</version.postgresql.driver>
+		<version.derby.driver>10.15.1.3</version.derby.driver>
+		<version.hibernate-search>5.10.5.Final</version.hibernate-search>
+		<!-- JSF -->
 		<version.primefaces>7.0</version.primefaces>
 		<version.primefaces.arquillian>7.0.0</version.primefaces.arquillian>
-		<version.hibernate-search>5.10.5.Final</version.hibernate-search>
-		<version.org.apache.cxf>3.3.2</version.org.apache.cxf>
+		<!-- Frontend -->
 		<version.webjars.jquery>3.4.1</version.webjars.jquery>
 		<version.webjars.bootstrap>4.3.1</version.webjars.bootstrap>
 		<version.webjars.font-awesome>5.10.1</version.webjars.font-awesome>
-		<version.postgresql.driver>42.2.7</version.postgresql.driver>
-		<version.derby.driver>10.15.1.3</version.derby.driver>
-		<version.maven-pmd-plugin>3.10.0</version.maven-pmd-plugin>
+		<!-- API -->
+		<version.org.apache.cxf>3.3.2</version.org.apache.cxf>
+		<!-- Plugin Versions -->
 		<version.maven-pmd-plugin.version.pmd>6.15.0</version.maven-pmd-plugin.version.pmd>
-		<version.commons-logging>1.2</version.commons-logging>
+		<version.maven-pmd-plugin>3.10.0</version.maven-pmd-plugin>
 		<version.maven-enforcer-plugin>3.0.0-M2</version.maven-enforcer-plugin>
 		<version.maven-dependency-plugin>3.1.1</version.maven-dependency-plugin>
 		<version.maven-clean-plugin>3.1.0</version.maven-clean-plugin>
@@ -121,9 +106,24 @@
 		<version.maven-help-plugins>3.2.0</version.maven-help-plugins>
 		<version.maven-toolchains-plugin>3.0.0</version.maven-toolchains-plugin>
 		<version.maven-checkstyle-plugin>2.17</version.maven-checkstyle-plugin>
-		<version.wildfly-maven-plugin>2.0.1.Final</version.wildfly-maven-plugin>
+		<!-- Java EE and Jakarta EE Application Server: Wildfly, OpenLiberty, Glassfish -->
+		<version.jakartaee8.server.wildfly.arquillian>2.2.0.Final</version.jakartaee8.server.wildfly.arquillian>
+		<version.jakartaee8.server.openliberty.arquillian>1.0.6</version.jakartaee8.server.openliberty.arquillian>
+		<!-- OpenLiberty -->
+		<version.jakartaee8.server.openliberty>19.0.0.12</version.jakartaee8.server.openliberty>
+		<runtime.jakartaee8.server.openliberty.remote>${user.home}/j/srv/openliberty-${version.jakartaee8.server.openliberty}/wlp</runtime.jakartaee8.server.openliberty.remote>
+		<runtime.jakartaee8.server.openliberty.ServerName>petclinicServer</runtime.jakartaee8.server.openliberty.ServerName>
 		<version.liberty-maven-plugin>3.0.M1</version.liberty-maven-plugin>
 		<version.liberty-maven-plugin.dev>3.1</version.liberty-maven-plugin.dev>
+		<!-- Wildfly -->
+		<version.jakartaee8.server.wildfly>17.0.1.Final</version.jakartaee8.server.wildfly>
+		<runtime.jakartaee8.server.wildfly.remote>${user.home}/j/srv/wildfly-${version.jakartaee8.server.wildfly}</runtime.jakartaee8.server.wildfly.remote>
+		<version.wildfly-maven-plugin>2.0.1.Final</version.wildfly-maven-plugin>
+		<!-- Config -->
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+		<skipIntegrationTests>false</skipIntegrationTests>
+		<webdriverBrowser>chrome</webdriverBrowser>
+		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
 	</properties>
 
 	<repositories>
@@ -334,7 +334,6 @@
 				<version>${version.jakartaee8.server.openliberty.arquillian}</version>
 				<scope>test</scope>
 			</dependency>
-			<!-- TODO: Jakarta EE Runtime: Glassfish -->
 			<!-- Integration Testing with Arquillian -->
 			<dependency>
 				<groupId>org.apache.maven</groupId>
@@ -609,8 +608,8 @@
 				<artifactId>checkstyle</artifactId>
 				<version>8.29</version>
 			</dependency>
+			<!--  TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28 -->
 			<!--
-		  TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28
 		  <dependency>
 		    <groupId>org.jboss.arquillian.selenium</groupId>
 			  <artifactId>selenium-bom</artifactId>
@@ -992,7 +991,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>petclinic</finalName>
+		<finalName>${final.name}</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -1167,9 +1166,6 @@
 								<requireJavaVersion>
 									<version>${version.java}</version>
 								</requireJavaVersion>
-								<requireOS>
-									<family>unix</family>
-								</requireOS>
 							</rules>
 						</configuration>
 					</execution>
@@ -1181,7 +1177,7 @@
 	<profiles>
 
 		<profile>
-			<id>it-browser-chrome</id>
+			<id>browser-chrome</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
@@ -1198,7 +1194,7 @@
 		</profile>
 
 		<profile>
-			<id>it-browser-firefox</id>
+			<id>browser-firefox</id>
 			<properties>
 				<webdriverBrowser>firefox</webdriverBrowser>
 			</properties>
@@ -1212,7 +1208,7 @@
 		</profile>
 
 		<profile>
-			<id>it-browser-safari</id>
+			<id>browser-safari</id>
 			<properties>
 				<webdriverBrowser>safari</webdriverBrowser>
 			</properties>
@@ -1226,7 +1222,7 @@
 		</profile>
 
 		<profile>
-			<id>it-browser-opera</id>
+			<id>browser-opera</id>
 			<properties>
 				<webdriverBrowser>opera</webdriverBrowser>
 			</properties>
@@ -1245,7 +1241,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<build>
-				<finalName>petclinic</finalName>
+				<finalName>${final.name}</finalName>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -1274,7 +1270,7 @@
 		</profile>
 
 		<profile>
-			<id>run-wildfly-managed</id>
+			<id>wildfly-managed-run</id>
 			<properties>
 				<skipIntegrationTests>true</skipIntegrationTests>
 			</properties>
@@ -1432,7 +1428,7 @@
 				</dependency>
 			</dependencies>
 			<build>
-				<finalName>petclinic</finalName>
+				<finalName>${final.name}</finalName>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -1521,7 +1517,7 @@
 		</profile>
 
 		<profile>
-			<id>test-wildfly-managed</id>
+			<id>wildfly-managed-test</id>
 			<properties>
 				<skipIntegrationTests>false</skipIntegrationTests>
 				<webdriverBrowser>chrome</webdriverBrowser>
@@ -1680,7 +1676,7 @@
 				</dependency>
 			</dependencies>
 			<build>
-				<finalName>petclinic</finalName>
+				<finalName>${project.artifactId}</finalName>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -1711,7 +1707,7 @@
 						<version>3.2.3</version>
 						<configuration>
 							<warSourceDirectory>src/main/webapp</warSourceDirectory>
-							<warName>${project.build.finalName}</warName>
+							<warName>${project.artifactId}</warName>
 							<failOnMissingWebXml>false</failOnMissingWebXml>
 							<packagingExcludes>pom.xml</packagingExcludes>
 						</configuration>
@@ -1920,7 +1916,7 @@
 		</profile>
 
 		<profile>
-			<id>run-openliberty-dev</id>
+			<id>openliberty-dev-run</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
@@ -2002,7 +1998,7 @@
 				</dependency>
 			</dependencies>
 			<build>
-				<finalName>petclinic</finalName>
+				<finalName>${project.artifactId}</finalName>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -2115,13 +2111,13 @@
 							</features>
 							<configFile>src/main/liberty/config/server.xml</configFile>
 							<looseApplication>true</looseApplication>
-							<packageFile>${project.build.directory}/${app.name}.war</packageFile>
+							<packageFile>${project.build.directory}/${project.artifactId}.war</packageFile>
 							<include>usr</include>
 							<bootstrapProperties>
 								<default.http.port>8080</default.http.port>
 								<default.https.port>8443</default.https.port>
-								<app.context.root>${app.name}</app.context.root>
-								<packageFile>${project.build.directory}/${app.name}.war</packageFile>
+								<app.context.root>${project.artifactId}</app.context.root>
+								<packageFile>${project.build.directory}/${project.artifactId}.war</packageFile>
 								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
 								<timeout>300</timeout>
 								<wlp.user.dir>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp/usr</wlp.user.dir>
@@ -2132,7 +2128,7 @@
 							<installAppPackages>project</installAppPackages>
 							<refresh>true</refresh>
 							<sourceDirectoryString>${project.basedir}/src/main/webapp</sourceDirectoryString>
-							<appArchive>${project.build.directory}/${app.name}.war</appArchive>
+							<appArchive>${project.build.directory}/${project.artifactId}.war</appArchive>
 							<skipTestServer>false</skipTestServer>
 							<!-- begin configure-arquillian -->
 							<arquillianProperties>
@@ -2195,7 +2191,7 @@
 							<systemPropertyVariables>
 								<webdriverBrowser>chrome</webdriverBrowser>
 								<liberty.test.port>9080</liberty.test.port>
-								<war.name>${app.name}</war.name>
+								<war.name>${project.artifactId}</war.name>
 								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
 								<wlp.home>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlp.home>
 								<OPENLIBERTY_HOME>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</OPENLIBERTY_HOME>
@@ -2226,7 +2222,7 @@
 							<systemPropertyVariables>
 								<webdriverBrowser>chrome</webdriverBrowser>
 								<liberty.test.port>9080</liberty.test.port>
-								<war.name>${app.name}</war.name>
+								<war.name>${project.artifactId}</war.name>
 								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
 								<wlp.home>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlp.home>
 								<OPENLIBERTY_HOME>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</OPENLIBERTY_HOME>
@@ -2238,12 +2234,7 @@
 		</profile>
 
 		<profile>
-			<id>run-openliberty-managed</id>
-			<!--
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			-->
+			<id>openliberty-managed-run</id>
 			<dependencies>
 				<dependency>
 					<groupId>io.openliberty</groupId>
@@ -2336,7 +2327,7 @@
 				</dependency>
 			</dependencies>
 			<build>
-				<finalName>petclinic</finalName>
+				<finalName>${project.artifactId}</finalName>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -2423,13 +2414,13 @@
 							</features>
 							<configFile>src/main/liberty/config/server.xml</configFile>
 							<looseApplication>true</looseApplication>
-							<packageFile>${project.build.directory}/${app.name}.war</packageFile>
+							<packageFile>${project.build.directory}/${project.artifactId}.war</packageFile>
 							<include>usr</include>
 							<bootstrapProperties>
 								<default.http.port>8080</default.http.port>
 								<default.https.port>8443</default.https.port>
-								<app.context.root>${app.name}</app.context.root>
-								<packageFile>${project.build.directory}/${app.name}.war</packageFile>
+								<app.context.root>${project.artifactId}</app.context.root>
+								<packageFile>${project.build.directory}/${project.artifactId}.war</packageFile>
 								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
 								<timeout>300</timeout>
 							</bootstrapProperties>
@@ -2439,7 +2430,7 @@
 							<installAppPackages>project</installAppPackages>
 							<refresh>true</refresh>
 							<sourceDirectoryString>${project.basedir}/src/main/webapp</sourceDirectoryString>
-							<appArchive>${project.build.directory}/${app.name}.war</appArchive>
+							<appArchive>${project.build.directory}/${project.artifactId}.war</appArchive>
 							<skipTestServer>false</skipTestServer>
 							<!-- begin configure-arquillian -->
 							<arquillianProperties>
@@ -2493,7 +2484,7 @@
 		</profile>
 
 		<profile>
-			<id>test-openliberty-managed</id>
+			<id>openliberty-managed-test</id>
 			<properties>
 				<skipIntegrationTests>false</skipIntegrationTests>
 				<webdriverBrowser>chrome</webdriverBrowser>
@@ -2686,7 +2677,7 @@
 				</dependency>
 			</dependencies>
 			<build>
-				<finalName>petclinic</finalName>
+				<finalName>${project.artifactId}</finalName>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -2773,13 +2764,13 @@
 							</features>
 							<configFile>src/main/liberty/config/server.xml</configFile>
 							<looseApplication>true</looseApplication>
-							<packageFile>${project.build.directory}/${app.name}.war</packageFile>
+							<packageFile>${project.build.directory}/${project.artifactId}.war</packageFile>
 							<include>usr</include>
 							<bootstrapProperties>
 								<default.http.port>8080</default.http.port>
 								<default.https.port>8443</default.https.port>
-								<app.context.root>${app.name}</app.context.root>
-								<packageFile>${project.build.directory}/${app.name}.war</packageFile>
+								<app.context.root>${project.artifactId}</app.context.root>
+								<packageFile>${project.build.directory}/${project.artifactId}.war</packageFile>
 								<postgresql.jar.dir>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp/usr/servers/${runtime.jakartaee8.server.openliberty.ServerName}/lib</postgresql.jar.dir>
 								<postgresql.jar.file>postgresql.jar</postgresql.jar.file>
 								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
@@ -2789,7 +2780,7 @@
 							<installAppPackages>project</installAppPackages>
 							<refresh>true</refresh>
 							<sourceDirectoryString>${project.basedir}/src/main/webapp</sourceDirectoryString>
-							<appArchive>${project.build.directory}/${app.name}.war</appArchive>
+							<appArchive>${project.build.directory}/${project.artifactId}.war</appArchive>
 							<skipTestServer>false</skipTestServer>
 							<!-- begin configure-arquillian -->
 							<arquillianProperties>
@@ -2844,7 +2835,7 @@
 							<systemPropertyVariables>
 								<webdriverBrowser>chrome</webdriverBrowser>
 								<liberty.test.port>9080</liberty.test.port>
-								<war.name>${app.name}</war.name>
+								<war.name>${project.artifactId}</war.name>
 								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
 								<wlp.home>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlp.home>
 								<OPENLIBERTY_HOME>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</OPENLIBERTY_HOME>
@@ -2875,7 +2866,7 @@
 							<systemPropertyVariables>
 								<webdriverBrowser>chrome</webdriverBrowser>
 								<liberty.test.port>9080</liberty.test.port>
-								<war.name>${app.name}</war.name>
+								<war.name>${project.artifactId}</war.name>
 								<wlpHome>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlpHome>
 								<wlp.home>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</wlp.home>
 								<OPENLIBERTY_HOME>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</OPENLIBERTY_HOME>
@@ -2887,21 +2878,9 @@
 		</profile>
 
 		<profile>
-			<id>run-glassfish-managed</id>
-		</profile>
-
-		<profile>
-		<id>test-glassfish-managed</id>
-		</profile>
-
-		<profile>
-			<id>run-payara-managed</id>
-		</profile>
-
-		<profile>
-		<id>run-wildfly-remote</id>
+		<id>wildfly-remote-run</id>
 		<build>
-			<finalName>petclinic</finalName>
+			<finalName>${project.artifactId}</finalName>
 			<plugins>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -2930,7 +2909,7 @@
 		</profile>
 
 		<profile>
-			<id>test-wildfly-remote</id>
+			<id>wildfly-remote-test</id>
 			<dependencies>
 				<dependency>
 					<groupId>org.wildfly.arquillian</groupId>
@@ -2962,7 +2941,7 @@
 				-->
 			</dependencies>
 			<build>
-				<finalName>petclinic</finalName>
+				<finalName>${project.artifactId}</finalName>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -2999,115 +2978,9 @@
 		</profile>
 
 		<profile>
-			<id>run-glassfish-remote</id>
-			<dependencies>
-				<dependency>
-					<groupId>org.glassfish.main.extras</groupId>
-					<artifactId>glassfish-embedded-all</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.glassfish.main.extras</groupId>
-					<artifactId>javaee-pom</artifactId>
-					<type>pom</type>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.glassfish.main.extras</groupId>
-					<artifactId>javaee</artifactId>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
+			<id>openliberty-remote-run</id>
 			<build>
-				<finalName>petclinic</finalName>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-dependency-plugin</artifactId>
-					</plugin>
-					<!-- TODO: glassfish plugins -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<skipTests>true</skipTests>
-						</configuration>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-failsafe-plugin</artifactId>
-						<configuration>
-							<skipTests>true</skipTests>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<profile>
-			<id>test-glassfish-remote</id>
-			<dependencies>
-				<dependency>
-					<groupId>org.glassfish.main.extras</groupId>
-					<artifactId>glassfish-embedded-all</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.glassfish.main.extras</groupId>
-					<artifactId>javaee-pom</artifactId>
-					<type>pom</type>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.glassfish.main.extras</groupId>
-					<artifactId>javaee</artifactId>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-			<build>
-				<finalName>petclinic</finalName>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-dependency-plugin</artifactId>
-					</plugin>
-					<!--
-					TODO: plugin for glassfish
-					<plugin>
-						<groupId>org.wildfly.plugins</groupId>
-						<artifactId>wildfly-maven-plugin</artifactId>
-					</plugin>
-					-->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<skipTests>false</skipTests>
-						</configuration>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-failsafe-plugin</artifactId>
-						<executions>
-							<execution>
-								<goals>
-									<goal>integration-test</goal>
-									<goal>verify</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<skipTests>false</skipTests>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<profile>
-			<id>run-openliberty-remote</id>
-			<build>
-				<finalName>petclinic</finalName>
+				<finalName>${project.artifactId}</finalName>
 				<plugins>
 					<plugin>
 						<groupId>net.wasdev.wlp.maven.plugins</groupId>
@@ -3119,14 +2992,14 @@
 							<serverName>defaultServer</serverName>
 							<configFile>src/main/liberty/config/server.xml</configFile>
 							<looseApplication>true</looseApplication>
-							<packageFile>${project.build.directory}/${app.name}.war</packageFile>
+							<packageFile>${project.build.directory}/${project.artifactId}.war</packageFile>
 							<include>usr</include>
 							<appsDirectory>apps</appsDirectory>
 							<stripVersion>true</stripVersion>
 							<installAppPackages>project</installAppPackages>
 							<refresh>true</refresh>
 							<sourceDirectoryString>${project.basedir}/src/main/webapp</sourceDirectoryString>
-							<appArchive>${project.build.directory}/${app.name}.war</appArchive>
+							<appArchive>${project.build.directory}/${project.artifactId}.war</appArchive>
 							<skipTestServer>true</skipTestServer>
 							<arquillianProperties>
 								<defaultProtocol>Servlet 3.1</defaultProtocol>
@@ -3158,7 +3031,7 @@
 		</profile>
 
 		<profile>
-			<id>test-openliberty-remote</id>
+			<id>openliberty-remote-test</id>
 			<dependencies>
 				<dependency>
 					<groupId>io.openliberty.arquillian</groupId>
@@ -3184,7 +3057,7 @@
 				</dependency>
 			</dependencies>
 			<build>
-				<finalName>petclinic</finalName>
+				<finalName>${project.artifactId}</finalName>
 				<plugins>
 					<plugin>
 						<groupId>net.wasdev.wlp.maven.plugins</groupId>
@@ -3196,14 +3069,14 @@
 							<serverName>defaultServer</serverName>
 							<configFile>src/main/liberty/config/server.xml</configFile>
 							<looseApplication>true</looseApplication>
-							<packageFile>${project.build.directory}/${app.name}.war</packageFile>
+							<packageFile>${project.build.directory}/${project.artifactId}.war</packageFile>
 							<include>usr</include>
 							<appsDirectory>apps</appsDirectory>
 							<stripVersion>true</stripVersion>
 							<installAppPackages>project</installAppPackages>
 							<refresh>true</refresh>
 							<sourceDirectoryString>${project.basedir}/src/main/webapp</sourceDirectoryString>
-							<appArchive>${project.build.directory}/${app.name}.war</appArchive>
+							<appArchive>${project.build.directory}/${project.artifactId}.war</appArchive>
 							<skipTestServer>true</skipTestServer>
 							<arquillianProperties>
 								<defaultProtocol>Servlet 3.1</defaultProtocol>
@@ -3260,17 +3133,9 @@
 		</profile>
 
 		<profile>
-			<id>run-payara-remote</id>
-		</profile>
-
-		<profile>
-			<id>test-payara-remote</id>
-		</profile>
-
-		<profile>
-			<id>schemagen-json-xml</id>
+			<id>code-schemagen-json-xml</id>
 			<build>
-				<finalName>petclinic</finalName>
+				<finalName>${project.artifactId}</finalName>
 				<pluginManagement>
 					<plugins>
 						<plugin>
@@ -3305,9 +3170,9 @@
 		</profile>
 
 		<profile>
-			<id>dev-prepare-serialver</id>
+			<id>code-serialver-prepare</id>
 			<build>
-				<finalName>petclinic</finalName>
+				<finalName>${project.artifactId}</finalName>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -3371,9 +3236,9 @@
 		</profile>
 
 		<profile>
-			<id>dev-check-serialver</id>
+			<id>code-quality</id>
 			<build>
-				<finalName>petclinic</finalName>
+				<finalName>${project.artifactId}</finalName>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -3386,15 +3251,6 @@
 							</compilerArgs>
 						</configuration>
 					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<profile>
-			<id>dev-check-code-quality</id>
-			<build>
-				<finalName>petclinic</finalName>
-				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-pmd-plugin</artifactId>
