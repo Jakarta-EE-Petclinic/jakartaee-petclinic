@@ -6,7 +6,7 @@ source src/main/bash/run-lib.bash
 
 function dockerPostgreSqlForOpenLibertyDeploy() {
 	#sudo docker stack rm JAKARTAEE_PETCLINIC
-	sudo docker stack deploy --compose-file stack.yml JAKARTAEE_PETCLINIC
+	sudo docker stack deploy --compose-file docker-compose.yml JAKARTAEE_PETCLINIC
 	sudo docker stack services JAKARTAEE_PETCLINIC
 	sudo docker stack ps JAKARTAEE_PETCLINIC
 }

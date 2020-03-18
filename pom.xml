@@ -73,7 +73,7 @@
 		<version.shrinkwrap_resolvers>3.1.3</version.shrinkwrap_resolvers>
 		<!-- DB -->
 		<version.postgresql.driver>42.2.7</version.postgresql.driver>
-		<version.derby.driver>10.15.1.3</version.derby.driver>
+		<version.derby.driver>10.15.2.0</version.derby.driver>
 		<version.h2.database>1.4.200</version.h2.database>
 		<version.hibernate-search>5.10.5.Final</version.hibernate-search>
 		<!-- JSF -->
@@ -1283,10 +1283,15 @@
 					<artifactId>jcip-annotations</artifactId>
 					<scope>test</scope>
 				</dependency>
+				<dependency>
+					<groupId>com.dkanejs.maven.plugins</groupId>
+					<artifactId>docker-compose-maven-plugin</artifactId>
+					<version>3.0.0</version>
+				</dependency>
 			</dependencies>
 			<build>
 				<finalName>${project.artifactId}</finalName>
-				<defaultGoal>clean install liberty:dev</defaultGoal>
+				<defaultGoal>clean install docker-compose:up liberty:dev</defaultGoal>
 				<pluginManagement>
 					<plugins>
 						<plugin>
@@ -1404,9 +1409,22 @@
 							<artifactId>maven-release-plugin</artifactId>
 							<version>${version.maven-release-plugin}</version>
 						</plugin>
+						<plugin>
+								<groupId>com.dkanejs.maven.plugins</groupId>
+								<artifactId>docker-compose-maven-plugin</artifactId>
+								<version>3.0.0</version>
+						</plugin>
 					</plugins>
 				</pluginManagement>
 				<plugins>
+					<plugin>
+						<groupId>com.dkanejs.maven.plugins</groupId>
+						<artifactId>docker-compose-maven-plugin</artifactId>
+						<configuration>
+							<composeFile>${project.basedir}/docker-compose.yml</composeFile>
+							<verbose>true</verbose>
+						</configuration>
+					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-dependency-plugin</artifactId>
@@ -1446,7 +1464,7 @@
 											<version>${version.postgresql.driver}</version>
 											<type>jar</type>
 											<overWrite>true</overWrite>
-											<outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/${runtime.jakartaee8.server.openliberty.ServerName}/lib</outputDirectory>
+											<outputDirectory>${project.basedir}/src/main/liberty/config</outputDirectory>
 											<destFileName>postgresql.jar</destFileName>
 										</artifactItem>
 										<artifactItem>
@@ -1455,7 +1473,7 @@
 											<version>${version.derby.driver}</version>
 											<type>jar</type>
 											<overWrite>true</overWrite>
-											<outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/${runtime.jakartaee8.server.openliberty.ServerName}/lib</outputDirectory>
+											<outputDirectory>${project.basedir}/src/main/liberty/config</outputDirectory>
 											<destFileName>derby.jar</destFileName>
 										</artifactItem>
 										<artifactItem>
@@ -1463,8 +1481,7 @@
 											<artifactId>h2</artifactId>
 											<version>${version.h2.database}</version>
 											<type>jar</type>
-											<overWrite>true</overWrite>
-											<outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/${runtime.jakartaee8.server.openliberty.ServerName}/lib</outputDirectory>
+											<outputDirectory>${project.basedir}/src/main/liberty/config</outputDirectory>
 											<destFileName>h2.jar</destFileName>
 										</artifactItem>
 									</artifactItems>
@@ -1551,7 +1568,9 @@
 								<type>zip</type>
 							</runtimeArtifact>
 							<runtimeInstallDirectory>${project.build.directory}/liberty</runtimeInstallDirectory>
+							<!--
 							<refresh>true</refresh>
+							-->
 							<!--
 							<runtimeInstallDirectory>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp</runtimeInstallDirectory>
 							-->
@@ -1562,7 +1581,9 @@
 							<serverStartTimeout>300</serverStartTimeout>
 							<verifyTimeout>300</verifyTimeout>
 							<skipTests>true</skipTests>
+							<!--
 							<serverXmlFile>${project.basedir}/src/main/liberty/config/server-embedded-db.xml</serverXmlFile>
+							-->
 							<!--
 							<features>
 								<acceptLicense>true</acceptLicense
@@ -1578,9 +1599,9 @@
 							<looseApplication>true</looseApplication>
 							<!--
 							<packageFile>${project.build.directory}/${project.artifactId}.war</packageFile>
-							-->
+
 							<include>usr</include>
-							<!--
+
 							<bootstrapProperties>
 								<default.http.port>8080</default.http.port>
 								<default.https.port>8443</default.https.port>
