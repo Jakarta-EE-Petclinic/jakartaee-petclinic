@@ -1198,6 +1198,7 @@
 		</profile>
 
 		<!-- default -->
+		<!--
 		<profile>
 			<id>default</id>
 			<activation>
@@ -1210,12 +1211,10 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-dependency-plugin</artifactId>
 					</plugin>
-					<!--
 					<plugin>
 						<groupId>org.wildfly.plugins</groupId>
 						<artifactId>wildfly-maven-plugin</artifactId>
 					</plugin>
-					-->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
@@ -1233,10 +1232,11 @@
 				</plugins>
 			</build>
 		</profile>
+		-->
 
 		<!-- openliberty-dev-run -->
 		<profile>
-			<id>openliberty-dev-run</id>
+			<id>openliberty-dev</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
@@ -1319,7 +1319,7 @@
 			</dependencies>
 			<build>
 				<finalName>${project.artifactId}</finalName>
-				<defaultGoal>clean install</defaultGoal>
+				<defaultGoal>clean install liberty:dev</defaultGoal>
 				<pluginManagement>
 					<plugins>
 						<plugin>
@@ -1927,6 +1927,7 @@
 								<timeout>300</timeout>
 							</bootstrapProperties>
 							<timeout>300</timeout>
+							<serverStartTimeout>300</serverStartTimeout>
 							<appsDirectory>apps</appsDirectory>
 							<stripVersion>true</stripVersion>
 							<installAppPackages>project</installAppPackages>
