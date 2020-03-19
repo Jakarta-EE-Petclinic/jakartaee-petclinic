@@ -1,4 +1,4 @@
-# Glassfish
+# Jakarta EE Runtime: Glassfish
 
 ## Glassfish Info
 * [Glassfish 5.1](https://eclipse-ee4j.github.io/glassfish/)

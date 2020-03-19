@@ -1,4 +1,4 @@
-# OpenLiberty
+# Jakarta EE Runtime: OpenLiberty
 
 ## Get
 * [Open Liberty 19.0.0.6, IBM Corporation](https://openliberty.io/downloads/)
