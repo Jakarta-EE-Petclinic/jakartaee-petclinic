@@ -12,6 +12,25 @@ Jakarta EE 8 Petclinic -  a JSF and Jakarta EE Version of Spring Petclinic -  an
 * Comparison between Java EE / Jakarta EE and Spring Frameworks.
 ## Spring Petclinic
 * Github: [https://github.com/spring-projects/spring-petclinic](https://github.com/spring-projects/spring-petclinic)
+
+## More Developer Info
+* [Jakarta EE 8](doc/JARTKARTA_EE.md)
+* [Java jdk and jvm](doc/JAVA_JDK_AND_JVM.md)
+* [Java Server Faces JSF](doc/JSF_PRIMEFACES.md)
+* [Maven Plugins](doc/MAVEN.md)
+## Development
+* [Software Design](doc/Software_Design.md)
+* [Maven Profiles and Git Branches](doc/PROFILES_AND_BRANCHES.md)
+* [ToDo](doc/TODO.md)
+* [Testing](doc/TESTING.md)
+* [Source on Github](doc/SOURCE.md)
+## Jakarta EE Runtimes
+* [OpenLiberty](doc/RUNTIME_OPEN_LIBERTY.md)
+* [Wildfly](doc/RUNTIME_WILDFLY.md)
+* [Glassfish](doc/RUNTIME_GLASSFISH.md)
+## Cloud
+* [Openshift](doc/CLOUD.md)
+
 # Software Design
 ## Domain Class Modell
 ![Figure Domain Class Modell](doc/images/DomainClassModell.jpg)
@@ -36,24 +55,4 @@ Jakarta EE 8 Petclinic -  a JSF and Jakarta EE Version of Spring Petclinic -  an
 
 ## visit Spring Petclinic ##
 * https://github.com/spring-projects/spring-petclinic
-
-## More Info
-* [Jakarta EE 8](doc/JARTKARTA_EE.md)
-* [Java jdk and jvm](doc/JAVA_JDK_AND_JVM.md)
-* [Java Server Faces JSF](doc/JSF_PRIMEFACES.md)
-* [Maven Plugins](doc/MAVEN.md)
-## Development
-* [Software Design](doc/MAVEN.md)
-* [Maven Profiles and Git Branches](doc/MAVEN.md)
-* [ToDo](doc/MAVEN.md)
-* [Testing](doc/MAVEN.md)
-* [Source on Github](doc/MAVEN.md)
-## Jakarta EE Runtimes
-* [OpenLiberty](doc/RUNTIME_WILDFLY.md)
-* [Wildfly](doc/RUNTIME_WILDFLY.md)
-* [Glassfish](doc/RUNTIME_WILDFLY.md)
-## Cloud
-* [Openshift](doc/RUNTIME_WILDFLY.md)
-
-
 
