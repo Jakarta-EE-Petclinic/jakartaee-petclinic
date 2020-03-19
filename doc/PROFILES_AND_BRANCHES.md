@@ -2,40 +2,41 @@
 
 # Profiles
 
-| Profile | activeByDefault |
-|---------|-----------------|
-| browser-chrome | true |
-| browser-firefox | &nbsp; |
-| browser-safari | &nbsp; |
-| browser-opera | &nbsp; |
-|---------------------------| &nbsp; |
-| default | true |
-|---------------------------| &nbsp; |
-| openliberty-dev-run | true |
-| openliberty-managed-run | &nbsp; |
-| openliberty-managed-test | &nbsp; |
-| openliberty-remote-run | &nbsp; |
-| openliberty-remote-test | &nbsp; |
-|---------------------------| &nbsp; |
-| wildfly-managed-run | &nbsp; |
-| wildfly-managed-test | &nbsp; |
-| wildfly-remote-run | &nbsp; |
-| wildfly-remote-test | &nbsp; |
-|---------------------------| &nbsp; |
-| code-schemagen-json-xml | &nbsp; |
-| code-serialver-prepare | &nbsp; |
-| code-quality |  &nbsp; |
-| setup |  &nbsp; | 
+| Profile                   | activeByDefault | Git Branch                                         |
+|---------------------------|-----------------|----------------------------------------------------|
+| browser-chrome            | true            | master                                             |
+| browser-firefox           | &nbsp;          | master                                             |
+| browser-safari            | &nbsp;          | master                                             |
+| browser-opera             | &nbsp;          | master                                             |
+|---------------------------| &nbsp;          | &nbsp;                                             |
+| openliberty-dev-run       | true            | master                                             |
+| openliberty-managed-run   | &nbsp;          | &nbsp;                                             |
+| openliberty-managed-test  | &nbsp;          | &nbsp;                                             |
+| openliberty-remote-run    | &nbsp;          | &nbsp;                                             |
+| openliberty-remote-test   | &nbsp;          | &nbsp;                                             |
+|---------------------------| &nbsp;          | &nbsp;                                             |
+| wildfly-managed-run       | &nbsp;          | branch-wildfly-managed-run                         |
+| wildfly-managed-test      | &nbsp;          | &nbsp;                                             |
+| wildfly-remote-run        | &nbsp;          | &nbsp;                                             |
+| wildfly-remote-test       | &nbsp;          | &nbsp;                                             |
+|---------------------------| &nbsp;          | &nbsp;                                             |
+| code-schemagen-json-xml   | &nbsp;          | &nbsp;                                             |
+| code-serialver-prepare    | &nbsp;          | &nbsp;                                             |
+| code-quality              | &nbsp;          | master                                             |
+| setup                     | &nbsp;          | master                                             |
 
 
-wildfly-managed-run
-openliberty-dev-run
-openliberty-managed-run
-openliberty-managed-test
-wildfly-remote-run
-wildfly-remote-test
-openliberty-remote-run
-openliberty-remote-test
+
+
+
+
+
+
+
+
+
+
+
 
 
 
