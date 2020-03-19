@@ -4,7 +4,7 @@ version: '3.3'
 services:
 
   db:
-    image: postgres:11.5
+    image: postgres:11.6
     restart: always
     ports:
       - 5432:5432
@@ -16,7 +16,7 @@ services:
       PGPORT: 5432
 
   dbtest:
-    image: postgres:11.5
+    image: postgres:11.6
     restart: always
     ports:
       - 5464:5464

@@ -67,16 +67,17 @@ public class Pet implements TwEntities, Comparable<Pet> {
   public final static String COL_PETTYPE_ID = "pettype_id";
   public final static String COL_OWNER_ID = "owner_id";
   private static final long serialVersionUID = 1007513582768464905L;
+
   @NotNull
   @XmlElement(required = true)
   @Column(name = COL_BIRTH_DATE, columnDefinition = "DATE", nullable = false)
   @Temporal(TemporalType.DATE)
   protected Date birthDate;
+
   @Id
   @XmlElement(required = true)
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
-
 
   @XmlElement(required = true)
   @Column(name = COL_UUID, nullable = false, unique = true)
@@ -97,17 +98,20 @@ public class Pet implements TwEntities, Comparable<Pet> {
       store = org.hibernate.search.annotations.Store.YES
   )
   private String name;
+
   @IndexedEmbedded
   @NotNull
   @XmlElement(required = true)
   @ManyToOne
   @JoinColumn(name = COL_PETTYPE_ID)
   private PetType type;
+
   @NotNull
   @XmlTransient
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = COL_OWNER_ID)
   private Owner owner;
+
   @IndexedEmbedded
   @XmlElementWrapper(name = "visits", nillable = false, required = true)
   @XmlElement(name = "visit")

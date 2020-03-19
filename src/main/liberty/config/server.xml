@@ -37,10 +37,10 @@
 	<webApplication location="petclinic.war" contextRoot="/petclinic" />
 	-->
 
-	<!-- Postgres Database Configuration - - >
+	<!-- Postgres Database Configuration -->
 	<dataSource id="DefaultDataSource"
-	            jndiName="jdbc/jakartaeePetclinicDC"
-	            jdbcDriverRef="postgresql-driver"
+	            jndiName="jdbc/dsJakartaeePetclinic"
+	            jdbcDriverRef="postgresqlDriver"
 	            type="javax.sql.ConnectionPoolDataSource"
 	            transactional="true">
 		<properties serverName="localhost"
@@ -49,18 +49,20 @@
 		            user="postgres"
 		            password="postgrespwd"/>
 	</dataSource>
-	<jdbcDriver id="postgresql-driver"
+
+	<jdbcDriver id="postgresqlDriver"
 	            javax.sql.XADataSource="org.postgresql.xa.PGXADataSource"
 	            javax.sql.ConnectionPoolDataSource="org.postgresql.ds.PGConnectionPoolDataSource"
-	            libraryRef="postgresql-library"/>
-	<library id="postgresql-library">
-		<fileset id="PostgreSQLFileset"
-		         dir="lib"
+	            libraryRef="postgresqlLibrary"/>
+
+	<library id="postgresqlLibrary">
+		<fileset id="idPostgreSQLFileset"
 		         includes="postgresql.jar"/>
 	</library>
- -->
+
 
 	<!-- Derby Database Configuration -->
+	<!--
 	<dataSource id="DefaultDataSource"
 	            jndiName="jdbc/dsJakartaeePetclinic"
 	            jdbcDriverRef="derbyJdbcDriver">
@@ -76,6 +78,7 @@
 	<library id="derbyJdbcLibrary">
 		<fileset id="derbyJdbcLibraryFileset" includes="derby.jar"/>
 	</library>
+	-->
 
 	<!-- H2 Database -->
 	<!--
