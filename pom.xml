@@ -3700,7 +3700,9 @@
 							<maxmemory>2048m</maxmemory>
 							<source>${version.java}</source>
 							<encoding>${project.build.sourceEncoding}</encoding>
+							<!--
 							<javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
+							-->
 						</configuration>
 						<executions>
 							<execution>
@@ -3714,7 +3716,9 @@
 									<maxmemory>2048m</maxmemory>
 									<source>${version.java}</source>
 									<encoding>${project.build.sourceEncoding}</encoding>
+									<!--
 									<javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
+									-->
 								</configuration>
 							</execution>
 						</executions>
