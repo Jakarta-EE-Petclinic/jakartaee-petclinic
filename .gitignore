@@ -11,7 +11,7 @@ buildNumber.properties
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
 
-.idea
+#.idea
 *.iml
 .classpath
 .project
@@ -25,6 +25,5 @@ createdFiles.lst
 createdFiles*.txt
 createdFiles*.sh
 log
-/src/main/liberty/config/derby.jar
-/src/main/liberty/config/h2.jar
 /src/main/liberty/config/postgresql.jar
+/.idea/workspace.xml
