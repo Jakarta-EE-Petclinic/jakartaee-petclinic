@@ -3908,7 +3908,7 @@
 						<executions>
 							<execution>
 								<id>id-post-clean</id>
-								<phase>verify</phase>
+								<phase>prepare-package</phase>
 								<goals>
 									<goal>sources</goal>
 									<goal>resolve</goal>
@@ -3946,7 +3946,7 @@
 						<executions>
 							<execution>
 								<id>pmd-check</id>
-								<phase>verify</phase>
+								<phase>package</phase>
 								<goals>
 									<goal>check</goal>
 								</goals>
@@ -3960,6 +3960,7 @@
 							</rulesets>
 							<analysisCache>false</analysisCache>
 							<includeTests>true</includeTests>
+							<failOnViolation>false</failOnViolation>
 						</configuration>
 						<dependencies>
 							<dependency>
@@ -4056,8 +4057,6 @@
 								<version>6</version>
 							</dependency>
 						</dependencies>
-
-
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -4069,7 +4068,7 @@
 						<executions>
 							<execution>
 								<id>checkstyle</id>
-								<phase>validate</phase>
+								<phase>package</phase>
 								<goals>
 									<goal>check</goal>
 								</goals>
