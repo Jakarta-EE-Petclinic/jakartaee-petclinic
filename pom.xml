@@ -3770,7 +3770,7 @@
 				</dependency>
 			</dependencies>
 			<build>
-				<defaultGoal>clean validate verify install</defaultGoal>
+				<defaultGoal>clean install</defaultGoal>
 				<finalName>${project.artifactId}</finalName>
 				<pluginManagement>
 					<plugins>
