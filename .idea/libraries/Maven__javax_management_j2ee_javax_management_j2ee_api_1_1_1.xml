@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: javax.management.j2ee:javax.management.j2ee-api:1.1.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/javax/management/j2ee/javax.management.j2ee-api/1.1.1/javax.management.j2ee-api-1.1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/javax/management/j2ee/javax.management.j2ee-api/1.1.1/javax.management.j2ee-api-1.1.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/javax/management/j2ee/javax.management.j2ee-api/1.1.1/javax.management.j2ee-api-1.1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -140,13 +140,6 @@
 			<name>PrimeFaces Maven Repository</name>
 			<url>https://repository.primefaces.org</url>
 		</repository>
-		<!--
-		<repository>
-				<id>jitpack.io</id>
-				<name>Easy to use package repository for Git</name>
-				<url>https://jitpack.io</url>
-		</repository>
-		-->
 		<repository>
 			<id>jboss-public-repository-group</id>
 			<name>JBoss Public Maven Repository Group</name>
@@ -216,13 +209,6 @@
 			<name>Alfresco Repository</name>
 			<url>https://artifacts.alfresco.com/nexus/content/repositories/public/</url>
 		</pluginRepository>
-		<!--
-		<pluginRepository>
-				<id>jitpack.io</id>
-				<name>Easy to use package repository for Git</name>
-				<url>https://jitpack.io</url>
-		</pluginRepository>
-		-->
 	</pluginRepositories>
 
 	<dependencyManagement>
@@ -1199,65 +1185,15 @@
 			<artifactId>pmd-build-tools-config</artifactId>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<pluginManagement>
 			<plugins>
-				<!--
-				<plugin>
-					<groupId>org.wildfly.plugins</groupId>
-					<artifactId>wildfly-maven-plugin</artifactId>
-					<version>${version.wildfly-maven-plugin}</version>
-				</plugin>
-				-->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-enforcer-plugin</artifactId>
 					<version>${version.maven-enforcer-plugin}</version>
 				</plugin>
-				<!--
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-invoker-plugin</artifactId>
-					<version>${version.maven-invoker-plugin}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-javadoc-plugin</artifactId>
-					<version>${version.maven-javadoc-plugin}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-shade-plugin</artifactId>
-					<version>${version.maven-shade-plugin}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jar-plugin</artifactId>
-					<version>${version.maven-jar-plugin}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-assembly-plugin</artifactId>
-					<version>${version.maven-assembly-plugin}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-deploy-plugin</artifactId>
-					<version>${version.maven-deploy-plugin}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-help-plugin</artifactId>
-					<version>${version.maven-help-plugins}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-toolchains-plugin</artifactId>
-					<version>${version.maven-toolchains-plugin}</version>
-				</plugin>
-				-->
 			</plugins>
 		</pluginManagement>
 		<plugins>
@@ -3500,6 +3436,339 @@
 		<!-- code-quality -->
 		<profile>
 			<id>code-quality</id>
+			<dependencyManagement>
+				<dependencies>
+					<dependency>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+						<version>${version.commons-logging}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-bom</artifactId>
+						<version>${version.log4j}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-core</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-api</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-slf4j-impl</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-to-slf4j</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-web</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-appserver</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-core</artifactId>
+						<version>${version.maven-pmd-plugin.version.pmd}</version>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-java</artifactId>
+						<version>${version.maven-pmd-plugin.version.pmd}</version>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-javascript</artifactId>
+						<version>${version.maven-pmd-plugin.version.pmd}</version>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-jsp</artifactId>
+						<version>${version.maven-pmd-plugin.version.pmd}</version>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-test</artifactId>
+						<version>${version.maven-pmd-plugin.version.pmd}</version>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd</artifactId>
+						<version>${version.maven-pmd-plugin.version.pmd}</version>
+						<type>pom</type>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-lang-test</artifactId>
+						<version>${version.maven-pmd-plugin.version.pmd}</version>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-xml</artifactId>
+						<version>${version.maven-pmd-plugin.version.pmd}</version>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-dist</artifactId>
+						<version>${version.maven-pmd-plugin.version.pmd}</version>
+						<scope>runtime</scope>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-groovy</artifactId>
+						<version>${version.maven-pmd-plugin.version.pmd}</version>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-java8</artifactId>
+						<version>${version.maven-pmd-plugin.version.pmd}</version>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-doc</artifactId>
+						<version>${version.maven-pmd-plugin.version.pmd}</version>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-ui</artifactId>
+						<version>6.21.0</version>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-build-tools-plugin</artifactId>
+						<version>1.2</version>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-build</artifactId>
+						<version>0.10</version>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-build-tools</artifactId>
+						<version>1.2</version>
+						<type>pom</type>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd-build-tools-config</artifactId>
+						<version>6</version>
+					</dependency>
+					<dependency>
+						<groupId>com.dkanejs.maven.plugins</groupId>
+						<artifactId>docker-compose-maven-plugin</artifactId>
+						<version>3.0.0</version>
+					</dependency>
+					<dependency>
+						<groupId>org.projectlombok</groupId>
+						<artifactId>lombok</artifactId>
+						<version>${version.lombok-maven-plugin.lombok}</version>
+						<scope>provided</scope>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
+			<dependencies>
+				<dependency>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-core</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-api</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-slf4j-impl</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-web</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-appserver</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-core</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-java</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-javascript</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-jsp</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-test</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd</artifactId>
+					<type>pom</type>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-lang-test</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-xml</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-dist</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-groovy</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-java8</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-doc</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-ui</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-build-tools-plugin</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-build</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-build-tools</artifactId>
+					<type>pom</type>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-build-tools-config</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>jakarta.platform</groupId>
+					<artifactId>jakarta.jakartaee-api</artifactId>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>io.openliberty</groupId>
+					<artifactId>openliberty-javaee8</artifactId>
+					<type>zip</type>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>io.openliberty.features</groupId>
+					<artifactId>javaee-8.0</artifactId>
+					<type>esa</type>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>io.openliberty.features</groupId>
+					<artifactId>sessionDatabase-1.0</artifactId>
+					<type>esa</type>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>io.openliberty.features</groupId>
+					<artifactId>json-1.0</artifactId>
+					<type>esa</type>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-core</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-api</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-slf4j-impl</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-web</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-appserver</artifactId>
+				</dependency>
+				<!-- shrinkwrap -->
+				<dependency>
+					<groupId>org.jboss.shrinkwrap.resolver</groupId>
+					<artifactId>shrinkwrap-resolver-depchain</artifactId>
+					<type>pom</type>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.shrinkwrap.resolver</groupId>
+					<artifactId>shrinkwrap-resolver-api-maven-embedded</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.cxf</groupId>
+					<artifactId>cxf-rt-rs-client</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.cxf</groupId>
+					<artifactId>cxf-rt-rs-extension-providers</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>net.jcip</groupId>
+					<artifactId>jcip-annotations</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.dkanejs.maven.plugins</groupId>
+					<artifactId>docker-compose-maven-plugin</artifactId>
+					<version>3.0.0</version>
+				</dependency>
+				<dependency>
+					<groupId>org.projectlombok</groupId>
+					<artifactId>lombok</artifactId>
+					<scope>provided</scope>
+				</dependency>
+			</dependencies>
 			<build>
 				<defaultGoal>clean validate verify install</defaultGoal>
 				<finalName>${project.artifactId}</finalName>
@@ -3641,7 +3910,6 @@
 								<id>id-post-clean</id>
 								<phase>verify</phase>
 								<goals>
-									<goal>purge-local-repository</goal>
 									<goal>sources</goal>
 									<goal>resolve</goal>
 									<goal>resolve-plugins</goal>
@@ -3651,7 +3919,6 @@
 									<goal>list-repositories</goal>
 									<goal>properties</goal>
 									<goal>copy-dependencies</goal>
-									<goal>unpack-dependencies</goal>
 									<goal>tree</goal>
 								</goals>
 								<configuration>
