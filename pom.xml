@@ -47,7 +47,6 @@
 		<!-- general -->
 		<version.log4j>2.12.1</version.log4j>
 		<version.commons-logging>1.2</version.commons-logging>
-		<version.lombok>1.18.12</version.lombok>
 		<version.guava>27.0.1-jre</version.guava>
 		<!-- jakartaee -->
 		<version.jakartaee-api>8.0.0</version.jakartaee-api>
@@ -86,29 +85,30 @@
 		<!-- API -->
 		<version.org.apache.cxf>3.3.5</version.org.apache.cxf>
 		<!-- Plugin Versions -->
-		<version.maven-pmd-plugin.version.pmd>6.21.0</version.maven-pmd-plugin.version.pmd>
+		<version.maven-pmd-plugin.version.pmd>6.22.0</version.maven-pmd-plugin.version.pmd>
 		<version.maven-pmd-plugin>3.13.0</version.maven-pmd-plugin>
 		<version.maven-enforcer-plugin>3.0.0-M3</version.maven-enforcer-plugin>
 		<version.maven-dependency-plugin>3.1.2</version.maven-dependency-plugin>
 		<version.maven-clean-plugin>3.1.0</version.maven-clean-plugin>
 		<version.maven-compiler-plugin>3.8.1</version.maven-compiler-plugin>
 		<version.maven-resources-plugin>3.1.0</version.maven-resources-plugin>
-		<version.maven-source-plugin>3.2.0</version.maven-source-plugin>
+		<version.maven-source-plugin>3.2.1</version.maven-source-plugin>
 		<version.maven-install-plugin>3.0.0-M1</version.maven-install-plugin>
 		<version.maven-war-plugin>3.2.3</version.maven-war-plugin>
-		<version.maven-surefire-plugin>3.0.0-M3</version.maven-surefire-plugin>
-		<version.maven-surefire-plugin.junit4>3.0.0-M3</version.maven-surefire-plugin.junit4>
-		<version.maven-failsafe-plugin>3.0.0-M3</version.maven-failsafe-plugin>
-		<version.maven-invoker-plugin>3.1.0</version.maven-invoker-plugin>
+		<version.maven-surefire-plugin>3.0.0-M4</version.maven-surefire-plugin>
+		<version.maven-surefire-plugin.junit4>3.0.0-M4</version.maven-surefire-plugin.junit4>
+		<version.maven-failsafe-plugin>3.0.0-M4</version.maven-failsafe-plugin>
+		<version.maven-invoker-plugin>3.2.1</version.maven-invoker-plugin>
 		<version.maven-javadoc-plugin>3.2.0</version.maven-javadoc-plugin>
-		<version.maven-shade-plugin>3.2.1</version.maven-shade-plugin>
-		<version.maven-jar-plugin>3.1.2</version.maven-jar-plugin>
-		<version.maven-assembly-plugin>3.1.1</version.maven-assembly-plugin>
+		<version.maven-shade-plugin>3.2.2</version.maven-shade-plugin>
+		<version.maven-jar-plugin>3.2.0</version.maven-jar-plugin>
+		<version.maven-assembly-plugin>3.2.0</version.maven-assembly-plugin>
 		<version.maven-deploy-plugin>3.0.0-M1</version.maven-deploy-plugin>
 		<version.maven-help-plugins>3.2.0</version.maven-help-plugins>
 		<version.maven-toolchains-plugin>3.0.0</version.maven-toolchains-plugin>
-		<version.maven-checkstyle-plugin>2.17</version.maven-checkstyle-plugin>
+		<version.maven-checkstyle-plugin>3.1.1</version.maven-checkstyle-plugin>
 		<version.lombok-maven-plugin>1.18.12.0</version.lombok-maven-plugin>
+		<version.lombok-maven-plugin.lombok>1.18.12</version.lombok-maven-plugin.lombok>
 		<version.maven-release-plugin>3.0.0-M1</version.maven-release-plugin>
 		<!-- Java EE and Jakarta EE Application Server: Wildfly, OpenLiberty, Glassfish -->
 		<version.jakartaee8.server.wildfly.arquillian>2.2.0.Final</version.jakartaee8.server.wildfly.arquillian>
@@ -769,10 +769,98 @@
 			<version>${maven.scm.version}</version>
 			<type>pom</type>
 		</dependency>
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd-core</artifactId>
+				<version>${version.maven-pmd-plugin.version.pmd}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd-java</artifactId>
+				<version>${version.maven-pmd-plugin.version.pmd}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd-javascript</artifactId>
+				<version>${version.maven-pmd-plugin.version.pmd}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd-jsp</artifactId>
+				<version>${version.maven-pmd-plugin.version.pmd}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd-test</artifactId>
+				<version>${version.maven-pmd-plugin.version.pmd}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd</artifactId>
+				<version>${version.maven-pmd-plugin.version.pmd}</version>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd-lang-test</artifactId>
+				<version>${version.maven-pmd-plugin.version.pmd}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd-xml</artifactId>
+				<version>${version.maven-pmd-plugin.version.pmd}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd-dist</artifactId>
+				<version>${version.maven-pmd-plugin.version.pmd}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd-groovy</artifactId>
+				<version>${version.maven-pmd-plugin.version.pmd}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd-java8</artifactId>
+				<version>${version.maven-pmd-plugin.version.pmd}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd-doc</artifactId>
+				<version>${version.maven-pmd-plugin.version.pmd}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd-ui</artifactId>
+				<version>6.21.0</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd-build-tools-plugin</artifactId>
+				<version>1.2</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd-build</artifactId>
+				<version>0.10</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd-build-tools</artifactId>
+				<version>1.2</version>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd-build-tools-config</artifactId>
+				<version>6</version>
+			</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>${version.lombok}</version>
+			<version>${version.lombok-maven-plugin.lombok}</version>
 			<scope>provided</scope>
 		</dependency>
 		</dependencies>
@@ -1038,6 +1126,77 @@
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>lift</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd-javascript</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd-jsp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd</artifactId>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd-lang-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd-xml</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd-dist</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd-groovy</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd-java8</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd-doc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd-ui</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd-build-tools-plugin</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd-build</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd-build-tools</artifactId>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd-build-tools-config</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -3342,9 +3501,125 @@
 		<profile>
 			<id>code-quality</id>
 			<build>
+				<defaultGoal>clean validate verify install</defaultGoal>
 				<finalName>${project.artifactId}</finalName>
 				<pluginManagement>
 					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-dependency-plugin</artifactId>
+							<version>${version.maven-dependency-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-clean-plugin</artifactId>
+							<version>${version.maven-clean-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-compiler-plugin</artifactId>
+							<version>${version.maven-compiler-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-source-plugin</artifactId>
+							<version>${version.maven-source-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-javadoc-plugin</artifactId>
+							<version>${version.maven-javadoc-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-resources-plugin</artifactId>
+							<version>${version.maven-resources-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-install-plugin</artifactId>
+							<version>${version.maven-install-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok-maven-plugin</artifactId>
+							<version>${version.lombok-maven-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-war-plugin</artifactId>
+							<version>${version.maven-war-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>io.openliberty.tools</groupId>
+							<artifactId>liberty-maven-plugin</artifactId>
+							<version>${version.liberty-maven-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>surefire-junit4</artifactId>
+							<version>${version.maven-surefire-plugin.junit4}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-surefire-plugin</artifactId>
+							<version>${version.maven-surefire-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-failsafe-plugin</artifactId>
+							<version>${version.maven-failsafe-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-enforcer-plugin</artifactId>
+							<version>${version.maven-enforcer-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-invoker-plugin</artifactId>
+							<version>${version.maven-invoker-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-shade-plugin</artifactId>
+							<version>${version.maven-shade-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-jar-plugin</artifactId>
+							<version>${version.maven-jar-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-assembly-plugin</artifactId>
+							<version>${version.maven-assembly-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-deploy-plugin</artifactId>
+							<version>${version.maven-deploy-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-help-plugin</artifactId>
+							<version>${version.maven-help-plugins}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-toolchains-plugin</artifactId>
+							<version>${version.maven-toolchains-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-scm-plugin</artifactId>
+							<version>${maven.scm.version}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-release-plugin</artifactId>
+							<version>${version.maven-release-plugin}</version>
+						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-checkstyle-plugin</artifactId>
@@ -3375,11 +3650,113 @@
 									<artifactId>pmd-jsp</artifactId>
 									<version>${version.maven-pmd-plugin.version.pmd}</version>
 								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-test</artifactId>
+									<version>${version.maven-pmd-plugin.version.pmd}</version>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd</artifactId>
+									<version>${version.maven-pmd-plugin.version.pmd}</version>
+									<type>pom</type>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-lang-test</artifactId>
+									<version>${version.maven-pmd-plugin.version.pmd}</version>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-xml</artifactId>
+									<version>${version.maven-pmd-plugin.version.pmd}</version>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-javascript</artifactId>
+									<version>${version.maven-pmd-plugin.version.pmd}</version>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-dist</artifactId>
+									<version>${version.maven-pmd-plugin.version.pmd}</version>
+									<scope>runtime</scope>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-groovy</artifactId>
+									<version>${version.maven-pmd-plugin.version.pmd}</version>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-java8</artifactId>
+									<version>${version.maven-pmd-plugin.version.pmd}</version>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-doc</artifactId>
+									<version>${version.maven-pmd-plugin.version.pmd}</version>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-ui</artifactId>
+									<version>6.21.0</version>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-build-tools-plugin</artifactId>
+									<version>1.2</version>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-build</artifactId>
+									<version>0.10</version>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-build-tools</artifactId>
+									<version>1.2</version>
+									<type>pom</type>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-build-tools-config</artifactId>
+									<version>6</version>
+								</dependency>
 							</dependencies>
 						</plugin>
 					</plugins>
 				</pluginManagement>
 				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>id-post-clean</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>purge-local-repository</goal>
+									<goal>sources</goal>
+									<goal>resolve</goal>
+									<goal>resolve-plugins</goal>
+									<goal>analyze</goal>
+									<goal>collect</goal>
+									<goal>list</goal>
+									<goal>list-repositories</goal>
+									<goal>properties</goal>
+									<goal>copy-dependencies</goal>
+									<goal>unpack-dependencies</goal>
+									<goal>tree</goal>
+								</goals>
+								<configuration>
+									<classifier>sources</classifier>
+									<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+									<outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-compiler-plugin</artifactId>
@@ -3406,7 +3783,7 @@
 						<configuration>
 							<printFailingErrors>true</printFailingErrors>
 							<rulesets>
-								<ruleset>etc/pmd-ruleset.xml</ruleset>
+								<ruleset>${project.basedir}/etc/pmd-ruleset.xml</ruleset>
 							</rulesets>
 							<analysisCache>false</analysisCache>
 							<includeTests>true</includeTests>
@@ -3417,7 +3794,7 @@
 						<artifactId>maven-checkstyle-plugin</artifactId>
 						<configuration>
 							<consoleOutput>true</consoleOutput>
-							<configLocation>./etc/checkstyle.xml</configLocation>
+							<configLocation>${project.basedir}/etc/checkstyle.xml</configLocation>
 						</configuration>
 						<executions>
 							<execution>
@@ -3435,7 +3812,7 @@
 							<dependency>
 								<groupId>com.puppycrawl.tools</groupId>
 								<artifactId>checkstyle</artifactId>
-								<version>8.29</version>
+								<version>8.30</version>
 							</dependency>
 						</dependencies>
 					</plugin>
