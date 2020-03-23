@@ -1528,27 +1528,6 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-dependency-plugin</artifactId>
 						<executions>
-							<!--
-							<execution>
-								<id>unpack</id>
-								<phase>process-test-classes</phase>
-								<goals>
-									<goal>unpack</goal>
-								</goals>
-								<configuration>
-									<artifactItems>
-										<artifactItem>
-											<groupId>io.openliberty</groupId>
-											<artifactId>openliberty-javaee8</artifactId>
-											<version>${version.jakartaee8.server.openliberty}</version>
-											<type>zip</type>
-											<overWrite>true</overWrite>
-											<outputDirectory>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}</outputDirectory>
-										</artifactItem>
-									</artifactItems>
-								</configuration>
-							</execution>
-							-->
 							<execution>
 								<id>copy-database-driver</id>
 								<phase>compile</phase>
@@ -1566,25 +1545,6 @@
 											<outputDirectory>${project.basedir}/src/main/liberty/config</outputDirectory>
 											<destFileName>postgresql.jar</destFileName>
 										</artifactItem>
-										<!--
-										<artifactItem>
-											<groupId>org.apache.derby</groupId>
-											<artifactId>derby</artifactId>
-											<version>${version.derby.driver}</version>
-											<type>jar</type>
-											<overWrite>true</overWrite>
-											<outputDirectory>${project.basedir}/src/main/liberty/config</outputDirectory>
-											<destFileName>derby.jar</destFileName>
-										</artifactItem>
-										<artifactItem>
-											<groupId>com.h2database</groupId>
-											<artifactId>h2</artifactId>
-											<version>${version.h2.database}</version>
-											<type>jar</type>
-											<outputDirectory>${project.basedir}/src/main/liberty/config</outputDirectory>
-											<destFileName>h2.jar</destFileName>
-										</artifactItem>
-										-->
 									</artifactItems>
 								</configuration>
 							</execution>
@@ -1607,7 +1567,7 @@
 								<path>
 									<groupId>org.projectlombok</groupId>
 									<artifactId>lombok</artifactId>
-									<version>${version.lombok}</version>
+									<version>${version.lombok-maven-plugin.lombok}</version>
 								</path>
 							</annotationProcessorPaths>
 						</configuration>
@@ -3435,52 +3395,9 @@
 		</profile>
 		<!-- code-quality -->
 		<profile>
-			<id>code-quality</id>
+			<id>qa</id>
 			<dependencyManagement>
 				<dependencies>
-					<dependency>
-						<groupId>commons-logging</groupId>
-						<artifactId>commons-logging</artifactId>
-						<version>${version.commons-logging}</version>
-						<scope>test</scope>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.logging.log4j</groupId>
-						<artifactId>log4j-bom</artifactId>
-						<version>${version.log4j}</version>
-						<type>pom</type>
-						<scope>import</scope>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.logging.log4j</groupId>
-						<artifactId>log4j-core</artifactId>
-						<version>${version.log4j}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.logging.log4j</groupId>
-						<artifactId>log4j-api</artifactId>
-						<version>${version.log4j}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.logging.log4j</groupId>
-						<artifactId>log4j-slf4j-impl</artifactId>
-						<version>${version.log4j}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.logging.log4j</groupId>
-						<artifactId>log4j-to-slf4j</artifactId>
-						<version>${version.log4j}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.logging.log4j</groupId>
-						<artifactId>log4j-web</artifactId>
-						<version>${version.log4j}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.logging.log4j</groupId>
-						<artifactId>log4j-appserver</artifactId>
-						<version>${version.log4j}</version>
-					</dependency>
 					<dependency>
 						<groupId>net.sourceforge.pmd</groupId>
 						<artifactId>pmd-core</artifactId>
@@ -3706,30 +3623,6 @@
 					<artifactId>json-1.0</artifactId>
 					<type>esa</type>
 					<scope>provided</scope>
-				</dependency>
-				<dependency>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.logging.log4j</groupId>
-					<artifactId>log4j-core</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.logging.log4j</groupId>
-					<artifactId>log4j-api</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.logging.log4j</groupId>
-					<artifactId>log4j-slf4j-impl</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.logging.log4j</groupId>
-					<artifactId>log4j-web</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.logging.log4j</groupId>
-					<artifactId>log4j-appserver</artifactId>
 				</dependency>
 				<!-- shrinkwrap -->
 				<dependency>
