@@ -32,3 +32,10 @@ services:
     restart: always
     ports:
       - 4000:8080
+
+  openliberty:
+    image: open-liberty:javaee8
+    restart: always
+    ports:
+      - 80:9080
+      - 443:9443
