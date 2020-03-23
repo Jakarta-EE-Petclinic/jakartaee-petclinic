@@ -19,7 +19,7 @@ services:
     image: postgres:11.6
     restart: always
     ports:
-      - 5464:5464
+      - 5464:5432
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgrespwd
@@ -31,10 +31,10 @@ services:
     image: adminer:4.7.4
     restart: always
     ports:
-      - 8080:8080
+      - 4000:8080
 
   openliberty:
-    image: open-liberty:springBoot2
+    image: open-liberty:javaee8
     restart: always
     ports:
       - 80:9080
