@@ -33,15 +33,8 @@ services:
     ports:
       - 8080:8080
 
-  jbosswildfly:
-    images: jboss/wildfly:latest
-    restart: always
-    ports:
-      - 8080:8080
-      - 9990:9990
-
   openliberty:
-    image: open-liberty:19.0.0.8
+    image: open-liberty:springBoot2
     restart: always
     ports:
       - 80:9080
