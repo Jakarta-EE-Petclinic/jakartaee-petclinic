@@ -63,116 +63,12 @@
           <element id="library" level="project" name="Maven: xerces:xercesImpl:2.12.0.SP02" />
           <element id="library" level="project" name="Maven: xml-apis:xml-apis:1.4.01" />
           <element id="library" level="project" name="Maven: net.bytebuddy:byte-buddy:1.9.5" />
-          <element id="library" level="project" name="Maven: com.google.code.findbugs:jsr305:3.0.2" />
-          <element id="library" level="project" name="Maven: com.google.errorprone:error_prone_annotations:2.2.0" />
-          <element id="library" level="project" name="Maven: com.google.j2objc:j2objc-annotations:1.1" />
-          <element id="library" level="project" name="Maven: org.codehaus.mojo:animal-sniffer-annotations:1.17" />
-          <element id="library" level="project" name="Maven: org.apache.ant:ant:1.9.9" />
-          <element id="library" level="project" name="Maven: org.apache.ant:ant-launcher:1.9.9" />
-          <element id="library" level="project" name="Maven: com.beust:jcommander:1.72" />
-          <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.18" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-core:6.22.0" />
-          <element id="library" level="project" name="Maven: org.antlr:antlr4-runtime:4.7" />
-          <element id="library" level="project" name="Maven: net.java.dev.javacc:javacc:5.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.saxon:saxon:9.1.0.8" />
-          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.5" />
-          <element id="library" level="project" name="Maven: org.ow2.asm:asm:7.1" />
-          <element id="library" level="project" name="Maven: net.sourceforge.saxon:saxon:dom:9.1.0.8" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-java:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-javascript:6.22.0" />
-          <element id="library" level="project" name="Maven: org.mozilla:rhino:1.7.7.2" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-jsp:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-test:6.22.0" />
-          <element id="library" level="project" name="Maven: org.apache.ant:ant-testutil:1.10.1" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-lang-test:6.22.0" />
-          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.3.0" />
-          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-common:1.3.0" />
-          <element id="library" level="project" name="Maven: org.jetbrains:annotations:13.0" />
-          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-reflect:1.3.0" />
-          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.0" />
-          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.0" />
-          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-test-junit:1.3.0" />
-          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-test-annotations-common:1.3.0" />
-          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-test:1.3.0" />
-          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-test-common:1.3.0" />
-          <element id="library" level="project" name="Maven: io.kotlintest:kotlintest-runner-junit5:3.1.8" />
-          <element id="library" level="project" name="Maven: io.kotlintest:kotlintest-core:3.1.8" />
-          <element id="library" level="project" name="Maven: io.kotlintest:kotlintest-assertions:3.1.8" />
-          <element id="library" level="project" name="Maven: com.univocity:univocity-parsers:2.6.1" />
-          <element id="library" level="project" name="Maven: io.kotlintest:kotlintest-runner-jvm:3.1.8" />
-          <element id="library" level="project" name="Maven: org.reflections:reflections:0.9.9" />
-          <element id="library" level="project" name="Maven: com.google.code.findbugs:annotations:2.0.1" />
-          <element id="library" level="project" name="Maven: io.arrow-kt:arrow-core:0.7.1" />
-          <element id="library" level="project" name="Maven: io.arrow-kt:arrow-annotations:0.7.1" />
-          <element id="library" level="project" name="Maven: io.kindedj:kindedj:1.1.0" />
-          <element id="library" level="project" name="Maven: org.junit.platform:junit-platform-engine:1.2.0" />
-          <element id="library" level="project" name="Maven: org.apiguardian:apiguardian-api:1.0.0" />
-          <element id="library" level="project" name="Maven: org.junit.platform:junit-platform-commons:1.2.0" />
-          <element id="library" level="project" name="Maven: org.opentest4j:opentest4j:1.1.0" />
-          <element id="library" level="project" name="Maven: org.junit.platform:junit-platform-suite-api:1.2.0" />
-          <element id="library" level="project" name="Maven: org.junit.platform:junit-platform-launcher:1.2.0" />
-          <element id="library" level="project" name="Maven: com.github.oowekyala.treeutils:tree-matchers:2.0.1" />
-          <element id="library" level="project" name="Maven: com.github.oowekyala.treeutils:tree-printers:2.0.1" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-xml:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-dist:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-cpp:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-cs:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-dart:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-fortran:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-go:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-lua:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-visualforce:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-kotlin:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-matlab:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-modelica:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-perl:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-objectivec:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-php:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-plsql:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-python:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-ruby:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-scala:6.22.0" />
-          <element id="library" level="project" name="Maven: org.scalameta:scalameta_2.13:4.2.0" />
-          <element id="library" level="project" name="Maven: org.scala-lang:scala-library:2.13.0" />
-          <element id="library" level="project" name="Maven: org.scalameta:parsers_2.13:4.2.0" />
-          <element id="library" level="project" name="Maven: org.scalameta:trees_2.13:4.2.0" />
-          <element id="library" level="project" name="Maven: org.scalameta:common_2.13:4.2.0" />
-          <element id="library" level="project" name="Maven: com.lihaoyi:sourcecode_2.13:0.1.7" />
-          <element id="library" level="project" name="Maven: com.thesamet.scalapb:scalapb-runtime_2.13:0.9.0" />
-          <element id="library" level="project" name="Maven: com.thesamet.scalapb:lenses_2.13:0.9.0" />
-          <element id="library" level="project" name="Maven: com.lihaoyi:fastparse_2.13:2.1.3" />
-          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.7.1" />
-          <element id="library" level="project" name="Maven: org.scalameta:fastparse_2.13:1.0.1" />
-          <element id="library" level="project" name="Maven: org.scalameta:fastparse-utils_2.13:1.0.1" />
-          <element id="library" level="project" name="Maven: org.scala-lang:scalap:2.13.0" />
-          <element id="library" level="project" name="Maven: org.scala-lang:scala-compiler:2.13.0" />
-          <element id="library" level="project" name="Maven: org.scala-lang:scala-reflect:2.13.0" />
-          <element id="library" level="project" name="Maven: jline:jline:2.14.6" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-swift:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-vm:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-apex:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-apex-jorje:lib:6.22.0" />
-          <element id="library" level="project" name="Maven: cglib:cglib:3.2.0" />
-          <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.1.7" />
-          <element id="library" level="project" name="Maven: org.antlr:antlr-runtime:3.5.2" />
-          <element id="library" level="project" name="Maven: org.antlr:stringtemplate:3.2.1" />
-          <element id="library" level="project" name="Maven: org.openjdk.jol:jol-core:0.4" />
-          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
-          <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-groovy:6.22.0" />
-          <element id="library" level="project" name="Maven: org.codehaus.groovy:groovy:2.4.7" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-java8:6.22.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-doc:6.22.0" />
-          <element id="library" level="project" name="Maven: org.apache.commons:commons-text:1.6" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-ui:6.21.0" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-build-tools-plugin:1.2" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-build:0.10" />
-          <element id="library" level="project" name="Maven: net.sourceforge.pmd:pmd-build-tools-config:6" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.12.1" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.12.1" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.12.1" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-web:2.12.1" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-appserver:2.12.1" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.5" />
           <element id="library" level="project" name="Maven: org.eclipse.sisu:org.eclipse.sisu.inject:0.3.3" />
           <element id="library" level="project" name="Maven: org.eclipse.sisu:org.eclipse.sisu.plexus:0.3.3" />
           <element id="library" level="project" name="Maven: com.dkanejs.maven.plugins:docker-compose-maven-plugin:3.0.0" />

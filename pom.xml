@@ -109,6 +109,7 @@
 		<version.maven-checkstyle-plugin>3.1.1</version.maven-checkstyle-plugin>
 		<version.lombok-maven-plugin>1.18.12.0</version.lombok-maven-plugin>
 		<version.lombok-maven-plugin.lombok>1.18.12</version.lombok-maven-plugin.lombok>
+		<version.docker-compose-maven-plugin>3.0.0</version.docker-compose-maven-plugin>
 		<version.maven-release-plugin>3.0.0-M1</version.maven-release-plugin>
 		<!-- Java EE and Jakarta EE Application Server: Wildfly, OpenLiberty, Glassfish -->
 		<version.jakartaee8.server.wildfly.arquillian>2.2.0.Final</version.jakartaee8.server.wildfly.arquillian>
@@ -755,6 +756,7 @@
 			<version>${maven.scm.version}</version>
 			<type>pom</type>
 		</dependency>
+			<!--
 			<dependency>
 				<groupId>net.sourceforge.pmd</groupId>
 				<artifactId>pmd-core</artifactId>
@@ -796,6 +798,7 @@
 				<artifactId>pmd-xml</artifactId>
 				<version>${version.maven-pmd-plugin.version.pmd}</version>
 			</dependency>
+
 			<dependency>
 				<groupId>net.sourceforge.pmd</groupId>
 				<artifactId>pmd-dist</artifactId>
@@ -843,6 +846,7 @@
 				<artifactId>pmd-build-tools-config</artifactId>
 				<version>6</version>
 			</dependency>
+			-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -1113,6 +1117,13 @@
 			<artifactId>lift</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!--
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd</artifactId>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>net.sourceforge.pmd</groupId>
 			<artifactId>pmd-core</artifactId>
@@ -1131,12 +1142,11 @@
 		</dependency>
 		<dependency>
 			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-test</artifactId>
+			<artifactId>pmd-xml</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd</artifactId>
-			<type>pom</type>
+			<artifactId>pmd-test</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>net.sourceforge.pmd</groupId>
@@ -1144,8 +1154,10 @@
 		</dependency>
 		<dependency>
 			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-xml</artifactId>
+			<artifactId>pmd-doc</artifactId>
 		</dependency>
+		-->
+		<!--
 		<dependency>
 			<groupId>net.sourceforge.pmd</groupId>
 			<artifactId>pmd-dist</artifactId>
@@ -1158,10 +1170,6 @@
 		<dependency>
 			<groupId>net.sourceforge.pmd</groupId>
 			<artifactId>pmd-java8</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-doc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>net.sourceforge.pmd</groupId>
@@ -1184,6 +1192,7 @@
 			<groupId>net.sourceforge.pmd</groupId>
 			<artifactId>pmd-build-tools-config</artifactId>
 		</dependency>
+		-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -1386,7 +1395,7 @@
 				<dependency>
 					<groupId>com.dkanejs.maven.plugins</groupId>
 					<artifactId>docker-compose-maven-plugin</artifactId>
-					<version>3.0.0</version>
+					<version>${version.docker-compose-maven-plugin}</version>
 				</dependency>
 			</dependencies>
 			<build>
@@ -1512,7 +1521,7 @@
 						<plugin>
 								<groupId>com.dkanejs.maven.plugins</groupId>
 								<artifactId>docker-compose-maven-plugin</artifactId>
-								<version>3.0.0</version>
+								<version>${version.docker-compose-maven-plugin}</version>
 						</plugin>
 					</plugins>
 				</pluginManagement>
@@ -1804,7 +1813,7 @@
 				<dependency>
 					<groupId>com.dkanejs.maven.plugins</groupId>
 					<artifactId>docker-compose-maven-plugin</artifactId>
-					<version>3.0.0</version>
+					<version>${version.docker-compose-maven-plugin}</version>
 				</dependency>
 			</dependencies>
 			<build>
@@ -1930,7 +1939,7 @@
 						<plugin>
 							<groupId>com.dkanejs.maven.plugins</groupId>
 							<artifactId>docker-compose-maven-plugin</artifactId>
-							<version>3.0.0</version>
+							<version>${version.docker-compose-maven-plugin}</version>
 						</plugin>
 					</plugins>
 				</pluginManagement>
@@ -3707,6 +3716,13 @@
 				<dependencies>
 					<dependency>
 						<groupId>net.sourceforge.pmd</groupId>
+						<artifactId>pmd</artifactId>
+						<version>${version.maven-pmd-plugin.version.pmd}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>net.sourceforge.pmd</groupId>
 						<artifactId>pmd-core</artifactId>
 						<version>${version.maven-pmd-plugin.version.pmd}</version>
 					</dependency>
@@ -3727,14 +3743,13 @@
 					</dependency>
 					<dependency>
 						<groupId>net.sourceforge.pmd</groupId>
-						<artifactId>pmd-test</artifactId>
+						<artifactId>pmd-xml</artifactId>
 						<version>${version.maven-pmd-plugin.version.pmd}</version>
 					</dependency>
 					<dependency>
 						<groupId>net.sourceforge.pmd</groupId>
-						<artifactId>pmd</artifactId>
+						<artifactId>pmd-test</artifactId>
 						<version>${version.maven-pmd-plugin.version.pmd}</version>
-						<type>pom</type>
 					</dependency>
 					<dependency>
 						<groupId>net.sourceforge.pmd</groupId>
@@ -3743,9 +3758,10 @@
 					</dependency>
 					<dependency>
 						<groupId>net.sourceforge.pmd</groupId>
-						<artifactId>pmd-xml</artifactId>
+						<artifactId>pmd-doc</artifactId>
 						<version>${version.maven-pmd-plugin.version.pmd}</version>
 					</dependency>
+					<!--
 					<dependency>
 						<groupId>net.sourceforge.pmd</groupId>
 						<artifactId>pmd-dist</artifactId>
@@ -3760,11 +3776,6 @@
 					<dependency>
 						<groupId>net.sourceforge.pmd</groupId>
 						<artifactId>pmd-java8</artifactId>
-						<version>${version.maven-pmd-plugin.version.pmd}</version>
-					</dependency>
-					<dependency>
-						<groupId>net.sourceforge.pmd</groupId>
-						<artifactId>pmd-doc</artifactId>
 						<version>${version.maven-pmd-plugin.version.pmd}</version>
 					</dependency>
 					<dependency>
@@ -3793,10 +3804,12 @@
 						<artifactId>pmd-build-tools-config</artifactId>
 						<version>6</version>
 					</dependency>
+					-->
 					<dependency>
 						<groupId>com.dkanejs.maven.plugins</groupId>
 						<artifactId>docker-compose-maven-plugin</artifactId>
-						<version>3.0.0</version>
+						<version>${version.docker-compose-maven-plugin}</version>
+						<scope>provided</scope>
 					</dependency>
 					<dependency>
 						<groupId>org.projectlombok</groupId>
@@ -3807,6 +3820,74 @@
 				</dependencies>
 			</dependencyManagement>
 			<dependencies>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-core</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-java</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-javascript</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-jsp</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-xml</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-test</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-lang-test</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>net.sourceforge.pmd</groupId>
+					<artifactId>pmd-doc</artifactId>
+				</dependency>
+				<!--
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-dist</artifactId>
+									<scope>runtime</scope>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-groovy</artifactId>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-java8</artifactId>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-ui</artifactId>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-build-tools-plugin</artifactId>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-build</artifactId>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-build-tools</artifactId>
+									<type>pom</type>
+								</dependency>
+								<dependency>
+									<groupId>net.sourceforge.pmd</groupId>
+									<artifactId>pmd-build-tools-config</artifactId>
+								</dependency>
+								-->
 				<dependency>
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
@@ -3830,77 +3911,6 @@
 				<dependency>
 					<groupId>org.apache.logging.log4j</groupId>
 					<artifactId>log4j-appserver</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>net.sourceforge.pmd</groupId>
-					<artifactId>pmd-core</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>net.sourceforge.pmd</groupId>
-					<artifactId>pmd-java</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>net.sourceforge.pmd</groupId>
-					<artifactId>pmd-javascript</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>net.sourceforge.pmd</groupId>
-					<artifactId>pmd-jsp</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>net.sourceforge.pmd</groupId>
-					<artifactId>pmd-test</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>net.sourceforge.pmd</groupId>
-					<artifactId>pmd</artifactId>
-					<type>pom</type>
-				</dependency>
-				<dependency>
-					<groupId>net.sourceforge.pmd</groupId>
-					<artifactId>pmd-lang-test</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>net.sourceforge.pmd</groupId>
-					<artifactId>pmd-xml</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>net.sourceforge.pmd</groupId>
-					<artifactId>pmd-dist</artifactId>
-					<scope>runtime</scope>
-				</dependency>
-				<dependency>
-					<groupId>net.sourceforge.pmd</groupId>
-					<artifactId>pmd-groovy</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>net.sourceforge.pmd</groupId>
-					<artifactId>pmd-java8</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>net.sourceforge.pmd</groupId>
-					<artifactId>pmd-doc</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>net.sourceforge.pmd</groupId>
-					<artifactId>pmd-ui</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>net.sourceforge.pmd</groupId>
-					<artifactId>pmd-build-tools-plugin</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>net.sourceforge.pmd</groupId>
-					<artifactId>pmd-build</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>net.sourceforge.pmd</groupId>
-					<artifactId>pmd-build-tools</artifactId>
-					<type>pom</type>
-				</dependency>
-				<dependency>
-					<groupId>net.sourceforge.pmd</groupId>
-					<artifactId>pmd-build-tools-config</artifactId>
 				</dependency>
 				<dependency>
 					<groupId>jakarta.platform</groupId>
@@ -3961,7 +3971,7 @@
 				<dependency>
 					<groupId>com.dkanejs.maven.plugins</groupId>
 					<artifactId>docker-compose-maven-plugin</artifactId>
-					<version>3.0.0</version>
+					<version>${version.docker-compose-maven-plugin}</version>
 				</dependency>
 				<dependency>
 					<groupId>org.projectlombok</groupId>
@@ -4107,7 +4117,7 @@
 						<artifactId>maven-dependency-plugin</artifactId>
 						<executions>
 							<execution>
-								<id>id-post-clean</id>
+								<id>id-prepare-package</id>
 								<phase>prepare-package</phase>
 								<goals>
 									<goal>sources</goal>
@@ -4185,44 +4195,7 @@
 							</dependency>
 							<dependency>
 								<groupId>net.sourceforge.pmd</groupId>
-								<artifactId>pmd-test</artifactId>
-								<version>${version.maven-pmd-plugin.version.pmd}</version>
-							</dependency>
-							<dependency>
-								<groupId>net.sourceforge.pmd</groupId>
-								<artifactId>pmd</artifactId>
-								<version>${version.maven-pmd-plugin.version.pmd}</version>
-								<type>pom</type>
-							</dependency>
-							<dependency>
-								<groupId>net.sourceforge.pmd</groupId>
-								<artifactId>pmd-lang-test</artifactId>
-								<version>${version.maven-pmd-plugin.version.pmd}</version>
-							</dependency>
-							<dependency>
-								<groupId>net.sourceforge.pmd</groupId>
 								<artifactId>pmd-xml</artifactId>
-								<version>${version.maven-pmd-plugin.version.pmd}</version>
-							</dependency>
-							<dependency>
-								<groupId>net.sourceforge.pmd</groupId>
-								<artifactId>pmd-javascript</artifactId>
-								<version>${version.maven-pmd-plugin.version.pmd}</version>
-							</dependency>
-							<dependency>
-								<groupId>net.sourceforge.pmd</groupId>
-								<artifactId>pmd-dist</artifactId>
-								<version>${version.maven-pmd-plugin.version.pmd}</version>
-								<scope>runtime</scope>
-							</dependency>
-							<dependency>
-								<groupId>net.sourceforge.pmd</groupId>
-								<artifactId>pmd-groovy</artifactId>
-								<version>${version.maven-pmd-plugin.version.pmd}</version>
-							</dependency>
-							<dependency>
-								<groupId>net.sourceforge.pmd</groupId>
-								<artifactId>pmd-java8</artifactId>
 								<version>${version.maven-pmd-plugin.version.pmd}</version>
 							</dependency>
 							<dependency>
@@ -4232,29 +4205,13 @@
 							</dependency>
 							<dependency>
 								<groupId>net.sourceforge.pmd</groupId>
-								<artifactId>pmd-ui</artifactId>
-								<version>6.21.0</version>
+								<artifactId>pmd-test</artifactId>
+								<version>${version.maven-pmd-plugin.version.pmd}</version>
 							</dependency>
 							<dependency>
 								<groupId>net.sourceforge.pmd</groupId>
-								<artifactId>pmd-build-tools-plugin</artifactId>
-								<version>1.2</version>
-							</dependency>
-							<dependency>
-								<groupId>net.sourceforge.pmd</groupId>
-								<artifactId>pmd-build</artifactId>
-								<version>0.10</version>
-							</dependency>
-							<dependency>
-								<groupId>net.sourceforge.pmd</groupId>
-								<artifactId>pmd-build-tools</artifactId>
-								<version>1.2</version>
-								<type>pom</type>
-							</dependency>
-							<dependency>
-								<groupId>net.sourceforge.pmd</groupId>
-								<artifactId>pmd-build-tools-config</artifactId>
-								<version>6</version>
+								<artifactId>pmd-lang-test</artifactId>
+								<version>${version.maven-pmd-plugin.version.pmd}</version>
 							</dependency>
 						</dependencies>
 					</plugin>
