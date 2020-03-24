@@ -1,0 +1,19 @@
+[ERROR] [ERROR] Some problems were encountered while processing the POMs:
+[ERROR] 'dependencies.dependency.version' for io.openliberty:openliberty-javaee8:zip is missing. @ line 5576, column 16
+[ERROR] 'dependencies.dependency.version' for io.openliberty.features:javaee-8.0:esa is missing. @ line 5582, column 16
+[ERROR] 'dependencies.dependency.version' for io.openliberty.features:sessionDatabase-1.0:esa is missing. @ line 5588, column 16
+[ERROR] 'dependencies.dependency.version' for io.openliberty.features:json-1.0:esa is missing. @ line 5594, column 16
+ @ 
+[ERROR] The build could not read 1 project -> [Help 1]
+[ERROR]   
+[ERROR]   The project org.woehlke.jakartaee:petclinic:8.0.0-SNAPSHOT (/home/tw/IdeaProjects/jakartaee-petclinic/pom.xml) has 4 errors
+[ERROR]     'dependencies.dependency.version' for io.openliberty:openliberty-javaee8:zip is missing. @ line 5576, column 16
+[ERROR]     'dependencies.dependency.version' for io.openliberty.features:javaee-8.0:esa is missing. @ line 5582, column 16
+[ERROR]     'dependencies.dependency.version' for io.openliberty.features:sessionDatabase-1.0:esa is missing. @ line 5588, column 16
+[ERROR]     'dependencies.dependency.version' for io.openliberty.features:json-1.0:esa is missing. @ line 5594, column 16
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/ProjectBuildingException

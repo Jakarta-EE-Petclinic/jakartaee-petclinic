@@ -1,0 +1,57 @@
+[WARNING] No processor claimed any of these annotations: /javax.enterprise.context.ApplicationScoped,/javax.persistence.PrePersist,/javax.persistence.Column,/javax.ws.rs.Path,/javax.enterprise.context.SessionScoped,/javax.inject.Qualifier,/javax.faces.convert.FacesConverter,/javax.inject.Named,/javax.xml.bind.annotation.XmlTransient,/javax.ejb.Singleton,/javax.annotation.PostConstruct,/org.hibernate.search.annotations.IndexedEmbedded,/javax.persistence.OneToMany,/javax.xml.bind.annotation.XmlAccessorType,/javax.ejb.PostActivate,/javax.persistence.Transient,/javax.persistence.PostPersist,/javax.ws.rs.Produces,/javax.ws.rs.PathParam,/javax.persistence.PreRemove,/javax.ejb.Stateless,/javax.persistence.Temporal,/javax.persistence.ManyToMany,/javax.persistence.PostUpdate,/javax.persistence.JoinTable,/javax.persistence.Entity,/javax.ws.rs.ApplicationPath,/javax.validation.constraints.Pattern,/javax.xml.bind.annotation.XmlElementWrapper,/javax.persistence.JoinColumn,/javax.persistence.PreUpdate,/javax.annotation.PreDestroy,/javax.persistence.PostLoad,/javax.ejb.PrePassivate,/javax.persistence.Id,/javax.persistence.NamedQueries,/javax.ejb.EJB,/javax.validation.constraints.NotBlank,/javax.persistence.PersistenceContext,/javax.validation.constraints.NotNull,/javax.ejb.Schedules,/javax.persistence.EntityListeners,/javax.validation.constraints.Digits,/javax.xml.bind.annotation.XmlType,/org.hibernate.search.annotations.Field,/javax.persistence.PostRemove,/javax.persistence.GeneratedValue,/javax.ejb.Asynchronous,/javax.persistence.Table,/javax.validation.constraints.NotEmpty,/javax.persistence.ManyToOne,/javax.ejb.Startup,/org.hibernate.search.annotations.Indexed,/javax.ws.rs.GET,/javax.xml.bind.annotation.XmlRootElement,/javax.inject.Inject,/javax.xml.bind.annotation.XmlElement
+[WARNING] /home/tw/IdeaProjects/jakartaee-petclinic/src/main/java/org/woehlke/jakartaee/petclinic/oodm/dao/impl/OwnerDaoImpl.java:[30,8] serializable class org.woehlke.jakartaee.petclinic.oodm.dao.impl.OwnerDaoImpl has no definition of serialVersionUID
+[WARNING] No processor claimed any of these annotations: /org.jboss.arquillian.container.test.api.RunAsClient,/org.jboss.arquillian.graphene.page.Location,/org.openqa.selenium.support.FindBy,/net.jcip.annotations.NotThreadSafe,/org.junit.Test,/org.jboss.arquillian.graphene.page.Page,/org.jboss.arquillian.junit.InSequence,/org.junit.Ignore,/org.jboss.arquillian.container.test.api.OverProtocol,/org.jboss.arquillian.container.test.api.Deployment,/org.junit.runner.RunWith
+[WARNING] No processor claimed any of these annotations: /javax.enterprise.context.ApplicationScoped,/javax.persistence.PrePersist,/javax.persistence.Column,/javax.ws.rs.Path,/javax.enterprise.context.SessionScoped,/javax.inject.Qualifier,/javax.faces.convert.FacesConverter,/javax.inject.Named,/javax.xml.bind.annotation.XmlTransient,/javax.ejb.Singleton,/javax.annotation.PostConstruct,/org.hibernate.search.annotations.IndexedEmbedded,/javax.persistence.OneToMany,/javax.xml.bind.annotation.XmlAccessorType,/javax.ejb.PostActivate,/javax.persistence.Transient,/javax.persistence.PostPersist,/javax.ws.rs.Produces,/javax.ws.rs.PathParam,/javax.persistence.PreRemove,/javax.ejb.Stateless,/javax.persistence.Temporal,/javax.persistence.ManyToMany,/javax.persistence.PostUpdate,/javax.persistence.JoinTable,/javax.persistence.Entity,/javax.ws.rs.ApplicationPath,/javax.validation.constraints.Pattern,/javax.xml.bind.annotation.XmlElementWrapper,/javax.persistence.JoinColumn,/javax.persistence.PreUpdate,/javax.annotation.PreDestroy,/javax.persistence.PostLoad,/javax.ejb.PrePassivate,/javax.persistence.Id,/javax.persistence.NamedQueries,/javax.ejb.EJB,/javax.validation.constraints.NotBlank,/javax.persistence.PersistenceContext,/javax.validation.constraints.NotNull,/javax.ejb.Schedules,/javax.persistence.EntityListeners,/javax.validation.constraints.Digits,/javax.xml.bind.annotation.XmlType,/org.hibernate.search.annotations.Field,/javax.persistence.PostRemove,/javax.persistence.GeneratedValue,/javax.ejb.Asynchronous,/javax.persistence.Table,/javax.validation.constraints.NotEmpty,/javax.persistence.ManyToOne,/javax.ejb.Startup,/org.hibernate.search.annotations.Indexed,/javax.ws.rs.GET,/javax.xml.bind.annotation.XmlRootElement,/javax.inject.Inject,/javax.xml.bind.annotation.XmlElement
+[WARNING] /home/tw/IdeaProjects/jakartaee-petclinic/src/main/java/org/woehlke/jakartaee/petclinic/oodm/dao/impl/OwnerDaoImpl.java:[30,8] serializable class org.woehlke.jakartaee.petclinic.oodm.dao.impl.OwnerDaoImpl has no definition of serialVersionUID
+[WARNING] No processor claimed any of these annotations: /org.jboss.arquillian.container.test.api.RunAsClient,/org.jboss.arquillian.graphene.page.Location,/org.openqa.selenium.support.FindBy,/net.jcip.annotations.NotThreadSafe,/org.junit.Test,/org.jboss.arquillian.graphene.page.Page,/org.jboss.arquillian.junit.InSequence,/org.junit.Ignore,/org.jboss.arquillian.container.test.api.OverProtocol,/org.jboss.arquillian.container.test.api.Deployment,/org.junit.runner.RunWith
+[WARNING] Used undeclared dependencies found:
+[WARNING]    org.jboss.arquillian.container:arquillian-container-test-api:jar:1.4.1.Final:test
+[WARNING]    javax.xml.bind:jaxb-api:jar:2.2.12:provided
+[WARNING]    org.seleniumhq.selenium:selenium-support:jar:3.13.0:test
+[WARNING]    org.jboss.shrinkwrap:shrinkwrap-api:jar:1.2.6:test
+[WARNING]    org.jboss.arquillian.junit:arquillian-junit-core:jar:1.4.1.Final:test
+[WARNING]    org.jboss.arquillian.graphene:graphene-webdriver-api:jar:2.3.2:test
+[WARNING]    javax.persistence:javax.persistence-api:jar:2.2:compile
+[WARNING]    org.apache.lucene:lucene-core:jar:5.5.5:compile
+[WARNING]    org.seleniumhq.selenium:selenium-api:jar:3.13.0:test
+[WARNING] Unused declared dependencies found:
+[WARNING]    org.primefaces.themes:all-themes:jar:1.0.10:compile
+[WARNING]    org.webjars:bootstrap:jar:4.3.1:compile
+[WARNING]    org.webjars:font-awesome:jar:5.10.1:compile
+[WARNING]    org.webjars:jquery:jar:3.4.1:compile
+[WARNING]    commons-io:commons-io:jar:2.4:compile
+[WARNING]    org.owasp.encoder:encoder:jar:1.2.2:compile
+[WARNING]    org.owasp.esapi:esapi:jar:2.2.0.0:compile
+[WARNING]    jakarta.platform:jakarta.jakartaee-web-api:jar:8.0.0:provided
+[WARNING]    org.omnifaces:arquillian-primefaces:jar:0.3:test
+[WARNING]    org.jboss.arquillian.graphene:graphene-webdriver-impl:jar:2.3.2:test
+[WARNING]    org.projectlombok:lombok:jar:1.18.12:provided
+[WARNING]    io.openliberty:openliberty-javaee8:zip:20.0.0.3:test
+[WARNING]    io.openliberty.features:javaee-8.0:esa:20.0.0.3:provided
+[WARNING]    io.openliberty.features:sessionDatabase-1.0:esa:20.0.0.3:provided
+[WARNING]    io.openliberty.features:json-1.0:esa:20.0.0.3:provided
+[WARNING]    commons-logging:commons-logging:jar:1.2:test
+[WARNING]    org.apache.logging.log4j:log4j-core:jar:2.12.1:compile
+[WARNING]    org.apache.logging.log4j:log4j-slf4j-impl:jar:2.12.1:compile
+[WARNING]    org.apache.logging.log4j:log4j-web:jar:2.12.1:compile
+[WARNING]    org.apache.logging.log4j:log4j-appserver:jar:2.12.1:compile
+[WARNING]    com.dkanejs.maven.plugins:docker-compose-maven-plugin:jar:3.0.0:compile
+[WARNING] Potential problems found in Dependency Management 
+[WARNING] No processor claimed any of these annotations: /javax.enterprise.context.ApplicationScoped,/javax.persistence.PrePersist,/javax.persistence.Column,/javax.ws.rs.Path,/javax.enterprise.context.SessionScoped,/javax.inject.Qualifier,/javax.faces.convert.FacesConverter,/javax.inject.Named,/javax.xml.bind.annotation.XmlTransient,/javax.ejb.Singleton,/javax.annotation.PostConstruct,/org.hibernate.search.annotations.IndexedEmbedded,/javax.persistence.OneToMany,/javax.xml.bind.annotation.XmlAccessorType,/javax.ejb.PostActivate,/javax.persistence.Transient,/javax.persistence.PostPersist,/javax.ws.rs.Produces,/javax.ws.rs.PathParam,/javax.persistence.PreRemove,/javax.ejb.Stateless,/javax.persistence.Temporal,/javax.persistence.ManyToMany,/javax.persistence.PostUpdate,/javax.persistence.JoinTable,/javax.persistence.Entity,/javax.ws.rs.ApplicationPath,/javax.validation.constraints.Pattern,/javax.xml.bind.annotation.XmlElementWrapper,/javax.persistence.JoinColumn,/javax.persistence.PreUpdate,/javax.annotation.PreDestroy,/javax.persistence.PostLoad,/javax.ejb.PrePassivate,/javax.persistence.Id,/javax.persistence.NamedQueries,/javax.ejb.EJB,/javax.validation.constraints.NotBlank,/javax.persistence.PersistenceContext,/javax.validation.constraints.NotNull,/javax.ejb.Schedules,/javax.persistence.EntityListeners,/javax.validation.constraints.Digits,/javax.xml.bind.annotation.XmlType,/org.hibernate.search.annotations.Field,/javax.persistence.PostRemove,/javax.persistence.GeneratedValue,/javax.ejb.Asynchronous,/javax.persistence.Table,/javax.validation.constraints.NotEmpty,/javax.persistence.ManyToOne,/javax.ejb.Startup,/org.hibernate.search.annotations.Indexed,/javax.ws.rs.GET,/javax.xml.bind.annotation.XmlRootElement,/javax.inject.Inject,/javax.xml.bind.annotation.XmlElement
+[WARNING] /home/tw/IdeaProjects/jakartaee-petclinic/src/main/java/org/woehlke/jakartaee/petclinic/oodm/dao/impl/OwnerDaoImpl.java:[30,8] serializable class org.woehlke.jakartaee.petclinic.oodm.dao.impl.OwnerDaoImpl has no definition of serialVersionUID
+[WARNING] No processor claimed any of these annotations: /org.jboss.arquillian.container.test.api.RunAsClient,/org.jboss.arquillian.graphene.page.Location,/org.openqa.selenium.support.FindBy,/net.jcip.annotations.NotThreadSafe,/org.junit.Test,/org.jboss.arquillian.graphene.page.Page,/org.jboss.arquillian.junit.InSequence,/org.junit.Ignore,/org.jboss.arquillian.container.test.api.OverProtocol,/org.jboss.arquillian.container.test.api.Deployment,/org.junit.runner.RunWith
+      url: http://localhost:8081/artifactory/libs-snapshot
+   layout: default
+snapshots: [enabled => true, update => daily]
+ releases: [enabled => true, update => daily]
+
+      url: http://localhost:8081/artifactory/libs-snapshot
+   layout: default
+snapshots: [enabled => true, update => daily]
+ releases: [enabled => true, update => daily]
+
+      url: http://localhost:8081/artifactory/libs-snapshot
+   layout: default
+snapshots: [enabled => false, update => daily]
+ releases: [enabled => true, update => daily]
+

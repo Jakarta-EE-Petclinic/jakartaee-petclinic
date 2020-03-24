@@ -14,7 +14,7 @@
 		<name>Jakarta-EE-Petclinic</name>
 		<url>https://github.com/Jakarta-EE-Petclinic</url>
 	</organization>
-	<inceptionYear>2014</inceptionYear>
+	<inceptionYear>2019</inceptionYear>
 
 	<scm>
 		<url>https://github.com/Jakarta-EE-Petclinic/jakartaee-petclinic.git</url>
@@ -38,20 +38,29 @@
 		<java.version>13</java.version>
 		<!--- Build Infrastructure -->
 		<version.maven>3.6.3</version.maven>
-		<version.maven.scm>1.11.2</version.maven.scm>
+		<version.org.apache.maven.scm>1.11.2</version.org.apache.maven.scm>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<!-- general -->
 		<version.log4j>2.12.1</version.log4j>
 		<version.commons-logging>1.2</version.commons-logging>
-		<version.guava>27.0.1-jre</version.guava>
 		<version.commons-io>2.4</version.commons-io>
+		<version.com.google.guava.guava>27.0.1-jre</version.com.google.guava.guava>
+		<version.com.google.auto.auto-common>0.10</version.com.google.auto.auto-common>
+		<version.com.google.code.findbugs.jFormatString>3.0.0</version.com.google.code.findbugs.jFormatString>
+		<version.com.google.code.gson.gson>2.8.6</version.com.google.code.gson.gson>
+		<version.org.glassfish.javax.json>1.1</version.org.glassfish.javax.json>
+		<version.org.eclipse.yasson>1.0</version.org.eclipse.yasson>
 		<version.org.owasp.encoder.encoder>1.2.2</version.org.owasp.encoder.encoder>
 		<version.org.owasp.esapi.esapi>2.2.0.0</version.org.owasp.esapi.esapi>
-		<version.org.eclipse.yasson>1.0</version.org.eclipse.yasson>
-		<version.org.glassfish.javax.json>1.1</version.org.glassfish.javax.json>
 		<version.com.puppycrawl.tools.checkstyle>8.29</version.com.puppycrawl.tools.checkstyle>
 		<version.xml-apis>1.4.01</version.xml-apis>
+		<version.org.reflections.reflections>0.9.9</version.org.reflections.reflections>
+		<version.org.pcollections.pcollections>2.1.2</version.org.pcollections.pcollections>
+		<version.net.jcip.jcip-annotations>1.0</version.net.jcip.jcip-annotations>
+		<version.org.apache.httpcomponents.httpcore>4.4.12</version.org.apache.httpcomponents.httpcore>
+		<version.org.apache.httpcomponents.httpclient>4.5.10</version.org.apache.httpcomponents.httpclient>
+
 		<!-- jakartaee -->
 		<version.jakartaee-api>8.0.0</version.jakartaee-api>
 		<version.jakarta-persistence-api>2.2.3</version.jakarta-persistence-api>
@@ -62,30 +71,29 @@
 		<!-- Testing -->
 		<version.junit>4.12</version.junit>
 		<version.dbunit>2.5.3</version.dbunit>
-		<version.net.jcip.jcip-annotations>1.0</version.net.jcip.jcip-annotations>
-		<version.com.google.code.findbugs.jFormatString>3.0.0</version.com.google.code.findbugs.jFormatString>
-		<version.com.google.code.gson.gson>2.8.6</version.com.google.code.gson.gson>
 		<!-- version.selenium>3.7.1</version.selenium -->
 		<version.selenium>3.141.59</version.selenium>
 		<version.arquillian_core>1.4.1.Final</version.arquillian_core>
 		<version.arquillian_drone>2.5.1</version.arquillian_drone>
 		<version.arquillian_universe>1.2.0.2</version.arquillian_universe>
-		<version.arquillian_graphene>2.3.2</version.arquillian_graphene>
+		<version.org.jboss.arquillian.graphene.graphene-webdriver-imple>2.3.2</version.org.jboss.arquillian.graphene.graphene-webdriver-imple>
 		<version.arquillian_warp>1.0.0</version.arquillian_warp>
 		<version.arquillian_recorder>1.1.6.Final</version.arquillian_recorder>
 		<version.arquillian_rest>1.0.0.Alpha4</version.arquillian_rest>
 		<version.shrinkwrap>1.2.6</version.shrinkwrap>
 		<version.shrinkwrap_descriptors>2.0.0</version.shrinkwrap_descriptors>
 		<version.shrinkwrap_resolvers>3.1.3</version.shrinkwrap_resolvers>
+		<version.org.jboss.arquillian.graphene.graphene-webdriver-impl>2.3.2</version.org.jboss.arquillian.graphene.graphene-webdriver-impl>
+
 		<!-- DB -->
 		<version.postgresql.driver>42.2.11</version.postgresql.driver>
 		<version.derby.driver>10.15.2.0</version.derby.driver>
 		<version.h2.database>1.4.200</version.h2.database>
 		<version.hibernate-search>5.10.5.Final</version.hibernate-search>
 		<!-- JSF -->
-		<version.primefaces>7.0</version.primefaces>
+		<version.org.primefaces.primefaces>7.0</version.org.primefaces.primefaces>
 		<version.org.primefaces.themes.all-themes>1.0.10</version.org.primefaces.themes.all-themes>
-		<version.primefaces.arquillian>7.0.0</version.primefaces.arquillian>
+		<version.org.primefaces.extensions.primefaces-arquillian>7.0.0</version.org.primefaces.extensions.primefaces-arquillian>
 		<version.org.omnifaces.arquillian-primefaces>0.3</version.org.omnifaces.arquillian-primefaces>
 		<!-- Frontend -->
 		<version.webjars.jquery>3.4.1</version.webjars.jquery>
@@ -105,7 +113,7 @@
 		<version.maven-install-plugin>3.0.0-M1</version.maven-install-plugin>
 		<version.maven-war-plugin>3.2.3</version.maven-war-plugin>
 		<version.maven-surefire-plugin>3.0.0-M4</version.maven-surefire-plugin>
-		<version.maven-surefire-plugin.junit4>3.0.0-M4</version.maven-surefire-plugin.junit4>
+		<version.maven-surefire-plugin.junit4>4.12</version.maven-surefire-plugin.junit4>
 		<version.maven-failsafe-plugin>3.0.0-M4</version.maven-failsafe-plugin>
 		<version.maven-invoker-plugin>3.2.1</version.maven-invoker-plugin>
 		<version.maven-javadoc-plugin>3.2.0</version.maven-javadoc-plugin>
@@ -117,7 +125,7 @@
 		<version.maven-toolchains-plugin>3.0.0</version.maven-toolchains-plugin>
 		<version.maven-checkstyle-plugin>3.1.1</version.maven-checkstyle-plugin>
 		<version.lombok-maven-plugin>1.18.12.0</version.lombok-maven-plugin>
-		<version.lombok-maven-plugin.lombok>1.18.12</version.lombok-maven-plugin.lombok>
+		<version.org.projectlombok.lombok>1.18.12</version.org.projectlombok.lombok>
 		<version.docker-compose-maven-plugin>3.0.0</version.docker-compose-maven-plugin>
 		<version.maven-release-plugin>3.0.0-M1</version.maven-release-plugin>
 		<!-- Java EE and Jakarta EE Application Server: Wildfly, OpenLiberty, Glassfish -->
@@ -500,7 +508,7 @@
 			<dependency>
 				<groupId>org.primefaces</groupId>
 				<artifactId>primefaces</artifactId>
-				<version>${version.primefaces}</version>
+				<version>${version.org.primefaces.primefaces}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.primefaces.themes</groupId>
@@ -656,135 +664,44 @@
 		<dependency>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-scm-plugin</artifactId>
-			<version>${version.maven.scm}</version>
+			<version>${version.org.apache.maven.scm}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-provider-svnexe</artifactId>
-			<version>${version.maven.scm}</version>
+			<version>${version.org.apache.maven.scm}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-provider-svn-commons</artifactId>
-			<version>${version.maven.scm}</version>
+			<version>${version.org.apache.maven.scm}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-provider-gitexe</artifactId>
-			<version>${version.maven.scm}</version>
+			<version>${version.org.apache.maven.scm}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-provider-git-commons</artifactId>
-			<version>${version.maven.scm}</version>
+			<version>${version.org.apache.maven.scm}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-manager-plexus</artifactId>
-			<version>${version.maven.scm}</version>
+			<version>${version.org.apache.maven.scm}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-client</artifactId>
-			<version>${version.maven.scm}</version>
+			<version>${version.org.apache.maven.scm}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-providers-standard</artifactId>
-			<version>${version.maven.scm}</version>
+			<version>${version.org.apache.maven.scm}</version>
 			<type>pom</type>
 		</dependency>
-			<!--
-			<dependency>
-				<groupId>net.sourceforge.pmd</groupId>
-				<artifactId>pmd-core</artifactId>
-				<version>${version.maven-pmd-plugin.version.pmd}</version>
-			</dependency>
-			<dependency>
-				<groupId>net.sourceforge.pmd</groupId>
-				<artifactId>pmd-java</artifactId>
-				<version>${version.maven-pmd-plugin.version.pmd}</version>
-			</dependency>
-			<dependency>
-				<groupId>net.sourceforge.pmd</groupId>
-				<artifactId>pmd-javascript</artifactId>
-				<version>${version.maven-pmd-plugin.version.pmd}</version>
-			</dependency>
-			<dependency>
-				<groupId>net.sourceforge.pmd</groupId>
-				<artifactId>pmd-jsp</artifactId>
-				<version>${version.maven-pmd-plugin.version.pmd}</version>
-			</dependency>
-			<dependency>
-				<groupId>net.sourceforge.pmd</groupId>
-				<artifactId>pmd-test</artifactId>
-				<version>${version.maven-pmd-plugin.version.pmd}</version>
-			</dependency>
-			<dependency>
-				<groupId>net.sourceforge.pmd</groupId>
-				<artifactId>pmd</artifactId>
-				<version>${version.maven-pmd-plugin.version.pmd}</version>
-				<type>pom</type>
-			</dependency>
-			<dependency>
-				<groupId>net.sourceforge.pmd</groupId>
-				<artifactId>pmd-lang-test</artifactId>
-				<version>${version.maven-pmd-plugin.version.pmd}</version>
-			</dependency>
-			<dependency>
-				<groupId>net.sourceforge.pmd</groupId>
-				<artifactId>pmd-xml</artifactId>
-				<version>${version.maven-pmd-plugin.version.pmd}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>net.sourceforge.pmd</groupId>
-				<artifactId>pmd-dist</artifactId>
-				<version>${version.maven-pmd-plugin.version.pmd}</version>
-				<scope>runtime</scope>
-			</dependency>
-			<dependency>
-				<groupId>net.sourceforge.pmd</groupId>
-				<artifactId>pmd-groovy</artifactId>
-				<version>${version.maven-pmd-plugin.version.pmd}</version>
-			</dependency>
-			<dependency>
-				<groupId>net.sourceforge.pmd</groupId>
-				<artifactId>pmd-java8</artifactId>
-				<version>${version.maven-pmd-plugin.version.pmd}</version>
-			</dependency>
-			<dependency>
-				<groupId>net.sourceforge.pmd</groupId>
-				<artifactId>pmd-doc</artifactId>
-				<version>${version.maven-pmd-plugin.version.pmd}</version>
-			</dependency>
-			<dependency>
-				<groupId>net.sourceforge.pmd</groupId>
-				<artifactId>pmd-ui</artifactId>
-				<version>6.21.0</version>
-			</dependency>
-			<dependency>
-				<groupId>net.sourceforge.pmd</groupId>
-				<artifactId>pmd-build-tools-plugin</artifactId>
-				<version>1.2</version>
-			</dependency>
-			<dependency>
-				<groupId>net.sourceforge.pmd</groupId>
-				<artifactId>pmd-build</artifactId>
-				<version>0.10</version>
-			</dependency>
-			<dependency>
-				<groupId>net.sourceforge.pmd</groupId>
-				<artifactId>pmd-build-tools</artifactId>
-				<version>1.2</version>
-				<type>pom</type>
-			</dependency>
-			<dependency>
-				<groupId>net.sourceforge.pmd</groupId>
-				<artifactId>pmd-build-tools-config</artifactId>
-				<version>6</version>
-			</dependency>
-			-->
 			<!-- JSF and PrimeFaces Arquillian Tests -->
 			<dependency>
 				<groupId>net.jcip</groupId>
@@ -795,7 +712,7 @@
 			<dependency>
 				<groupId>org.primefaces.extensions</groupId>
 				<artifactId>primefaces-arquillian</artifactId>
-				<version>${version.primefaces.arquillian}</version>
+				<version>${version.org.primefaces.extensions.primefaces-arquillian}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
@@ -806,8 +723,15 @@
 			</dependency>
 			<dependency>
 				<groupId>org.jboss.arquillian.graphene</groupId>
+				<artifactId>graphene-webdriver</artifactId>
+				<version>${version.org.jboss.arquillian.graphene.graphene-webdriver-impl}</version>
+				<type>pom</type>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.arquillian.graphene</groupId>
 				<artifactId>graphene-webdriver-impl</artifactId>
-				<version>${version.arquillian_graphene}</version>
+				<version>${version.org.jboss.arquillian.graphene.graphene-webdriver-impl}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
@@ -819,7 +743,7 @@
 			<dependency>
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok</artifactId>
-				<version>${version.lombok-maven-plugin.lombok}</version>
+				<version>${version.org.projectlombok.lombok}</version>
 				<scope>provided</scope>
 			</dependency>
 		</dependencies>
@@ -1234,37 +1158,37 @@
 					<dependency>
 						<groupId>org.apache.httpcomponents</groupId>
 						<artifactId>httpcore</artifactId>
-						<version>4.4.12</version>
+						<version>${version.org.apache.httpcomponents.httpcore}</version>
 						<scope>test</scope>
 					</dependency>
 					<dependency>
 						<groupId>org.apache.httpcomponents</groupId>
 						<artifactId>httpclient</artifactId>
-						<version>4.5.10</version>
+						<version>${version.org.apache.httpcomponents.httpclient}</version>
 						<scope>test</scope>
 					</dependency>
 					<!-- other 3rd Party Dependencies for Tests -->
 					<dependency>
 						<groupId>org.reflections</groupId>
 						<artifactId>reflections</artifactId>
-						<version>0.9.9</version>
+						<version>${version.org.reflections.reflections}</version>
 					</dependency>
 					<dependency>
 						<groupId>org.pcollections</groupId>
 						<artifactId>pcollections</artifactId>
-						<version>2.1.2</version>
+						<version>${version.org.pcollections.pcollections}</version>
 						<scope>test</scope>
 					</dependency>
 					<dependency>
 						<groupId>com.google.guava</groupId>
 						<artifactId>guava</artifactId>
-						<version>${version.guava}</version>
+						<version>${version.com.google.guava.guava}</version>
 						<scope>test</scope>
 					</dependency>
 					<dependency>
 						<groupId>com.google.auto</groupId>
 						<artifactId>auto-common</artifactId>
-						<version>0.10</version>
+						<version>${version.com.google.auto.auto-common}</version>
 						<scope>test</scope>
 					</dependency>
 					<dependency>
@@ -1398,35 +1322,6 @@
 						<version>${version.jakartaee8.server.openliberty.arquillian}</version>
 						<scope>test</scope>
 					</dependency>
-					<!-- shrinkwrap -->
-					<!--
-					<dependency>
-						<groupId>org.jboss.shrinkwrap.resolver</groupId>
-						<artifactId>shrinkwrap-resolver-depchain</artifactId>
-						<type>pom</type>
-						<scope>test</scope>
-					</dependency>
-					<dependency>
-						<groupId>org.jboss.shrinkwrap.resolver</groupId>
-						<artifactId>shrinkwrap-resolver-api-maven-embedded</artifactId>
-						<scope>test</scope>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.cxf</groupId>
-						<artifactId>cxf-rt-rs-client</artifactId>
-						<scope>test</scope>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.cxf</groupId>
-						<artifactId>cxf-rt-rs-extension-providers</artifactId>
-						<scope>test</scope>
-					</dependency>
-					<dependency>
-						<groupId>net.jcip</groupId>
-						<artifactId>jcip-annotations</artifactId>
-						<scope>test</scope>
-					</dependency>
-					-->
 				</dependencies>
 			</dependencyManagement>
 			<dependencies>
@@ -1626,7 +1521,7 @@
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-scm-plugin</artifactId>
-							<version>${version.maven.scm}</version>
+							<version>${version.org.apache.maven.scm}</version>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -1677,6 +1572,42 @@
 									</artifactItems>
 								</configuration>
 							</execution>
+							<execution>
+								<id>check-dependencies</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>analyze</goal>
+									<goal>analyze-dep-mgt</goal>
+									<goal>analyze-duplicate</goal>
+									<goal>analyze-report</goal>
+									<goal>list</goal>
+									<goal>list-repositories</goal>
+									<goal>properties</goal>
+									<goal>tree</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>get-dependency-sources</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>sources</goal>
+									<goal>resolve</goal>
+									<goal>resolve-plugins</goal>
+									<goal>collect</goal>
+									<goal>copy-dependencies</goal>
+									<goal>unpack-dependencies</goal>
+								</goals>
+								<configuration>
+									<excludeGroupIds>org.webjars</excludeGroupIds>
+									<excludeArtifactIds>weld-probe-core</excludeArtifactIds>
+									<classifier>sources</classifier>
+									<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+									<outputDirectory>${project.build.directory}/dependencies/</outputDirectory>
+								</configuration>
+							</execution>
 						</executions>
 					</plugin>
 					<plugin>
@@ -1696,7 +1627,7 @@
 								<path>
 									<groupId>org.projectlombok</groupId>
 									<artifactId>lombok</artifactId>
-									<version>${version.lombok-maven-plugin.lombok}</version>
+									<version>${version.org.projectlombok.lombok}</version>
 								</path>
 							</annotationProcessorPaths>
 						</configuration>
@@ -2157,7 +2088,7 @@
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-scm-plugin</artifactId>
-							<version>${version.maven.scm}</version>
+							<version>${version.org.apache.maven.scm}</version>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -2208,6 +2139,19 @@
 									</artifactItems>
 								</configuration>
 							</execution>
+							<execution>
+								<id>check-dependencies</id>
+								<phase>process-sources</phase>
+								<goals>
+									<goal>sources</goal>
+									<goal>resolve</goal>
+									<goal>resolve-plugins</goal>
+									<goal>analyze</goal>
+									<goal>collect</goal>
+									<goal>properties</goal>
+									<goal>tree</goal>
+								</goals>
+							</execution>
 						</executions>
 					</plugin>
 					<plugin>
@@ -2227,7 +2171,7 @@
 								<path>
 									<groupId>org.projectlombok</groupId>
 									<artifactId>lombok</artifactId>
-									<version>${version.lombok-maven-plugin.lombok}</version>
+									<version>${version.org.projectlombok.lombok}</version>
 								</path>
 							</annotationProcessorPaths>
 						</configuration>
@@ -2630,7 +2574,7 @@
 				<dependency>
 					<groupId>org.jboss.arquillian.junit</groupId>
 					<artifactId>arquillian-junit-container</artifactId>
-					<version>${version.}</version>
+					<version>${version.arquillian_core}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -2660,43 +2604,67 @@
 				<dependency>
 					<groupId>org.jboss.arquillian.testenricher</groupId>
 					<artifactId>arquillian-testenricher-resource</artifactId>
+					<!--
 					<version>${version.}</version>
+					-->
 					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.jboss.arquillian.testenricher</groupId>
 					<artifactId>arquillian-testenricher-initialcontext</artifactId>
+					<!--
 					<version>${version.}</version>
+					-->
 					<scope>test</scope>
 				</dependency>
-				<dependency>
-					<groupId>org.apache.httpcomponents</groupId>
-					<artifactId>httpcore</artifactId>
-					<version>${version.}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.httpcomponents</groupId>
-					<artifactId>httpclient</artifactId>
-					<version>${version.}</version>
-					<scope>test</scope>
-				</dependency>
+					<dependency>
+						<groupId>org.apache.httpcomponents</groupId>
+						<artifactId>httpcore</artifactId>
+						<version>${version.org.apache.httpcomponents.httpcore}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.httpcomponents</groupId>
+						<artifactId>httpclient</artifactId>
+						<version>${version.org.apache.httpcomponents.httpclient}</version>
+						<scope>test</scope>
+					</dependency>
 				<dependency>
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
-					<version>${version.}</version>
+					<version>${version.commons-logging}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.apache.logging.log4j</groupId>
 					<artifactId>log4j-core</artifactId>
-					<version>${version.}</version>
+					<version>${version.log4j}</version>
 				</dependency>
-				<dependency>
-					<groupId>org.apache.logging.log4j</groupId>
-					<artifactId>log4j-api</artifactId>
-					<version>${version.}</version>
-				</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-api</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-slf4j-impl</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-to-slf4j</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-web</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-appserver</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
 				<dependency>
 					<groupId>org.reflections</groupId>
 					<artifactId>reflections</artifactId>
@@ -2711,7 +2679,7 @@
 				<dependency>
 					<groupId>com.google.guava</groupId>
 					<artifactId>guava</artifactId>
-					<version>${version.}</version>
+					<version>${version.com.google.guava.guava}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -2751,7 +2719,7 @@
 				<dependency>
 					<groupId>org.primefaces.extensions</groupId>
 					<artifactId>primefaces-arquillian</artifactId>
-					<version>${version.primefaces.arquillian}</version>
+					<version>${version.org.primefaces.extensions.primefaces-arquillian}</version>
 				</dependency>
 				<dependency>
 					<groupId>org.omnifaces</groupId>
@@ -2997,6 +2965,43 @@
 								</artifactItems>
 								</configuration>
 							</execution>
+
+							<execution>
+								<id>check-dependencies</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>analyze</goal>
+									<goal>analyze-dep-mgt</goal>
+									<goal>analyze-duplicate</goal>
+									<goal>analyze-report</goal>
+									<goal>list</goal>
+									<goal>list-repositories</goal>
+									<goal>properties</goal>
+									<goal>tree</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>get-dependency-sources</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>sources</goal>
+									<goal>resolve</goal>
+									<goal>resolve-plugins</goal>
+									<goal>collect</goal>
+									<goal>copy-dependencies</goal>
+									<goal>unpack-dependencies</goal>
+								</goals>
+								<configuration>
+									<excludeGroupIds>org.webjars</excludeGroupIds>
+									<excludeArtifactIds>weld-probe-core</excludeArtifactIds>
+									<classifier>sources</classifier>
+									<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+									<outputDirectory>${project.build.directory}/dependencies/</outputDirectory>
+								</configuration>
+							</execution>
 						</executions>
 					</plugin>
 					<plugin>
@@ -3142,7 +3147,7 @@
 		</profile>
 		<!-- openliberty-remote-run -->
 		<profile>
-			<id>wlp-remote-run</id>
+			<id>wlp-run-remote</id>
 			<build>
 				<finalName>${project.artifactId}</finalName>
 				<plugins>
@@ -3213,7 +3218,7 @@
 		</profile>
 		<!-- openliberty-remote-test -->
 		<profile>
-			<id>wlp-remote-test</id>
+			<id>wlp-test-remote</id>
 			<dependencyManagement>
 				<dependencies>
 
@@ -3345,6 +3350,32 @@
 			</properties>
 			<dependencyManagement>
 				<dependencies>
+					<dependency>
+						<groupId>jakarta.platform</groupId>
+						<artifactId>jakartaee-api-parent</artifactId>
+						<version>${version.jakartaee-api}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>jakarta.platform</groupId>
+						<artifactId>jakarta.jakartaee-bom</artifactId>
+						<version>${version.jakartaee-api}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>jakarta.platform</groupId>
+						<artifactId>jakarta.jakartaee-api</artifactId>
+						<version>${version.jakartaee-api}</version>
+						<scope>provided</scope>
+					</dependency>
+					<dependency>
+						<groupId>jakarta.platform</groupId>
+						<artifactId>jakarta.jakartaee-web-api</artifactId>
+						<version>${version.jakartaee-api}</version>
+						<scope>provided</scope>
+					</dependency>
 					<!-- Jakarta EE Runtime: Wildfly -->
 					<dependency>
 						<groupId>org.wildfly</groupId>
@@ -3381,7 +3412,7 @@
 				<dependency>
 					<groupId>org.jboss.arquillian.graphene</groupId>
 					<artifactId>graphene-webdriver-impl</artifactId>
-					<version>${version.arquillian_graphene}</version>
+					<version>${version.org.jboss.arquillian.graphene.graphene-webdriver-imple}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -3399,19 +3430,19 @@
 				<dependency>
 					<groupId>org.jboss.arquillian.junit</groupId>
 					<artifactId>arquillian-junit-container</artifactId>
-					<version>${version.arquillian-junit-container}</version>
+					<version>${version.arquillian_core}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.jboss.arquillian.core</groupId>
 					<artifactId>arquillian-core-impl-base</artifactId>
-					<version>${version.arquillian-core-impl-base}</version>
+					<version>${version.arquillian_core}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.jboss.arquillian.config</groupId>
 					<artifactId>arquillian-core-impl-base</artifactId>
-					<version>${version.arquillian-core-impl-base}</version>
+					<version>${version.arquillian_core}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -3429,54 +3460,76 @@
 				<dependency>
 					<groupId>org.jboss.arquillian.testenricher</groupId>
 					<artifactId>arquillian-testenricher-resource</artifactId>
-					<version>${version.arquillian-testenricher-resource}</version>
+					<version>${version.arquillian_core}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.jboss.arquillian.testenricher</groupId>
 					<artifactId>arquillian-testenricher-initialcontext</artifactId>
-					<version>${version.arquillian-testenricher-initialcontext}</version>
+					<version>${version.arquillian_core}</version>
 					<scope>test</scope>
 				</dependency>
-				<dependency>
-					<groupId>org.apache.httpcomponents</groupId>
-					<artifactId>httpcore</artifactId>
-					<version>${version.}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.httpcomponents</groupId>
-					<artifactId>httpclient</artifactId>
-					<version>${version.}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-					<version>${version.}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.logging.log4j</groupId>
-					<artifactId>log4j-core</artifactId>
-					<version>${version.}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.logging.log4j</groupId>
-					<artifactId>log4j-api</artifactId>
-					<version>${version.}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.reflections</groupId>
-					<artifactId>reflections</artifactId>
-					<version>${version.}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.pcollections</groupId>
-					<artifactId>pcollections</artifactId>
-					<version>${version.org.pcollections.pcollections}</version>
-					<scope>test</scope>
-				</dependency>
+
+					<dependency>
+						<groupId>org.apache.httpcomponents</groupId>
+						<artifactId>httpcore</artifactId>
+						<version>${version.org.apache.httpcomponents.httpcore}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.httpcomponents</groupId>
+						<artifactId>httpclient</artifactId>
+						<version>${version.org.apache.httpcomponents.httpclient}</version>
+						<scope>test</scope>
+					</dependency>
+
+					<dependency>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+						<version>${version.commons-logging}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-core</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-api</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-slf4j-impl</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-to-slf4j</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-web</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-appserver</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.reflections</groupId>
+						<artifactId>reflections</artifactId>
+						<version>${version.org.reflections.reflections}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.pcollections</groupId>
+						<artifactId>pcollections</artifactId>
+						<version>${version.org.pcollections.pcollections}</version>
+						<scope>test</scope>
+					</dependency>
 				<dependency>
 					<groupId>com.google.guava</groupId>
 					<artifactId>guava</artifactId>
@@ -3498,19 +3551,19 @@
 				<dependency>
 					<groupId>com.google.code.gson</groupId>
 					<artifactId>gson</artifactId>
-					<version>${version.com.google.code.gson}</version>
+					<version>${version.com.google.code.gson.gson}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.hibernate</groupId>
 					<artifactId>hibernate-search-engine</artifactId>
-					<version>${version.org.hibernate.hibernate-search-engines}</version>
+					<version>${version.hibernate-search}</version>
 					<scope>provided</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.hibernate</groupId>
 					<artifactId>hibernate-search-orm</artifactId>
-					<version>${version.org.hibernate.hibernate-search-orm}</version>
+					<version>${version.hibernate-search}</version>
 					<scope>provided</scope>
 				</dependency>
 				<dependency>
@@ -3526,6 +3579,11 @@
 				</dependencies>
 			</dependencyManagement>
 			<dependencies>
+				<dependency>
+					<groupId>jakarta.platform</groupId>
+					<artifactId>jakarta.jakartaee-api</artifactId>
+					<scope>provided</scope>
+				</dependency>
 				<dependency>
 					<groupId>org.wildfly.arquillian</groupId>
 					<artifactId>wildfly-arquillian-container-managed</artifactId>
@@ -3580,9 +3638,6 @@
 				<dependency>
 					<groupId>xml-apis</groupId>
 					<artifactId>xml-apis</artifactId>
-					<!--
-					<version>1.4.01</version>
-					-->
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -3678,13 +3733,127 @@
 			</dependencies>
 			<build>
 				<finalName>${project.artifactId}</finalName>
-				<defaultGoal>clean install docker-compose:up docker-compose:down</defaultGoal>
+				<defaultGoal>clean install</defaultGoal>
 				<!--
 				<defaultGoal>clean install docker-compose:up docker-compose:down</defaultGoal>
 				-->
 				<pluginManagement>
 					<plugins>
-
+						<plugin>
+							<groupId>org.wildfly.plugins</groupId>
+							<artifactId>wildfly-maven-plugin</artifactId>
+							<version>${version.wildfly-maven-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-dependency-plugin</artifactId>
+							<version>${version.maven-dependency-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-clean-plugin</artifactId>
+							<version>${version.maven-clean-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-compiler-plugin</artifactId>
+							<version>${version.maven-compiler-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-source-plugin</artifactId>
+							<version>${version.maven-source-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-javadoc-plugin</artifactId>
+							<version>${version.maven-javadoc-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-resources-plugin</artifactId>
+							<version>${version.maven-resources-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-install-plugin</artifactId>
+							<version>${version.maven-install-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok-maven-plugin</artifactId>
+							<version>${version.lombok-maven-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-war-plugin</artifactId>
+							<version>${version.maven-war-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>surefire-junit4</artifactId>
+							<version>${version.maven-surefire-plugin.junit4}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-surefire-plugin</artifactId>
+							<version>${version.maven-surefire-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-failsafe-plugin</artifactId>
+							<version>${version.maven-failsafe-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-invoker-plugin</artifactId>
+							<version>${version.maven-invoker-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-shade-plugin</artifactId>
+							<version>${version.maven-shade-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-jar-plugin</artifactId>
+							<version>${version.maven-jar-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-assembly-plugin</artifactId>
+							<version>${version.maven-assembly-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-deploy-plugin</artifactId>
+							<version>${version.maven-deploy-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-help-plugin</artifactId>
+							<version>${version.maven-help-plugins}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-toolchains-plugin</artifactId>
+							<version>${version.maven-toolchains-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-scm-plugin</artifactId>
+							<version>${version.org.apache.maven.scm}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-release-plugin</artifactId>
+							<version>${version.maven-release-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>com.dkanejs.maven.plugins</groupId>
+							<artifactId>docker-compose-maven-plugin</artifactId>
+							<version>${version.docker-compose-maven-plugin}</version>
+						</plugin>
 					</plugins>
 				</pluginManagement>
 				<plugins>
@@ -3703,7 +3872,6 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-dependency-plugin</artifactId>
-						<version>${version.maven-dependency-plugin}</version>
 						<executions>
 							<execution>
 								<id>unpack</id>
@@ -3724,12 +3892,47 @@
 									</artifactItems>
 								</configuration>
 							</execution>
+						<execution>
+							<id>check-dependencies</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>analyze</goal>
+								<goal>analyze-dep-mgt</goal>
+								<goal>analyze-duplicate</goal>
+								<goal>analyze-report</goal>
+								<goal>list</goal>
+								<goal>list-repositories</goal>
+								<goal>properties</goal>
+								<goal>tree</goal>
+							</goals>
+							<configuration>
+								<outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+							</configuration>
+						</execution>
+						<execution>
+							<id>get-dependency-sources</id>
+							<phase>prepare-package</phase>
+							<goals>
+								<goal>sources</goal>
+								<goal>resolve</goal>
+								<goal>resolve-plugins</goal>
+								<goal>collect</goal>
+								<goal>copy-dependencies</goal>
+								<goal>unpack-dependencies</goal>
+							</goals>
+							<configuration>
+								<excludeGroupIds>org.webjars</excludeGroupIds>
+								<excludeArtifactIds>weld-probe-core</excludeArtifactIds>
+								<classifier>sources</classifier>
+								<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+								<outputDirectory>${project.build.directory}/dependencies/</outputDirectory>
+							</configuration>
+						</execution>
 						</executions>
 					</plugin>
 					<plugin>
 						<groupId>org.wildfly.plugins</groupId>
 						<artifactId>wildfly-maven-plugin</artifactId>
-						<version>2.0.1.Final</version>
 						<configuration>
 							<filename>${project.artifactId}.war</filename>
 						</configuration>
@@ -3894,7 +4097,7 @@
 				<dependency>
 					<groupId>org.jboss.arquillian.graphene</groupId>
 					<artifactId>graphene-webdriver-impl</artifactId>
-					<version>${version.arquillian_graphene}</version>
+					<version>${version.org.jboss.arquillian.graphene.graphene-webdriver-imple}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -3938,11 +4141,13 @@
 				<dependency>
 					<groupId>org.jboss.arquillian.testenricher</groupId>
 					<artifactId>arquillian-testenricher-resource</artifactId>
+					<version>${version.arquillian_core}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.jboss.arquillian.testenricher</groupId>
 					<artifactId>arquillian-testenricher-initialcontext</artifactId>
+					<version>${version.arquillian_core}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -4101,6 +4306,43 @@
 											<outputDirectory>${project.build.directory}</outputDirectory>
 										</artifactItem>
 									</artifactItems>
+								</configuration>
+							</execution>
+
+							<execution>
+								<id>check-dependencies</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>analyze</goal>
+									<goal>analyze-dep-mgt</goal>
+									<goal>analyze-duplicate</goal>
+									<goal>analyze-report</goal>
+									<goal>list</goal>
+									<goal>list-repositories</goal>
+									<goal>properties</goal>
+									<goal>tree</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>get-dependency-sources</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>sources</goal>
+									<goal>resolve</goal>
+									<goal>resolve-plugins</goal>
+									<goal>collect</goal>
+									<goal>copy-dependencies</goal>
+									<goal>unpack-dependencies</goal>
+								</goals>
+								<configuration>
+									<excludeGroupIds>org.webjars</excludeGroupIds>
+									<excludeArtifactIds>weld-probe-core</excludeArtifactIds>
+									<classifier>sources</classifier>
+									<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+									<outputDirectory>${project.build.directory}/dependencies/</outputDirectory>
 								</configuration>
 							</execution>
 						</executions>
@@ -4327,6 +4569,45 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-dependency-plugin</artifactId>
+					<executions>
+
+						<execution>
+							<id>check-dependencies</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>analyze</goal>
+								<goal>analyze-dep-mgt</goal>
+								<goal>analyze-duplicate</goal>
+								<goal>analyze-report</goal>
+								<goal>list</goal>
+								<goal>list-repositories</goal>
+								<goal>properties</goal>
+								<goal>tree</goal>
+							</goals>
+							<configuration>
+								<outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+							</configuration>
+						</execution>
+						<execution>
+							<id>get-dependency-sources</id>
+							<phase>prepare-package</phase>
+							<goals>
+								<goal>sources</goal>
+								<goal>resolve</goal>
+								<goal>resolve-plugins</goal>
+								<goal>collect</goal>
+								<goal>copy-dependencies</goal>
+								<goal>unpack-dependencies</goal>
+							</goals>
+							<configuration>
+								<excludeGroupIds>org.webjars</excludeGroupIds>
+								<excludeArtifactIds>weld-probe-core</excludeArtifactIds>
+								<classifier>sources</classifier>
+								<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+								<outputDirectory>${project.build.directory}/dependencies/</outputDirectory>
+							</configuration>
+						</execution>
+					</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.wildfly.plugins</groupId>
@@ -4479,6 +4760,45 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+
+							<execution>
+								<id>check-dependencies</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>analyze</goal>
+									<goal>analyze-dep-mgt</goal>
+									<goal>analyze-duplicate</goal>
+									<goal>analyze-report</goal>
+									<goal>list</goal>
+									<goal>list-repositories</goal>
+									<goal>properties</goal>
+									<goal>tree</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>get-dependency-sources</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>sources</goal>
+									<goal>resolve</goal>
+									<goal>resolve-plugins</goal>
+									<goal>collect</goal>
+									<goal>copy-dependencies</goal>
+									<goal>unpack-dependencies</goal>
+								</goals>
+								<configuration>
+									<excludeGroupIds>org.webjars</excludeGroupIds>
+									<excludeArtifactIds>weld-probe-core</excludeArtifactIds>
+									<classifier>sources</classifier>
+									<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+									<outputDirectory>${project.build.directory}/dependencies/</outputDirectory>
+								</configuration>
+							</execution>
+						</executions>
 					</plugin>
 					<plugin>
 						<groupId>org.wildfly.plugins</groupId>
@@ -4577,6 +4897,7 @@
 						<artifactId>maven-dependency-plugin</artifactId>
 						<executions>
 							<execution>
+								<id>perform</id>
 								<goals>
 									<goal>purge-local-repository</goal>
 									<goal>resolve</goal>
@@ -4584,12 +4905,48 @@
 									<goal>sources</goal>
 									<goal>unpack-dependencies</goal>
 								</goals>
+								<configuration>
+									<excludeTypes>pom,zip</excludeTypes>
+									<outputDirectory>${project.build.directory}/prepareserialver</outputDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>check-dependencies</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>analyze</goal>
+									<goal>analyze-dep-mgt</goal>
+									<goal>analyze-duplicate</goal>
+									<goal>analyze-report</goal>
+									<goal>list</goal>
+									<goal>list-repositories</goal>
+									<goal>properties</goal>
+									<goal>tree</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>get-dependency-sources</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>sources</goal>
+									<goal>resolve</goal>
+									<goal>resolve-plugins</goal>
+									<goal>collect</goal>
+									<goal>copy-dependencies</goal>
+									<goal>unpack-dependencies</goal>
+								</goals>
+								<configuration>
+									<excludeGroupIds>org.webjars</excludeGroupIds>
+									<excludeArtifactIds>weld-probe-core</excludeArtifactIds>
+									<classifier>sources</classifier>
+									<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+									<outputDirectory>${project.build.directory}/dependencies/</outputDirectory>
+								</configuration>
 							</execution>
 						</executions>
-						<configuration>
-							<excludeTypes>pom,zip</excludeTypes>
-							<outputDirectory>${project.build.directory}/prepareserialver</outputDirectory>
-						</configuration>
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -4638,6 +4995,65 @@
 			<dependencyManagement>
 				<dependencies>
 					<dependency>
+						<groupId>jakarta.platform</groupId>
+						<artifactId>jakartaee-api-parent</artifactId>
+						<version>${version.jakartaee-api}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>jakarta.platform</groupId>
+						<artifactId>jakarta.jakartaee-bom</artifactId>
+						<version>${version.jakartaee-api}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>jakarta.platform</groupId>
+						<artifactId>jakarta.jakartaee-api</artifactId>
+						<version>${version.jakartaee-api}</version>
+						<scope>provided</scope>
+					</dependency>
+					<dependency>
+						<groupId>jakarta.platform</groupId>
+						<artifactId>jakarta.jakartaee-web-api</artifactId>
+						<version>${version.jakartaee-api}</version>
+						<scope>provided</scope>
+					</dependency>
+					<!-- Jakarta EE Runtime: OpenLiberty -->
+					<dependency>
+						<groupId>io.openliberty</groupId>
+						<artifactId>openliberty-javaee8</artifactId>
+						<version>${version.jakartaee8.server.openliberty}</version>
+						<type>zip</type>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.features</groupId>
+						<artifactId>features-bom</artifactId>
+						<version>${version.jakartaee8.server.openliberty}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.arquillian</groupId>
+						<artifactId>arquillian-liberty-managed</artifactId>
+						<version>${version.jakartaee8.server.openliberty.arquillian}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.arquillian</groupId>
+						<artifactId>arquillian-liberty-remote</artifactId>
+						<version>${version.jakartaee8.server.openliberty.arquillian}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.arquillian</groupId>
+						<artifactId>liberty-support-feature</artifactId>
+						<version>${version.jakartaee8.server.openliberty.arquillian}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
 						<groupId>net.sourceforge.pmd</groupId>
 						<artifactId>pmd</artifactId>
 						<version>${version.maven-pmd-plugin.version.pmd}</version>
@@ -4684,50 +5100,6 @@
 						<artifactId>pmd-doc</artifactId>
 						<version>${version.maven-pmd-plugin.version.pmd}</version>
 					</dependency>
-					<!--
-					<dependency>
-						<groupId>net.sourceforge.pmd</groupId>
-						<artifactId>pmd-dist</artifactId>
-						<version>${version.maven-pmd-plugin.version.pmd}</version>
-						<scope>runtime</scope>
-					</dependency>
-					<dependency>
-						<groupId>net.sourceforge.pmd</groupId>
-						<artifactId>pmd-groovy</artifactId>
-						<version>${version.maven-pmd-plugin.version.pmd}</version>
-					</dependency>
-					<dependency>
-						<groupId>net.sourceforge.pmd</groupId>
-						<artifactId>pmd-java8</artifactId>
-						<version>${version.maven-pmd-plugin.version.pmd}</version>
-					</dependency>
-					<dependency>
-						<groupId>net.sourceforge.pmd</groupId>
-						<artifactId>pmd-ui</artifactId>
-						<version>6.21.0</version>
-					</dependency>
-					<dependency>
-						<groupId>net.sourceforge.pmd</groupId>
-						<artifactId>pmd-build-tools-plugin</artifactId>
-						<version>1.2</version>
-					</dependency>
-					<dependency>
-						<groupId>net.sourceforge.pmd</groupId>
-						<artifactId>pmd-build</artifactId>
-						<version>0.10</version>
-					</dependency>
-					<dependency>
-						<groupId>net.sourceforge.pmd</groupId>
-						<artifactId>pmd-build-tools</artifactId>
-						<version>1.2</version>
-						<type>pom</type>
-					</dependency>
-					<dependency>
-						<groupId>net.sourceforge.pmd</groupId>
-						<artifactId>pmd-build-tools-config</artifactId>
-						<version>6</version>
-					</dependency>
-					-->
 					<dependency>
 						<groupId>com.dkanejs.maven.plugins</groupId>
 						<artifactId>docker-compose-maven-plugin</artifactId>
@@ -4737,7 +5109,7 @@
 					<dependency>
 						<groupId>org.projectlombok</groupId>
 						<artifactId>lombok</artifactId>
-						<version>${version.lombok-maven-plugin.lombok}</version>
+						<version>${version.org.projectlombok.lombok}</version>
 						<scope>provided</scope>
 					</dependency>
 				</dependencies>
@@ -4775,42 +5147,6 @@
 					<groupId>net.sourceforge.pmd</groupId>
 					<artifactId>pmd-doc</artifactId>
 				</dependency>
-				<!--
-								<dependency>
-									<groupId>net.sourceforge.pmd</groupId>
-									<artifactId>pmd-dist</artifactId>
-									<scope>runtime</scope>
-								</dependency>
-								<dependency>
-									<groupId>net.sourceforge.pmd</groupId>
-									<artifactId>pmd-groovy</artifactId>
-								</dependency>
-								<dependency>
-									<groupId>net.sourceforge.pmd</groupId>
-									<artifactId>pmd-java8</artifactId>
-								</dependency>
-								<dependency>
-									<groupId>net.sourceforge.pmd</groupId>
-									<artifactId>pmd-ui</artifactId>
-								</dependency>
-								<dependency>
-									<groupId>net.sourceforge.pmd</groupId>
-									<artifactId>pmd-build-tools-plugin</artifactId>
-								</dependency>
-								<dependency>
-									<groupId>net.sourceforge.pmd</groupId>
-									<artifactId>pmd-build</artifactId>
-								</dependency>
-								<dependency>
-									<groupId>net.sourceforge.pmd</groupId>
-									<artifactId>pmd-build-tools</artifactId>
-									<type>pom</type>
-								</dependency>
-								<dependency>
-									<groupId>net.sourceforge.pmd</groupId>
-									<artifactId>pmd-build-tools-config</artifactId>
-								</dependency>
-								-->
 				<dependency>
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
@@ -5015,7 +5351,7 @@
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-scm-plugin</artifactId>
-							<version>${version.maven.scm}</version>
+							<version>${version.org.apache.maven.scm}</version>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -5040,24 +5376,39 @@
 						<artifactId>maven-dependency-plugin</artifactId>
 						<executions>
 							<execution>
-								<id>id-prepare-package</id>
+								<id>check-dependencies</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>analyze</goal>
+									<goal>analyze-dep-mgt</goal>
+									<goal>analyze-duplicate</goal>
+									<goal>analyze-report</goal>
+									<goal>list</goal>
+									<goal>list-repositories</goal>
+									<goal>properties</goal>
+									<goal>tree</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>get-dependency-sources</id>
 								<phase>prepare-package</phase>
 								<goals>
 									<goal>sources</goal>
 									<goal>resolve</goal>
 									<goal>resolve-plugins</goal>
-									<goal>analyze</goal>
 									<goal>collect</goal>
-									<goal>list</goal>
-									<goal>list-repositories</goal>
-									<goal>properties</goal>
 									<goal>copy-dependencies</goal>
-									<goal>tree</goal>
+									<goal>unpack-dependencies</goal>
 								</goals>
 								<configuration>
+									<excludeGroupIds>org.webjars</excludeGroupIds>
+									<excludeArtifactIds>weld-probe-core</excludeArtifactIds>
 									<classifier>sources</classifier>
 									<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
-									<outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+									<outputDirectory>${project.build.directory}/dependencies/</outputDirectory>
 								</configuration>
 							</execution>
 						</executions>
@@ -5161,7 +5512,7 @@
 							<dependency>
 								<groupId>com.puppycrawl.tools</groupId>
 								<artifactId>checkstyle</artifactId>
-								<version>8.30</version>
+								<version>${version.com.puppycrawl.tools.checkstyle}</version>
 							</dependency>
 						</dependencies>
 					</plugin>
@@ -5360,7 +5711,7 @@
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-scm-plugin</artifactId>
-							<version>${version.maven.scm}</version>
+							<version>${version.org.apache.maven.scm}</version>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -5375,20 +5726,23 @@
 						<artifactId>maven-dependency-plugin</artifactId>
 						<executions>
 							<execution>
-								<id>id-post-clean</id>
-								<phase>post-clean</phase>
+								<id>check-dependencies</id>
+								<phase>process-sources</phase>
 								<goals>
 									<goal>purge-local-repository</goal>
 									<goal>sources</goal>
 									<goal>resolve</goal>
 									<goal>resolve-plugins</goal>
-									<goal>analyze</goal>
 									<goal>collect</goal>
+									<goal>copy-dependencies</goal>
+									<goal>unpack-dependencies</goal>
+									<goal>analyze</goal>
+									<goal>analyze-dep-mgt</goal>
+									<goal>analyze-duplicate</goal>
+									<goal>analyze-report</goal>
 									<goal>list</goal>
 									<goal>list-repositories</goal>
 									<goal>properties</goal>
-									<goal>copy-dependencies</goal>
-									<goal>unpack-dependencies</goal>
 									<goal>tree</goal>
 								</goals>
 								<configuration>
