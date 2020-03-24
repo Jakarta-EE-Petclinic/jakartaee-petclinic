@@ -25,16 +25,16 @@ function smokeTests01() {
 
 function smokeTests02() {
 	echo "smokeTests02"
-	#./mvnw -Psetup | grep -v "INFO"
-	./mvnw -Pqa
+	./mvnw -Psetup
+	#./mvnw -Pqa
 	#./mvnw clean install | grep -v "INFO"
 	#./mvnw -Pwlp-run clean install | grep -v "INFO"
 	#./mvnw -Pwf-run clean install | grep -v "INFO"
 }
 
 function main() {
-    smokeTests01
-    #smokeTests02
+    #smokeTests01
+    smokeTests02
 }
 
 main

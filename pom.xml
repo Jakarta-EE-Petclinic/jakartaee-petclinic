@@ -5790,15 +5790,8 @@
 						<executions>
 							<execution>
 								<id>check-dependencies</id>
-								<phase>process-sources</phase>
+								<phase>verify</phase>
 								<goals>
-									<goal>purge-local-repository</goal>
-									<goal>sources</goal>
-									<goal>resolve</goal>
-									<goal>resolve-plugins</goal>
-									<goal>collect</goal>
-									<goal>copy-dependencies</goal>
-									<goal>unpack-dependencies</goal>
 									<goal>analyze</goal>
 									<goal>analyze-dep-mgt</goal>
 									<goal>analyze-duplicate</goal>
@@ -5809,9 +5802,26 @@
 									<goal>tree</goal>
 								</goals>
 								<configuration>
+									<outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>get-dependency-sources</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>sources</goal>
+									<goal>resolve</goal>
+									<goal>resolve-plugins</goal>
+									<goal>collect</goal>
+									<goal>copy-dependencies</goal>
+									<goal>unpack-dependencies</goal>
+								</goals>
+								<configuration>
+									<excludeGroupIds>org.webjars</excludeGroupIds>
+									<excludeArtifactIds>weld-probe-core</excludeArtifactIds>
 									<classifier>sources</classifier>
 									<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
-									<outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+									<outputDirectory>${project.build.directory}/dependencies/</outputDirectory>
 								</configuration>
 							</execution>
 						</executions>
