@@ -23,8 +23,8 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@ToString
-@EqualsAndHashCode
+@ToString(exclude = {"pet"})
+@EqualsAndHashCode(exclude = {"pet"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Indexed

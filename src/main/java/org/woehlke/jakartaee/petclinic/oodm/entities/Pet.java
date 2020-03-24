@@ -23,7 +23,7 @@ import java.util.*;
 @Entity
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude={"owner"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Indexed
