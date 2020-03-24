@@ -3,8 +3,8 @@
 
 function smokeTests01() {
 	echo "smokeTests01"
-	#PROFILES="setup qa wlp-dev wf-run"
-	PROFILES="setup qa wlp-dev"
+	PROFILES="setup qa wlp-dev wlp-run wf-test wlp-run-remote wlp-test-remote wf-run wf-test wf-remote-run wf-remote-test"
+	#PROFILES="setup qa wlp-dev"
 	for i in $PROFILES
 	do
 		echo "===================================="
@@ -25,7 +25,7 @@ function smokeTests01() {
 
 function smokeTests02() {
 	echo "smokeTests02"
-	./mvnw -Psetup
+	#./mvnw -Psetup
 	#./mvnw -Pqa
 	#./mvnw clean install | grep -v "INFO"
 	#./mvnw -Pwlp-run clean install | grep -v "INFO"
@@ -33,8 +33,8 @@ function smokeTests02() {
 }
 
 function main() {
-    #smokeTests01
-    smokeTests02
+    smokeTests01
+    #smokeTests02
 }
 
 main
