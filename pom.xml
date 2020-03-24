@@ -1298,7 +1298,7 @@
 
 		<!-- openliberty-dev-run -->
 		<profile>
-			<id>openliberty-dev</id>
+			<id>wlp-dev</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
@@ -2283,7 +2283,7 @@
 		</profile>
 		<!-- openliberty-managed-test -->
 		<profile>
-			<id>openliberty-managed-test</id>
+			<id>wlp-test</id>
 			<properties>
 				<skipIntegrationTests>false</skipIntegrationTests>
 				<webdriverBrowser>chrome</webdriverBrowser>
