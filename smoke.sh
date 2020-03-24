@@ -34,7 +34,7 @@ function smokeTestRegression() {
 }
 
 function smokeTestWorkInProgress() {
-	smokeTestProfiles "WorkInProgress" "setup qa wlp-dev wlp-run wf-run"
+	smokeTestProfiles "WorkInProgress" "wlp-run wf-run"
 }
 
 function smokeTestsAdHoc() {
