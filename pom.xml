@@ -5522,6 +5522,69 @@
 		<!-- setup -->
 		<profile>
 			<id>setup</id>
+			<dependencyManagement>
+				<dependencies>
+					<dependency>
+						<groupId>jakarta.platform</groupId>
+						<artifactId>jakartaee-api-parent</artifactId>
+						<version>${version.jakartaee-api}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>jakarta.platform</groupId>
+						<artifactId>jakarta.jakartaee-bom</artifactId>
+						<version>${version.jakartaee-api}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>jakarta.platform</groupId>
+						<artifactId>jakarta.jakartaee-api</artifactId>
+						<version>${version.jakartaee-api}</version>
+						<scope>provided</scope>
+					</dependency>
+					<dependency>
+						<groupId>jakarta.platform</groupId>
+						<artifactId>jakarta.jakartaee-web-api</artifactId>
+						<version>${version.jakartaee-api}</version>
+						<scope>provided</scope>
+					</dependency>
+					<!-- Jakarta EE Runtime: OpenLiberty -->
+					<dependency>
+						<groupId>io.openliberty</groupId>
+						<artifactId>openliberty-javaee8</artifactId>
+						<version>${version.jakartaee8.server.openliberty}</version>
+						<type>zip</type>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.features</groupId>
+						<artifactId>features-bom</artifactId>
+						<version>${version.jakartaee8.server.openliberty}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.arquillian</groupId>
+						<artifactId>arquillian-liberty-managed</artifactId>
+						<version>${version.jakartaee8.server.openliberty.arquillian}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.arquillian</groupId>
+						<artifactId>arquillian-liberty-remote</artifactId>
+						<version>${version.jakartaee8.server.openliberty.arquillian}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.arquillian</groupId>
+						<artifactId>liberty-support-feature</artifactId>
+						<version>${version.jakartaee8.server.openliberty.arquillian}</version>
+						<scope>test</scope>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
 			<dependencies>
 			<dependency>
 				<groupId>io.openliberty</groupId>
