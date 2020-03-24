@@ -23,6 +23,7 @@ import java.util.*;
 @Entity
 @Getter
 @Setter
+@ToString(exclude={"owner"})
 @EqualsAndHashCode(exclude={"owner"})
 @NoArgsConstructor
 @AllArgsConstructor
@@ -153,7 +154,6 @@ public class Pet implements TwEntities, Comparable<Pet> {
     visits.add(visit);
   }
 
-
   public List<Visit> getVisits() {
     List<Visit> list = new ArrayList<>();
     for (Visit visit : visits) {
@@ -165,19 +165,6 @@ public class Pet implements TwEntities, Comparable<Pet> {
 
   public void setVisits(Set<Visit> visits) {
     this.visits = visits;
-  }
-
-  @Override
-  public String toString() {
-    return "Pet{" +
-        "id=" + id +
-        ", uuid=" + uuid +
-        ", name='" + name + '\'' +
-        ", birthDate=" + ((birthDate != null) ? birthDate.toString() : null) +
-        ", type=" + ((type != null) ? type.getPrimaryKeyWithId() : null) +
-        ", owner=" + ((owner != null) ? owner.getPrimaryKeyWithId() : null) +
-        ", visits=" + ((visits != null) ? visits.size() : null) +
-        '}';
   }
 
   @Override

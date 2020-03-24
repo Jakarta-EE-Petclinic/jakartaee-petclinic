@@ -253,6 +253,36 @@
 				<scope>provided</scope>
 			</dependency>
 
+			<!-- Integration Testing with Arquillian -->
+			<dependency>
+				<groupId>org.arquillian</groupId>
+				<artifactId>arquillian-universe</artifactId>
+				<version>${version.arquillian_universe}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.shrinkwrap</groupId>
+				<artifactId>shrinkwrap-bom</artifactId>
+				<version>${version.shrinkwrap}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+				<artifactId>shrinkwrap-descriptors-bom</artifactId>
+				<version>${version.shrinkwrap_descriptors}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.shrinkwrap.resolver</groupId>
+				<artifactId>shrinkwrap-resolver-bom</artifactId>
+				<version>${version.shrinkwrap_resolvers}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
 			<!-- Web Profile -->
 			<!--
 			<dependency>
@@ -466,7 +496,6 @@
 				<version>${version.log4j}</version>
 			</dependency>
 
-
 			<!-- JSF PrimeFaces -->
 			<dependency>
 				<groupId>org.primefaces</groupId>
@@ -479,19 +508,6 @@
 				<version>${version.org.primefaces.themes.all-themes}</version>
 			</dependency>
 
-			<!-- JSF and PrimeFaces Arquillian Tests -->
-			<dependency>
-				<groupId>org.primefaces.extensions</groupId>
-				<artifactId>primefaces-arquillian</artifactId>
-				<version>${version.primefaces.arquillian}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.omnifaces</groupId>
-				<artifactId>arquillian-primefaces</artifactId>
-				<version>${version.org.omnifaces.arquillian-primefaces}</version>
-				<scope>test</scope>
-			</dependency>
 			<!-- Search -->
 			<dependency>
 				<groupId>org.hibernate</groupId>
@@ -624,12 +640,6 @@
 				<groupId>org.glassfish.main.extras</groupId>
 				<artifactId>javaee</artifactId>
 				<version>${version.jakartaee8.server.glassfish}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>net.jcip</groupId>
-				<artifactId>jcip-annotations</artifactId>
-				<version>${version.net.jcip.jcip-annotations}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
@@ -775,12 +785,43 @@
 				<version>6</version>
 			</dependency>
 			-->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>${version.lombok-maven-plugin.lombok}</version>
-			<scope>provided</scope>
-		</dependency>
+			<!-- JSF and PrimeFaces Arquillian Tests -->
+			<dependency>
+				<groupId>net.jcip</groupId>
+				<artifactId>jcip-annotations</artifactId>
+				<version>${version.net.jcip.jcip-annotations}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.primefaces.extensions</groupId>
+				<artifactId>primefaces-arquillian</artifactId>
+				<version>${version.primefaces.arquillian}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.omnifaces</groupId>
+				<artifactId>arquillian-primefaces</artifactId>
+				<version>${version.org.omnifaces.arquillian-primefaces}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.arquillian.graphene</groupId>
+				<artifactId>graphene-webdriver-impl</artifactId>
+				<version>${version.arquillian_graphene}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${version.junit}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${version.lombok-maven-plugin.lombok}</version>
+				<scope>provided</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -1000,6 +1041,31 @@
 		</dependency>
 		-->
 		<dependency>
+			<groupId>net.jcip</groupId>
+			<artifactId>jcip-annotations</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.extensions</groupId>
+			<artifactId>primefaces-arquillian</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.omnifaces</groupId>
+			<artifactId>arquillian-primefaces</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.graphene</groupId>
+			<artifactId>graphene-webdriver-impl</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
@@ -1129,35 +1195,6 @@
 				<dependencies>
 					<!-- Integration Testing with Arquillian -->
 					<dependency>
-						<groupId>org.arquillian</groupId>
-						<artifactId>arquillian-universe</artifactId>
-						<version>${version.arquillian_universe}</version>
-						<scope>import</scope>
-						<type>pom</type>
-					</dependency>
-					<dependency>
-						<groupId>org.jboss.shrinkwrap</groupId>
-						<artifactId>shrinkwrap-bom</artifactId>
-						<version>${version.shrinkwrap}</version>
-						<type>pom</type>
-						<scope>import</scope>
-					</dependency>
-					<dependency>
-						<groupId>org.jboss.shrinkwrap.descriptors</groupId>
-						<artifactId>shrinkwrap-descriptors-bom</artifactId>
-						<version>${version.shrinkwrap_descriptors}</version>
-						<type>pom</type>
-						<scope>import</scope>
-					</dependency>
-					<dependency>
-						<groupId>org.jboss.shrinkwrap.resolver</groupId>
-						<artifactId>shrinkwrap-resolver-bom</artifactId>
-						<version>${version.shrinkwrap_resolvers}</version>
-						<type>pom</type>
-						<scope>import</scope>
-					</dependency>
-					<!-- Integration Testing with Arquillian -->
-					<dependency>
 						<groupId>org.apache.maven</groupId>
 						<artifactId>maven-aether-provider</artifactId>
 						<version>${version.maven}</version>
@@ -1188,12 +1225,6 @@
 						<scope>test</scope>
 					</dependency>
 					<!-- Integration Testing with Arquillian: 3rd Party Dependencies -->
-					<dependency>
-						<groupId>junit</groupId>
-						<artifactId>junit</artifactId>
-						<version>${version.junit}</version>
-						<scope>test</scope>
-					</dependency>
 					<dependency>
 						<groupId>org.jboss.arquillian</groupId>
 						<artifactId>arquillian-junit</artifactId>
@@ -2585,12 +2616,6 @@
 				</dependency>
 				<!-- -->
 				<dependency>
-					<groupId>org.jboss.arquillian.graphene</groupId>
-					<artifactId>graphene-webdriver-impl</artifactId>
-					<version>${version.arquillian_graphene}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
 					<groupId>org.jboss.arquillian.extension</groupId>
 					<artifactId>arquillian-drone-impl</artifactId>
 					<version>${version.arquillian_drone}</version>
@@ -2795,18 +2820,8 @@
 				</dependency>
 				<!-- -->
 				<dependency>
-					<groupId>org.jboss.arquillian.graphene</groupId>
-					<artifactId>graphene-webdriver-impl</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
 					<groupId>org.jboss.arquillian.extension</groupId>
 					<artifactId>arquillian-drone-impl</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>junit</groupId>
-					<artifactId>junit</artifactId>
 					<scope>test</scope>
 				</dependency>
 				<dependency>

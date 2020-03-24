@@ -138,16 +138,6 @@ public class Visit implements TwEntities, Comparable<Visit> {
   }
 
   @Override
-  public String toString() {
-    return "Visit{" +
-        "id=" + id +
-        ", uuid=" + uuid +
-        ", date=" + ((date != null) ? date.toString() : null) +
-        ", description='" + description + '\'' +
-        '}';
-  }
-
-  @Override
   public int compareTo(Visit o) {
     return o.getPrimaryKey().compareTo(o.getPrimaryKey());
   }

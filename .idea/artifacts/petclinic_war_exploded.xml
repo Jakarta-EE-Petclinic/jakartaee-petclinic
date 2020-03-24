@@ -57,9 +57,8 @@
           <element id="library" level="project" name="Maven: org.owasp.antisamy:antisamy:1.5.8" />
           <element id="library" level="project" name="Maven: net.sourceforge.nekohtml:nekohtml:1.9.22" />
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.8" />
-          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.11" />
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.12" />
-          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.26" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
           <element id="library" level="project" name="Maven: org.apache.xmlgraphics:batik-css:1.11" />
           <element id="library" level="project" name="Maven: org.apache.xmlgraphics:batik-util:1.11" />
           <element id="library" level="project" name="Maven: org.apache.xmlgraphics:batik-constants:1.11" />
@@ -70,11 +69,12 @@
           <element id="library" level="project" name="Maven: xalan:serializer:2.7.2" />
           <element id="library" level="project" name="Maven: xerces:xercesImpl:2.12.0" />
           <element id="library" level="project" name="Maven: xml-apis:xml-apis:1.4.01" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.9" />
+          <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
           <element id="library" level="project" name="Maven: net.bytebuddy:byte-buddy:1.8.15" />
           <element id="library" level="project" name="Maven: javax.interceptor:javax.interceptor-api:1.2" />
           <element id="library" level="project" name="Maven: javax.el:javax.el-api:3.0.0" />
           <element id="library" level="project" name="Maven: javax.enterprise:cdi-api:1.2" />
-          <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.12.1" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.12.1" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.12.1" />
@@ -87,7 +87,7 @@
           <element id="library" level="project" name="Maven: org.apache.maven:maven-artifact:3.5.2" />
           <element id="library" level="project" name="Maven: org.eclipse.sisu:org.eclipse.sisu.plexus:0.3.3" />
           <element id="library" level="project" name="Maven: org.eclipse.sisu:org.eclipse.sisu.inject:0.3.3" />
-          <element id="library" level="project" name="Maven: org.codehaus.plexus:plexus-component-annotations:1.5.5" />
+          <element id="library" level="project" name="Maven: org.codehaus.plexus:plexus-component-annotations:1.7.1" />
           <element id="library" level="project" name="Maven: org.codehaus.plexus:plexus-classworlds:2.5.2" />
           <element id="library" level="project" name="Maven: org.codehaus.plexus:plexus-utils:3.1.0" />
         </element>
