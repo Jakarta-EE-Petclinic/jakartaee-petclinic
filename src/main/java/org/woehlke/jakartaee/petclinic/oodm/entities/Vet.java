@@ -1,6 +1,7 @@
 package org.woehlke.jakartaee.petclinic.oodm.entities;
 
 
+import lombok.*;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
@@ -21,6 +22,12 @@ import java.util.*;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @Indexed
 @Table(
     name = Vet.TABLENAME,
@@ -114,22 +121,12 @@ public class Vet implements TwEntities, Comparable<Vet> {
   @JoinTable(name = COL_VET_SPECIALTIES,
       joinColumns = @JoinColumn(name = COL_JOIN_VET_ID),
       inverseJoinColumns = @JoinColumn(name = COL_JOIN_SPECIALTY_ID))
-  private Set<Specialty> specialties;
-
-  public Vet() {
-    this.specialties = new HashSet<>();
-  }
+  private Set<Specialty> specialties = new HashSet<>();
 
   public Vet(@NotBlank String firstName, @NotBlank String lastName) {
     this.specialties = new HashSet<>();
     this.firstName = firstName;
     this.lastName = lastName;
-  }
-
-  public Vet(@NotBlank String firstName, @NotBlank String lastName, @NotNull Set<Specialty> specialties) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.specialties = specialties;
   }
 
   @Transient
@@ -206,67 +203,6 @@ public class Vet implements TwEntities, Comparable<Vet> {
   @Override
   public String getPrimaryKeyWithId() {
     return this.getPrimaryKey() + "(" + this.getId() + "," + this.getUuid() + ")";
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  @Override
-  public UUID getUuid() {
-    return uuid;
-  }
-
-  public void setUuid(UUID uuid) {
-    this.uuid = uuid;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Vet)) return false;
-    Vet vet = (Vet) o;
-    return Objects.equals(getId(), vet.getId()) &&
-        Objects.equals(getUuid(), vet.getUuid()) &&
-        getFirstName().equals(vet.getFirstName()) &&
-        getLastName().equals(vet.getLastName()) &&
-        Objects.equals(getSpecialties(), vet.getSpecialties());
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(getId(), getUuid(), getFirstName(), getLastName(), getSpecialties());
-  }
-
-  @Override
-  public String toString() {
-    return "Vet{" +
-        "id=" + id +
-        ", uuid=" + uuid +
-        ", firstName='" + firstName + '\'' +
-        ", lastName='" + lastName + '\'' +
-        ", specialties=" + ((specialties != null) ? specialties.size() : null) +
-        '}';
   }
 
   @Override

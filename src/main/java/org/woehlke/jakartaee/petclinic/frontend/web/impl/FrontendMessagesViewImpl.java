@@ -1,8 +1,6 @@
 package org.woehlke.jakartaee.petclinic.frontend.web.impl;
 
 import lombok.extern.log4j.Log4j2;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
 import org.woehlke.jakartaee.petclinic.oodm.entities.common.TwEntities;
 

@@ -1,16 +1,16 @@
 package org.woehlke.jakartaee.petclinic.oodm.entities;
 
 
+import lombok.*;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 import org.woehlke.jakartaee.petclinic.oodm.entities.common.TwEntities;
 import org.woehlke.jakartaee.petclinic.oodm.entities.listener.PetTypeListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.*;
-import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -21,6 +21,12 @@ import java.util.UUID;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @Indexed
 @Table(
     name = PetType.TABLENAME,
@@ -62,10 +68,12 @@ public class PetType implements TwEntities, Comparable<PetType> {
   public final static String COL_UUID = "uuid";
   public final static String COL_NAME = "name";
   private static final long serialVersionUID = -2213412509142145275L;
+
   @Id
   @XmlElement(required = true)
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
+
   @XmlElement(required = true)
   @Column(name = COL_UUID, nullable = false, unique = true)
   @Field(
@@ -74,6 +82,7 @@ public class PetType implements TwEntities, Comparable<PetType> {
       store = org.hibernate.search.annotations.Store.YES
   )
   private UUID uuid;
+
   @NotEmpty
   @XmlElement(required = true)
   @Column(name = COL_NAME, nullable = false, unique = true)
@@ -84,11 +93,8 @@ public class PetType implements TwEntities, Comparable<PetType> {
   )
   private String name;
 
-  public PetType() {
-  }
-
-  public PetType(@NotEmpty @NotNull String name) {
-    this.name = name;
+  public PetType(@NotBlank String name){
+    this.name=name;
   }
 
   @Transient
@@ -112,54 +118,6 @@ public class PetType implements TwEntities, Comparable<PetType> {
   @Transient
   public String getPrimaryKeyWithId() {
     return this.getPrimaryKey() + "(" + this.getId() + "," + this.getUuid() + ")";
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public UUID getUuid() {
-    return uuid;
-  }
-
-  public void setUuid(UUID uuid) {
-    this.uuid = uuid;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof PetType)) return false;
-    PetType petType = (PetType) o;
-    return Objects.equals(getId(), petType.getId()) &&
-        Objects.equals(getUuid(), petType.getUuid()) &&
-        getName().equals(petType.getName());
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(getId(), getUuid(), getName());
-  }
-
-  @Override
-  public String toString() {
-    return "PetType{" +
-        "id=" + id +
-        ", uuid=" + uuid +
-        ", name='" + name + '\'' +
-        '}';
   }
 
   @Override

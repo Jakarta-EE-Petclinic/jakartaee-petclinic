@@ -1,5 +1,6 @@
 package org.woehlke.jakartaee.petclinic.oodm.entities.model;
 
+import lombok.*;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Vet;
 
 import javax.validation.constraints.NotNull;
@@ -16,6 +17,11 @@ import java.util.Objects;
  * Time: 21:37
  * To change this template use File | Settings | File Templates.
  */
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @XmlRootElement(name = "VetList")
 @XmlType(
     name = "VetList",
@@ -30,34 +36,6 @@ public class VetList implements Serializable {
   private static final long serialVersionUID = 6396791677094922721L;
 
   @XmlElement(required = true)
-  private List<Vet> vetList;
+  private List<Vet> vetList = new ArrayList<>();
 
-  public VetList() {
-    vetList = new ArrayList<>();
-  }
-
-  public VetList(@NotNull List<Vet> vetList) {
-    this.vetList = vetList;
-  }
-
-  public List<Vet> getVetList() {
-    return vetList;
-  }
-
-  public void setVetList(List<Vet> vetList) {
-    this.vetList = vetList;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof VetList)) return false;
-    VetList vetList1 = (VetList) o;
-    return getVetList().equals(vetList1.getVetList());
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(getVetList());
-  }
 }

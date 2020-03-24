@@ -1,5 +1,6 @@
 package org.woehlke.jakartaee.petclinic.oodm.entities;
 
+import lombok.*;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
@@ -20,6 +21,11 @@ import java.util.*;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @Indexed
 @Table(
     name = Pet.TABLENAME,
@@ -118,9 +124,6 @@ public class Pet implements TwEntities, Comparable<Pet> {
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
   private Set<Visit> visits = new HashSet<>();
 
-  public Pet() {
-  }
-
   @Transient
   public String getTableName() {
     return TABLENAME;
@@ -150,54 +153,6 @@ public class Pet implements TwEntities, Comparable<Pet> {
     visits.add(visit);
   }
 
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public UUID getUuid() {
-    return uuid;
-  }
-
-  public void setUuid(UUID uuid) {
-    this.uuid = uuid;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Date getBirthDate() {
-    return birthDate;
-  }
-
-  public void setBirthDate(Date birthDate) {
-    this.birthDate = birthDate;
-  }
-
-  public PetType getType() {
-
-    return type;
-  }
-
-  public void setType(PetType type) {
-    this.type = type;
-  }
-
-  public Owner getOwner() {
-    return owner;
-  }
-
-  public void setOwner(Owner owner) {
-    this.owner = owner;
-  }
 
   public List<Visit> getVisits() {
     List<Visit> list = new ArrayList<>();
@@ -210,24 +165,6 @@ public class Pet implements TwEntities, Comparable<Pet> {
 
   public void setVisits(Set<Visit> visits) {
     this.visits = visits;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Pet)) return false;
-    Pet pet = (Pet) o;
-    return Objects.equals(getId(), pet.getId()) &&
-        Objects.equals(getUuid(), pet.getUuid()) &&
-        getName().equals(pet.getName()) &&
-        getBirthDate().equals(pet.getBirthDate()) &&
-        getType().equals(pet.getType()) &&
-        Objects.equals(getVisits(), pet.getVisits());
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(getId(), getUuid(), getName(), getBirthDate(), getType(), getVisits());
   }
 
   @Override

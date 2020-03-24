@@ -1,5 +1,6 @@
 package org.woehlke.jakartaee.petclinic.oodm.entities.model;
 
+import lombok.*;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Pet;
 
 import javax.validation.constraints.NotNull;
@@ -9,6 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @XmlRootElement(
     name = "PetList"
 )
@@ -25,34 +31,6 @@ public class PetList implements Serializable {
   private static final long serialVersionUID = -5829352711555277375L;
 
   @XmlElement(required = true)
-  private List<Pet> petList;
+  private List<Pet> petList= new ArrayList<>();
 
-  public PetList() {
-    this.petList = new ArrayList<>();
-  }
-
-  public PetList(@NotNull List<Pet> list) {
-    this.petList = list;
-  }
-
-  public List<Pet> getPetList() {
-    return petList;
-  }
-
-  public void setPetList(List<Pet> petList) {
-    this.petList = petList;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof PetList)) return false;
-    PetList petList1 = (PetList) o;
-    return getPetList().equals(petList1.getPetList());
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(getPetList());
-  }
 }

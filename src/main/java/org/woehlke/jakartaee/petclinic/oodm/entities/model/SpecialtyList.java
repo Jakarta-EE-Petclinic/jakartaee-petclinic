@@ -1,5 +1,6 @@
 package org.woehlke.jakartaee.petclinic.oodm.entities.model;
 
+import lombok.*;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Specialty;
 
 import javax.validation.constraints.NotNull;
@@ -10,6 +11,11 @@ import java.util.List;
 import java.util.Objects;
 
 
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @XmlRootElement(
     name = "SpecialtyList"
 )
@@ -26,34 +32,6 @@ public class SpecialtyList implements Serializable {
   private static final long serialVersionUID = -4974070594228297652L;
 
   @XmlElement(required = true)
-  private List<Specialty> specialtyList;
+  private List<Specialty> specialtyList = new ArrayList<>();
 
-  public SpecialtyList() {
-    specialtyList = new ArrayList<>();
-  }
-
-  public SpecialtyList(@NotNull List<Specialty> specialtyList) {
-    this.specialtyList = specialtyList;
-  }
-
-  public List<Specialty> getSpecialtyList() {
-    return specialtyList;
-  }
-
-  public void setSpecialtyList(List<Specialty> specialtyList) {
-    this.specialtyList = specialtyList;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof SpecialtyList)) return false;
-    SpecialtyList that = (SpecialtyList) o;
-    return Objects.equals(getSpecialtyList(), that.getSpecialtyList());
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(getSpecialtyList());
-  }
 }

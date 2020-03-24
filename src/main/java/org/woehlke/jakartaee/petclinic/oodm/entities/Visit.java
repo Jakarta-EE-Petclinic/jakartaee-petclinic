@@ -1,5 +1,6 @@
 package org.woehlke.jakartaee.petclinic.oodm.entities;
 
+import lombok.*;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 import org.woehlke.jakartaee.petclinic.oodm.entities.common.TwEntities;
@@ -10,7 +11,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.*;
 import java.util.Date;
-import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -21,6 +21,12 @@ import java.util.UUID;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @Indexed
 @Table(
     name = Visit.TABLENAME,
@@ -66,11 +72,13 @@ public class Visit implements TwEntities, Comparable<Visit> {
   public final static String COL_DESCRIPTION = "description";
   public final static String COL_PET_ID = "pet_id";
   private static final long serialVersionUID = 2357446696894656827L;
+
   @NotNull
   @XmlElement(required = true)
   @Column(name = COL_VISIT_DATE, nullable = false)
   @Temporal(TemporalType.DATE)
   protected Date date;
+
   @Id
   @XmlElement(required = true)
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -84,6 +92,7 @@ public class Visit implements TwEntities, Comparable<Visit> {
       store = org.hibernate.search.annotations.Store.YES
   )
   private UUID uuid;
+
   @NotEmpty
   @XmlElement(required = true)
   @Column(name = COL_DESCRIPTION, nullable = false)
@@ -93,14 +102,11 @@ public class Visit implements TwEntities, Comparable<Visit> {
       store = org.hibernate.search.annotations.Store.YES
   )
   private String description;
+
   @XmlTransient
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = COL_PET_ID)
   private Pet pet;
-
-  public Visit() {
-    this.uuid = UUID.randomUUID();
-  }
 
   @Transient
   @Override
@@ -118,22 +124,6 @@ public class Visit implements TwEntities, Comparable<Visit> {
     return thisColumnNames;
   }
 
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public UUID getUuid() {
-    return uuid;
-  }
-
-  public void setUuid(UUID uuid) {
-    this.uuid = uuid;
-  }
-
   @Transient
   @Override
   public String getPrimaryKey() {
@@ -145,46 +135,6 @@ public class Visit implements TwEntities, Comparable<Visit> {
   @Override
   public String getPrimaryKeyWithId() {
     return this.getPrimaryKey() + "(" + this.getId() + "," + this.getUuid() + ")";
-  }
-
-  public Date getDate() {
-    return date;
-  }
-
-  public void setDate(Date date) {
-    this.date = date;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public Pet getPet() {
-    return pet;
-  }
-
-  public void setPet(Pet pet) {
-    this.pet = pet;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Visit)) return false;
-    Visit visit = (Visit) o;
-    return Objects.equals(getId(), visit.getId()) &&
-        Objects.equals(getUuid(), visit.getUuid()) &&
-        getDate().equals(visit.getDate()) &&
-        getDescription().equals(visit.getDescription());
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(getId(), getUuid(), getDate(), getDescription());
   }
 
   @Override

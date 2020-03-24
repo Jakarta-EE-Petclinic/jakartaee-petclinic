@@ -1,5 +1,6 @@
 package org.woehlke.jakartaee.petclinic.oodm.entities;
 
+import lombok.*;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
@@ -21,6 +22,12 @@ import java.util.*;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @Indexed
 @Table(
     name = Owner.TABLENAME,
@@ -173,9 +180,6 @@ public class Owner implements TwEntities, Comparable<Owner> {
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", fetch = FetchType.EAGER)
   private Set<Pet> pets = new TreeSet<>();
 
-  public Owner() {
-  }
-
   public void addPet(Pet pet) {
     pets.add(pet);
     pet.setOwner(this);
@@ -215,86 +219,6 @@ public class Owner implements TwEntities, Comparable<Owner> {
     return this.lastName + ", " + this.firstName;
   }
 
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public UUID getUuid() {
-    return uuid;
-  }
-
-  public void setUuid(UUID uuid) {
-    this.uuid = uuid;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-  public String getAddress() {
-    return address;
-  }
-
-  public void setAddress(String address) {
-    this.address = address;
-  }
-
-  public String getCity() {
-    return city;
-  }
-
-  public void setCity(String city) {
-    this.city = city;
-  }
-
-  public String getPhoneNumber() {
-    return phoneNumber;
-  }
-
-  public void setPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
-  }
-
-  public String getHouseNumber() {
-    return houseNumber;
-  }
-
-  public void setHouseNumber(String houseNumber) {
-    this.houseNumber = houseNumber;
-  }
-
-  public String getAddressInfo() {
-    return addressInfo;
-  }
-
-  public void setAddressInfo(String addressInfo) {
-    this.addressInfo = addressInfo;
-  }
-
-  public String getZipCode() {
-    return zipCode;
-  }
-
-  public void setZipCode(String zipCode) {
-    this.zipCode = zipCode;
-  }
-
   public List<Pet> getPets() {
     List<Pet> list = new ArrayList<>();
     for (Pet pet : pets) {
@@ -302,50 +226,6 @@ public class Owner implements TwEntities, Comparable<Owner> {
     }
     Collections.sort(list);
     return list;
-  }
-
-  public void setPets(Set<Pet> pets) {
-    this.pets = pets;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Owner)) return false;
-    Owner owner = (Owner) o;
-    return Objects.equals(getId(), owner.getId()) &&
-        Objects.equals(getUuid(), owner.getUuid()) &&
-        getFirstName().equals(owner.getFirstName()) &&
-        getLastName().equals(owner.getLastName()) &&
-        getAddress().equals(owner.getAddress()) &&
-        getHouseNumber().equals(owner.getHouseNumber()) &&
-        getAddressInfo().equals(owner.getAddressInfo()) &&
-        getCity().equals(owner.getCity()) &&
-        getZipCode().equals(owner.getZipCode()) &&
-        getPhoneNumber().equals(owner.getPhoneNumber()) &&
-        Objects.equals(getPets(), owner.getPets());
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(getId(), getUuid(), getFirstName(), getLastName(), getAddress(), getHouseNumber(), getAddressInfo(), getCity(), getZipCode(), getPhoneNumber(), getPets());
-  }
-
-  @Override
-  public String toString() {
-    return "Owner{" +
-        "id=" + id +
-        ", uuid=" + uuid +
-        ", firstName='" + firstName + '\'' +
-        ", lastName='" + lastName + '\'' +
-        ", address='" + address + '\'' +
-        ", houseNumber='" + houseNumber + '\'' +
-        ", addressInfo='" + addressInfo + '\'' +
-        ", city='" + city + '\'' +
-        ", zipCode='" + zipCode + '\'' +
-        ", phoneNumber='" + phoneNumber + '\'' +
-        ", pets=" + ((pets != null) ? pets.size() : null) +
-        '}';
   }
 
   @Override
