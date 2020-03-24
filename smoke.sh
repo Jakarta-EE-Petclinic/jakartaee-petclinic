@@ -46,10 +46,14 @@ function smokeTestsAdHoc() {
 	#./mvnw -Pwf-run clean install | grep -v "INFO"
 }
 
+function smoke() {
+	smokeTestRegression
+	smokeTestWorkInProgress
+}
+
 function main() {
-		smokeTestAll
-		smokeTestRegression
-		smokeTestWorkInProgress
+		#smokeTestAll
+		smoke
 		#smokeTestsAdHoc
 }
 
