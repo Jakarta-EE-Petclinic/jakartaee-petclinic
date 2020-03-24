@@ -7,10 +7,19 @@ function smokeTests01() {
 	PROFILES="setup qa wlp-dev"
 	for i in $PROFILES
 	do
+		echo "===================================="
 		LOGFILE="log/smoke_$i.log"
 		echo $i
-		./mvnw -P$i clean install | grep -v "INFO" > $LOGFILE
-		cat $LOGFILE
+		echo "------------------------------------"
+		echo $LOGFILE
+		./mvnw -P$i clean install > $LOGFILE
+		echo "------------------------------------"
+		cat $LOGFILE | grep -v "INFO"
+		echo "------------------------------------"
+		cat $LOGFILE | grep "BUILD SUCCESS"
+	 	echo "------------------------------------"
+	 	echo $LOGFILE
+	 	echo "------------------------------------"
 	done
 }
 
@@ -24,8 +33,8 @@ function smokeTests02() {
 }
 
 function main() {
-    #smokeTests01
-    smokeTests02
+    smokeTests01
+    #smokeTests02
 }
 
 main
