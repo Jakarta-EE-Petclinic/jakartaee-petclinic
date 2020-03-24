@@ -36,18 +36,22 @@
 
 	<properties>
 		<java.version>13</java.version>
-		<version.java>13</version.java>
-		<version.maven>3.6.3</version.maven>
-		<maven.scm.version>1.11.2</maven.scm.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<!--- Build Infrastructure -->
+		<version.maven>3.6.3</version.maven>
+		<version.maven.scm>1.11.2</version.maven.scm>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<!-- general -->
 		<version.log4j>2.12.1</version.log4j>
 		<version.commons-logging>1.2</version.commons-logging>
 		<version.guava>27.0.1-jre</version.guava>
+		<version.commons-io>2.4</version.commons-io>
+		<version.org.owasp.encoder.encoder>1.2.2</version.org.owasp.encoder.encoder>
+		<version.org.owasp.esapi.esapi>2.2.0.0</version.org.owasp.esapi.esapi>
+		<version.org.eclipse.yasson>1.0</version.org.eclipse.yasson>
+		<version.org.glassfish.javax.json>1.1</version.org.glassfish.javax.json>
+		<version.com.puppycrawl.tools.checkstyle>8.29</version.com.puppycrawl.tools.checkstyle>
+		<version.xml-apis>1.4.01</version.xml-apis>
 		<!-- jakartaee -->
 		<version.jakartaee-api>8.0.0</version.jakartaee-api>
 		<version.jakarta-persistence-api>2.2.3</version.jakarta-persistence-api>
@@ -58,6 +62,9 @@
 		<!-- Testing -->
 		<version.junit>4.12</version.junit>
 		<version.dbunit>2.5.3</version.dbunit>
+		<version.net.jcip.jcip-annotations>1.0</version.net.jcip.jcip-annotations>
+		<version.com.google.code.findbugs.jFormatString>3.0.0</version.com.google.code.findbugs.jFormatString>
+		<version.com.google.code.gson.gson>2.8.6</version.com.google.code.gson.gson>
 		<!-- version.selenium>3.7.1</version.selenium -->
 		<version.selenium>3.141.59</version.selenium>
 		<version.arquillian_core>1.4.1.Final</version.arquillian_core>
@@ -77,7 +84,9 @@
 		<version.hibernate-search>5.10.5.Final</version.hibernate-search>
 		<!-- JSF -->
 		<version.primefaces>7.0</version.primefaces>
+		<version.org.primefaces.themes.all-themes>1.0.10</version.org.primefaces.themes.all-themes>
 		<version.primefaces.arquillian>7.0.0</version.primefaces.arquillian>
+		<version.org.omnifaces.arquillian-primefaces>0.3</version.org.omnifaces.arquillian-primefaces>
 		<!-- Frontend -->
 		<version.webjars.jquery>3.4.1</version.webjars.jquery>
 		<version.webjars.bootstrap>4.3.1</version.webjars.bootstrap>
@@ -124,6 +133,8 @@
 		<runtime.jakartaee8.server.wildfly.remote>${user.home}/j/srv/wildfly-${version.jakartaee8.server.wildfly}</runtime.jakartaee8.server.wildfly.remote>
 		<version.wildfly-maven-plugin>2.0.1.Final</version.wildfly-maven-plugin>
 		<!-- Config -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 		<skipIntegrationTests>false</skipIntegrationTests>
 		<webdriverBrowser>chrome</webdriverBrowser>
@@ -220,7 +231,7 @@
 				<artifactId>jakartaee-api-parent</artifactId>
 				<version>${version.jakartaee-api}</version>
 				<type>pom</type>
-				<scope>provided</scope>
+				<scope>import</scope>
 			</dependency>
 			<dependency>
 				<groupId>jakarta.platform</groupId>
@@ -241,175 +252,166 @@
 				<version>${version.jakartaee-api}</version>
 				<scope>provided</scope>
 			</dependency>
-			<!-- Integration Testing with Arquillian -->
+
+			<!-- Web Profile -->
+			<!--
 			<dependency>
-				<groupId>org.arquillian</groupId>
-				<artifactId>arquillian-universe</artifactId>
-				<version>${version.arquillian_universe}</version>
-				<scope>import</scope>
-				<type>pom</type>
+				<groupId>jakarta.servlet</groupId>
+				<artifactId>jakarta.servlet-api</artifactId>
+				<version>${jakarta.servlet-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.jboss.shrinkwrap</groupId>
-				<artifactId>shrinkwrap-bom</artifactId>
-				<version>${version.shrinkwrap}</version>
-				<type>pom</type>
-				<scope>import</scope>
+				<groupId>jakarta.servlet.jsp</groupId>
+				<artifactId>jakarta.servlet.jsp-api</artifactId>
+				<version>${jakarta.servlet.jsp-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.jboss.shrinkwrap.descriptors</groupId>
-				<artifactId>shrinkwrap-descriptors-bom</artifactId>
-				<version>${version.shrinkwrap_descriptors}</version>
-				<type>pom</type>
-				<scope>import</scope>
+				<groupId>jakarta.el</groupId>
+				<artifactId>jakarta.el-api</artifactId>
+				<version>${jakarta.el-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.jboss.shrinkwrap.resolver</groupId>
-				<artifactId>shrinkwrap-resolver-bom</artifactId>
-				<version>${version.shrinkwrap_resolvers}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<!-- Jakarta EE Runtime: Wildfly -->
-			<dependency>
-				<groupId>org.wildfly</groupId>
-				<artifactId>wildfly-dist</artifactId>
-				<version>${version.jakartaee8.server.wildfly}</version>
-				<type>zip</type>
+				<groupId>jakarta.servlet.jsp.jstl</groupId>
+				<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+				<version>${jakarta.servlet.jsp.jstl-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.wildfly</groupId>
-				<artifactId>wildfly-parent</artifactId>
-				<version>${version.jakartaee8.server.wildfly}</version>
-				<type>pom</type>
-				<scope>import</scope>
+				<groupId>jakarta.faces</groupId>
+				<artifactId>jakarta.faces-api</artifactId>
+				<version>${jakarta.faces-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.wildfly</groupId>
-				<artifactId>wildfly-feature-pack</artifactId>
-				<version>${version.jakartaee8.server.wildfly}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<!-- Jakarta EE Runtime: OpenLiberty -->
-			<dependency>
-				<groupId>io.openliberty</groupId>
-				<artifactId>openliberty-javaee8</artifactId>
-				<version>${version.jakartaee8.server.openliberty}</version>
-				<type>zip</type>
-				<scope>test</scope>
+				<groupId>jakarta.ws.rs</groupId>
+				<artifactId>jakarta.ws.rs-api</artifactId>
+				<version>${jakarta.ws.rs-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>io.openliberty.features</groupId>
-				<artifactId>features-bom</artifactId>
-				<version>${version.jakartaee8.server.openliberty}</version>
-				<type>pom</type>
-				<scope>import</scope>
+				<groupId>jakarta.websocket</groupId>
+				<artifactId>jakarta.websocket-api</artifactId>
+				<version>${jakarta.websocket-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>io.openliberty.arquillian</groupId>
-				<artifactId>arquillian-liberty-managed</artifactId>
-				<version>${version.jakartaee8.server.openliberty.arquillian}</version>
-				<scope>test</scope>
+				<groupId>jakarta.json</groupId>
+				<artifactId>jakarta.json-api</artifactId>
+				<version>${jakarta.json-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>io.openliberty.arquillian</groupId>
-				<artifactId>arquillian-liberty-remote</artifactId>
-				<version>${version.jakartaee8.server.openliberty.arquillian}</version>
-				<scope>test</scope>
+				<groupId>jakarta.json.bind</groupId>
+				<artifactId>jakarta.json.bind-api</artifactId>
+				<version>${jakarta.json.bind-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>io.openliberty.arquillian</groupId>
-				<artifactId>liberty-support-feature</artifactId>
-				<version>${version.jakartaee8.server.openliberty.arquillian}</version>
-				<scope>test</scope>
-			</dependency>
-			<!-- Integration Testing with Arquillian -->
-			<dependency>
-				<groupId>org.apache.maven</groupId>
-				<artifactId>maven-aether-provider</artifactId>
-				<version>${version.maven}</version>
-				<scope>test</scope>
+				<groupId>jakarta.annotation</groupId>
+				<artifactId>jakarta.annotation-api</artifactId>
+				<version>${jakarta.annotation-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.apache.maven</groupId>
-				<artifactId>maven-model</artifactId>
-				<version>${version.maven}</version>
-				<scope>test</scope>
+				<groupId>jakarta.ejb</groupId>
+				<artifactId>jakarta.ejb-api</artifactId>
+				<version>${jakarta.ejb-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.apache.maven</groupId>
-				<artifactId>maven-model-builder</artifactId>
-				<version>${version.maven}</version>
-				<scope>test</scope>
+				<groupId>jakarta.transaction</groupId>
+				<artifactId>jakarta.transaction-api</artifactId>
+				<version>${jakarta.transaction-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.apache.maven</groupId>
-				<artifactId>maven-repository-metadata</artifactId>
-				<version>${version.maven}</version>
-				<scope>test</scope>
+				<groupId>jakarta.persistence</groupId>
+				<artifactId>jakarta.persistence-api</artifactId>
+				<version>${jakarta-persistence-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.jboss.arquillian.junit</groupId>
-				<artifactId>arquillian-junit-container</artifactId>
-				<version>${version.arquillian_core}</version>
-				<scope>test</scope>
+				<groupId>jakarta.validation</groupId>
+				<artifactId>jakarta.validation-api</artifactId>
+				<version>${jakarta.validation-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.wildfly.arquillian</groupId>
-				<artifactId>wildfly-arquillian-container-managed</artifactId>
-				<version>${version.jakartaee8.server.wildfly.arquillian}</version>
-				<scope>test</scope>
-				<exclusions>
-					<exclusion>
-						<groupId>org.jboss.sasl</groupId>
-						<artifactId>jboss-sasl</artifactId>
-					</exclusion>
-				</exclusions>
+				<groupId>jakarta.interceptor</groupId>
+				<artifactId>jakarta.interceptor-api</artifactId>
+				<version>${jakarta.interceptor-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.wildfly.arquillian</groupId>
-				<artifactId>wildfly-arquillian-container-remote</artifactId>
-				<version>${version.jakartaee8.server.wildfly.arquillian}</version>
-				<scope>test</scope>
+				<groupId>jakarta.enterprise</groupId>
+				<artifactId>jakarta.enterprise.cdi-api</artifactId>
+				<version>${jakarta.enterprise.cdi-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.wildfly.arquillian</groupId>
-				<artifactId>wildfly-arquillian-common</artifactId>
-				<version>${version.jakartaee8.server.wildfly.arquillian}</version>
-				<scope>test</scope>
+				<groupId>jakarta.inject</groupId>
+				<artifactId>jakarta.inject-api</artifactId>
+				<version>${jakarta.inject.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.wildfly.arquillian</groupId>
-				<artifactId>elytron-standalone</artifactId>
-				<version>${version.jakartaee8.server.wildfly.arquillian}</version>
-				<scope>test</scope>
-			</dependency>
-			<!-- Integration Testing with Arquillian: 3rd Party Dependencies -->
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${version.junit}</version>
-				<scope>test</scope>
+				<groupId>jakarta.security.auth.message</groupId>
+				<artifactId>jakarta.security.auth.message-api</artifactId>
+				<version>${jakarta.security.auth.message-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.jboss.arquillian</groupId>
-				<artifactId>arquillian-junit</artifactId>
-				<version>${version.arquillian_drone}</version>
-				<scope>test</scope>
+				<groupId>jakarta.security.enterprise</groupId>
+				<artifactId>jakarta.security.enterprise-api</artifactId>
+				<version>${jakarta.security.enterprise-api.version}</version>
+			</dependency>
+-->
+			<!-- Full Platform -->
+			<!--
+			<dependency>
+				<groupId>jakarta.jms</groupId>
+				<artifactId>jakarta.jms-api</artifactId>
+				<version>${jakarta.messaging-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.apache.httpcomponents</groupId>
-				<artifactId>httpcore</artifactId>
-				<version>4.4.12</version>
-				<scope>test</scope>
+				<groupId>jakarta.mail</groupId>
+				<artifactId>jakarta.mail-api</artifactId>
+				<version>${jakarta.mail-api.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.apache.httpcomponents</groupId>
-				<artifactId>httpclient</artifactId>
-				<version>4.5.10</version>
-				<scope>test</scope>
+				<groupId>com.sun.mail</groupId>
+				<artifactId>jakarta.mail</artifactId>
+				<version>${jakarta.mail-api.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>jakarta.resource</groupId>
+				<artifactId>jakarta.resource-api</artifactId>
+				<version>${jakarta.resource-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>jakarta.management.j2ee</groupId>
+				<artifactId>jakarta.management.j2ee-api</artifactId>
+				<version>${jakarta.management.j2ee-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>jakarta.authorization</groupId>
+				<artifactId>jakarta.authorization-api</artifactId>
+				<version>${jakarta.authorization-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>jakarta.enterprise.concurrent</groupId>
+				<artifactId>jakarta.enterprise.concurrent-api</artifactId>
+				<version>${jakarta.enterprise.concurrent-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>jakarta.batch</groupId>
+				<artifactId>jakarta.batch-api</artifactId>
+				<version>${jakarta.batch-api.version}</version>
+			</dependency>
+-->
+			<!-- Optional APIs -->
+			<!--
+			<dependency>
+				<groupId>jakarta.enterprise.deploy</groupId>
+				<artifactId>jakarta.enterprise.deploy-api</artifactId>
+				<version>${jakarta.enterprise.deploy-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>jakarta.xml.registry</groupId>
+				<artifactId>jakarta.xml.registry-api</artifactId>
+				<version>${jakarta.xml.registry-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>jakarta.xml.rpc</groupId>
+				<artifactId>jakarta.xml.rpc-api</artifactId>
+				<version>${jakarta.xml.rpc-api.version}</version>
+			</dependency>
+			-->
 			<!--
 			<dependency>
 					<groupId>xml-apis</groupId>
@@ -418,6 +420,7 @@
 					<scope>test</scope>
 			</dependency>
 			-->
+
 			<!-- logging -->
 			<dependency>
 				<groupId>commons-logging</groupId>
@@ -462,42 +465,8 @@
 				<artifactId>log4j-appserver</artifactId>
 				<version>${version.log4j}</version>
 			</dependency>
-			<!-- other 3rd Party Dependencies for Tests -->
-			<dependency>
-				<groupId>org.reflections</groupId>
-				<artifactId>reflections</artifactId>
-				<version>0.9.9</version>
-			</dependency>
-			<dependency>
-				<groupId>org.pcollections</groupId>
-				<artifactId>pcollections</artifactId>
-				<version>2.1.2</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.google.guava</groupId>
-				<artifactId>guava</artifactId>
-				<version>${version.guava}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.google.auto</groupId>
-				<artifactId>auto-common</artifactId>
-				<version>0.10</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.google.code.findbugs</groupId>
-				<artifactId>jFormatString</artifactId>
-				<version>3.0.0</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.google.code.gson</groupId>
-				<artifactId>gson</artifactId>
-				<version>2.8.6</version>
-				<scope>test</scope>
-			</dependency>
+
+
 			<!-- JSF PrimeFaces -->
 			<dependency>
 				<groupId>org.primefaces</groupId>
@@ -507,8 +476,9 @@
 			<dependency>
 				<groupId>org.primefaces.themes</groupId>
 				<artifactId>all-themes</artifactId>
-				<version>1.0.10</version>
+				<version>${version.org.primefaces.themes.all-themes}</version>
 			</dependency>
+
 			<!-- JSF and PrimeFaces Arquillian Tests -->
 			<dependency>
 				<groupId>org.primefaces.extensions</groupId>
@@ -519,7 +489,7 @@
 			<dependency>
 				<groupId>org.omnifaces</groupId>
 				<artifactId>arquillian-primefaces</artifactId>
-				<version>0.3</version>
+				<version>${version.org.omnifaces.arquillian-primefaces}</version>
 				<scope>test</scope>
 			</dependency>
 			<!-- Search -->
@@ -566,81 +536,39 @@
 			<dependency>
 				<groupId>commons-io</groupId>
 				<artifactId>commons-io</artifactId>
-				<version>2.4</version>
+				<version>${version.commons-io}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.owasp.encoder</groupId>
 				<artifactId>encoder</artifactId>
-				<version>1.2.2</version>
+				<version>${version.org.owasp.encoder.encoder}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.owasp.esapi</groupId>
 				<artifactId>esapi</artifactId>
-				<version>2.2.0.0</version>
+				<version>${version.org.owasp.esapi.esapi}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.postgresql</groupId>
 				<artifactId>postgresql</artifactId>
 				<version>${version.postgresql.driver}</version>
 			</dependency>
+			<!-- TODO: for what is this: -->
+
 			<dependency>
 				<groupId>org.eclipse</groupId>
 				<artifactId>yasson</artifactId>
-				<version>1.0</version>
+				<version>${version.org.eclipse.yasson}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.glassfish</groupId>
 				<artifactId>javax.json</artifactId>
-				<version>1.1</version>
+				<version>${version.org.glassfish.javax.json}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.puppycrawl.tools</groupId>
 				<artifactId>checkstyle</artifactId>
-				<version>8.29</version>
-			</dependency>
-			<!--  TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28 -->
-			<!--
-		  <dependency>
-		    <groupId>org.jboss.arquillian.selenium</groupId>
-			  <artifactId>selenium-bom</artifactId>
-				<version>${version.selenium}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			-->
-
-			<!-- Selenium Server TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28 -->
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-server</artifactId>
-				<version>${version.selenium}</version>
-			</dependency>
-
-			<!-- Selenium dependecies   TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28 -->
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-api</artifactId>
-				<version>${version.selenium}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-java</artifactId>
-				<version>${version.selenium}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-support</artifactId>
-				<version>${version.selenium}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-leg-rc</artifactId>
-				<version>${version.selenium}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>lift</artifactId>
-				<version>${version.selenium}</version>
+				<version>${version.com.puppycrawl.tools.checkstyle}</version>
 			</dependency>
 
 			<!-- Drivers TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28  -->
@@ -701,7 +629,7 @@
 			<dependency>
 				<groupId>net.jcip</groupId>
 				<artifactId>jcip-annotations</artifactId>
-				<version>1.0</version>
+				<version>${version.net.jcip.jcip-annotations}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
@@ -718,42 +646,42 @@
 		<dependency>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-scm-plugin</artifactId>
-			<version>${maven.scm.version}</version>
+			<version>${version.maven.scm}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-provider-svnexe</artifactId>
-			<version>${maven.scm.version}</version>
+			<version>${version.maven.scm}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-provider-svn-commons</artifactId>
-			<version>${maven.scm.version}</version>
+			<version>${version.maven.scm}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-provider-gitexe</artifactId>
-			<version>${maven.scm.version}</version>
+			<version>${version.maven.scm}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-provider-git-commons</artifactId>
-			<version>${maven.scm.version}</version>
+			<version>${version.maven.scm}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-manager-plexus</artifactId>
-			<version>${maven.scm.version}</version>
+			<version>${version.maven.scm}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-client</artifactId>
-			<version>${maven.scm.version}</version>
+			<version>${version.maven.scm}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-providers-standard</artifactId>
-			<version>${maven.scm.version}</version>
+			<version>${version.maven.scm}</version>
 			<type>pom</type>
 		</dependency>
 			<!--
@@ -901,13 +829,8 @@
 			<groupId>org.owasp.esapi</groupId>
 			<artifactId>esapi</artifactId>
 		</dependency>
-		<!-- provided -->
-		<dependency>
-			<groupId>jakarta.platform</groupId>
-			<artifactId>jakartaee-api-parent</artifactId>
-			<type>pom</type>
-			<scope>provided</scope>
-		</dependency>
+		<!-- provided Jakarta EE APIs -->
+
 		<dependency>
 			<groupId>jakarta.platform</groupId>
 			<artifactId>jakarta.jakartaee-api</artifactId>
@@ -918,6 +841,7 @@
 			<artifactId>jakarta.jakartaee-web-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>jakarta.servlet</groupId>
 			<artifactId>jakarta.servlet-api</artifactId>
@@ -981,7 +905,6 @@
 		<dependency>
 			<groupId>jakarta.persistence</groupId>
 			<artifactId>jakarta.persistence-api</artifactId>
-			<version>${version.jakarta-persistence-api}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -1014,11 +937,12 @@
 			<artifactId>jakarta.security.enterprise-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		-->
 		<!--  Full Platform  -->
+		<!--
 		<dependency>
 			<groupId>jakarta.jms</groupId>
 			<artifactId>jakarta.jms-api</artifactId>
-			<version>${version.jakarta.messaging-api}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -1056,7 +980,9 @@
 			<artifactId>jakarta.batch-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		-->
 		<!--  Optional APIs  -->
+		<!--
 		<dependency>
 			<groupId>jakarta.enterprise.deploy</groupId>
 			<artifactId>jakarta.enterprise.deploy-api</artifactId>
@@ -1071,126 +997,6 @@
 			<groupId>jakarta.xml.rpc</groupId>
 			<artifactId>jakarta.xml.rpc-api</artifactId>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.shrinkwrap</groupId>
-			<artifactId>shrinkwrap-api</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.arquillian.junit</groupId>
-			<artifactId>arquillian-junit-container</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.primefaces.extensions</groupId>
-			<artifactId>primefaces-arquillian</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-api</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-support</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-leg-rc</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>lift</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<!--
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd</artifactId>
-			<type>pom</type>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-java</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-javascript</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-jsp</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-xml</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-test</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-lang-test</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-doc</artifactId>
-		</dependency>
-		-->
-		<!--
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-dist</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-groovy</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-java8</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-ui</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-build-tools-plugin</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-build</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-build-tools</artifactId>
-			<type>pom</type>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd-build-tools-config</artifactId>
 		</dependency>
 		-->
 		<dependency>
@@ -1233,7 +1039,7 @@
 									<version>${version.maven}</version>
 								</requireMavenVersion>
 								<requireJavaVersion>
-									<version>${version.java}</version>
+									<version>${java.version}</version>
 								</requireJavaVersion>
 							</rules>
 						</configuration>
@@ -1261,7 +1067,6 @@
 				</dependency>
 			</dependencies>
 		</profile>
-
 		<!-- browser-firefox< -->
 		<profile>
 			<id>browser-firefox</id>
@@ -1305,12 +1110,294 @@
 			</dependencies>
 		</profile>
 
+		<profile>
+			<id>tests-skip</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<skipIntegrationTests>true</skipIntegrationTests>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>tests-run</id>
+			<properties>
+				<skipIntegrationTests>false</skipIntegrationTests>
+			</properties>
+			<dependencyManagement>
+				<dependencies>
+					<!-- Integration Testing with Arquillian -->
+					<dependency>
+						<groupId>org.arquillian</groupId>
+						<artifactId>arquillian-universe</artifactId>
+						<version>${version.arquillian_universe}</version>
+						<scope>import</scope>
+						<type>pom</type>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.shrinkwrap</groupId>
+						<artifactId>shrinkwrap-bom</artifactId>
+						<version>${version.shrinkwrap}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+						<artifactId>shrinkwrap-descriptors-bom</artifactId>
+						<version>${version.shrinkwrap_descriptors}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.shrinkwrap.resolver</groupId>
+						<artifactId>shrinkwrap-resolver-bom</artifactId>
+						<version>${version.shrinkwrap_resolvers}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<!-- Integration Testing with Arquillian -->
+					<dependency>
+						<groupId>org.apache.maven</groupId>
+						<artifactId>maven-aether-provider</artifactId>
+						<version>${version.maven}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.maven</groupId>
+						<artifactId>maven-model</artifactId>
+						<version>${version.maven}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.maven</groupId>
+						<artifactId>maven-model-builder</artifactId>
+						<version>${version.maven}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.maven</groupId>
+						<artifactId>maven-repository-metadata</artifactId>
+						<version>${version.maven}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.arquillian.junit</groupId>
+						<artifactId>arquillian-junit-container</artifactId>
+						<version>${version.arquillian_core}</version>
+						<scope>test</scope>
+					</dependency>
+					<!-- Integration Testing with Arquillian: 3rd Party Dependencies -->
+					<dependency>
+						<groupId>junit</groupId>
+						<artifactId>junit</artifactId>
+						<version>${version.junit}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.arquillian</groupId>
+						<artifactId>arquillian-junit</artifactId>
+						<version>${version.arquillian_drone}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.httpcomponents</groupId>
+						<artifactId>httpcore</artifactId>
+						<version>4.4.12</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.httpcomponents</groupId>
+						<artifactId>httpclient</artifactId>
+						<version>4.5.10</version>
+						<scope>test</scope>
+					</dependency>
+					<!-- other 3rd Party Dependencies for Tests -->
+					<dependency>
+						<groupId>org.reflections</groupId>
+						<artifactId>reflections</artifactId>
+						<version>0.9.9</version>
+					</dependency>
+					<dependency>
+						<groupId>org.pcollections</groupId>
+						<artifactId>pcollections</artifactId>
+						<version>2.1.2</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>com.google.guava</groupId>
+						<artifactId>guava</artifactId>
+						<version>${version.guava}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>com.google.auto</groupId>
+						<artifactId>auto-common</artifactId>
+						<version>0.10</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>com.google.code.findbugs</groupId>
+						<artifactId>jFormatString</artifactId>
+						<version>${version.com.google.code.findbugs.jFormatString}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>com.google.code.gson</groupId>
+						<artifactId>gson</artifactId>
+						<version>${version.com.google.code.gson.gson}</version>
+						<scope>test</scope>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
+			<dependencies>
+				<!-- Testing -->
+				<dependency>
+					<groupId>org.jboss.shrinkwrap</groupId>
+					<artifactId>shrinkwrap-api</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.junit</groupId>
+					<artifactId>arquillian-junit-container</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.primefaces.extensions</groupId>
+					<artifactId>primefaces-arquillian</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-java</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-api</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-support</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-leg-rc</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>lift</artifactId>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+
 		<!-- openliberty-dev-run -->
 		<profile>
 			<id>wlp-dev</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
+			<dependencyManagement>
+				<dependencies>
+					<dependency>
+						<groupId>jakarta.platform</groupId>
+						<artifactId>jakartaee-api-parent</artifactId>
+						<version>${version.jakartaee-api}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>jakarta.platform</groupId>
+						<artifactId>jakarta.jakartaee-bom</artifactId>
+						<version>${version.jakartaee-api}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>jakarta.platform</groupId>
+						<artifactId>jakarta.jakartaee-api</artifactId>
+						<version>${version.jakartaee-api}</version>
+						<scope>provided</scope>
+					</dependency>
+					<dependency>
+						<groupId>jakarta.platform</groupId>
+						<artifactId>jakarta.jakartaee-web-api</artifactId>
+						<version>${version.jakartaee-api}</version>
+						<scope>provided</scope>
+					</dependency>
+					<!-- Jakarta EE Runtime: OpenLiberty -->
+					<dependency>
+						<groupId>io.openliberty</groupId>
+						<artifactId>openliberty-javaee8</artifactId>
+						<version>${version.jakartaee8.server.openliberty}</version>
+						<type>zip</type>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.features</groupId>
+						<artifactId>features-bom</artifactId>
+						<version>${version.jakartaee8.server.openliberty}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.arquillian</groupId>
+						<artifactId>arquillian-liberty-managed</artifactId>
+						<version>${version.jakartaee8.server.openliberty.arquillian}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.arquillian</groupId>
+						<artifactId>arquillian-liberty-remote</artifactId>
+						<version>${version.jakartaee8.server.openliberty.arquillian}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.arquillian</groupId>
+						<artifactId>liberty-support-feature</artifactId>
+						<version>${version.jakartaee8.server.openliberty.arquillian}</version>
+						<scope>test</scope>
+					</dependency>
+					<!-- shrinkwrap -->
+					<!--
+					<dependency>
+						<groupId>org.jboss.shrinkwrap.resolver</groupId>
+						<artifactId>shrinkwrap-resolver-depchain</artifactId>
+						<type>pom</type>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.shrinkwrap.resolver</groupId>
+						<artifactId>shrinkwrap-resolver-api-maven-embedded</artifactId>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.cxf</groupId>
+						<artifactId>cxf-rt-rs-client</artifactId>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.cxf</groupId>
+						<artifactId>cxf-rt-rs-extension-providers</artifactId>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>net.jcip</groupId>
+						<artifactId>jcip-annotations</artifactId>
+						<scope>test</scope>
+					</dependency>
+					-->
+				</dependencies>
+			</dependencyManagement>
 			<dependencies>
 				<dependency>
 					<groupId>jakarta.platform</groupId>
@@ -1366,6 +1453,7 @@
 					<artifactId>log4j-appserver</artifactId>
 				</dependency>
 				<!-- shrinkwrap -->
+				<!--
 				<dependency>
 					<groupId>org.jboss.shrinkwrap.resolver</groupId>
 					<artifactId>shrinkwrap-resolver-depchain</artifactId>
@@ -1392,6 +1480,7 @@
 					<artifactId>jcip-annotations</artifactId>
 					<scope>test</scope>
 				</dependency>
+				-->
 				<dependency>
 					<groupId>com.dkanejs.maven.plugins</groupId>
 					<artifactId>docker-compose-maven-plugin</artifactId>
@@ -1470,11 +1559,6 @@
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-enforcer-plugin</artifactId>
-							<version>${version.maven-enforcer-plugin}</version>
-						</plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-invoker-plugin</artifactId>
 							<version>${version.maven-invoker-plugin}</version>
 						</plugin>
@@ -1511,7 +1595,7 @@
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-scm-plugin</artifactId>
-							<version>${maven.scm.version}</version>
+							<version>${version.maven.scm}</version>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -1572,8 +1656,8 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-compiler-plugin</artifactId>
 						<configuration>
-							<source>${version.java}</source>
-							<target>${version.java}</target>
+							<source>${java.version}</source>
+							<target>${java.version}</target>
 							<compilerArgument>-Xlint:all</compilerArgument>
 							<showWarnings>true</showWarnings>
 							<showDeprecation>true</showDeprecation>
@@ -1729,6 +1813,123 @@
 		<!-- openliberty-managed-run -->
 		<profile>
 			<id>wlp-run</id>
+			<properties/>
+			<dependencyManagement>
+				<dependencies>
+					<!-- Jakarta EE Runtime: OpenLiberty -->
+					<dependency>
+						<groupId>io.openliberty</groupId>
+						<artifactId>openliberty-javaee8</artifactId>
+						<version>${version.jakartaee8.server.openliberty}</version>
+						<type>zip</type>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.features</groupId>
+						<artifactId>features-bom</artifactId>
+						<version>${version.jakartaee8.server.openliberty}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.arquillian</groupId>
+						<artifactId>arquillian-liberty-managed</artifactId>
+						<version>${version.jakartaee8.server.openliberty.arquillian}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.arquillian</groupId>
+						<artifactId>arquillian-liberty-remote</artifactId>
+						<version>${version.jakartaee8.server.openliberty.arquillian}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.arquillian</groupId>
+						<artifactId>liberty-support-feature</artifactId>
+						<version>${version.jakartaee8.server.openliberty.arquillian}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>jakarta.platform</groupId>
+						<artifactId>jakarta.jakartaee-api</artifactId>
+						<scope>provided</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.features</groupId>
+						<artifactId>javaee-8.0</artifactId>
+						<type>esa</type>
+						<scope>provided</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.features</groupId>
+						<artifactId>sessionDatabase-1.0</artifactId>
+						<type>esa</type>
+						<scope>provided</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.features</groupId>
+						<artifactId>json-1.0</artifactId>
+						<type>esa</type>
+						<scope>provided</scope>
+					</dependency>
+					<dependency>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-core</artifactId>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-api</artifactId>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-slf4j-impl</artifactId>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-web</artifactId>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-appserver</artifactId>
+					</dependency>
+					<!-- shrinkwrap -->
+					<dependency>
+						<groupId>org.jboss.shrinkwrap.resolver</groupId>
+						<artifactId>shrinkwrap-resolver-depchain</artifactId>
+						<type>pom</type>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.shrinkwrap.resolver</groupId>
+						<artifactId>shrinkwrap-resolver-api-maven-embedded</artifactId>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.cxf</groupId>
+						<artifactId>cxf-rt-rs-client</artifactId>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.cxf</groupId>
+						<artifactId>cxf-rt-rs-extension-providers</artifactId>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>net.jcip</groupId>
+						<artifactId>jcip-annotations</artifactId>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>com.dkanejs.maven.plugins</groupId>
+						<artifactId>docker-compose-maven-plugin</artifactId>
+						<version>${version.docker-compose-maven-plugin}</version>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
 			<dependencies>
 				<dependency>
 					<groupId>jakarta.platform</groupId>
@@ -1813,7 +2014,6 @@
 				<dependency>
 					<groupId>com.dkanejs.maven.plugins</groupId>
 					<artifactId>docker-compose-maven-plugin</artifactId>
-					<version>${version.docker-compose-maven-plugin}</version>
 				</dependency>
 			</dependencies>
 			<build>
@@ -1821,6 +2021,13 @@
 				<defaultGoal>clean install docker-compose:up liberty:run docker-compose:down</defaultGoal>
 				<pluginManagement>
 					<plugins>
+						<!-- this profile -->
+						<plugin>
+							<groupId>io.openliberty.tools</groupId>
+							<artifactId>liberty-maven-plugin</artifactId>
+							<version>${version.liberty-maven-plugin}</version>
+						</plugin>
+						<!-- all profiles -->
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-dependency-plugin</artifactId>
@@ -1830,6 +2037,11 @@
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-clean-plugin</artifactId>
 							<version>${version.maven-clean-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok-maven-plugin</artifactId>
+							<version>${version.lombok-maven-plugin}</version>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -1857,19 +2069,9 @@
 							<version>${version.maven-install-plugin}</version>
 						</plugin>
 						<plugin>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok-maven-plugin</artifactId>
-							<version>${version.lombok-maven-plugin}</version>
-						</plugin>
-						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-war-plugin</artifactId>
 							<version>${version.maven-war-plugin}</version>
-						</plugin>
-						<plugin>
-							<groupId>io.openliberty.tools</groupId>
-							<artifactId>liberty-maven-plugin</artifactId>
-							<version>${version.liberty-maven-plugin}</version>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -1885,11 +2087,6 @@
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-failsafe-plugin</artifactId>
 							<version>${version.maven-failsafe-plugin}</version>
-						</plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-enforcer-plugin</artifactId>
-							<version>${version.maven-enforcer-plugin}</version>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -1929,7 +2126,7 @@
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-scm-plugin</artifactId>
-							<version>${maven.scm.version}</version>
+							<version>${version.maven.scm}</version>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -1990,8 +2187,8 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-compiler-plugin</artifactId>
 						<configuration>
-							<source>${version.java}</source>
-							<target>${version.java}</target>
+							<source>${java.version}</source>
+							<target>${java.version}</target>
 							<compilerArgument>-Xlint:all</compilerArgument>
 							<showWarnings>true</showWarnings>
 							<showDeprecation>true</showDeprecation>
@@ -2297,6 +2494,247 @@
 				<skipIntegrationTests>false</skipIntegrationTests>
 				<webdriverBrowser>chrome</webdriverBrowser>
 			</properties>
+			<dependencyManagement>
+				<dependencies>
+				<!-- Jakarta EE Runtime: OpenLiberty -->
+				<dependency>
+					<groupId>io.openliberty</groupId>
+					<artifactId>openliberty-javaee8</artifactId>
+					<version>${version.jakartaee8.server.openliberty}</version>
+					<type>zip</type>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>io.openliberty.features</groupId>
+					<artifactId>features-bom</artifactId>
+					<version>${version.jakartaee8.server.openliberty}</version>
+					<type>pom</type>
+					<scope>import</scope>
+				</dependency>
+				<dependency>
+					<groupId>io.openliberty.arquillian</groupId>
+					<artifactId>arquillian-liberty-managed</artifactId>
+					<version>${version.jakartaee8.server.openliberty.arquillian}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>io.openliberty.arquillian</groupId>
+					<artifactId>arquillian-liberty-remote</artifactId>
+					<version>${version.jakartaee8.server.openliberty.arquillian}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>io.openliberty.arquillian</groupId>
+					<artifactId>liberty-support-feature</artifactId>
+					<version>${version.jakartaee8.server.openliberty.arquillian}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>io.openliberty.features</groupId>
+					<artifactId>javaee-8.0</artifactId>
+					<version>${version.}</version>
+					<type>esa</type>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>io.openliberty.features</groupId>
+					<artifactId>sessionDatabase-1.0</artifactId>
+					<version>${version.}</version>
+					<type>esa</type>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>io.openliberty.features</groupId>
+					<artifactId>json-1.0</artifactId>
+					<version>${version.}</version>
+					<type>esa</type>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>io.openliberty.features</groupId>
+					<artifactId>springBoot-2.0</artifactId>
+					<version>${version.}</version>
+					<type>esa</type>
+					<scope>provided</scope>
+				</dependency>
+				<!-- shrinkwrap -->
+				<dependency>
+					<groupId>org.jboss.shrinkwrap.resolver</groupId>
+					<artifactId>shrinkwrap-resolver-depchain</artifactId>
+					<version>${version.}</version>
+					<type>pom</type>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.shrinkwrap.resolver</groupId>
+					<artifactId>shrinkwrap-resolver-api-maven-embedded</artifactId>
+					<version>${version.}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.cxf</groupId>
+					<artifactId>cxf-rt-rs-client</artifactId>
+					<version>${version.}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.cxf</groupId>
+					<artifactId>cxf-rt-rs-extension-providers</artifactId>
+					<version>${version.}</version>
+					<scope>test</scope>
+				</dependency>
+				<!-- -->
+				<dependency>
+					<groupId>org.jboss.arquillian.graphene</groupId>
+					<artifactId>graphene-webdriver-impl</artifactId>
+					<version>${version.arquillian_graphene}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.extension</groupId>
+					<artifactId>arquillian-drone-impl</artifactId>
+					<version>${version.arquillian_drone}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+					<version>${version.}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.junit</groupId>
+					<artifactId>arquillian-junit-container</artifactId>
+					<version>${version.}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.core</groupId>
+					<artifactId>arquillian-core-impl-base</artifactId>
+					<version>${version.}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.config</groupId>
+					<artifactId>arquillian-config-impl-base</artifactId>
+					<version>${version.}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+					<version>${version.xml-apis}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.protocol</groupId>
+					<artifactId>arquillian-protocol-servlet</artifactId>
+					<version>${version.arquillian_core}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.testenricher</groupId>
+					<artifactId>arquillian-testenricher-resource</artifactId>
+					<version>${version.}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.testenricher</groupId>
+					<artifactId>arquillian-testenricher-initialcontext</artifactId>
+					<version>${version.}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.httpcomponents</groupId>
+					<artifactId>httpcore</artifactId>
+					<version>${version.}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.httpcomponents</groupId>
+					<artifactId>httpclient</artifactId>
+					<version>${version.}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+					<version>${version.}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-core</artifactId>
+					<version>${version.}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-api</artifactId>
+					<version>${version.}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.reflections</groupId>
+					<artifactId>reflections</artifactId>
+					<version>${version.}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.pcollections</groupId>
+					<artifactId>pcollections</artifactId>
+					<version>${version.}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.google.guava</groupId>
+					<artifactId>guava</artifactId>
+					<version>${version.}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.google.auto</groupId>
+					<artifactId>auto-common</artifactId>
+					<version>${version.}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.google.code.findbugs</groupId>
+					<artifactId>jFormatString</artifactId>
+					<version>${version.com.google.code.findbugs.jFormatString}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.google.code.gson</groupId>
+					<artifactId>gson</artifactId>
+					<version>${version.com.google.code.gson.gson}</version>
+					<scope>test</scope>
+				</dependency>
+					<dependency>
+						<groupId>org.seleniumhq.selenium</groupId>
+						<artifactId>selenium-chrome-driver</artifactId>
+						<version>${version.selenium}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.hibernate</groupId>
+						<artifactId>hibernate-search-engine</artifactId>
+						<version>${version.hibernate-search}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.hibernate</groupId>
+						<artifactId>hibernate-search-orm</artifactId>
+						<version>${version.hibernate-search}</version>
+					</dependency>
+				<dependency>
+					<groupId>org.primefaces.extensions</groupId>
+					<artifactId>primefaces-arquillian</artifactId>
+					<version>${version.primefaces.arquillian}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.omnifaces</groupId>
+					<artifactId>arquillian-primefaces</artifactId>
+					<version>${version.org.omnifaces.arquillian-primefaces}</version>
+				</dependency>
+				</dependencies>
+			</dependencyManagement>
 			<dependencies>
 				<dependency>
 					<groupId>io.openliberty.arquillian</groupId>
@@ -2359,13 +2797,11 @@
 				<dependency>
 					<groupId>org.jboss.arquillian.graphene</groupId>
 					<artifactId>graphene-webdriver-impl</artifactId>
-					<version>${version.arquillian_graphene}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.jboss.arquillian.extension</groupId>
 					<artifactId>arquillian-drone-impl</artifactId>
-					<version>${version.arquillian_drone}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -2391,13 +2827,11 @@
 				<dependency>
 					<groupId>xml-apis</groupId>
 					<artifactId>xml-apis</artifactId>
-					<version>1.4.01</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.jboss.arquillian.protocol</groupId>
 					<artifactId>arquillian-protocol-servlet</artifactId>
-					<version>${version.arquillian_core}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -2486,6 +2920,7 @@
 			</dependencies>
 			<build>
 				<finalName>${project.artifactId}</finalName>
+				<defaultGoal>clean dependency:tree dependency:resolve dependency:resolve-plugins install</defaultGoal>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -2692,10 +3127,22 @@
 		</profile>
 		<!-- openliberty-remote-run -->
 		<profile>
-			<id>openliberty-remote-run</id>
+			<id>wlp-remote-run</id>
 			<build>
 				<finalName>${project.artifactId}</finalName>
 				<plugins>
+					<plugin>
+						<groupId>com.dkanejs.maven.plugins</groupId>
+						<artifactId>docker-compose-maven-plugin</artifactId>
+						<configuration>
+							<composeFile>${project.basedir}/docker-compose-wlp.yml</composeFile>
+							<verbose>true</verbose>
+							<removeImages>true</removeImages>
+							<removeVolumes>true</removeVolumes>
+							<ignorePullFailures>true</ignorePullFailures>
+							<detachedMode>true</detachedMode>
+						</configuration>
+					</plugin>
 					<plugin>
 						<groupId>io.openliberty.tools</groupId>
 						<artifactId>liberty-maven-plugin</artifactId>
@@ -2751,7 +3198,12 @@
 		</profile>
 		<!-- openliberty-remote-test -->
 		<profile>
-			<id>openliberty-remote-test</id>
+			<id>wlp-remote-test</id>
+			<dependencyManagement>
+				<dependencies>
+
+				</dependencies>
+			</dependencyManagement>
 			<dependencies>
 				<dependency>
 					<groupId>io.openliberty.arquillian</groupId>
@@ -2779,6 +3231,18 @@
 			<build>
 				<finalName>${project.artifactId}</finalName>
 				<plugins>
+					<plugin>
+						<groupId>com.dkanejs.maven.plugins</groupId>
+						<artifactId>docker-compose-maven-plugin</artifactId>
+						<configuration>
+							<composeFile>${project.basedir}/docker-compose-wlp.yml</composeFile>
+							<verbose>true</verbose>
+							<removeImages>true</removeImages>
+							<removeVolumes>true</removeVolumes>
+							<ignorePullFailures>true</ignorePullFailures>
+							<detachedMode>true</detachedMode>
+						</configuration>
+					</plugin>
 					<plugin>
 						<groupId>io.openliberty.tools</groupId>
 						<artifactId>liberty-maven-plugin</artifactId>
@@ -2860,12 +3324,193 @@
 
 		<!-- wildfly-managed-run -->
 		<profile>
-			<id>wildfly-managed-run</id>
+			<id>wf-run</id>
 			<properties>
 				<skipIntegrationTests>true</skipIntegrationTests>
 			</properties>
+			<dependencyManagement>
+				<dependencies>
+					<!-- Jakarta EE Runtime: Wildfly -->
+					<dependency>
+						<groupId>org.wildfly</groupId>
+						<artifactId>wildfly-dist</artifactId>
+						<version>${version.jakartaee8.server.wildfly}</version>
+						<type>zip</type>
+					</dependency>
+					<dependency>
+						<groupId>org.wildfly</groupId>
+						<artifactId>wildfly-parent</artifactId>
+						<version>${version.jakartaee8.server.wildfly}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.wildfly</groupId>
+						<artifactId>wildfly-feature-pack</artifactId>
+						<version>${version.jakartaee8.server.wildfly}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.wildfly.arquillian</groupId>
+						<artifactId>wildfly-arquillian-container-managed</artifactId>
+						<version>${version.jakartaee8.server.wildfly.arquillian}</version>
+						<scope>test</scope>
+						<exclusions>
+							<exclusion>
+								<groupId>org.jboss.sasl</groupId>
+								<artifactId>jboss-sasl</artifactId>
+							</exclusion>
+						</exclusions>
+					</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.graphene</groupId>
+					<artifactId>graphene-webdriver-impl</artifactId>
+					<version>${version.arquillian_graphene}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.extension</groupId>
+					<artifactId>arquillian-drone-impl</artifactId>
+					<version>${version.arquillian_drone}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+					<version>${version.maven-surefire-plugin.junit4}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.junit</groupId>
+					<artifactId>arquillian-junit-container</artifactId>
+					<version>${version.arquillian-junit-container}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.core</groupId>
+					<artifactId>arquillian-core-impl-base</artifactId>
+					<version>${version.arquillian-core-impl-base}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.config</groupId>
+					<artifactId>arquillian-core-impl-base</artifactId>
+					<version>${version.arquillian-core-impl-base}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+					<version>${version.xml-apis}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.protocol</groupId>
+					<artifactId>arquillian-protocol-servlet</artifactId>
+					<version>${version.arquillian_core}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.testenricher</groupId>
+					<artifactId>arquillian-testenricher-resource</artifactId>
+					<version>${version.arquillian-testenricher-resource}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.testenricher</groupId>
+					<artifactId>arquillian-testenricher-initialcontext</artifactId>
+					<version>${version.arquillian-testenricher-initialcontext}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.httpcomponents</groupId>
+					<artifactId>httpcore</artifactId>
+					<version>${version.}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.httpcomponents</groupId>
+					<artifactId>httpclient</artifactId>
+					<version>${version.}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+					<version>${version.}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-core</artifactId>
+					<version>${version.}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-api</artifactId>
+					<version>${version.}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.reflections</groupId>
+					<artifactId>reflections</artifactId>
+					<version>${version.}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.pcollections</groupId>
+					<artifactId>pcollections</artifactId>
+					<version>${version.org.pcollections.pcollections}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.google.guava</groupId>
+					<artifactId>guava</artifactId>
+					<version>${version.com.google.guava.guava}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.google.auto</groupId>
+					<artifactId>auto-common</artifactId>
+					<version>${version.com.google.auto.auto-common}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.google.code.findbugs</groupId>
+					<artifactId>jFormatString</artifactId>
+					<version>${version.com.google.code.findbugs.jFormatString}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.google.code.gson</groupId>
+					<artifactId>gson</artifactId>
+					<version>${version.com.google.code.gson}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-search-engine</artifactId>
+					<version>${version.org.hibernate.hibernate-search-engines}</version>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-search-orm</artifactId>
+					<version>${version.org.hibernate.hibernate-search-orm}</version>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.primefaces.extensions</groupId>
+					<artifactId>primefaces-arquillian</artifactId>
+					<version>${version.org.primefaces.extensions.primefaces-arquillian}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.omnifaces</groupId>
+					<artifactId>arquillian-primefaces</artifactId>
+					<version>${version.org.omnifaces.arquillian-primefaces}</version>
+				</dependency>
+				</dependencies>
+			</dependencyManagement>
 			<dependencies>
-				<!-- -->
 				<dependency>
 					<groupId>org.wildfly.arquillian</groupId>
 					<artifactId>wildfly-arquillian-container-managed</artifactId>
@@ -2890,13 +3535,11 @@
 				<dependency>
 					<groupId>org.jboss.arquillian.graphene</groupId>
 					<artifactId>graphene-webdriver-impl</artifactId>
-					<version>${version.arquillian_graphene}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.jboss.arquillian.extension</groupId>
 					<artifactId>arquillian-drone-impl</artifactId>
-					<version>${version.arquillian_drone}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -2922,13 +3565,14 @@
 				<dependency>
 					<groupId>xml-apis</groupId>
 					<artifactId>xml-apis</artifactId>
+					<!--
 					<version>1.4.01</version>
+					-->
 					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.jboss.arquillian.protocol</groupId>
 					<artifactId>arquillian-protocol-servlet</artifactId>
-					<version>${version.arquillian_core}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -3019,7 +3663,28 @@
 			</dependencies>
 			<build>
 				<finalName>${project.artifactId}</finalName>
+				<defaultGoal>clean install docker-compose:up docker-compose:down</defaultGoal>
+				<!--
+				<defaultGoal>clean install docker-compose:up docker-compose:down</defaultGoal>
+				-->
+				<pluginManagement>
+					<plugins>
+
+					</plugins>
+				</pluginManagement>
 				<plugins>
+					<plugin>
+						<groupId>com.dkanejs.maven.plugins</groupId>
+						<artifactId>docker-compose-maven-plugin</artifactId>
+						<configuration>
+							<composeFile>${project.basedir}/docker-compose.yml</composeFile>
+							<verbose>true</verbose>
+							<removeImages>true</removeImages>
+							<removeVolumes>true</removeVolumes>
+							<ignorePullFailures>true</ignorePullFailures>
+							<detachedMode>true</detachedMode>
+						</configuration>
+					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-dependency-plugin</artifactId>
@@ -3107,11 +3772,87 @@
 		</profile>
 		<!-- wildfly-managed-test -->
 		<profile>
-			<id>wildfly-managed-test</id>
+			<id>wf-test</id>
 			<properties>
 				<skipIntegrationTests>false</skipIntegrationTests>
 				<webdriverBrowser>chrome</webdriverBrowser>
 			</properties>
+			<dependencyManagement>
+				<dependencies>
+					<!-- Jakarta EE Runtime: Wildfly -->
+					<dependency>
+						<groupId>org.wildfly</groupId>
+						<artifactId>wildfly-dist</artifactId>
+						<version>${version.jakartaee8.server.wildfly}</version>
+						<type>zip</type>
+					</dependency>
+					<dependency>
+						<groupId>org.wildfly</groupId>
+						<artifactId>wildfly-parent</artifactId>
+						<version>${version.jakartaee8.server.wildfly}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.wildfly</groupId>
+						<artifactId>wildfly-feature-pack</artifactId>
+						<version>${version.jakartaee8.server.wildfly}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+				<!--
+					TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28
+				-->
+				<!--
+				<dependency>
+					<groupId>org.jboss.arquillian.selenium</groupId>
+					<artifactId>selenium-bom</artifactId>
+					<version>${version.selenium}</version>
+					<type>pom</type>
+					<scope>import</scope>
+				</dependency>
+				-->
+				<!--
+				Selenium Server TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28
+				-->
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-server</artifactId>
+					<version>${version.selenium}</version>
+				</dependency>
+
+				<!--
+				Selenium dependecies
+				TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28
+				-->
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-api</artifactId>
+					<version>${version.selenium}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-java</artifactId>
+					<version>${version.selenium}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-support</artifactId>
+					<version>${version.selenium}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-leg-rc</artifactId>
+					<version>${version.selenium}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>lift</artifactId>
+					<version>${version.selenium}</version>
+				</dependency>
+
+				</dependencies>
+			</dependencyManagement>
 			<dependencies>
 				<!-- -->
 				<dependency>
@@ -3269,12 +4010,24 @@
 				<finalName>${project.artifactId}</finalName>
 				<plugins>
 					<plugin>
+						<groupId>com.dkanejs.maven.plugins</groupId>
+						<artifactId>docker-compose-maven-plugin</artifactId>
+						<configuration>
+							<composeFile>${project.basedir}/docker-compose.yml</composeFile>
+							<verbose>true</verbose>
+							<removeImages>true</removeImages>
+							<removeVolumes>true</removeVolumes>
+							<ignorePullFailures>true</ignorePullFailures>
+							<detachedMode>true</detachedMode>
+						</configuration>
+					</plugin>
+					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-compiler-plugin</artifactId>
 						<version>3.6.2</version>
 						<configuration>
-							<source>${version.java}</source>
-							<target>${version.java}</target>
+							<source>${java.version}</source>
+							<target>${java.version}</target>
 						</configuration>
 					</plugin>
 					<plugin>
@@ -3506,10 +4259,56 @@
 		</profile>
 		<!-- wildfly-remote-run -->
 		<profile>
-			<id>wildfly-remote-run</id>
+			<id>wf-remote-run</id>
+			<dependencyManagement>
+				<dependencies>
+					<!-- Jakarta EE Runtime: Wildfly -->
+					<dependency>
+						<groupId>org.wildfly</groupId>
+						<artifactId>wildfly-dist</artifactId>
+						<version>${version.jakartaee8.server.wildfly}</version>
+						<type>zip</type>
+					</dependency>
+					<dependency>
+						<groupId>org.wildfly</groupId>
+						<artifactId>wildfly-parent</artifactId>
+						<version>${version.jakartaee8.server.wildfly}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.wildfly</groupId>
+						<artifactId>wildfly-feature-pack</artifactId>
+						<version>${version.jakartaee8.server.wildfly}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
+			<dependencies>
+
+			</dependencies>
 			<build>
-			<finalName>${project.artifactId}</finalName>
+				<finalName>${project.artifactId}</finalName>
+				<defaultGoal>clean install</defaultGoal>
+				<pluginManagement>
+					<plugins>
+
+					</plugins>
+				</pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>com.dkanejs.maven.plugins</groupId>
+					<artifactId>docker-compose-maven-plugin</artifactId>
+					<configuration>
+						<composeFile>${project.basedir}/docker-compose-wildfly.yml</composeFile>
+						<verbose>true</verbose>
+						<removeImages>true</removeImages>
+						<removeVolumes>true</removeVolumes>
+						<ignorePullFailures>true</ignorePullFailures>
+						<detachedMode>true</detachedMode>
+					</configuration>
+				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-dependency-plugin</artifactId>
@@ -3537,7 +4336,56 @@
 		</profile>
 		<!-- >wildfly-remote-test -->
 		<profile>
-			<id>wildfly-remote-test</id>
+			<id>wf-remote-test</id>
+			<dependencyManagement>
+				<dependencies>
+					<!-- Jakarta EE Runtime: Wildfly -->
+					<dependency>
+						<groupId>org.wildfly</groupId>
+						<artifactId>wildfly-dist</artifactId>
+						<version>${version.jakartaee8.server.wildfly}</version>
+						<type>zip</type>
+					</dependency>
+					<dependency>
+						<groupId>org.wildfly</groupId>
+						<artifactId>wildfly-parent</artifactId>
+						<version>${version.jakartaee8.server.wildfly}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.wildfly</groupId>
+						<artifactId>wildfly-feature-pack</artifactId>
+						<version>${version.jakartaee8.server.wildfly}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.wildfly.arquillian</groupId>
+						<artifactId>wildfly-arquillian-container-remote</artifactId>
+						<version>${version.jakartaee8.server.wildfly.arquillian}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.wildfly.arquillian</groupId>
+						<artifactId>wildfly-arquillian-common</artifactId>
+						<version>${version.jakartaee8.server.wildfly.arquillian}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.wildfly.arquillian</groupId>
+						<artifactId>elytron-standalone</artifactId>
+						<version>${version.jakartaee8.server.wildfly.arquillian}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+						<version>${version.commons-logging}</version>
+						<scope>test</scope>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
 			<dependencies>
 				<dependency>
 					<groupId>org.wildfly.arquillian</groupId>
@@ -3570,7 +4418,49 @@
 			</dependencies>
 			<build>
 				<finalName>${project.artifactId}</finalName>
+				<defaultGoal>clean install</defaultGoal>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>com.dkanejs.maven.plugins</groupId>
+							<artifactId>docker-compose-maven-plugin</artifactId>
+							<version>${version.docker-compose-maven-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-dependency-plugin</artifactId>
+							<version>${version.maven-dependency-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>surefire-junit4</artifactId>
+							<version>${version.maven-surefire-plugin.junit4}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-surefire-plugin</artifactId>
+							<version>${version.maven-surefire-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-failsafe-plugin</artifactId>
+							<version>${version.maven-failsafe-plugin}</version>
+						</plugin>
+					</plugins>
+				</pluginManagement>
 				<plugins>
+					<plugin>
+						<groupId>com.dkanejs.maven.plugins</groupId>
+						<artifactId>docker-compose-maven-plugin</artifactId>
+						<configuration>
+							<composeFile>${project.basedir}/docker-compose-wildfly.yml</composeFile>
+							<verbose>true</verbose>
+							<removeImages>true</removeImages>
+							<removeVolumes>true</removeVolumes>
+							<ignorePullFailures>true</ignorePullFailures>
+							<detachedMode>true</detachedMode>
+						</configuration>
+					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-dependency-plugin</artifactId>
@@ -3608,46 +4498,64 @@
 		<!-- code-schemagen-json-xml -->
 		<profile>
 			<id>code-schemagen-json-xml</id>
+			<dependencyManagement>
+				<dependencies></dependencies>
+			</dependencyManagement>
+			<dependencies></dependencies>
 			<build>
 				<finalName>${project.artifactId}</finalName>
 				<pluginManagement>
 					<plugins>
-						<plugin>
-							<groupId>org.codehaus.mojo</groupId>
-							<artifactId>jaxb2-maven-plugin</artifactId>
-							<executions>
-								<execution>
-									<id>schemagen</id>
-									<goals>
-										<goal>schemagen</goal>
-									</goals>
-								</execution>
-							</executions>
-							<configuration>
-								<schemaSourceExcludeFilters>
-									<noJaxbIndex implementation="org.codehaus.mojo.jaxb2.shared.filters.pattern.PatternFileFilter">
-										<patterns>
-											<pattern>org.woehlke.jakartaee.petclinic.application</pattern>
-											<pattern>org.woehlke.jakartaee.petclinic.frontend</pattern>
-											<pattern>org.woehlke.jakartaee.petclinic.oodm.dao</pattern>
-											<pattern>org.woehlke.jakartaee.petclinic.oodm.services</pattern>
-											<pattern>org.woehlke.jakartaee.petclinic.oodm.view</pattern>
-											<pattern>org.woehlke.jakartaee.petclinic.oodm.entities.listener</pattern>
-										</patterns>
-									</noJaxbIndex>
-								</schemaSourceExcludeFilters>
-							</configuration>
-						</plugin>
+
 					</plugins>
 				</pluginManagement>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>jaxb2-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>schemagen</id>
+								<goals>
+									<goal>schemagen</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<schemaSourceExcludeFilters>
+								<noJaxbIndex implementation="org.codehaus.mojo.jaxb2.shared.filters.pattern.PatternFileFilter">
+									<patterns>
+										<pattern>org.woehlke.jakartaee.petclinic.application</pattern>
+										<pattern>org.woehlke.jakartaee.petclinic.frontend</pattern>
+										<pattern>org.woehlke.jakartaee.petclinic.oodm.dao</pattern>
+										<pattern>org.woehlke.jakartaee.petclinic.oodm.services</pattern>
+										<pattern>org.woehlke.jakartaee.petclinic.oodm.view</pattern>
+										<pattern>org.woehlke.jakartaee.petclinic.oodm.entities.listener</pattern>
+									</patterns>
+								</noJaxbIndex>
+							</schemaSourceExcludeFilters>
+						</configuration>
+					</plugin>
+				</plugins>
 			</build>
 		</profile>
 
 		<!-- code-serialver-prepare -->
 		<profile>
 			<id>code-serialver-prepare</id>
+			<dependencyManagement>
+				<dependencies></dependencies>
+			</dependencyManagement>
+			<dependencies>
+
+			</dependencies>
 			<build>
 				<finalName>${project.artifactId}</finalName>
+				<pluginManagement>
+					<plugins>
+
+					</plugins>
+				</pluginManagement>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -4092,7 +5000,7 @@
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-scm-plugin</artifactId>
-							<version>${maven.scm.version}</version>
+							<version>${version.maven.scm}</version>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -4437,7 +5345,7 @@
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-scm-plugin</artifactId>
-							<version>${maven.scm.version}</version>
+							<version>${version.maven.scm}</version>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -4501,7 +5409,7 @@
 						<artifactId>maven-javadoc-plugin</artifactId>
 						<configuration>
 							<maxmemory>2048m</maxmemory>
-							<source>${version.java}</source>
+							<source>${java.version}</source>
 							<encoding>${project.build.sourceEncoding}</encoding>
 						</configuration>
 						<executions>
@@ -4514,7 +5422,7 @@
 								<configuration>
 									<linksource>true</linksource>
 									<maxmemory>2048m</maxmemory>
-									<source>${version.java}</source>
+									<source>${java.version}</source>
 									<encoding>${project.build.sourceEncoding}</encoding>
 								</configuration>
 							</execution>

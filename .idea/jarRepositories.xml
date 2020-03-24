@@ -22,9 +22,19 @@
       <option name="url" value="https://artifacts.alfresco.com/nexus/content/repositories/public/" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="libs-release" />
+      <option name="url" value="http://localhost:8081/artifactory/libs-release" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="jboss-3rd-party-repository" />
       <option name="name" value="JBoss 3rd-party Repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="snapshots" />
+      <option name="name" value="libs-snapshot" />
+      <option name="url" value="http://localhost:8081/artifactory/libs-snapshot" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="primefaces-repo" />
