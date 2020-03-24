@@ -1,7 +1,6 @@
 package org.woehlke.jakartaee.petclinic.application;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.woehlke.jakartaee.petclinic.oodm.services.SearchIndexService;
 
 import javax.annotation.PostConstruct;
@@ -13,14 +12,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
+@Log4j2
 @Startup
 @Singleton
 @ApplicationScoped
 public class SchedulerBean implements Serializable {
 
   private static final long serialVersionUID = 8425286360447275162L;
-
-  private static Logger log = LogManager.getLogger(SchedulerBean.class.getName());
 
   @EJB
   private SearchIndexService searchIndexService;

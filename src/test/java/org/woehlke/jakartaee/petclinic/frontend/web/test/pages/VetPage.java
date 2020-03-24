@@ -1,7 +1,6 @@
 package org.woehlke.jakartaee.petclinic.frontend.web.test.pages;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.page.Location;
 import org.junit.Assert;
@@ -18,10 +17,9 @@ import org.primefaces.extensions.arquillian.component.InputText;
  * Time: 20:34
  * To change this template use File | Settings | File Templates.
  */
+@Log4j2
 @Location("vet.jsf")
 public class VetPage extends AbstractPrimePage {
-
-  private static Logger log = LogManager.getLogger(VetPage.class.getName());
 
   @FindBy(id = "listEntityHeaderId")
   private WebElement listEntityHeaderId;

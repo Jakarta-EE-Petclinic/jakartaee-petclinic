@@ -1,7 +1,6 @@
 package org.woehlke.jakartaee.petclinic.oodm.services.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.woehlke.jakartaee.petclinic.oodm.dao.PetDao;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Pet;
 import org.woehlke.jakartaee.petclinic.oodm.services.PetService;
@@ -14,12 +13,11 @@ import javax.ejb.PrePassivate;
 import javax.ejb.Stateless;
 import java.util.List;
 
+@Log4j2
 @Stateless
 public class PetServiceImpl implements PetService {
 
   private static final long serialVersionUID = -2093524918552358722L;
-
-  private static Logger log = LogManager.getLogger(PetServiceImpl.class.getName());
 
   @EJB
   private PetDao petDao;

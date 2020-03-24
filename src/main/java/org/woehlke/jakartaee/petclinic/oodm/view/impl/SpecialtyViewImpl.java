@@ -1,7 +1,6 @@
 package org.woehlke.jakartaee.petclinic.oodm.view.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.woehlke.jakartaee.petclinic.application.MessageProvider;
 import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
 import org.woehlke.jakartaee.petclinic.frontend.web.LanguageView;
@@ -28,6 +27,7 @@ import java.util.ResourceBundle;
  * Time: 12:00
  * To change this template use File | Settings | File Templates.
  */
+@Log4j2
 @Named("specialtyView")
 @SessionScoped
 public class SpecialtyViewImpl implements SpecialtyView {
@@ -35,8 +35,6 @@ public class SpecialtyViewImpl implements SpecialtyView {
   private static final long serialVersionUID = 9080853875975855082L;
 
   private final static String JSF_PAGE = "specialty.jsf";
-
-  private static Logger log = LogManager.getLogger(SpecialtyViewImpl.class.getName());
 
   private MessageProvider provider;
 

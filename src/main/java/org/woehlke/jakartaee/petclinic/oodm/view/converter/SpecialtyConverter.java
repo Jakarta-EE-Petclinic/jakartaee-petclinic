@@ -1,7 +1,6 @@
 package org.woehlke.jakartaee.petclinic.oodm.view.converter;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Specialty;
 
 import javax.annotation.PostConstruct;
@@ -21,6 +20,7 @@ import java.io.Serializable;
  * Time: 12:44
  * To change this template use File | Settings | File Templates.
  */
+@Log4j2
 @FacesConverter(
     value = "specialtyConverter"
 )
@@ -28,8 +28,6 @@ import java.io.Serializable;
 public class SpecialtyConverter implements Converter<Specialty>, Serializable {
 
   private static final long serialVersionUID = 3816519727799645701L;
-
-  private static Logger log = LogManager.getLogger(SpecialtyConverter.class.getName());
 
   @Override
   public Specialty getAsObject(FacesContext context, UIComponent component, String name) {

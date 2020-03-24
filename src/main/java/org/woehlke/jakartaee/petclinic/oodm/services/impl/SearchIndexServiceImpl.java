@@ -1,7 +1,6 @@
 package org.woehlke.jakartaee.petclinic.oodm.services.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.woehlke.jakartaee.petclinic.oodm.dao.OwnerDao;
 import org.woehlke.jakartaee.petclinic.oodm.dao.PetTypeDao;
 import org.woehlke.jakartaee.petclinic.oodm.dao.SpecialtyDao;
@@ -11,12 +10,11 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.*;
 
+@Log4j2
 @Stateless
 public class SearchIndexServiceImpl implements SearchIndexService {
 
   private static final long serialVersionUID = 2941468681052495358L;
-
-  private static Logger log = LogManager.getLogger(SearchIndexServiceImpl.class.getName());
 
   @EJB
   private OwnerDao ownerDao;

@@ -1,8 +1,7 @@
 package org.woehlke.jakartaee.petclinic.frontend.web.test;
 
+import lombok.extern.log4j.Log4j2;
 import net.jcip.annotations.NotThreadSafe;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -33,12 +32,11 @@ import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.Arquillia
  * Time: 19:16
  * To change this template use File | Settings | File Templates.
  */
+@Log4j2
 @RunWith(Arquillian.class)
 @RunAsClient
 @NotThreadSafe
 public class IntegrationTest03OwnerView extends AbstractPrimePageTest {
-
-  private static Logger log = LogManager.getLogger(IntegrationTest03OwnerView.class.getName());
 
   @Page
   private HomePage homePage;

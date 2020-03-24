@@ -1,24 +1,16 @@
 package org.woehlke.jakartaee.petclinic.frontend.web.test.pages;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.page.Location;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.primefaces.extensions.arquillian.AbstractPrimePage;
-import org.primefaces.extensions.arquillian.component.Calendar;
 import org.primefaces.extensions.arquillian.component.CommandButton;
 import org.primefaces.extensions.arquillian.component.InputText;
-import org.primefaces.extensions.arquillian.component.SelectOneMenu;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Owner;
 
-import java.text.DateFormat;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Locale;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,10 +19,9 @@ import java.util.Locale;
  * Time: 09:23
  * To change this template use File | Settings | File Templates.
  */
+@Log4j2
 @Location("owner.jsf")
 public class OwnerPage extends AbstractPrimePage {
-
-  private static Logger log = LogManager.getLogger(OwnerPage.class.getName());
 
 
   @FindBy(id = "listEntityHeaderId")

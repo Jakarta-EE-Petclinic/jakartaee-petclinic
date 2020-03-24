@@ -1,7 +1,6 @@
 package org.woehlke.jakartaee.petclinic.oodm.view.converter;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.woehlke.jakartaee.petclinic.oodm.entities.PetType;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +12,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import java.io.Serializable;
 
-
+@Log4j2
 @FacesConverter(
     value = "petTypeConverter"
 )
@@ -21,8 +20,6 @@ import java.io.Serializable;
 public class PetTypeConverter implements Converter<PetType>, Serializable {
 
   private static final long serialVersionUID = 4908876595996046904L;
-
-  private static Logger log = LogManager.getLogger(PetTypeConverter.class.getName());
 
   @Override
   public PetType getAsObject(FacesContext context, UIComponent component, String name) {

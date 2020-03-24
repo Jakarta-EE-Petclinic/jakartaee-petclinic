@@ -1,7 +1,6 @@
 package org.woehlke.jakartaee.petclinic.oodm.view.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.primefaces.model.CheckboxTreeNode;
 import org.primefaces.model.TreeNode;
 import org.woehlke.jakartaee.petclinic.application.MessageProvider;
@@ -36,6 +35,7 @@ import java.util.ResourceBundle;
  * Time: 16:24
  * To change this template use File | Settings | File Templates.
  */
+@Log4j2
 @Named("ownerView")
 @SessionScoped
 public class OwnerViewImpl implements OwnerView {
@@ -43,8 +43,6 @@ public class OwnerViewImpl implements OwnerView {
   private static final long serialVersionUID = -4809817472969005481L;
 
   private final static String JSF_PAGE = "owner.jsf";
-
-  private static Logger log = LogManager.getLogger(OwnerViewImpl.class.getName());
 
   private MessageProvider provider;
 

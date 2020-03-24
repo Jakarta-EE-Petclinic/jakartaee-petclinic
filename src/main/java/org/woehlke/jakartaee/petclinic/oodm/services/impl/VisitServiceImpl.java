@@ -1,7 +1,6 @@
 package org.woehlke.jakartaee.petclinic.oodm.services.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.woehlke.jakartaee.petclinic.oodm.dao.VisitDao;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Visit;
 import org.woehlke.jakartaee.petclinic.oodm.services.VisitService;
@@ -14,12 +13,11 @@ import javax.ejb.PrePassivate;
 import javax.ejb.Stateless;
 import java.util.List;
 
+@Log4j2
 @Stateless
 public class VisitServiceImpl implements VisitService {
 
   private static final long serialVersionUID = 4560958540651968289L;
-
-  private static Logger log = LogManager.getLogger(VisitServiceImpl.class.getName());
 
   @EJB
   private VisitDao visitDao;

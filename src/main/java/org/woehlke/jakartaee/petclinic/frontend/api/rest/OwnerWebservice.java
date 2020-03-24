@@ -1,7 +1,6 @@
 package org.woehlke.jakartaee.petclinic.frontend.api.rest;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.woehlke.jakartaee.petclinic.oodm.dao.OwnerDao;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Owner;
 import org.woehlke.jakartaee.petclinic.oodm.entities.model.OwnerList;
@@ -15,13 +14,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.io.Serializable;
 
+@Log4j2
 @Stateless
 @Path("/owner")
 public class OwnerWebservice implements Serializable {
 
   private static final long serialVersionUID = 532726561254887897L;
-
-  private static Logger log = LogManager.getLogger(OwnerWebservice.class.getName());
 
   @EJB
   private OwnerDao ownerDao;

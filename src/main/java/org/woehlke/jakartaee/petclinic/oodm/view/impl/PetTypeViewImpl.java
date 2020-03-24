@@ -1,8 +1,7 @@
 package org.woehlke.jakartaee.petclinic.oodm.view.impl;
 
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.woehlke.jakartaee.petclinic.application.MessageProvider;
 import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
 import org.woehlke.jakartaee.petclinic.frontend.web.LanguageView;
@@ -29,13 +28,13 @@ import java.util.ResourceBundle;
  * Time: 11:49
  * To change this template use File | Settings | File Templates.
  */
+@Log4j2
 @Named("petTypeView")
 @SessionScoped
 public class PetTypeViewImpl implements PetTypeView {
 
   private static final long serialVersionUID = -528406859430949031L;
   private final static String JSF_PAGE = "petType.jsf";
-  private static Logger log = LogManager.getLogger(PetTypeViewImpl.class);
   private MessageProvider provider;
   @EJB
   private PetTypeService entityService;

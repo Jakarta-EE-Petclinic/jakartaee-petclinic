@@ -1,5 +1,6 @@
 package org.woehlke.jakartaee.petclinic.frontend.web.impl;
 
+import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.woehlke.jakartaee.petclinic.frontend.web.FrontendMessagesView;
@@ -14,13 +15,12 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
+@Log4j2
 @Named("frontendMessagesView")
 @SessionScoped
 public class FrontendMessagesViewImpl implements FrontendMessagesView {
 
   private static final long serialVersionUID = -2267751568724878682L;
-
-  private static Logger log = LogManager.getLogger(FrontendMessagesViewImpl.class.getName());
 
   public void addInfoMessage(String summary, String detail) {
     FacesMessage.Severity messageSeverity = FacesMessage.SEVERITY_INFO;

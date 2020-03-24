@@ -1,5 +1,6 @@
 package org.woehlke.jakartaee.petclinic.frontend.api.rest;
 
+import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.woehlke.jakartaee.petclinic.oodm.dao.PetTypeDao;
@@ -15,13 +16,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.io.Serializable;
 
+@Log4j2
 @Stateless
 @Path("/petType")
 public class PetTypeWebservice implements Serializable {
 
   private static final long serialVersionUID = -105453087511255998L;
-
-  private static Logger log = LogManager.getLogger(PetTypeWebservice.class.getName());
 
   @EJB
   private PetTypeDao petTypeDao;

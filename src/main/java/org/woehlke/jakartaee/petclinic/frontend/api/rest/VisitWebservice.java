@@ -1,8 +1,7 @@
 package org.woehlke.jakartaee.petclinic.frontend.api.rest;
 
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.woehlke.jakartaee.petclinic.oodm.dao.VisitDao;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Visit;
 import org.woehlke.jakartaee.petclinic.oodm.entities.model.VisitList;
@@ -16,13 +15,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.io.Serializable;
 
+@Log4j2
 @Stateless
 @Path("/visit")
 public class VisitWebservice implements Serializable {
 
   private static final long serialVersionUID = 7444366391126982311L;
-
-  private static Logger log = LogManager.getLogger(VisitWebservice.class.getName());
 
   @EJB
   private VisitDao visitDao;

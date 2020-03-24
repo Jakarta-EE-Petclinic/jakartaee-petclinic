@@ -1,8 +1,7 @@
 package org.woehlke.jakartaee.petclinic.frontend.api.rest;
 
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.woehlke.jakartaee.petclinic.oodm.dao.SpecialtyDao;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Specialty;
 import org.woehlke.jakartaee.petclinic.oodm.entities.model.SpecialtyList;
@@ -16,13 +15,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.io.Serializable;
 
+@Log4j2
 @Stateless
 @Path("/specialty")
 public class SpecialtyWebservice implements Serializable {
 
   private static final long serialVersionUID = 607664665910620584L;
-
-  private static Logger log = LogManager.getLogger(SpecialtyWebservice.class.getName());
 
   @EJB
   private SpecialtyDao specialtyDao;

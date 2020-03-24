@@ -1,7 +1,6 @@
 package org.woehlke.jakartaee.petclinic.oodm.services.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.woehlke.jakartaee.petclinic.oodm.dao.SpecialtyDao;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Specialty;
 import org.woehlke.jakartaee.petclinic.oodm.services.SpecialtyService;
@@ -14,12 +13,11 @@ import javax.ejb.PrePassivate;
 import javax.ejb.Stateless;
 import java.util.List;
 
+@Log4j2
 @Stateless
 public class SpecialtyServiceImpl implements SpecialtyService {
 
   private static final long serialVersionUID = 6145428275502469961L;
-
-  private static Logger log = LogManager.getLogger(SpecialtyServiceImpl.class.getName());
 
   @EJB
   private SpecialtyDao specialtyDao;

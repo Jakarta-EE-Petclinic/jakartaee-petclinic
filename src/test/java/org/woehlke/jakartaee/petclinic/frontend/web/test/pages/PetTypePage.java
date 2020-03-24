@@ -1,11 +1,9 @@
 package org.woehlke.jakartaee.petclinic.frontend.web.test.pages;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.page.Location;
 import org.junit.Assert;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.primefaces.extensions.arquillian.AbstractPrimePage;
@@ -19,10 +17,9 @@ import org.primefaces.extensions.arquillian.component.InputText;
  * Time: 18:56
  * To change this template use File | Settings | File Templates.
  */
+@Log4j2
 @Location("petType.jsf")
 public class PetTypePage extends AbstractPrimePage {
-
-  private static Logger log = LogManager.getLogger(PetTypePage.class.getName());
 
   @FindBy(id = "listEntityHeaderId")
   private WebElement listEntityHeaderId;

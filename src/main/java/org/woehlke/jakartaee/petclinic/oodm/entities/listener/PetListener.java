@@ -1,7 +1,6 @@
 package org.woehlke.jakartaee.petclinic.oodm.entities.listener;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.spi.StandardLevel;
 import org.woehlke.jakartaee.petclinic.oodm.entities.Pet;
 
@@ -10,11 +9,11 @@ import java.io.Serializable;
 
 import static org.woehlke.jakartaee.petclinic.oodm.entities.listener.ListenerLogger.logIt;
 
+
+@Log4j2
 public class PetListener implements Serializable {
 
   private static final long serialVersionUID = 2648243165481283491L;
-
-  private static Logger log = LogManager.getLogger(PetListener.class.getName());
 
   @PrePersist
   public void onPrePersist(Pet domainObject) {

@@ -1,7 +1,6 @@
 package org.woehlke.jakartaee.petclinic.oodm.services.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.woehlke.jakartaee.petclinic.oodm.dao.OwnerDao;
 import org.woehlke.jakartaee.petclinic.oodm.dao.PetDao;
 import org.woehlke.jakartaee.petclinic.oodm.dao.VisitDao;
@@ -21,12 +20,11 @@ import java.util.List;
 /**
  * Created by tw on 10.03.14.
  */
+@Log4j2
 @Stateless
 public class OwnerServiceImpl implements OwnerService {
 
   private static final long serialVersionUID = -553095693269912269L;
-
-  private static Logger log = LogManager.getLogger(OwnerServiceImpl.class.getName());
 
   @EJB
   private OwnerDao ownerDao;

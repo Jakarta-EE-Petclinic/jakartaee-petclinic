@@ -1,5 +1,6 @@
 package org.woehlke.jakartaee.petclinic.frontend.api.rest;
 
+import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.woehlke.jakartaee.petclinic.oodm.dao.VetDao;
@@ -22,13 +23,12 @@ import java.io.Serializable;
  * Time: 09:27
  * To change this template use File | Settings | File Templates.
  */
+@Log4j2
 @Stateless
 @Path("/vet")
 public class VetWebservice implements Serializable {
 
   private static final long serialVersionUID = 607664665910620584L;
-
-  private static Logger log = LogManager.getLogger(VetWebservice.class.getName());
 
   @EJB
   private VetDao vetDao;

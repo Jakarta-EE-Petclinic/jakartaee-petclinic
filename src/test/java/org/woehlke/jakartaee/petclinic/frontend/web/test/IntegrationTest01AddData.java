@@ -1,8 +1,7 @@
 package org.woehlke.jakartaee.petclinic.frontend.web.test;
 
+import lombok.extern.log4j.Log4j2;
 import net.jcip.annotations.NotThreadSafe;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -23,12 +22,11 @@ import java.io.File;
 import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig.PROTOCOL;
 import static org.woehlke.jakartaee.petclinic.frontend.web.test.common.ArquillianTestConfig.WAR_FILE;
 
+@Log4j2
 @RunWith(Arquillian.class)
 @RunAsClient
 @NotThreadSafe
 public class IntegrationTest01AddData extends AbstractPrimePageTest {
-
-  private static Logger log = LogManager.getLogger(IntegrationTest01AddData.class.getName());
 
   @Page
   private HelpPage helpPage;

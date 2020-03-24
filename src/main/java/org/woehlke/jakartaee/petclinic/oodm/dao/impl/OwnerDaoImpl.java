@@ -1,8 +1,7 @@
 package org.woehlke.jakartaee.petclinic.oodm.dao.impl;
 
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.woehlke.jakartaee.petclinic.oodm.dao.OwnerDao;
@@ -26,12 +25,9 @@ import java.util.UUID;
  * Time: 09:38
  * To change this template use File | Settings | File Templates.
  */
+@Log4j2
 @Stateless
 public class OwnerDaoImpl implements OwnerDao {
-
-  private static final long serialVersionUID = -2768460721378705615L;
-
-  private static Logger log = LogManager.getLogger(OwnerDaoImpl.class.getName());
 
   @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
   private EntityManager entityManager;

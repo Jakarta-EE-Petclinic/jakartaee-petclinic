@@ -1,7 +1,6 @@
 package org.woehlke.jakartaee.petclinic.oodm.dao.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.woehlke.jakartaee.petclinic.oodm.dao.VetDao;
@@ -25,12 +24,11 @@ import java.util.UUID;
  * Time: 08:30
  * To change this template use File | Settings | File Templates.
  */
+@Log4j2
 @Stateless
 public class VetDaoImpl implements VetDao {
 
   private static final long serialVersionUID = -1003870150408928198L;
-
-  private static Logger log = LogManager.getLogger(VetDaoImpl.class.getName());
 
   @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
   private EntityManager entityManager;
