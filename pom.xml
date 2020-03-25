@@ -2919,7 +2919,7 @@
 			</dependencies>
 			<build>
 				<finalName>${project.artifactId}</finalName>
-				<defaultGoal>clean dependency:tree dependency:resolve dependency:resolve-plugins install</defaultGoal>
+				<defaultGoal>clean install</defaultGoal>
 				<resources>
 					<resource>
 						<directory>src/main/resources</directory>
@@ -3260,7 +3260,7 @@
 		</profile>
 		<!-- openliberty-remote-test -->
 		<profile>
-			<id>wlp-test-remote</ijava
+			<id>wlp-test-remote</id>
 			<dependencyManagement>
 				<dependencies>
 
@@ -3788,9 +3788,14 @@
 			<build>
 				<finalName>${project.artifactId}</finalName>
 				<defaultGoal>clean install</defaultGoal>
-				<!--
-				<defaultGoal>clean install docker-compose:up docker-compose:down</defaultGoal>
-				-->
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources-wildfly</directory>
+					</resource>
+				</resources>
 				<pluginManagement>
 					<plugins>
 						<plugin>
@@ -4282,6 +4287,19 @@
 			</dependencies>
 			<build>
 				<finalName>${project.artifactId}</finalName>
+				<defaultGoal>clean install</defaultGoal>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources-liberty</directory>
+					</resource>
+				</resources>
+				<pluginManagement>
+					<plugins>
+					</plugins>
+				</pluginManagement>	
 				<plugins>
 					<plugin>
 						<groupId>com.dkanejs.maven.plugins</groupId>
@@ -4602,12 +4620,19 @@
 			<build>
 				<finalName>${project.artifactId}</finalName>
 				<defaultGoal>clean install</defaultGoal>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources-liberty</directory>
+					</resource>
+				</resources>
 				<pluginManagement>
 					<plugins>
-
 					</plugins>
 				</pluginManagement>
-			<plugins>
+				<plugins>
 				<plugin>
 					<groupId>com.dkanejs.maven.plugins</groupId>
 					<artifactId>docker-compose-maven-plugin</artifactId>
@@ -4769,6 +4794,14 @@
 			<build>
 				<finalName>${project.artifactId}</finalName>
 				<defaultGoal>clean install</defaultGoal>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources-liberty</directory>
+					</resource>
+				</resources>
 				<pluginManagement>
 					<plugins>
 						<plugin>
@@ -4893,6 +4926,15 @@
 			<dependencies></dependencies>
 			<build>
 				<finalName>${project.artifactId}</finalName>
+				<defaultGoal>clean install</defaultGoal>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources-liberty</directory>
+					</resource>
+				</resources>
 				<pluginManagement>
 					<plugins>
 
@@ -4940,9 +4982,17 @@
 			</dependencies>
 			<build>
 				<finalName>${project.artifactId}</finalName>
+				<defaultGoal>clean install</defaultGoal>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources-liberty</directory>
+					</resource>
+				</resources>
 				<pluginManagement>
 					<plugins>
-
 					</plugins>
 				</pluginManagement>
 				<plugins>
