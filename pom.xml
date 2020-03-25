@@ -1416,6 +1416,14 @@
 			<build>
 				<finalName>${project.artifactId}</finalName>
 				<defaultGoal>clean install docker-compose:up liberty:dev docker-compose:down</defaultGoal>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources-liberty</directory>
+					</resource>
+				</resources>
 				<pluginManagement>
 					<plugins>
 						<plugin>
@@ -1981,6 +1989,14 @@
 			<build>
 				<finalName>${project.artifactId}</finalName>
 				<defaultGoal>clean install docker-compose:up liberty:run docker-compose:down</defaultGoal>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources-liberty</directory>
+					</resource>
+				</resources>
 				<pluginManagement>
 					<plugins>
 						<!-- this profile -->
@@ -2904,6 +2920,14 @@
 			<build>
 				<finalName>${project.artifactId}</finalName>
 				<defaultGoal>clean dependency:tree dependency:resolve dependency:resolve-plugins install</defaultGoal>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources-liberty</directory>
+					</resource>
+				</resources>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -3148,8 +3172,26 @@
 		<!-- openliberty-remote-run -->
 		<profile>
 			<id>wlp-run-remote</id>
+			<dependencyManagement>
+				<dependencies></dependencies>
+			</dependencyManagement>
+			<dependencies></dependencies>
 			<build>
 				<finalName>${project.artifactId}</finalName>
+				<defaultGoal>clean install</defaultGoal>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources-liberty</directory>
+					</resource>
+				</resources>
+				<pluginManagement>
+					<plugins>
+
+					</plugins>
+				</pluginManagement>
 				<plugins>
 					<plugin>
 						<groupId>com.dkanejs.maven.plugins</groupId>
@@ -3218,7 +3260,7 @@
 		</profile>
 		<!-- openliberty-remote-test -->
 		<profile>
-			<id>wlp-test-remote</id>
+			<id>wlp-test-remote</ijava
 			<dependencyManagement>
 				<dependencies>
 
@@ -3250,6 +3292,18 @@
 			</dependencies>
 			<build>
 				<finalName>${project.artifactId}</finalName>
+				<defaultGoal>clean install</defaultGoal>
+				<resources>
+				<resource>
+					<directory>src/main/resources</directory>
+				</resource>
+				<resource>
+					<directory>src/main/resources-liberty</directory>
+				</resource>
+				</resources>
+				<pluginManagement>
+
+				</pluginManagement>
 				<plugins>
 					<plugin>
 						<groupId>com.dkanejs.maven.plugins</groupId>
