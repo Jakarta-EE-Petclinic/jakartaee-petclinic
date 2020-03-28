@@ -2011,6 +2011,16 @@
 							</systemPropertyVariables>
 						</configuration>
 					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-invoker-plugin</artifactId>
+						<configuration>
+							<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+							<settingsFile>src/it/settings.xml</settingsFile>
+							<localRepositoryPath>${project.build.directory}/it-repo</localRepositoryPath>
+							<postBuildHookScript>verify</postBuildHookScript> <!-- no extension required -->
+						</configuration>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
@@ -2571,6 +2581,16 @@
 							</systemPropertyVariables>
 						</configuration>
 					</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-invoker-plugin</artifactId>
+					<configuration>
+						<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+						<settingsFile>src/it/settings.xml</settingsFile>
+						<localRepositoryPath>${project.build.directory}/it-repo</localRepositoryPath>
+						<postBuildHookScript>verify</postBuildHookScript> <!-- no extension required -->
+					</configuration>
+				</plugin>
 				</plugins>
 				<!--
 				<plugins>
@@ -4287,6 +4307,16 @@
 							</systemPropertyVariables>
 						</configuration>
 					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-invoker-plugin</artifactId>
+						<configuration>
+							<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+							<settingsFile>src/it/settings.xml</settingsFile>
+							<localRepositoryPath>${project.build.directory}/it-repo</localRepositoryPath>
+							<postBuildHookScript>verify</postBuildHookScript> <!-- no extension required -->
+						</configuration>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
@@ -5212,6 +5242,16 @@
 							</schemaSourceExcludeFilters>
 						</configuration>
 					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-invoker-plugin</artifactId>
+						<configuration>
+							<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+							<settingsFile>src/it/settings.xml</settingsFile>
+							<localRepositoryPath>${project.build.directory}/it-repo</localRepositoryPath>
+							<postBuildHookScript>verify</postBuildHookScript> <!-- no extension required -->
+						</configuration>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
@@ -5334,6 +5374,16 @@
 								</configuration>
 							</execution>
 						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-invoker-plugin</artifactId>
+						<configuration>
+							<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+							<settingsFile>src/it/settings.xml</settingsFile>
+							<localRepositoryPath>${project.build.directory}/it-repo</localRepositoryPath>
+							<postBuildHookScript>verify</postBuildHookScript> <!-- no extension required -->
+						</configuration>
 					</plugin>
 				</plugins>
 			</build>
@@ -5865,6 +5915,16 @@
 							</dependency>
 						</dependencies>
 					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-invoker-plugin</artifactId>
+						<configuration>
+							<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+							<settingsFile>src/it/settings.xml</settingsFile>
+							<localRepositoryPath>${project.build.directory}/it-repo</localRepositoryPath>
+							<postBuildHookScript>verify</postBuildHookScript> <!-- no extension required -->
+						</configuration>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
@@ -6287,9 +6347,19 @@
 						<artifactId>maven-site-plugin</artifactId>
 						<inherited>true</inherited>
 						<configuration>
-							<locales>en,de</locales>
+							<locales>en</locales>
 							<outputDirectory>target/site</outputDirectory>
 							<generateReports>true</generateReports>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-invoker-plugin</artifactId>
+						<configuration>
+							<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+							<settingsFile>src/it/settings.xml</settingsFile>
+							<localRepositoryPath>${project.build.directory}/it-repo</localRepositoryPath>
+							<postBuildHookScript>verify</postBuildHookScript> <!-- no extension required -->
 						</configuration>
 					</plugin>
 				</plugins>
@@ -6365,6 +6435,12 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-invoker-plugin</artifactId>
+				<configuration>
+					<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+					<settingsFile>src/it/settings.xml</settingsFile>
+					<localRepositoryPath>${project.build.directory}/it-repo</localRepositoryPath>
+					<postBuildHookScript>verify</postBuildHookScript> <!-- no extension required -->
+				</configuration>
 			</plugin>
 		</plugins>
 	</reporting>
