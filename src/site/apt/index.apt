@@ -1,0 +1,84 @@
+JEE6 Petclinic
+
+    JSF with Java EE 6 Version of Spring Petclinic.
+
+    Github: {{{https://github.com/phasenraum2010/jee6-petclinic}https://github.com/phasenraum2010/jee6-petclinic}}
+
+* Motivation
+
+    Some experimental Work with JSF and Java EE 6. Comparison between JEE6 and Spring Frameworks.
+
+* Spring Petclinic
+
+    Github: {{{https://github.com/spring-projects/spring-petclinic}https://github.com/spring-projects/spring-petclinic}}
+
+* Runtime
+
+    Runs on JBoss AS 7
+
+* Runtime Dependencies
+
+    JBoss AS 7 - Java EE 6 Certified.
+
+* Domain Class Modell
+
+[images/DomainClassModell.jpg] Figure Domain Class Modell
+
+* Use Cases
+
+[images/UseCases.jpg] Figure Uses Cases Vet
+
+[images/UseCasesOwner.jpg] Figure Uses Cases Owner
+
+* Pageflow
+
+[images/Pageflow.jpg] Figure Pageflow
+
+* Screens
+
+** Add Vet with ManyToMany Relation to Specialty
+
+[images/screenAddVet.png] Figure Add Vet with ManyToMany Relation to Specialty
+
+** New Visit
+
+[images/screenNewVisit.png] Figure New Visit
+
+** Owner
+
+[images/screenOwner.png] Figure Owner
+
+* Setup
+
+** install JBoss
+
+    install JBoss 7.1.1.Final from {{{http://www.jboss.org/jbossas/downloads/}http://www.jboss.org/jbossas/downloads/}} to e.g. /Users/tw/srv/jboss-as-7.1.1.Final/
+
+    start JBoss by:
+
+    cd /Users/tw/srv/jboss-as-7.1.1.Final/bin
+
+    ./standalone.sh
+
+** build and run
+
+    build project with: mvn clean install
+
+    copy war to deployment directory of jboss: cp -f target/jee6-petclinic-1.0-SNAPSHOT.war /Users/tw/srv/jboss-as-7.1.1.Final/standalone/deployments/
+
+    open url in browser: {{http://localhost:8080/jee6-petclinic-1.0-SNAPSHOT/}}
+
+* First Steps
+
+    add some PetTypes like dog,cat,mouse,...
+
+    add some Specialties for Vetinarians like dentist, anesthetist, radiology,...
+
+    add a Vetinarian
+
+    add an Owner, add him am a Pet and his Pet a visit.
+
+
+
+
+
