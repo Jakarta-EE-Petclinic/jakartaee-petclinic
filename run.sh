@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-./mvnw
+./mvnw -Pglassfish-run clean install site
