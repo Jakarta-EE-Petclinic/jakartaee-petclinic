@@ -19,7 +19,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="petclinic" options="-Xlint:all" />
+      <module name="petclinic" options="-Xlint:all -Xlint:serial" />
     </option>
   </component>
 </project>

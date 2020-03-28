@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.apache.cxf:cxf-rt-rs-client:${version.}">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/cxf/cxf-rt-rs-client/${version.}/cxf-rt-rs-client-${version.}.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/cxf/cxf-rt-rs-client/${version.}/cxf-rt-rs-client-${version.}-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/cxf/cxf-rt-rs-client/${version.}/cxf-rt-rs-client-${version.}-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

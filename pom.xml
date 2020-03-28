@@ -71,8 +71,7 @@
 		<!-- Testing -->
 		<version.junit>4.12</version.junit>
 		<version.dbunit>2.5.3</version.dbunit>
-		<!-- version.selenium>3.7.1</version.selenium -->
-		<version.selenium>3.141.59</version.selenium>
+		<version.selenium>3.7.1</version.selenium>
 		<version.arquillian_core>1.4.1.Final</version.arquillian_core>
 		<version.arquillian_drone>2.5.1</version.arquillian_drone>
 		<version.arquillian_universe>1.2.0.2</version.arquillian_universe>
