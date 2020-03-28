@@ -6218,11 +6218,6 @@
 							<version>${version.maven-pmd-plugin}</version>
 						</plugin>
 						<plugin>
-							<groupId>com.github.spotbugs</groupId>
-							<artifactId>spotbugs-maven-plugin</artifactId>
-							<version>${version.spotbugs-maven-plugin}</version>
-						</plugin>
-						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-surefire-report-plugin</artifactId>
 							<version>${version.maven-surefire-report-plugin}</version>
@@ -6346,6 +6341,7 @@
 								</goals>
 								<configuration>
 									<linkJavadoc>true</linkJavadoc>
+									<javadocDir>${project.build.directory}/site/apidocs</javadocDir>
 								</configuration>
 							</execution>
 						</executions>
