@@ -126,7 +126,6 @@
 		<version.maven-checkstyle-plugin>3.1.1</version.maven-checkstyle-plugin>
 		<version.lombok-maven-plugin>1.18.12.0</version.lombok-maven-plugin>
 		<version.org.projectlombok.lombok>1.18.12</version.org.projectlombok.lombok>
-		<version.jaxb2-maven-plugin>2.5.0</version.jaxb2-maven-plugin>
 		<version.docker-compose-maven-plugin>3.0.0</version.docker-compose-maven-plugin>
 		<version.maven-release-plugin>3.0.0-M1</version.maven-release-plugin>
 		<version.maven-site-plugin>3.9.0</version.maven-site-plugin>
@@ -703,48 +702,48 @@
 				<artifactId>h2</artifactId>
 				<version>${version.h2.database}</version>
 			</dependency>
-		<!--- added on 18.03.2020 by tw -->
-		<dependency>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-scm-plugin</artifactId>
-			<version>${version.org.apache.maven.scm}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.scm</groupId>
-			<artifactId>maven-scm-provider-svnexe</artifactId>
-			<version>${version.org.apache.maven.scm}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.scm</groupId>
-			<artifactId>maven-scm-provider-svn-commons</artifactId>
-			<version>${version.org.apache.maven.scm}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.scm</groupId>
-			<artifactId>maven-scm-provider-gitexe</artifactId>
-			<version>${version.org.apache.maven.scm}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.scm</groupId>
-			<artifactId>maven-scm-provider-git-commons</artifactId>
-			<version>${version.org.apache.maven.scm}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.scm</groupId>
-			<artifactId>maven-scm-manager-plexus</artifactId>
-			<version>${version.org.apache.maven.scm}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.scm</groupId>
-			<artifactId>maven-scm-client</artifactId>
-			<version>${version.org.apache.maven.scm}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.scm</groupId>
-			<artifactId>maven-scm-providers-standard</artifactId>
-			<version>${version.org.apache.maven.scm}</version>
-			<type>pom</type>
-		</dependency>
+			<!--- added on 18.03.2020 by tw -->
+			<dependency>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-plugin</artifactId>
+				<version>${version.org.apache.maven.scm}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.scm</groupId>
+				<artifactId>maven-scm-provider-svnexe</artifactId>
+				<version>${version.org.apache.maven.scm}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.scm</groupId>
+				<artifactId>maven-scm-provider-svn-commons</artifactId>
+				<version>${version.org.apache.maven.scm}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.scm</groupId>
+				<artifactId>maven-scm-provider-gitexe</artifactId>
+				<version>${version.org.apache.maven.scm}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.scm</groupId>
+				<artifactId>maven-scm-provider-git-commons</artifactId>
+				<version>${version.org.apache.maven.scm}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.scm</groupId>
+				<artifactId>maven-scm-manager-plexus</artifactId>
+				<version>${version.org.apache.maven.scm}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.scm</groupId>
+				<artifactId>maven-scm-client</artifactId>
+				<version>${version.org.apache.maven.scm}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.scm</groupId>
+				<artifactId>maven-scm-providers-standard</artifactId>
+				<version>${version.org.apache.maven.scm}</version>
+				<type>pom</type>
+			</dependency>
 			<!-- JSF and PrimeFaces Arquillian Tests -->
 			<dependency>
 				<groupId>net.jcip</groupId>
@@ -1197,11 +1196,6 @@
 					<artifactId>maven-invoker-plugin</artifactId>
 					<version>${version.maven-invoker-plugin}</version>
 				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>jaxb2-maven-plugin</artifactId>
-					<version>${version.jaxb2-maven-plugin}</version>
-				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
@@ -1217,7 +1211,7 @@
 						<configuration>
 							<rules>
 								<bannedPlugins>
-									<level>ERROR</level>
+									<level>WARN</level>
 									<excludes>
 										<exclude>org.apache.maven.plugins:maven-verifier-plugin</exclude>
 									</excludes>
@@ -1237,6 +1231,12 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-invoker-plugin</artifactId>
+				<configuration>
+					<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+					<settingsFile>src/it/settings.xml</settingsFile>
+					<localRepositoryPath>${project.build.directory}/it-repo</localRepositoryPath>
+					<postBuildHookScript>verify</postBuildHookScript> <!-- no extension required -->
+				</configuration>
 				<executions>
 					<execution>
 						<id>integration-test</id>
@@ -1244,12 +1244,6 @@
 							<goal>install</goal>
 							<goal>run</goal>
 						</goals>
-						<configuration>
-							<settingsFile>src/it/settings.xml</settingsFile>
-							<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
-							<localRepositoryPath>${project.build.directory}/it-repo</localRepositoryPath>
-							<postBuildHookScript>verify</postBuildHookScript> <!-- no extension required -->
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -1754,9 +1748,9 @@
 							<version>${version.maven-release-plugin}</version>
 						</plugin>
 						<plugin>
-								<groupId>com.dkanejs.maven.plugins</groupId>
-								<artifactId>docker-compose-maven-plugin</artifactId>
-								<version>${version.docker-compose-maven-plugin}</version>
+							<groupId>com.dkanejs.maven.plugins</groupId>
+							<artifactId>docker-compose-maven-plugin</artifactId>
+							<version>${version.docker-compose-maven-plugin}</version>
 						</plugin>
 					</plugins>
 				</pluginManagement>
@@ -2596,16 +2590,16 @@
 							</systemPropertyVariables>
 						</configuration>
 					</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-invoker-plugin</artifactId>
-					<configuration>
-						<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
-						<settingsFile>src/it/settings.xml</settingsFile>
-						<localRepositoryPath>${project.build.directory}/it-repo</localRepositoryPath>
-						<postBuildHookScript>verify</postBuildHookScript> <!-- no extension required -->
-					</configuration>
-				</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-invoker-plugin</artifactId>
+						<configuration>
+							<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+							<settingsFile>src/it/settings.xml</settingsFile>
+							<localRepositoryPath>${project.build.directory}/it-repo</localRepositoryPath>
+							<postBuildHookScript>verify</postBuildHookScript> <!-- no extension required -->
+						</configuration>
+					</plugin>
 				</plugins>
 				<!--
 				<plugins>
@@ -2765,152 +2759,152 @@
 			</properties>
 			<dependencyManagement>
 				<dependencies>
-				<!-- Jakarta EE Runtime: OpenLiberty -->
-				<dependency>
-					<groupId>io.openliberty</groupId>
-					<artifactId>openliberty-javaee8</artifactId>
-					<version>${version.jakartaee8.server.openliberty}</version>
-					<type>zip</type>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>io.openliberty.features</groupId>
-					<artifactId>features-bom</artifactId>
-					<version>${version.jakartaee8.server.openliberty}</version>
-					<type>pom</type>
-					<scope>import</scope>
-				</dependency>
-				<dependency>
-					<groupId>io.openliberty.arquillian</groupId>
-					<artifactId>arquillian-liberty-managed</artifactId>
-					<version>${version.jakartaee8.server.openliberty.arquillian}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>io.openliberty.arquillian</groupId>
-					<artifactId>arquillian-liberty-remote</artifactId>
-					<version>${version.jakartaee8.server.openliberty.arquillian}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>io.openliberty.arquillian</groupId>
-					<artifactId>liberty-support-feature</artifactId>
-					<version>${version.jakartaee8.server.openliberty.arquillian}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>io.openliberty.features</groupId>
-					<artifactId>javaee-8.0</artifactId>
-					<version>${version.}</version>
-					<type>esa</type>
-					<scope>provided</scope>
-				</dependency>
-				<dependency>
-					<groupId>io.openliberty.features</groupId>
-					<artifactId>sessionDatabase-1.0</artifactId>
-					<version>${version.}</version>
-					<type>esa</type>
-					<scope>provided</scope>
-				</dependency>
-				<dependency>
-					<groupId>io.openliberty.features</groupId>
-					<artifactId>json-1.0</artifactId>
-					<version>${version.}</version>
-					<type>esa</type>
-					<scope>provided</scope>
-				</dependency>
-				<dependency>
-					<groupId>io.openliberty.features</groupId>
-					<artifactId>springBoot-2.0</artifactId>
-					<version>${version.}</version>
-					<type>esa</type>
-					<scope>provided</scope>
-				</dependency>
-				<!-- shrinkwrap -->
-				<dependency>
-					<groupId>org.jboss.shrinkwrap.resolver</groupId>
-					<artifactId>shrinkwrap-resolver-depchain</artifactId>
-					<version>${version.}</version>
-					<type>pom</type>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.shrinkwrap.resolver</groupId>
-					<artifactId>shrinkwrap-resolver-api-maven-embedded</artifactId>
-					<version>${version.}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.cxf</groupId>
-					<artifactId>cxf-rt-rs-client</artifactId>
-					<version>${version.}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.cxf</groupId>
-					<artifactId>cxf-rt-rs-extension-providers</artifactId>
-					<version>${version.}</version>
-					<scope>test</scope>
-				</dependency>
-				<!-- -->
-				<dependency>
-					<groupId>org.jboss.arquillian.extension</groupId>
-					<artifactId>arquillian-drone-impl</artifactId>
-					<version>${version.arquillian_drone}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>junit</groupId>
-					<artifactId>junit</artifactId>
-					<version>${version.}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.arquillian.junit</groupId>
-					<artifactId>arquillian-junit-container</artifactId>
-					<version>${version.arquillian_core}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.arquillian.core</groupId>
-					<artifactId>arquillian-core-impl-base</artifactId>
-					<version>${version.}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.arquillian.config</groupId>
-					<artifactId>arquillian-config-impl-base</artifactId>
-					<version>${version.}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>xml-apis</groupId>
-					<artifactId>xml-apis</artifactId>
-					<version>${version.xml-apis}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.arquillian.protocol</groupId>
-					<artifactId>arquillian-protocol-servlet</artifactId>
-					<version>${version.arquillian_core}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.arquillian.testenricher</groupId>
-					<artifactId>arquillian-testenricher-resource</artifactId>
-					<!--
-					<version>${version.}</version>
-					-->
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.arquillian.testenricher</groupId>
-					<artifactId>arquillian-testenricher-initialcontext</artifactId>
-					<!--
-					<version>${version.}</version>
-					-->
-					<scope>test</scope>
-				</dependency>
+					<!-- Jakarta EE Runtime: OpenLiberty -->
+					<dependency>
+						<groupId>io.openliberty</groupId>
+						<artifactId>openliberty-javaee8</artifactId>
+						<version>${version.jakartaee8.server.openliberty}</version>
+						<type>zip</type>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.features</groupId>
+						<artifactId>features-bom</artifactId>
+						<version>${version.jakartaee8.server.openliberty}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.arquillian</groupId>
+						<artifactId>arquillian-liberty-managed</artifactId>
+						<version>${version.jakartaee8.server.openliberty.arquillian}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.arquillian</groupId>
+						<artifactId>arquillian-liberty-remote</artifactId>
+						<version>${version.jakartaee8.server.openliberty.arquillian}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.arquillian</groupId>
+						<artifactId>liberty-support-feature</artifactId>
+						<version>${version.jakartaee8.server.openliberty.arquillian}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.features</groupId>
+						<artifactId>javaee-8.0</artifactId>
+						<version>${version.}</version>
+						<type>esa</type>
+						<scope>provided</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.features</groupId>
+						<artifactId>sessionDatabase-1.0</artifactId>
+						<version>${version.}</version>
+						<type>esa</type>
+						<scope>provided</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.features</groupId>
+						<artifactId>json-1.0</artifactId>
+						<version>${version.}</version>
+						<type>esa</type>
+						<scope>provided</scope>
+					</dependency>
+					<dependency>
+						<groupId>io.openliberty.features</groupId>
+						<artifactId>springBoot-2.0</artifactId>
+						<version>${version.}</version>
+						<type>esa</type>
+						<scope>provided</scope>
+					</dependency>
+					<!-- shrinkwrap -->
+					<dependency>
+						<groupId>org.jboss.shrinkwrap.resolver</groupId>
+						<artifactId>shrinkwrap-resolver-depchain</artifactId>
+						<version>${version.}</version>
+						<type>pom</type>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.shrinkwrap.resolver</groupId>
+						<artifactId>shrinkwrap-resolver-api-maven-embedded</artifactId>
+						<version>${version.}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.cxf</groupId>
+						<artifactId>cxf-rt-rs-client</artifactId>
+						<version>${version.}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.cxf</groupId>
+						<artifactId>cxf-rt-rs-extension-providers</artifactId>
+						<version>${version.}</version>
+						<scope>test</scope>
+					</dependency>
+					<!-- -->
+					<dependency>
+						<groupId>org.jboss.arquillian.extension</groupId>
+						<artifactId>arquillian-drone-impl</artifactId>
+						<version>${version.arquillian_drone}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>junit</groupId>
+						<artifactId>junit</artifactId>
+						<version>${version.}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.arquillian.junit</groupId>
+						<artifactId>arquillian-junit-container</artifactId>
+						<version>${version.arquillian_core}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.arquillian.core</groupId>
+						<artifactId>arquillian-core-impl-base</artifactId>
+						<version>${version.}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.arquillian.config</groupId>
+						<artifactId>arquillian-config-impl-base</artifactId>
+						<version>${version.}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>xml-apis</groupId>
+						<artifactId>xml-apis</artifactId>
+						<version>${version.xml-apis}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.arquillian.protocol</groupId>
+						<artifactId>arquillian-protocol-servlet</artifactId>
+						<version>${version.arquillian_core}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.arquillian.testenricher</groupId>
+						<artifactId>arquillian-testenricher-resource</artifactId>
+						<!--
+						<version>${version.}</version>
+						-->
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.arquillian.testenricher</groupId>
+						<artifactId>arquillian-testenricher-initialcontext</artifactId>
+						<!--
+						<version>${version.}</version>
+						-->
+						<scope>test</scope>
+					</dependency>
 					<dependency>
 						<groupId>org.apache.httpcomponents</groupId>
 						<artifactId>httpcore</artifactId>
@@ -2923,17 +2917,17 @@
 						<version>${version.org.apache.httpcomponents.httpclient}</version>
 						<scope>test</scope>
 					</dependency>
-				<dependency>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-					<version>${version.commons-logging}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.logging.log4j</groupId>
-					<artifactId>log4j-core</artifactId>
-					<version>${version.log4j}</version>
-				</dependency>
+					<dependency>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+						<version>${version.commons-logging}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-core</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
 					<dependency>
 						<groupId>org.apache.logging.log4j</groupId>
 						<artifactId>log4j-api</artifactId>
@@ -2959,41 +2953,41 @@
 						<artifactId>log4j-appserver</artifactId>
 						<version>${version.log4j}</version>
 					</dependency>
-				<dependency>
-					<groupId>org.reflections</groupId>
-					<artifactId>reflections</artifactId>
-					<version>${version.}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.pcollections</groupId>
-					<artifactId>pcollections</artifactId>
-					<version>${version.}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>com.google.guava</groupId>
-					<artifactId>guava</artifactId>
-					<version>${version.com.google.guava.guava}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>com.google.auto</groupId>
-					<artifactId>auto-common</artifactId>
-					<version>${version.}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>com.google.code.findbugs</groupId>
-					<artifactId>jFormatString</artifactId>
-					<version>${version.com.google.code.findbugs.jFormatString}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>com.google.code.gson</groupId>
-					<artifactId>gson</artifactId>
-					<version>${version.com.google.code.gson.gson}</version>
-					<scope>test</scope>
-				</dependency>
+					<dependency>
+						<groupId>org.reflections</groupId>
+						<artifactId>reflections</artifactId>
+						<version>${version.}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.pcollections</groupId>
+						<artifactId>pcollections</artifactId>
+						<version>${version.}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>com.google.guava</groupId>
+						<artifactId>guava</artifactId>
+						<version>${version.com.google.guava.guava}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>com.google.auto</groupId>
+						<artifactId>auto-common</artifactId>
+						<version>${version.}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>com.google.code.findbugs</groupId>
+						<artifactId>jFormatString</artifactId>
+						<version>${version.com.google.code.findbugs.jFormatString}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>com.google.code.gson</groupId>
+						<artifactId>gson</artifactId>
+						<version>${version.com.google.code.gson.gson}</version>
+						<scope>test</scope>
+					</dependency>
 					<dependency>
 						<groupId>org.seleniumhq.selenium</groupId>
 						<artifactId>selenium-chrome-driver</artifactId>
@@ -3010,16 +3004,16 @@
 						<artifactId>hibernate-search-orm</artifactId>
 						<version>${version.hibernate-search}</version>
 					</dependency>
-				<dependency>
-					<groupId>org.primefaces.extensions</groupId>
-					<artifactId>primefaces-arquillian</artifactId>
-					<version>${version.org.primefaces.extensions.primefaces-arquillian}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.omnifaces</groupId>
-					<artifactId>arquillian-primefaces</artifactId>
-					<version>${version.org.omnifaces.arquillian-primefaces}</version>
-				</dependency>
+					<dependency>
+						<groupId>org.primefaces.extensions</groupId>
+						<artifactId>primefaces-arquillian</artifactId>
+						<version>${version.org.primefaces.extensions.primefaces-arquillian}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.omnifaces</groupId>
+						<artifactId>arquillian-primefaces</artifactId>
+						<version>${version.org.omnifaces.arquillian-primefaces}</version>
+					</dependency>
 				</dependencies>
 			</dependencyManagement>
 			<dependencies>
@@ -3253,7 +3247,7 @@
 								<goals>
 									<goal>copy</goal>
 								</goals>
-									<configuration>
+								<configuration>
 									<artifactItems>
 										<artifactItem>
 											<groupId>org.postgresql</groupId>
@@ -3264,7 +3258,7 @@
 											<outputDirectory>${project.build.directory}/openliberty-${version.jakartaee8.server.openliberty}/wlp/usr/servers/${runtime.jakartaee8.server.openliberty.ServerName}/lib</outputDirectory>
 											<destFileName>postgresql.jar</destFileName>
 										</artifactItem>
-								</artifactItems>
+									</artifactItems>
 								</configuration>
 							</execution>
 
@@ -3571,12 +3565,12 @@
 				<finalName>${project.artifactId}</finalName>
 				<defaultGoal>clean install</defaultGoal>
 				<resources>
-				<resource>
-					<directory>src/main/resources</directory>
-				</resource>
-				<resource>
-					<directory>src/main/resources-liberty</directory>
-				</resource>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources-liberty</directory>
+					</resource>
 				</resources>
 				<pluginManagement>
 
@@ -3740,66 +3734,66 @@
 							</exclusion>
 						</exclusions>
 					</dependency>
-				<dependency>
-					<groupId>org.jboss.arquillian.graphene</groupId>
-					<artifactId>graphene-webdriver-impl</artifactId>
-					<version>${version.org.jboss.arquillian.graphene.graphene-webdriver-imple}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.arquillian.extension</groupId>
-					<artifactId>arquillian-drone-impl</artifactId>
-					<version>${version.arquillian_drone}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>junit</groupId>
-					<artifactId>junit</artifactId>
-					<version>${version.maven-surefire-plugin.junit4}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.arquillian.junit</groupId>
-					<artifactId>arquillian-junit-container</artifactId>
-					<version>${version.arquillian_core}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.arquillian.core</groupId>
-					<artifactId>arquillian-core-impl-base</artifactId>
-					<version>${version.arquillian_core}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.arquillian.config</groupId>
-					<artifactId>arquillian-core-impl-base</artifactId>
-					<version>${version.arquillian_core}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>xml-apis</groupId>
-					<artifactId>xml-apis</artifactId>
-					<version>${version.xml-apis}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.arquillian.protocol</groupId>
-					<artifactId>arquillian-protocol-servlet</artifactId>
-					<version>${version.arquillian_core}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.arquillian.testenricher</groupId>
-					<artifactId>arquillian-testenricher-resource</artifactId>
-					<version>${version.arquillian_core}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.arquillian.testenricher</groupId>
-					<artifactId>arquillian-testenricher-initialcontext</artifactId>
-					<version>${version.arquillian_core}</version>
-					<scope>test</scope>
-				</dependency>
+					<dependency>
+						<groupId>org.jboss.arquillian.graphene</groupId>
+						<artifactId>graphene-webdriver-impl</artifactId>
+						<version>${version.org.jboss.arquillian.graphene.graphene-webdriver-imple}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.arquillian.extension</groupId>
+						<artifactId>arquillian-drone-impl</artifactId>
+						<version>${version.arquillian_drone}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>junit</groupId>
+						<artifactId>junit</artifactId>
+						<version>${version.maven-surefire-plugin.junit4}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.arquillian.junit</groupId>
+						<artifactId>arquillian-junit-container</artifactId>
+						<version>${version.arquillian_core}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.arquillian.core</groupId>
+						<artifactId>arquillian-core-impl-base</artifactId>
+						<version>${version.arquillian_core}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.arquillian.config</groupId>
+						<artifactId>arquillian-core-impl-base</artifactId>
+						<version>${version.arquillian_core}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>xml-apis</groupId>
+						<artifactId>xml-apis</artifactId>
+						<version>${version.xml-apis}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.arquillian.protocol</groupId>
+						<artifactId>arquillian-protocol-servlet</artifactId>
+						<version>${version.arquillian_core}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.arquillian.testenricher</groupId>
+						<artifactId>arquillian-testenricher-resource</artifactId>
+						<version>${version.arquillian_core}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.arquillian.testenricher</groupId>
+						<artifactId>arquillian-testenricher-initialcontext</artifactId>
+						<version>${version.arquillian_core}</version>
+						<scope>test</scope>
+					</dependency>
 
 					<dependency>
 						<groupId>org.apache.httpcomponents</groupId>
@@ -3861,52 +3855,52 @@
 						<version>${version.org.pcollections.pcollections}</version>
 						<scope>test</scope>
 					</dependency>
-				<dependency>
-					<groupId>com.google.guava</groupId>
-					<artifactId>guava</artifactId>
-					<version>${version.com.google.guava.guava}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>com.google.auto</groupId>
-					<artifactId>auto-common</artifactId>
-					<version>${version.com.google.auto.auto-common}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>com.google.code.findbugs</groupId>
-					<artifactId>jFormatString</artifactId>
-					<version>${version.com.google.code.findbugs.jFormatString}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>com.google.code.gson</groupId>
-					<artifactId>gson</artifactId>
-					<version>${version.com.google.code.gson.gson}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.hibernate</groupId>
-					<artifactId>hibernate-search-engine</artifactId>
-					<version>${version.hibernate-search}</version>
-					<scope>provided</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.hibernate</groupId>
-					<artifactId>hibernate-search-orm</artifactId>
-					<version>${version.hibernate-search}</version>
-					<scope>provided</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.primefaces.extensions</groupId>
-					<artifactId>primefaces-arquillian</artifactId>
-					<version>${version.org.primefaces.extensions.primefaces-arquillian}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.omnifaces</groupId>
-					<artifactId>arquillian-primefaces</artifactId>
-					<version>${version.org.omnifaces.arquillian-primefaces}</version>
-				</dependency>
+					<dependency>
+						<groupId>com.google.guava</groupId>
+						<artifactId>guava</artifactId>
+						<version>${version.com.google.guava.guava}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>com.google.auto</groupId>
+						<artifactId>auto-common</artifactId>
+						<version>${version.com.google.auto.auto-common}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>com.google.code.findbugs</groupId>
+						<artifactId>jFormatString</artifactId>
+						<version>${version.com.google.code.findbugs.jFormatString}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>com.google.code.gson</groupId>
+						<artifactId>gson</artifactId>
+						<version>${version.com.google.code.gson.gson}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.hibernate</groupId>
+						<artifactId>hibernate-search-engine</artifactId>
+						<version>${version.hibernate-search}</version>
+						<scope>provided</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.hibernate</groupId>
+						<artifactId>hibernate-search-orm</artifactId>
+						<version>${version.hibernate-search}</version>
+						<scope>provided</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.primefaces.extensions</groupId>
+						<artifactId>primefaces-arquillian</artifactId>
+						<version>${version.org.primefaces.extensions.primefaces-arquillian}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.omnifaces</groupId>
+						<artifactId>arquillian-primefaces</artifactId>
+						<version>${version.org.omnifaces.arquillian-primefaces}</version>
+					</dependency>
 				</dependencies>
 			</dependencyManagement>
 			<dependencies>
@@ -4228,42 +4222,42 @@
 									</artifactItems>
 								</configuration>
 							</execution>
-						<execution>
-							<id>check-dependencies</id>
-							<phase>verify</phase>
-							<goals>
-								<goal>analyze</goal>
-								<goal>analyze-dep-mgt</goal>
-								<goal>analyze-duplicate</goal>
-								<goal>analyze-report</goal>
-								<goal>list</goal>
-								<goal>list-repositories</goal>
-								<goal>properties</goal>
-								<goal>tree</goal>
-							</goals>
-							<configuration>
-								<outputDirectory>${project.build.directory}/dependencies</outputDirectory>
-							</configuration>
-						</execution>
-						<execution>
-							<id>get-dependency-sources</id>
-							<phase>prepare-package</phase>
-							<goals>
-								<goal>sources</goal>
-								<goal>resolve</goal>
-								<goal>resolve-plugins</goal>
-								<goal>collect</goal>
-								<goal>copy-dependencies</goal>
-								<goal>unpack-dependencies</goal>
-							</goals>
-							<configuration>
-								<excludeGroupIds>org.webjars</excludeGroupIds>
-								<excludeArtifactIds>weld-probe-core</excludeArtifactIds>
-								<classifier>sources</classifier>
-								<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
-								<outputDirectory>${project.build.directory}/dependencies/</outputDirectory>
-							</configuration>
-						</execution>
+							<execution>
+								<id>check-dependencies</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>analyze</goal>
+									<goal>analyze-dep-mgt</goal>
+									<goal>analyze-duplicate</goal>
+									<goal>analyze-report</goal>
+									<goal>list</goal>
+									<goal>list-repositories</goal>
+									<goal>properties</goal>
+									<goal>tree</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>get-dependency-sources</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>sources</goal>
+									<goal>resolve</goal>
+									<goal>resolve-plugins</goal>
+									<goal>collect</goal>
+									<goal>copy-dependencies</goal>
+									<goal>unpack-dependencies</goal>
+								</goals>
+								<configuration>
+									<excludeGroupIds>org.webjars</excludeGroupIds>
+									<excludeArtifactIds>weld-probe-core</excludeArtifactIds>
+									<classifier>sources</classifier>
+									<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+									<outputDirectory>${project.build.directory}/dependencies/</outputDirectory>
+								</configuration>
+							</execution>
 						</executions>
 					</plugin>
 					<plugin>
@@ -4364,56 +4358,56 @@
 						<type>pom</type>
 						<scope>import</scope>
 					</dependency>
-				<!--
-					TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28
-				-->
-				<!--
-				<dependency>
-					<groupId>org.jboss.arquillian.selenium</groupId>
-					<artifactId>selenium-bom</artifactId>
-					<version>${version.selenium}</version>
-					<type>pom</type>
-					<scope>import</scope>
-				</dependency>
-				-->
-				<!--
-				Selenium Server TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28
-				-->
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-server</artifactId>
-					<version>${version.selenium}</version>
-				</dependency>
+					<!--
+						TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28
+					-->
+					<!--
+					<dependency>
+						<groupId>org.jboss.arquillian.selenium</groupId>
+						<artifactId>selenium-bom</artifactId>
+						<version>${version.selenium}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					-->
+					<!--
+					Selenium Server TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28
+					-->
+					<dependency>
+						<groupId>org.seleniumhq.selenium</groupId>
+						<artifactId>selenium-server</artifactId>
+						<version>${version.selenium}</version>
+					</dependency>
 
-				<!--
-				Selenium dependecies
-				TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28
-				-->
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-api</artifactId>
-					<version>${version.selenium}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-java</artifactId>
-					<version>${version.selenium}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-support</artifactId>
-					<version>${version.selenium}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-leg-rc</artifactId>
-					<version>${version.selenium}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>lift</artifactId>
-					<version>${version.selenium}</version>
-				</dependency>
+					<!--
+					Selenium dependecies
+					TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28
+					-->
+					<dependency>
+						<groupId>org.seleniumhq.selenium</groupId>
+						<artifactId>selenium-api</artifactId>
+						<version>${version.selenium}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.seleniumhq.selenium</groupId>
+						<artifactId>selenium-java</artifactId>
+						<version>${version.selenium}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.seleniumhq.selenium</groupId>
+						<artifactId>selenium-support</artifactId>
+						<version>${version.selenium}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.seleniumhq.selenium</groupId>
+						<artifactId>selenium-leg-rc</artifactId>
+						<version>${version.selenium}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.seleniumhq.selenium</groupId>
+						<artifactId>lift</artifactId>
+						<version>${version.selenium}</version>
+					</dependency>
 
 				</dependencies>
 			</dependencyManagement>
@@ -4586,7 +4580,7 @@
 				<pluginManagement>
 					<plugins>
 					</plugins>
-				</pluginManagement>	
+				</pluginManagement>
 				<plugins>
 					<plugin>
 						<groupId>com.dkanejs.maven.plugins</groupId>
@@ -4920,81 +4914,81 @@
 					</plugins>
 				</pluginManagement>
 				<plugins>
-				<plugin>
-					<groupId>com.dkanejs.maven.plugins</groupId>
-					<artifactId>docker-compose-maven-plugin</artifactId>
-					<configuration>
-						<composeFile>${project.basedir}/docker-compose-wildfly.yml</composeFile>
-						<verbose>true</verbose>
-						<removeImages>true</removeImages>
-						<removeVolumes>true</removeVolumes>
-						<ignorePullFailures>true</ignorePullFailures>
-						<detachedMode>true</detachedMode>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-dependency-plugin</artifactId>
-					<executions>
+					<plugin>
+						<groupId>com.dkanejs.maven.plugins</groupId>
+						<artifactId>docker-compose-maven-plugin</artifactId>
+						<configuration>
+							<composeFile>${project.basedir}/docker-compose-wildfly.yml</composeFile>
+							<verbose>true</verbose>
+							<removeImages>true</removeImages>
+							<removeVolumes>true</removeVolumes>
+							<ignorePullFailures>true</ignorePullFailures>
+							<detachedMode>true</detachedMode>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
 
-						<execution>
-							<id>check-dependencies</id>
-							<phase>verify</phase>
-							<goals>
-								<goal>analyze</goal>
-								<goal>analyze-dep-mgt</goal>
-								<goal>analyze-duplicate</goal>
-								<goal>analyze-report</goal>
-								<goal>list</goal>
-								<goal>list-repositories</goal>
-								<goal>properties</goal>
-								<goal>tree</goal>
-							</goals>
-							<configuration>
-								<outputDirectory>${project.build.directory}/dependencies</outputDirectory>
-							</configuration>
-						</execution>
-						<execution>
-							<id>get-dependency-sources</id>
-							<phase>prepare-package</phase>
-							<goals>
-								<goal>sources</goal>
-								<goal>resolve</goal>
-								<goal>resolve-plugins</goal>
-								<goal>collect</goal>
-								<goal>copy-dependencies</goal>
-								<goal>unpack-dependencies</goal>
-							</goals>
-							<configuration>
-								<excludeGroupIds>org.webjars</excludeGroupIds>
-								<excludeArtifactIds>weld-probe-core</excludeArtifactIds>
-								<classifier>sources</classifier>
-								<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
-								<outputDirectory>${project.build.directory}/dependencies/</outputDirectory>
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
-				<plugin>
-					<groupId>org.wildfly.plugins</groupId>
-					<artifactId>wildfly-maven-plugin</artifactId>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<configuration>
-						<skipTests>true</skipTests>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-failsafe-plugin</artifactId>
-					<configuration>
-						<skipTests>true</skipTests>
-					</configuration>
-				</plugin>
-			</plugins>
-		</build>
+							<execution>
+								<id>check-dependencies</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>analyze</goal>
+									<goal>analyze-dep-mgt</goal>
+									<goal>analyze-duplicate</goal>
+									<goal>analyze-report</goal>
+									<goal>list</goal>
+									<goal>list-repositories</goal>
+									<goal>properties</goal>
+									<goal>tree</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>get-dependency-sources</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>sources</goal>
+									<goal>resolve</goal>
+									<goal>resolve-plugins</goal>
+									<goal>collect</goal>
+									<goal>copy-dependencies</goal>
+									<goal>unpack-dependencies</goal>
+								</goals>
+								<configuration>
+									<excludeGroupIds>org.webjars</excludeGroupIds>
+									<excludeArtifactIds>weld-probe-core</excludeArtifactIds>
+									<classifier>sources</classifier>
+									<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+									<outputDirectory>${project.build.directory}/dependencies/</outputDirectory>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.wildfly.plugins</groupId>
+						<artifactId>wildfly-maven-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<skipTests>true</skipTests>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<configuration>
+							<skipTests>true</skipTests>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 		<!-- wildfly-remote-test -->
 		<profile>
