@@ -6410,15 +6410,11 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>findbugs-maven-plugin</artifactId>
 				<configuration>
-					<skip>true</skip>
 					<onlyAnalyze>org.woehlke.*</onlyAnalyze>
 					<omitVisitors>FindDeadLocalStores</omitVisitors>
 					<findbugsXmlOutput>true</findbugsXmlOutput>
@@ -6430,15 +6426,11 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jxr-plugin</artifactId>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
 				<configuration>
-					<skip>true</skip>
 					<minimumTokens>100</minimumTokens>
 					<targetJdk>${java.version}</targetJdk>
 					<excludeRoots>
