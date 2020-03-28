@@ -2,14 +2,24 @@
 <project version="4">
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
+      <option name="id" value="jcenter" />
+      <option name="name" value="JCenter Repository" />
+      <option name="url" value="https://jcenter.bintray.com/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="jboss-releases" />
+      <option name="name" value="JBoss Releases Repository" />
+      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/releases/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="Central" />
       <option name="name" value="Central Repository" />
       <option name="url" value="https://repo1.maven.org/maven2/" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="central" />
-      <option name="name" value="Central Repository" />
-      <option name="url" value="https://repo.maven.apache.org/maven2" />
+      <option name="id" value="sonatype-releases" />
+      <option name="name" value="Sonatype Repository" />
+      <option name="url" value="https://oss.sonatype.org/content/repositories/releases/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="central" />
@@ -17,9 +27,9 @@
       <option name="url" value="https://repo1.maven.org/maven2" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="Alfresco" />
-      <option name="name" value="Alfresco Repository" />
-      <option name="url" value="https://artifacts.alfresco.com/nexus/content/repositories/public/" />
+      <option name="id" value="jboss-public" />
+      <option name="name" value="JBoss Public Repository" />
+      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="central" />
@@ -55,6 +65,36 @@
       <option name="id" value="jboss-public-repository-group" />
       <option name="name" value="JBoss Public Maven Repository Group" />
       <option name="url" value="https://repository.jboss.org/nexus/content/groups/public" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="primefaces" />
+      <option name="name" value="Primefaces Repository" />
+      <option name="url" value="https://repository.primefaces.org" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="https://repo.maven.apache.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="https://repo1.maven.org/maven2/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="Alfresco" />
+      <option name="name" value="Alfresco Repository" />
+      <option name="url" value="https://artifacts.alfresco.com/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="jboss-thirdparty-releases" />
+      <option name="name" value="JBoss 3rd-party Repository" />
+      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="redhat-ga" />
+      <option name="name" value="Redhat GA Repository" />
+      <option name="url" value="https://maven.repository.redhat.com/ga/" />
     </remote-repository>
   </component>
 </project>

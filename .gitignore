@@ -27,3 +27,5 @@ createdFiles*.sh
 log
 /src/main/liberty/config/postgresql.jar
 /.idea/workspace.xml
+/x.txt
+/x_*.txt
