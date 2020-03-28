@@ -1821,7 +1821,7 @@
 								<id>report</id>
 								<phase>site</phase>
 								<configuration>
-									<excludeGroupIds>org.webjars,org.jclouds,org.jboss.as,xml-resolver,commons-configuration,org.codehaus.plexus,commons-digester,junit,log4j</excludeGroupIds>
+									<excludeGroupIds>org.webjars,org.jclouds,org.jboss.as,xml-resolver,commons-configuration,org.codehaus.plexus,commons-digester,junit,log4j,io.openliberty.features</excludeGroupIds>
 									<excludeArtifactIds>weld-probe-core,commons-configuration,jdk.tools,maven-antrun-plugin</excludeArtifactIds>
 									<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
 									<reportSets>
@@ -6152,11 +6152,6 @@
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-enforcer-plugin</artifactId>
 							<version>${version.maven-enforcer-plugin}</version>
-						</plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-invoker-plugin</artifactId>
-							<version>${version.maven-invoker-plugin}</version>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
