@@ -44,6 +44,7 @@
 		<!-- general -->
 		<version.log4j>2.12.1</version.log4j>
 		<version.commons-logging>1.2</version.commons-logging>
+		<version.commons-lang>2.6</version.commons-lang>
 		<version.commons-io>2.4</version.commons-io>
 		<version.com.google.guava.guava>27.0.1-jre</version.com.google.guava.guava>
 		<version.com.google.auto.auto-common>0.10</version.com.google.auto.auto-common>
@@ -112,7 +113,7 @@
 		<version.maven-install-plugin>3.0.0-M1</version.maven-install-plugin>
 		<version.maven-war-plugin>3.2.3</version.maven-war-plugin>
 		<version.maven-surefire-plugin>3.0.0-M4</version.maven-surefire-plugin>
-		<version.maven-surefire-plugin.junit4>4.12</version.maven-surefire-plugin.junit4>
+		<version.maven-surefire-plugin.junit4>3.0.0-M4</version.maven-surefire-plugin.junit4>
 		<version.maven-failsafe-plugin>3.0.0-M4</version.maven-failsafe-plugin>
 		<version.maven-invoker-plugin>3.2.1</version.maven-invoker-plugin>
 		<version.maven-javadoc-plugin>3.2.0</version.maven-javadoc-plugin>
@@ -127,6 +128,13 @@
 		<version.org.projectlombok.lombok>1.18.12</version.org.projectlombok.lombok>
 		<version.docker-compose-maven-plugin>3.0.0</version.docker-compose-maven-plugin>
 		<version.maven-release-plugin>3.0.0-M1</version.maven-release-plugin>
+		<version.maven-site-plugin>3.9.0</version.maven-site-plugin>
+		<version.maven-project-info-reports-plugin>3.0.0</version.maven-project-info-reports-plugin>
+		<version.maven-checkstyle-plugin>3.1.1</version.maven-checkstyle-plugin>
+		<version.findbugs-maven-plugin>3.0.5</version.findbugs-maven-plugin>
+		<version.maven-jxr-plugin>3.0.0</version.maven-jxr-plugin>
+		<version.maven-pmd-plugin>3.13.0</version.maven-pmd-plugin>
+		<version.maven-surefire-report-plugin>3.0.0-M4</version.maven-surefire-report-plugin>
 		<!-- Java EE and Jakarta EE Application Server: Wildfly, OpenLiberty, Glassfish -->
 		<version.jakartaee8.server.wildfly.arquillian>2.2.0.Final</version.jakartaee8.server.wildfly.arquillian>
 		<version.jakartaee8.server.openliberty.arquillian>1.0.6</version.jakartaee8.server.openliberty.arquillian>
@@ -139,6 +147,8 @@
 		<version.jakartaee8.server.wildfly>17.0.1.Final</version.jakartaee8.server.wildfly>
 		<runtime.jakartaee8.server.wildfly.remote>${user.home}/j/srv/wildfly-${version.jakartaee8.server.wildfly}</runtime.jakartaee8.server.wildfly.remote>
 		<version.wildfly-maven-plugin>2.0.1.Final</version.wildfly-maven-plugin>
+		<!-- Glassfish -->
+		<version.jakartaee8.server.glassfish>5.1.0</version.jakartaee8.server.glassfish>
 		<!-- Config -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -496,7 +506,7 @@
 			<dependency>
 				<groupId>commons-lang</groupId>
 				<artifactId>commons-lang</artifactId>
-				<version>2.6</version>
+				<version>${version.commons-lang}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
@@ -1092,7 +1102,7 @@
 					<version>${version.liberty-maven-plugin}</version>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
+					<groupId>org.apache.maven.surefire</groupId>
 					<artifactId>surefire-junit4</artifactId>
 					<version>${version.maven-surefire-plugin.junit4}</version>
 				</plugin>
@@ -1146,41 +1156,40 @@
 					<artifactId>maven-release-plugin</artifactId>
 					<version>${version.maven-release-plugin}</version>
 				</plugin>
-
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
-					<version>3.9.0</version>
+					<version>${version.maven-site-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-project-info-reports-plugin</artifactId>
-					<version>3.0.0</version>
+					<version>${version.maven-project-info-reports-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-checkstyle-plugin</artifactId>
-					<version>3.1.1</version>
+					<version>${version.maven-checkstyle-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>findbugs-maven-plugin</artifactId>
-					<version>3.0.5</version>
+					<version>${version.findbugs-maven-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jxr-plugin</artifactId>
-					<version>3.0.0</version>
+					<version>${version.maven-jxr-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-pmd-plugin</artifactId>
-					<version>3.13.0</version>
+					<version>${version.maven-pmd-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-report-plugin</artifactId>
-					<version>3.0.0-M4</version>
+					<version>${version.maven-surefire-report-plugin}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -3352,7 +3361,6 @@
 								<id>install-server</id>
 								<phase>prepare-package</phase>
 								<goals>
-									<goal>create-server</goal>
 									<goal>install-feature</goal>
 									<goal>configure-arquillian</goal>
 								</goals>
@@ -6191,40 +6199,46 @@
 							<version>${version.maven-release-plugin}</version>
 						</plugin>
 
+
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-site-plugin</artifactId>
-							<version>3.9.0</version>
+							<version>${version.maven-site-plugin}</version>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-project-info-reports-plugin</artifactId>
-							<version>3.0.0</version>
+							<version>${version.maven-project-info-reports-plugin}</version>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-checkstyle-plugin</artifactId>
-							<version>3.1.1</version>
+							<version>${version.maven-checkstyle-plugin}</version>
 						</plugin>
 						<plugin>
 							<groupId>org.codehaus.mojo</groupId>
 							<artifactId>findbugs-maven-plugin</artifactId>
-							<version>3.0.5</version>
+							<version>${version.findbugs-maven-plugin}</version>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-jxr-plugin</artifactId>
-							<version>3.0.0</version>
+							<version>${version.maven-jxr-plugin}</version>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-pmd-plugin</artifactId>
-							<version>3.13.0</version>
+							<version>${version.maven-pmd-plugin}</version>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-surefire-report-plugin</artifactId>
-							<version>3.0.0-M4</version>
+							<version>${version.maven-surefire-report-plugin}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-invoker-plugin</artifactId>
+							<version>${version.maven-invoker-plugin}</version>
 						</plugin>
 
 					</plugins>
