@@ -26,8 +26,8 @@
 	<httpEndpoint
 			id="defaultHttpEndpoint"
 			host="*"
-			httpPort="9090"
-			httpsPort="9443"/>
+			httpPort="8080"
+			httpsPort="8443"/>
 
 	<serverCommands startServerTimeout="240" stopServerTimeout="240" />
 
