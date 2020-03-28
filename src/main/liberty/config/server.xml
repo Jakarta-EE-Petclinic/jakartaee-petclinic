@@ -33,9 +33,6 @@
 
 	<variable name="io_openliberty_guides_system_inMaintenance" value="false"/>
 
-	<!--
-	<webApplication location="petclinic.war" contextRoot="/petclinic" />
-	-->
 
 	<!-- Postgres Database Configuration -->
 	<dataSource id="DefaultDataSource"
@@ -59,46 +56,5 @@
 		<fileset id="idPostgreSQLFileset"
 		         includes="postgresql.jar"/>
 	</library>
-
-
-	<!-- Derby Database Configuration -->
-	<!--
-	<dataSource id="DefaultDataSource"
-	            jndiName="jdbc/dsJakartaeePetclinic"
-	            jdbcDriverRef="derbyJdbcDriver">
-		<properties.derby.embedded databaseName="derbyDB" createDatabase="create"/>
-		<containerAuthData user="user1"  password="{xor}Oz0vKDtu" />
-	</dataSource>
-
-	<jdbcDriver id="derbyJdbcDriver"
-	            javax.sql.XADataSource="org.apache.derby.jdbc.EmbeddedXADataSource"
-	            javax.sql.ConnectionPoolDataSource="org.apache.derby.jdbc.EmbeddedConnectionPoolDataSource"
-	            libraryRef="derbyJdbcLibrary"/>
-
-	<library id="derbyJdbcLibrary">
-		<fileset id="derbyJdbcLibraryFileset" includes="derby.jar"/>
-	</library>
-	-->
-
-	<!-- H2 Database -->
-	<!--
-	<dataSource id="DefaultDataSource"
-	            jndiName="jdbc/dsJakartaeePetclinic"
-	            jdbcDriverRef="h2JdbcDriver"
-	            type="javax.sql.ConnectionPoolDataSource"
-	            transactional="true">
-		<properties.h2.embedded databaseName="testdb"  createDatabase="create"/>
-		<containerAuthData user="sa"  password="" />
-	</dataSource>
-
-	<jdbcDriver id="h2JdbcDriver"
-	            javax.sql.XADataSource="org.h2.jdbcx.JdbcDataSource"
-	            javax.sql.ConnectionPoolDataSource="org.h2.jdbcx.JdbcDataSource"
-	            libraryRef="h2Library"/>
-
-	<library id="h2Library">
-		<fileset id="h2LibraryFileSet" includes="h2.jar"/>
-	</library>
-	-->
 
 </server>
