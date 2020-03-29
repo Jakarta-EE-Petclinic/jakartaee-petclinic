@@ -9,7 +9,6 @@
 ## Learn more about OpenLiberty and Spring
 * https://openliberty.io/blog/2018/06/29/full_java_ee_8_liberty_18002.html#spring
 
-
 ## Issues
 
 ### 13

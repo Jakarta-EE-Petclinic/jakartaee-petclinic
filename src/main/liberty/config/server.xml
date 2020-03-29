@@ -53,8 +53,11 @@
 	            libraryRef="postgresqlLibrary"/>
 
 	<library id="postgresqlLibrary">
+		<file name="${server.config.dir}/postgresql.jar" />
+		<!--
 		<fileset id="idPostgreSQLFileset"
 		         includes="postgresql.jar"/>
+		 -->
 	</library>
 
 </server>
