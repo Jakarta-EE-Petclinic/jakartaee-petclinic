@@ -10,7 +10,7 @@
 ### Add Vet with ManyToMany Relation to Specialty
 ![Figure Add Vet with ManyToMany Relation to Specialty](images/screenAddVet.png)
 ### New Visit
-![Figure New Visit](images/screenNewVisit.png])
+![Figure New Visit](../etc/images/screenNewVisit.png])
 ### Owner
 ![Figure Owner](images/screenOwner.png)
 
