@@ -14,38 +14,38 @@ Jakarta EE 8 Petclinic -  a JSF and Jakarta EE Version of Spring Petclinic -  an
 * Github: [https://github.com/spring-projects/spring-petclinic](https://github.com/spring-projects/spring-petclinic)
 
 ## More Developer Info
-* [Jakarta EE 8](doc/JARTKARTA_EE.md)
-* [Java jdk and jvm](doc/JAVA_JDK_AND_JVM.md)
-* [Java Server Faces JSF](doc/JSF_PRIMEFACES.md)
-* [Maven Plugins](doc/MAVEN.md)
+* [Jakarta EE 8](etc/JARTKARTA_EE.md)
+* [Java jdk and jvm](etc/JAVA_JDK_AND_JVM.md)
+* [Java Server Faces JSF](etc/JSF_PRIMEFACES.md)
+* [Maven Plugins](etc/MAVEN.md)
 ## Development
-* [Software Design](doc/Software_Design.md)
-* [Maven Profiles and Git Branches](doc/PROFILES_AND_BRANCHES.md)
-* [ToDo](doc/TODO.md)
-* [Testing](doc/TESTING.md)
-* [Source on Github](doc/SOURCE.md)
+* [Software Design](etc/Software_Design.md)
+* [Maven Profiles and Git Branches](etc/PROFILES_AND_BRANCHES.md)
+* [ToDo](etc/TODO.md)
+* [Testing](etc/TESTING.md)
+* [Source on Github](etc/SOURCE.md)
 ## Jakarta EE Runtimes
-* [OpenLiberty](doc/RUNTIME_OPEN_LIBERTY.md)
-* [Wildfly](doc/RUNTIME_WILDFLY.md)
-* [Glassfish](doc/RUNTIME_GLASSFISH.md)
+* [OpenLiberty](etc/RUNTIME_OPEN_LIBERTY.md)
+* [Wildfly](etc/RUNTIME_WILDFLY.md)
+* [Glassfish](etc/RUNTIME_GLASSFISH.md)
 ## Cloud
-* [Openshift](doc/CLOUD.md)
+* [Openshift](etc/CLOUD.md)
 
 # Software Design
 ## Domain Class Modell
-![Figure Domain Class Modell](doc/images/DomainClassModell.jpg)
+![Figure Domain Class Modell](etc/images/DomainClassModell.jpg)
 ## Use Cases
-![Figure Uses Cases Vet](doc/images/UseCases.jpg)
-![Figure Uses Cases Owner](doc/images/UseCasesOwner.jpg)
+![Figure Uses Cases Vet](etc/images/UseCases.jpg)
+![Figure Uses Cases Owner](etc/images/UseCasesOwner.jpg)
 ## Page Flow
-![Figure Pageflow](doc/images/Pageflow.jpg)
+![Figure Pageflow](etc/images/Pageflow.jpg)
 ## Screens
 ### Add Vet with ManyToMany Relation to Specialty
-![Figure Add Vet with ManyToMany Relation to Specialty](doc/images/screenAddVet.png)
+![Figure Add Vet with ManyToMany Relation to Specialty](etc/images/screenAddVet.png)
 ### New Visit
-![Figure New Visit](doc/images/screenNewVisit.png])
+![Figure New Visit](etc/images/screenNewVisit.png])
 ### Owner
-![Figure Owner](doc/images/screenOwner.png)
+![Figure Owner](etc/images/screenOwner.png)
 
 ## First Steps to use ##
 * add some PetTypes like dog,cat,mouse,...
