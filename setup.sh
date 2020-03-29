@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
-echo "./mvnw -Psetup"
-./mvnw -Psetup > x.txt
+MY_COMMAND_1="./mvnw clean install site site:deploy"
+MY_COMMAND_2="./mvnw -Psetup"
+
+MY_COMMAND=MY_COMMAND_2
+
+echo "$MY_COMMAND"
+$MY_COMMAND > x.txt
 
 echo "deprecated"
 grep -n "deprecated" x.txt > x_deprecated.txt
