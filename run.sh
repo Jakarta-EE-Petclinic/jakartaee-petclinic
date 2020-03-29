@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-./mvnw -Pglassfish-run clean install site
+./mvnw clean install site site:deploy liberty:run
