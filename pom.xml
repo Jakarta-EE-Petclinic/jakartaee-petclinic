@@ -317,31 +317,37 @@
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-core</artifactId>
 				<version>${version.log4j}</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-api</artifactId>
 				<version>${version.log4j}</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-slf4j-impl</artifactId>
 				<version>${version.log4j}</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-to-slf4j</artifactId>
 				<version>${version.log4j}</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-web</artifactId>
 				<version>${version.log4j}</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-appserver</artifactId>
 				<version>${version.log4j}</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<!-- Search by JPA -->
@@ -384,11 +390,13 @@
 				<groupId>xerces</groupId>
 				<artifactId>xercesImpl</artifactId>
 				<version>2.12.0</version>
+				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>xalan</groupId>
 				<artifactId>xalan</artifactId>
 				<version>2.7.1</version>
+				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>antlr</groupId>
@@ -1305,7 +1313,7 @@
 
 		<!-- openliberty-dev-run -->
 		<profile>
-			<id>wlp-dev</id>
+			<id>liberty-dev</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
@@ -1380,6 +1388,53 @@
 						<artifactId>postgresql</artifactId>
 						<version>${version.postgresql.driver}</version>
 					</dependency>
+					<!-- Logging -->
+					<dependency>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+						<version>${version.commons-logging}</version>
+						<scope>test</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-bom</artifactId>
+						<version>${version.log4j}</version>
+						<type>pom</type>
+						<scope>import</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-core</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-api</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-slf4j-impl</artifactId>
+						<version>${version.log4j}</version>
+						<scope>provided</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-to-slf4j</artifactId>
+						<version>${version.log4j}</version>
+						<scope>provided</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-web</artifactId>
+						<version>${version.log4j}</version>
+						<scope>provided</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-appserver</artifactId>
+						<version>${version.log4j}</version>
+					</dependency>
 				</dependencies>
 			</dependencyManagement>
 			<dependencies>
@@ -1412,30 +1467,49 @@
 					<type>esa</type>
 					<scope>provided</scope>
 				</dependency>
+
+				<!-- Logging -->
 				<dependency>
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
+					<version>${version.commons-logging}</version>
+					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.apache.logging.log4j</groupId>
 					<artifactId>log4j-core</artifactId>
+					<version>${version.log4j}</version>
 				</dependency>
 				<dependency>
 					<groupId>org.apache.logging.log4j</groupId>
 					<artifactId>log4j-api</artifactId>
+					<version>${version.log4j}</version>
 				</dependency>
 				<dependency>
 					<groupId>org.apache.logging.log4j</groupId>
 					<artifactId>log4j-slf4j-impl</artifactId>
+					<version>${version.log4j}</version>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-to-slf4j</artifactId>
+					<version>${version.log4j}</version>
+					<scope>provided</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.apache.logging.log4j</groupId>
 					<artifactId>log4j-web</artifactId>
+					<version>${version.log4j}</version>
+					<scope>provided</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.apache.logging.log4j</groupId>
 					<artifactId>log4j-appserver</artifactId>
+					<version>${version.log4j}</version>
 				</dependency>
+
+				<!-- Docker for PostgreSQL Database -->
 				<dependency>
 					<groupId>com.dkanejs.maven.plugins</groupId>
 					<artifactId>docker-compose-maven-plugin</artifactId>
@@ -1857,7 +1931,7 @@
 
 		<!-- openliberty-managed-run -->
 		<profile>
-			<id>wlp-run</id>
+			<id>liberty-run</id>
 			<properties/>
 			<dependencyManagement>
 				<dependencies>
@@ -2613,7 +2687,7 @@
 		<!-- wildfly-managed-run -->
 		<!-- TODO: research: update Wildfly Runtime from 17.0.1.Final to 18.0.1.Final #21 -->
 		<profile>
-			<id>wf-run</id>
+			<id>wildfly-run</id>
 			<properties>
 				<skipIntegrationTests>true</skipIntegrationTests>
 			</properties>
@@ -3001,12 +3075,14 @@
 					<artifactId>arquillian-primefaces</artifactId>
 				</dependency>
 				<!-- JPA DataSource JDBC Drivers -->
+				<!-- todo: move to profile(s) -->
+				<!--
 				<dependency>
-					<!-- todo: move to profile(s) -->
 					<groupId>org.apache.derby</groupId>
 					<artifactId>derby</artifactId>
 					<scope>provided</scope>
 				</dependency>
+				-->
 				<dependency>
 					<!-- todo: move to profile(s) -->
 					<groupId>com.h2database</groupId>
