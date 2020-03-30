@@ -2983,11 +2983,6 @@
 					<scope>test</scope>
 				</dependency>
 				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-chrome-driver</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
 					<groupId>org.hibernate</groupId>
 					<artifactId>hibernate-search-engine</artifactId>
 					<scope>provided</scope>
