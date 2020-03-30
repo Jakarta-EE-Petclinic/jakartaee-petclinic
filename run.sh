@@ -31,8 +31,8 @@ function runCommand(){
 }
 
 function runAllProfiles(){
-	$MY_COMMAND_WLP_DEV_NODOCKER
-	#$MY_COMMAND_WLP_RUN__NO_DOCKER
+	#$MY_COMMAND_WLP_DEV_NODOCKER
+	$MY_COMMAND_WLP_RUN__NO_DOCKER
 	#$MY_COMMAND_WLP_DEV
 	#$MY_COMMAND_WLP_RUN
 	#dockerDown
