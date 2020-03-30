@@ -34,8 +34,8 @@ function runAllProfiles(){
 }
 
 function main() {
-	runCommand
-	#runAllProfiles
+	#runCommand
+	runAllProfiles
 }
 
 main
