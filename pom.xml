@@ -344,20 +344,6 @@
 				<version>${version.log4j}</version>
 			</dependency>
 
-			<!-- JPA DataSource JDBC Drivers -->
-			<dependency>
-				<!-- TODO: move to profile(s) -->
-				<groupId>org.apache.derby</groupId>
-				<artifactId>derby</artifactId>
-				<version>${version.derby.driver}</version>
-			</dependency>
-			<dependency>
-				<!-- TODO: move to profile(s) -->
-				<groupId>com.h2database</groupId>
-				<artifactId>h2</artifactId>
-				<version>${version.h2.database}</version>
-			</dependency>
-
 			<!-- Search by JPA -->
 			<!-- TODO: Research: Is Hibernate Search (and Hibernate JPA) the right version for JakartaEE8? #16  -->
 			<!-- TODO: BUG: Hibernate Search broken in wlp #13 -->
@@ -845,18 +831,6 @@
 			<artifactId>javax.json</artifactId>
 		</dependency>
 
-		<!-- JPA DataSource JDBC Drivers -->
-		<dependency>
-			<!-- todo: move to profile(s) -->
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derby</artifactId>
-		</dependency>
-		<dependency>
-			<!-- todo: move to profile(s) -->
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-		</dependency>
-
 		<!-- SCM -->
 		<dependency>
 			<groupId>org.apache.maven.plugins</groupId>
@@ -1213,7 +1187,6 @@
 	</build>
 
 	<profiles>
-
 		<profile>
 			<id>browser-chrome</id>
 			<activation>
@@ -2705,10 +2678,25 @@
 							</exclusion>
 						</exclusions>
 					</dependency>
+					<!-- JPA DataSource JDBC Drivers -->
+					<dependency>
+						<!-- TODO: move to profile(s) -->
+						<groupId>org.apache.derby</groupId>
+						<artifactId>derby</artifactId>
+						<version>${version.derby.driver}</version>
+						<scope>provided</scope>
+					</dependency>
+					<dependency>
+						<!-- TODO: move to profile(s) -->
+						<groupId>com.h2database</groupId>
+						<artifactId>h2</artifactId>
+						<version>${version.h2.database}</version>
+						<scope>provided</scope>
+					</dependency>
 				<dependency>
 					<groupId>org.jboss.arquillian.graphene</groupId>
 					<artifactId>graphene-webdriver-impl</artifactId>
-					<version>${version.org.jboss.arquillian.graphene.graphene-webdriver-imple}</version>
+					<version>${version.org.jboss.arquillian.graphene.graphene-webdriver-impl}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -3016,6 +3004,19 @@
 				<dependency>
 					<groupId>org.omnifaces</groupId>
 					<artifactId>arquillian-primefaces</artifactId>
+				</dependency>
+				<!-- JPA DataSource JDBC Drivers -->
+				<dependency>
+					<!-- todo: move to profile(s) -->
+					<groupId>org.apache.derby</groupId>
+					<artifactId>derby</artifactId>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<!-- todo: move to profile(s) -->
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+					<scope>provided</scope>
 				</dependency>
 			</dependencies>
 			<build>
