@@ -307,11 +307,6 @@
 				<scope>test</scope>
 			</dependency>
 			<dependency>
-				<groupId>commons-lang</groupId>
-				<artifactId>commons-lang</artifactId>
-				<version>${version.commons-lang}</version>
-			</dependency>
-			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-bom</artifactId>
 				<version>${version.log4j}</version>
@@ -420,6 +415,11 @@
 				<groupId>commons-io</groupId>
 				<artifactId>commons-io</artifactId>
 				<version>${version.commons-io}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${version.commons-lang}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.owasp.encoder</groupId>
@@ -576,7 +576,38 @@
 				<version>${version.org.jboss.arquillian.graphene.graphene-webdriver-impl}</version>
 				<scope>test</scope>
 			</dependency>
-			<!-- Integration Testing with Arquillian: Shrinkwrap -->
+			<!-- Arquillian Tests: Selenium -->
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-java</artifactId>
+				<version>${version.selenium}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-api</artifactId>
+				<version>${version.selenium}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-support</artifactId>
+				<version>${version.selenium}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-leg-rc</artifactId>
+				<version>${version.selenium}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>lift</artifactId>
+				<version>${version.selenium}</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- Integration Testing with Arquillian: Shrinkwrap BOMs-->
 			<dependency>
 				<groupId>org.jboss.shrinkwrap</groupId>
 				<artifactId>shrinkwrap-bom</artifactId>
@@ -623,7 +654,6 @@
 				<version>${version.maven}</version>
 				<scope>test</scope>
 			</dependency>
-
 			<!-- Integration Testing with Arquillian: 3rd Party Dependencies -->
 			<dependency>
 				<groupId>org.apache.httpcomponents</groupId>
@@ -722,26 +752,20 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-bom</artifactId>
-			<type>pom</type>
-			<scope>import</scope>
+			<artifactId>log4j-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-to-slf4j</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -797,6 +821,10 @@
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.owasp.encoder</groupId>
@@ -920,6 +948,32 @@
 		<dependency>
 			<groupId>org.jboss.arquillian.graphene</groupId>
 			<artifactId>graphene-webdriver-impl</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- Arquillian Tests: Testing -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-support</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-leg-rc</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>lift</artifactId>
 			<scope>test</scope>
 		</dependency>
 
@@ -1168,6 +1222,16 @@
 			<properties>
 				<webdriverBrowser>chrome</webdriverBrowser>
 			</properties>
+			<dependencyManagement>
+				<dependencies>
+				<dependency>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-chrome-driver</artifactId>
+					<version>${version.selenium}</version>
+					<scope>test</scope>
+				</dependency>
+				</dependencies>
+			</dependencyManagement>
 			<dependencies>
 				<dependency>
 					<groupId>org.seleniumhq.selenium</groupId>
@@ -1182,6 +1246,16 @@
 			<properties>
 				<webdriverBrowser>firefox</webdriverBrowser>
 			</properties>
+			<dependencyManagement>
+				<dependencies>
+					<dependency>
+						<groupId>org.seleniumhq.selenium</groupId>
+						<artifactId>selenium-firefox-driver</artifactId>
+						<version>${version.selenium}</version>
+						<scope>test</scope>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
 			<dependencies>
 				<dependency>
 					<groupId>org.seleniumhq.selenium</groupId>
@@ -1196,6 +1270,16 @@
 			<properties>
 				<webdriverBrowser>safari</webdriverBrowser>
 			</properties>
+			<dependencyManagement>
+				<dependencies>
+					<dependency>
+						<groupId>org.seleniumhq.selenium</groupId>
+						<artifactId>selenium-safari-driver</artifactId>
+						<version>${version.selenium}</version>
+						<scope>test</scope>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
 			<dependencies>
 				<dependency>
 					<groupId>org.seleniumhq.selenium</groupId>
@@ -1210,6 +1294,16 @@
 			<properties>
 				<webdriverBrowser>opera</webdriverBrowser>
 			</properties>
+			<dependencyManagement>
+					<dependencies>
+						<dependency>
+							<groupId>org.seleniumhq.selenium</groupId>
+							<artifactId>selenium-opera-driver</artifactId>
+							<version>${version.selenium}</version>
+							<scope>test</scope>
+						</dependency>
+				</dependencies>
+			</dependencyManagement>
 			<dependencies>
 				<dependency>
 					<groupId>org.seleniumhq.selenium</groupId>
@@ -1234,59 +1328,6 @@
 			<properties>
 				<skipIntegrationTests>false</skipIntegrationTests>
 			</properties>
-			<dependencyManagement>
-				<dependencies>
-
-				</dependencies>
-			</dependencyManagement>
-			<dependencies>
-				<!-- Testing -->
-				<dependency>
-					<groupId>org.jboss.shrinkwrap</groupId>
-					<artifactId>shrinkwrap-api</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.arquillian.junit</groupId>
-					<artifactId>arquillian-junit-container</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.primefaces.extensions</groupId>
-					<artifactId>primefaces-arquillian</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>junit</groupId>
-					<artifactId>junit</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-java</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-api</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-support</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-leg-rc</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>lift</artifactId>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
 		</profile>
 
 		<!-- openliberty-dev-run -->
@@ -2774,6 +2815,8 @@
 						<artifactId>log4j-appserver</artifactId>
 						<version>${version.log4j}</version>
 					</dependency>
+
+
 					<dependency>
 						<groupId>org.reflections</groupId>
 						<artifactId>reflections</artifactId>
