@@ -145,7 +145,7 @@
 		<runtime.jakartaee8.server.openliberty.ServerName>petclinicServer</runtime.jakartaee8.server.openliberty.ServerName>
 		<version.liberty-maven-plugin>3.2</version.liberty-maven-plugin>
 		<!-- Wildfly -->
-		<version.jakartaee8.server.wildfly>17.0.1.Final</version.jakartaee8.server.wildfly>
+		<version.jakartaee8.server.wildfly>18.0.1.Final</version.jakartaee8.server.wildfly>
 		<runtime.jakartaee8.server.wildfly.remote>${user.home}/j/srv/wildfly-${version.jakartaee8.server.wildfly}</runtime.jakartaee8.server.wildfly.remote>
 		<version.wildfly-maven-plugin>2.0.1.Final</version.wildfly-maven-plugin>
 		<!-- Glassfish: TODO -->
@@ -810,6 +810,11 @@
    				 <artifactId>xalan</artifactId>
    				 <version>2.7.1</version>
 			</dependency>
+			<dependency>
+				<groupId>antlr</groupId>
+				<artifactId>antlr</artifactId>
+				<version>2.7.7.redhat-7</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -1067,15 +1072,18 @@
 			<artifactId>spotbugs</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
-			<dependency>
-    				<groupId>xerces</groupId>
-    				<artifactId>xercesImpl</artifactId>
-			</dependency>
-			<dependency>
-   				 <groupId>xalan</groupId>
-   				 <artifactId>xalan</artifactId>
-			</dependency>
+		<dependency>
+        <groupId>xerces</groupId>
+        <artifactId>xercesImpl</artifactId>
+		</dependency>
+		<dependency>
+       <groupId>xalan</groupId>
+       <artifactId>xalan</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>antlr</groupId>
+			<artifactId>antlr</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>
@@ -1086,7 +1094,6 @@
 					<artifactId>maven-enforcer-plugin</artifactId>
 					<version>${version.maven-enforcer-plugin}</version>
 				</plugin>
-
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-dependency-plugin</artifactId>
@@ -4457,8 +4464,8 @@
 								<id>report</id>
 								<phase>site</phase>
 								<configuration>
-									<excludeGroupIds>org.webjars,org.jclouds,org.jboss.as,xml-resolver,commons-configuration,org.codehaus.plexus,commons-digester,junit,log4j</excludeGroupIds>
-									<excludeArtifactIds>weld-probe-core,jdk.tools,maven-antrun-plugin</excludeArtifactIds>
+									<excludeGroupIds>antlr,org.webjars,org.jclouds,org.jboss.as,xml-resolver,commons-configuration,org.codehaus.plexus,commons-digester,junit,log4j</excludeGroupIds>
+									<excludeArtifactIds>antlr,weld-probe-core,jdk.tools,maven-antrun-plugin</excludeArtifactIds>
 									<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
 									<verbose>true</verbose>
 									<reportSets>
