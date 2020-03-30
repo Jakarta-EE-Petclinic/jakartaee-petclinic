@@ -31,3 +31,4 @@ log
 /x_*.txt
 
 /.m2
+/etc/.~lock.jakartaee_petclinic.odf.odt#
