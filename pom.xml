@@ -270,6 +270,7 @@
 
 	<dependencyManagement>
 		<dependencies>
+
 			<!-- Jakarta EE 8 API -->
 			<dependency>
 				<groupId>jakarta.platform</groupId>
@@ -298,205 +299,7 @@
 				<scope>provided</scope>
 			</dependency>
 
-			<!-- Integration Testing with Arquillian -->
-			<dependency>
-				<groupId>org.arquillian</groupId>
-				<artifactId>arquillian-universe</artifactId>
-				<version>${version.arquillian_universe}</version>
-				<scope>import</scope>
-				<type>pom</type>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.shrinkwrap</groupId>
-				<artifactId>shrinkwrap-bom</artifactId>
-				<version>${version.shrinkwrap}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.shrinkwrap.descriptors</groupId>
-				<artifactId>shrinkwrap-descriptors-bom</artifactId>
-				<version>${version.shrinkwrap_descriptors}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.shrinkwrap.resolver</groupId>
-				<artifactId>shrinkwrap-resolver-bom</artifactId>
-				<version>${version.shrinkwrap_resolvers}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-
-			<!-- Web Profile -->
-			<!--
-			<dependency>
-				<groupId>jakarta.servlet</groupId>
-				<artifactId>jakarta.servlet-api</artifactId>
-				<version>${jakarta.servlet-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.servlet.jsp</groupId>
-				<artifactId>jakarta.servlet.jsp-api</artifactId>
-				<version>${jakarta.servlet.jsp-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.el</groupId>
-				<artifactId>jakarta.el-api</artifactId>
-				<version>${jakarta.el-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.servlet.jsp.jstl</groupId>
-				<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-				<version>${jakarta.servlet.jsp.jstl-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.faces</groupId>
-				<artifactId>jakarta.faces-api</artifactId>
-				<version>${jakarta.faces-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.ws.rs</groupId>
-				<artifactId>jakarta.ws.rs-api</artifactId>
-				<version>${jakarta.ws.rs-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.websocket</groupId>
-				<artifactId>jakarta.websocket-api</artifactId>
-				<version>${jakarta.websocket-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.json</groupId>
-				<artifactId>jakarta.json-api</artifactId>
-				<version>${jakarta.json-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.json.bind</groupId>
-				<artifactId>jakarta.json.bind-api</artifactId>
-				<version>${jakarta.json.bind-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.annotation</groupId>
-				<artifactId>jakarta.annotation-api</artifactId>
-				<version>${jakarta.annotation-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.ejb</groupId>
-				<artifactId>jakarta.ejb-api</artifactId>
-				<version>${jakarta.ejb-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.transaction</groupId>
-				<artifactId>jakarta.transaction-api</artifactId>
-				<version>${jakarta.transaction-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.persistence</groupId>
-				<artifactId>jakarta.persistence-api</artifactId>
-				<version>${jakarta-persistence-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.validation</groupId>
-				<artifactId>jakarta.validation-api</artifactId>
-				<version>${jakarta.validation-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.interceptor</groupId>
-				<artifactId>jakarta.interceptor-api</artifactId>
-				<version>${jakarta.interceptor-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.enterprise</groupId>
-				<artifactId>jakarta.enterprise.cdi-api</artifactId>
-				<version>${jakarta.enterprise.cdi-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.inject</groupId>
-				<artifactId>jakarta.inject-api</artifactId>
-				<version>${jakarta.inject.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.security.auth.message</groupId>
-				<artifactId>jakarta.security.auth.message-api</artifactId>
-				<version>${jakarta.security.auth.message-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.security.enterprise</groupId>
-				<artifactId>jakarta.security.enterprise-api</artifactId>
-				<version>${jakarta.security.enterprise-api.version}</version>
-			</dependency>
--->
-			<!-- Full Platform -->
-			<!--
-			<dependency>
-				<groupId>jakarta.jms</groupId>
-				<artifactId>jakarta.jms-api</artifactId>
-				<version>${jakarta.messaging-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.mail</groupId>
-				<artifactId>jakarta.mail-api</artifactId>
-				<version>${jakarta.mail-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.mail</groupId>
-				<artifactId>jakarta.mail</artifactId>
-				<version>${jakarta.mail-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.resource</groupId>
-				<artifactId>jakarta.resource-api</artifactId>
-				<version>${jakarta.resource-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.management.j2ee</groupId>
-				<artifactId>jakarta.management.j2ee-api</artifactId>
-				<version>${jakarta.management.j2ee-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.authorization</groupId>
-				<artifactId>jakarta.authorization-api</artifactId>
-				<version>${jakarta.authorization-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.enterprise.concurrent</groupId>
-				<artifactId>jakarta.enterprise.concurrent-api</artifactId>
-				<version>${jakarta.enterprise.concurrent-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.batch</groupId>
-				<artifactId>jakarta.batch-api</artifactId>
-				<version>${jakarta.batch-api.version}</version>
-			</dependency>
--->
-			<!-- Optional APIs -->
-			<!--
-			<dependency>
-				<groupId>jakarta.enterprise.deploy</groupId>
-				<artifactId>jakarta.enterprise.deploy-api</artifactId>
-				<version>${jakarta.enterprise.deploy-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.xml.registry</groupId>
-				<artifactId>jakarta.xml.registry-api</artifactId>
-				<version>${jakarta.xml.registry-api.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>jakarta.xml.rpc</groupId>
-				<artifactId>jakarta.xml.rpc-api</artifactId>
-				<version>${jakarta.xml.rpc-api.version}</version>
-			</dependency>
-			-->
-			<!--
-			<dependency>
-					<groupId>xml-apis</groupId>
-					<artifactId>xml-apis</artifactId>
-					<version>1.4.01</version>
-					<scope>test</scope>
-			</dependency>
-			-->
-
-			<!-- logging -->
+			<!-- Logging -->
 			<dependency>
 				<groupId>commons-logging</groupId>
 				<artifactId>commons-logging</artifactId>
@@ -546,19 +349,24 @@
 				<version>${version.log4j}</version>
 			</dependency>
 
-			<!-- JSF PrimeFaces -->
+			<!-- JPA DataSource JDBC Drivers -->
 			<dependency>
-				<groupId>org.primefaces</groupId>
-				<artifactId>primefaces</artifactId>
-				<version>${version.org.primefaces.primefaces}</version>
+				<!-- TODO: move to profile(s) -->
+				<groupId>org.apache.derby</groupId>
+				<artifactId>derby</artifactId>
+				<version>${version.derby.driver}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.primefaces.themes</groupId>
-				<artifactId>all-themes</artifactId>
-				<version>${version.org.primefaces.themes.all-themes}</version>
+				<!-- TODO: move to profile(s) -->
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>${version.h2.database}</version>
 			</dependency>
 
-			<!-- Search -->
+			<!-- Search by JPA -->
+			<!-- TODO: Research: Is Hibernate Search (and Hibernate JPA) the right version for JakartaEE8? #16  -->
+			<!-- TODO: BUG: Hibernate Search broken in wlp #13 -->
+			<!-- TODO: Research: try to move from EclipseLink to Hibernate JPA in wlp #22 -->
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-search-engine</artifactId>
@@ -569,7 +377,8 @@
 				<artifactId>hibernate-search-orm</artifactId>
 				<version>${version.hibernate-search}</version>
 			</dependency>
-			<!-- RS -->
+
+			<!-- Apache CXF for API -->
 			<dependency>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-rt-rs-client</artifactId>
@@ -582,23 +391,31 @@
 				<version>${version.org.apache.cxf}</version>
 				<scope>test</scope>
 			</dependency>
-			<!-- Frontend webjars for HTML, CSS and JS -->
+
+			<!-- XML Apis -->
 			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>jquery</artifactId>
-				<version>${version.webjars.jquery}</version>
+				<groupId>xml-apis</groupId>
+				<artifactId>xml-apis</artifactId>
+				<version>1.4.01</version>
+				<scope>test</scope>
 			</dependency>
 			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap</artifactId>
-				<version>${version.webjars.bootstrap}</version>
+				<groupId>xerces</groupId>
+				<artifactId>xercesImpl</artifactId>
+				<version>2.12.0</version>
 			</dependency>
 			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>font-awesome</artifactId>
-				<version>${version.webjars.font-awesome}</version>
+				<groupId>xalan</groupId>
+				<artifactId>xalan</artifactId>
+				<version>2.7.1</version>
 			</dependency>
-			<!-- unknown -->
+			<dependency>
+				<groupId>antlr</groupId>
+				<artifactId>antlr</artifactId>
+				<version>2.7.7.redhat-7</version>
+			</dependency>
+
+			<!-- Common Libs -->
 			<dependency>
 				<groupId>commons-io</groupId>
 				<artifactId>commons-io</artifactId>
@@ -615,142 +432,97 @@
 				<version>${version.org.owasp.esapi.esapi}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.postgresql</groupId>
-				<artifactId>postgresql</artifactId>
-				<version>${version.postgresql.driver}</version>
-			</dependency>
-			<!-- TODO: for what is this: -->
-
-			<dependency>
+				<!-- TODO: try to remove this -->
 				<groupId>org.eclipse</groupId>
 				<artifactId>yasson</artifactId>
 				<version>${version.org.eclipse.yasson}</version>
 			</dependency>
 			<dependency>
+				<!-- TODO: try to remove this -->
 				<groupId>org.glassfish</groupId>
 				<artifactId>javax.json</artifactId>
 				<version>${version.org.glassfish.javax.json}</version>
 			</dependency>
-			<dependency>
-				<groupId>com.puppycrawl.tools</groupId>
-				<artifactId>checkstyle</artifactId>
-				<version>${version.com.puppycrawl.tools.checkstyle}</version>
-			</dependency>
 
-			<!-- Drivers TODO: https://github.com/arquillian/arquillian-selenium-bom/pull/28  -->
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-chrome-driver</artifactId>
-				<version>${version.selenium}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-firefox-driver</artifactId>
-				<version>${version.selenium}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-ie-driver</artifactId>
-				<version>${version.selenium}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-edge-driver</artifactId>
-				<version>${version.selenium}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-safari-driver</artifactId>
-				<version>${version.selenium}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-remote-driver</artifactId>
-				<version>${version.selenium}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-opera-driver</artifactId>
-				<version>${version.selenium}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.glassfish.main.extras</groupId>
-				<artifactId>glassfish-embedded-all</artifactId>
-				<version>${version.jakartaee8.server.glassfish}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.glassfish.main.extras</groupId>
-				<artifactId>javaee-pom</artifactId>
-				<version>${version.jakartaee8.server.glassfish}</version>
-				<type>pom</type>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.glassfish.main.extras</groupId>
-				<artifactId>javaee</artifactId>
-				<version>${version.jakartaee8.server.glassfish}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.derby</groupId>
-				<artifactId>derby</artifactId>
-				<version>${version.derby.driver}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.h2database</groupId>
-				<artifactId>h2</artifactId>
-				<version>${version.h2.database}</version>
-			</dependency>
-		<!--- added on 18.03.2020 by tw -->
+			<!-- SCM -->
 		<dependency>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-scm-plugin</artifactId>
 			<version>${version.org.apache.maven.scm}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-provider-svnexe</artifactId>
 			<version>${version.org.apache.maven.scm}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-provider-svn-commons</artifactId>
 			<version>${version.org.apache.maven.scm}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-provider-gitexe</artifactId>
 			<version>${version.org.apache.maven.scm}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-provider-git-commons</artifactId>
 			<version>${version.org.apache.maven.scm}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-manager-plexus</artifactId>
 			<version>${version.org.apache.maven.scm}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-client</artifactId>
 			<version>${version.org.apache.maven.scm}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.scm</groupId>
 			<artifactId>maven-scm-providers-standard</artifactId>
 			<version>${version.org.apache.maven.scm}</version>
 			<type>pom</type>
+			<scope>provided</scope>
 		</dependency>
-			<!-- JSF and PrimeFaces Arquillian Tests -->
+
+			<!-- Frontend webjars for HTML, CSS and JS -->
 			<dependency>
-				<groupId>net.jcip</groupId>
-				<artifactId>jcip-annotations</artifactId>
-				<version>${version.net.jcip.jcip-annotations}</version>
-				<scope>test</scope>
+				<groupId>org.webjars</groupId>
+				<artifactId>jquery</artifactId>
+				<version>${version.webjars.jquery}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap</artifactId>
+				<version>${version.webjars.bootstrap}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>font-awesome</artifactId>
+				<version>${version.webjars.font-awesome}</version>
+			</dependency>
+			<!-- PrimeFaces JSF -->
+			<dependency>
+				<groupId>org.primefaces</groupId>
+				<artifactId>primefaces</artifactId>
+				<version>${version.org.primefaces.primefaces}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.primefaces.themes</groupId>
+				<artifactId>all-themes</artifactId>
+				<version>${version.org.primefaces.themes.all-themes}</version>
+			</dependency>
+			<!-- Integration Testing with Arquillian: PrimeFaces JSF -->
 			<dependency>
 				<groupId>org.primefaces.extensions</groupId>
 				<artifactId>primefaces-arquillian</artifactId>
@@ -764,6 +536,34 @@
 				<scope>test</scope>
 			</dependency>
 			<dependency>
+				<groupId>net.jcip</groupId>
+				<artifactId>jcip-annotations</artifactId>
+				<version>${version.net.jcip.jcip-annotations}</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- Integration Testing with Arquillian: Arquillian  -->
+			<dependency>
+				<groupId>org.arquillian</groupId>
+				<artifactId>arquillian-universe</artifactId>
+				<version>${version.arquillian_universe}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.arquillian.junit</groupId>
+				<artifactId>arquillian-junit-container</artifactId>
+				<version>${version.arquillian_core}</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- Integration Testing with Arquillian: Drone  -->
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-junit</artifactId>
+				<version>${version.arquillian_drone}</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- Integration Testing with Arquillian: Graphene Webdriver -->
+			<dependency>
 				<groupId>org.jboss.arquillian.graphene</groupId>
 				<artifactId>graphene-webdriver</artifactId>
 				<version>${version.org.jboss.arquillian.graphene.graphene-webdriver-impl}</version>
@@ -776,17 +576,111 @@
 				<version>${version.org.jboss.arquillian.graphene.graphene-webdriver-impl}</version>
 				<scope>test</scope>
 			</dependency>
+			<!-- Integration Testing with Arquillian: Shrinkwrap -->
 			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${version.junit}</version>
+				<groupId>org.jboss.shrinkwrap</groupId>
+				<artifactId>shrinkwrap-bom</artifactId>
+				<version>${version.shrinkwrap}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+				<artifactId>shrinkwrap-descriptors-bom</artifactId>
+				<version>${version.shrinkwrap_descriptors}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.shrinkwrap.resolver</groupId>
+				<artifactId>shrinkwrap-resolver-bom</artifactId>
+				<version>${version.shrinkwrap_resolvers}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- Integration Testing with Arquillian: Required 3rd party Dependencies -->
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-aether-provider</artifactId>
+				<version>${version.maven}</version>
 				<scope>test</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-model</artifactId>
+				<version>${version.maven}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-model-builder</artifactId>
+				<version>${version.maven}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-repository-metadata</artifactId>
+				<version>${version.maven}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Integration Testing with Arquillian: 3rd Party Dependencies -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcore</artifactId>
+				<version>${version.org.apache.httpcomponents.httpcore}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${version.org.apache.httpcomponents.httpclient}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Testing: other 3rd Party Dependencies  -->
+			<dependency>
+				<groupId>org.reflections</groupId>
+				<artifactId>reflections</artifactId>
+				<version>${version.org.reflections.reflections}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.pcollections</groupId>
+				<artifactId>pcollections</artifactId>
+				<version>${version.org.pcollections.pcollections}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${version.com.google.guava.guava}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.auto</groupId>
+				<artifactId>auto-common</artifactId>
+				<version>${version.com.google.auto.auto-common}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>${version.com.google.code.gson.gson}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Maven Build -->
 			<dependency>
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok</artifactId>
 				<version>${version.org.projectlombok.lombok}</version>
 				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${version.junit}</version>
+				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.maven.skins</groupId>
@@ -795,80 +689,21 @@
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
+				<groupId>com.puppycrawl.tools</groupId>
+				<artifactId>checkstyle</artifactId>
+				<version>${version.com.puppycrawl.tools.checkstyle}</version>
+			</dependency>
+			<dependency>
 				<groupId>com.github.spotbugs</groupId>
 				<artifactId>spotbugs</artifactId>
 				<version>${version.com.github.spotbugs.spotbugs}</version>
 				<scope>provided</scope>
 			</dependency>
-			<dependency>
-    				<groupId>xerces</groupId>
-    				<artifactId>xercesImpl</artifactId>
-    				<version>2.12.0</version>
-			</dependency>
-			<dependency>
-   				 <groupId>xalan</groupId>
-   				 <artifactId>xalan</artifactId>
-   				 <version>2.7.1</version>
-			</dependency>
-			<dependency>
-				<groupId>antlr</groupId>
-				<artifactId>antlr</artifactId>
-				<version>2.7.7.redhat-7</version>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
-		<!-- JSF -->
-		<dependency>
-			<groupId>org.primefaces</groupId>
-			<artifactId>primefaces</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.primefaces.themes</groupId>
-			<artifactId>all-themes</artifactId>
-		</dependency>
-		<!-- Search -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-search-engine</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-search-orm</artifactId>
-		</dependency>
-		<!-- Frontend webjars for HTML, CSS and JS -->
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>bootstrap</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>font-awesome</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>jquery</artifactId>
-		</dependency>
-		<!-- unknown -->
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.owasp.encoder</groupId>
-			<artifactId>encoder</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.owasp.esapi</groupId>
-			<artifactId>esapi</artifactId>
-		</dependency>
-		<!-- provided Jakarta EE APIs -->
-
+		<!-- Jakarta EE 8 API -->
 		<dependency>
 			<groupId>jakarta.platform</groupId>
 			<artifactId>jakarta.jakartaee-api</artifactId>
@@ -879,11 +714,187 @@
 			<artifactId>jakarta.jakartaee-web-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- Logging -->
 		<dependency>
-			<groupId>net.jcip</groupId>
-			<artifactId>jcip-annotations</artifactId>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-bom</artifactId>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-appserver</artifactId>
+		</dependency>
+
+		<!-- Search by JPA -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search-engine</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search-orm</artifactId>
+		</dependency>
+
+		<!-- Apache CXF for API -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-client</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-extension-providers</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- XML Apis -->
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>xalan</groupId>
+			<artifactId>xalan</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>antlr</groupId>
+			<artifactId>antlr</artifactId>
+		</dependency>
+
+		<!-- Common Libs -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.owasp.encoder</groupId>
+			<artifactId>encoder</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.owasp.esapi</groupId>
+			<artifactId>esapi</artifactId>
+		</dependency>
+		<dependency>
+			<!-- TODO: try to remove this -->
+			<groupId>org.eclipse</groupId>
+			<artifactId>yasson</artifactId>
+		</dependency>
+		<dependency>
+			<!-- TODO: try to remove this -->
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.json</artifactId>
+		</dependency>
+
+		<!-- JPA DataSource JDBC Drivers -->
+		<dependency>
+			<!-- todo: move to profile(s) -->
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+		</dependency>
+		<dependency>
+			<!-- todo: move to profile(s) -->
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+
+		<!-- SCM -->
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-scm-plugin</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.scm</groupId>
+			<artifactId>maven-scm-provider-svnexe</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.scm</groupId>
+			<artifactId>maven-scm-provider-svn-commons</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.scm</groupId>
+			<artifactId>maven-scm-provider-gitexe</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.scm</groupId>
+			<artifactId>maven-scm-provider-git-commons</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.scm</groupId>
+			<artifactId>maven-scm-manager-plexus</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.scm</groupId>
+			<artifactId>maven-scm-client</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.scm</groupId>
+			<artifactId>maven-scm-providers-standard</artifactId>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Frontend webjars for HTML, CSS and JS -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>font-awesome</artifactId>
+		</dependency>
+		<!-- PrimeFaces JSF -->
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>all-themes</artifactId>
+		</dependency>
+		<!-- Arquillian Tests: PrimeFaces JSF -->
 		<dependency>
 			<groupId>org.primefaces.extensions</groupId>
 			<artifactId>primefaces-arquillian</artifactId>
@@ -895,9 +906,28 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>net.jcip</groupId>
+			<artifactId>jcip-annotations</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- Arquillian Tests: Graphene Webdriver -->
+		<dependency>
+			<groupId>org.jboss.arquillian.graphene</groupId>
+			<artifactId>graphene-webdriver</artifactId>
+			<type>pom</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.jboss.arquillian.graphene</groupId>
 			<artifactId>graphene-webdriver-impl</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- Maven Build -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -905,27 +935,20 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
+			<groupId>org.apache.maven.skins</groupId>
+			<artifactId>maven-default-skin</artifactId>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.puppycrawl.tools</groupId>
+			<artifactId>checkstyle</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.github.spotbugs</groupId>
 			<artifactId>spotbugs</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-        <groupId>xerces</groupId>
-        <artifactId>xercesImpl</artifactId>
-		</dependency>
-		<dependency>
-       <groupId>xalan</groupId>
-       <artifactId>xalan</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>antlr</groupId>
-			<artifactId>antlr</artifactId>
-		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>
@@ -1213,86 +1236,7 @@
 			</properties>
 			<dependencyManagement>
 				<dependencies>
-					<!-- Integration Testing with Arquillian -->
-					<dependency>
-						<groupId>org.apache.maven</groupId>
-						<artifactId>maven-aether-provider</artifactId>
-						<version>${version.maven}</version>
-						<scope>test</scope>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.maven</groupId>
-						<artifactId>maven-model</artifactId>
-						<version>${version.maven}</version>
-						<scope>test</scope>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.maven</groupId>
-						<artifactId>maven-model-builder</artifactId>
-						<version>${version.maven}</version>
-						<scope>test</scope>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.maven</groupId>
-						<artifactId>maven-repository-metadata</artifactId>
-						<version>${version.maven}</version>
-						<scope>test</scope>
-					</dependency>
-					<dependency>
-						<groupId>org.jboss.arquillian.junit</groupId>
-						<artifactId>arquillian-junit-container</artifactId>
-						<version>${version.arquillian_core}</version>
-						<scope>test</scope>
-					</dependency>
-					<!-- Integration Testing with Arquillian: 3rd Party Dependencies -->
-					<dependency>
-						<groupId>org.jboss.arquillian</groupId>
-						<artifactId>arquillian-junit</artifactId>
-						<version>${version.arquillian_drone}</version>
-						<scope>test</scope>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.httpcomponents</groupId>
-						<artifactId>httpcore</artifactId>
-						<version>${version.org.apache.httpcomponents.httpcore}</version>
-						<scope>test</scope>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.httpcomponents</groupId>
-						<artifactId>httpclient</artifactId>
-						<version>${version.org.apache.httpcomponents.httpclient}</version>
-						<scope>test</scope>
-					</dependency>
-					<!-- other 3rd Party Dependencies for Tests -->
-					<dependency>
-						<groupId>org.reflections</groupId>
-						<artifactId>reflections</artifactId>
-						<version>${version.org.reflections.reflections}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.pcollections</groupId>
-						<artifactId>pcollections</artifactId>
-						<version>${version.org.pcollections.pcollections}</version>
-						<scope>test</scope>
-					</dependency>
-					<dependency>
-						<groupId>com.google.guava</groupId>
-						<artifactId>guava</artifactId>
-						<version>${version.com.google.guava.guava}</version>
-						<scope>test</scope>
-					</dependency>
-					<dependency>
-						<groupId>com.google.auto</groupId>
-						<artifactId>auto-common</artifactId>
-						<version>${version.com.google.auto.auto-common}</version>
-						<scope>test</scope>
-					</dependency>
-					<dependency>
-						<groupId>com.google.code.gson</groupId>
-						<artifactId>gson</artifactId>
-						<version>${version.com.google.code.gson.gson}</version>
-						<scope>test</scope>
-					</dependency>
+
 				</dependencies>
 			</dependencyManagement>
 			<dependencies>
@@ -1412,6 +1356,16 @@
 						<version>${version.jakartaee8.server.openliberty.arquillian}</version>
 						<scope>test</scope>
 					</dependency>
+					<dependency>
+						<groupId>com.dkanejs.maven.plugins</groupId>
+						<artifactId>docker-compose-maven-plugin</artifactId>
+						<version>${version.docker-compose-maven-plugin}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.postgresql</groupId>
+						<artifactId>postgresql</artifactId>
+						<version>${version.postgresql.driver}</version>
+					</dependency>
 				</dependencies>
 			</dependencyManagement>
 			<dependencies>
@@ -1468,39 +1422,13 @@
 					<groupId>org.apache.logging.log4j</groupId>
 					<artifactId>log4j-appserver</artifactId>
 				</dependency>
-				<!-- shrinkwrap -->
-				<!--
-				<dependency>
-					<groupId>org.jboss.shrinkwrap.resolver</groupId>
-					<artifactId>shrinkwrap-resolver-depchain</artifactId>
-					<type>pom</type>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jboss.shrinkwrap.resolver</groupId>
-					<artifactId>shrinkwrap-resolver-api-maven-embedded</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.cxf</groupId>
-					<artifactId>cxf-rt-rs-client</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.cxf</groupId>
-					<artifactId>cxf-rt-rs-extension-providers</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>net.jcip</groupId>
-					<artifactId>jcip-annotations</artifactId>
-					<scope>test</scope>
-				</dependency>
-				-->
 				<dependency>
 					<groupId>com.dkanejs.maven.plugins</groupId>
 					<artifactId>docker-compose-maven-plugin</artifactId>
-					<version>${version.docker-compose-maven-plugin}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.postgresql</groupId>
+					<artifactId>postgresql</artifactId>
 				</dependency>
 			</dependencies>
 			<build>
@@ -2074,6 +2002,11 @@
 						<groupId>org.hibernate</groupId>
 						<artifactId>hibernate-search-orm</artifactId>
 						<version>${version.hibernate-search}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.postgresql</groupId>
+						<artifactId>postgresql</artifactId>
+						<version>${version.postgresql.driver}</version>
 					</dependency>
 				</dependencies>
 			</dependencyManagement>
@@ -2664,6 +2597,7 @@
 		</profile>
 
 		<!-- wildfly-managed-run -->
+		<!-- TODO: research: update Wildfly Runtime from 17.0.1.Final to 18.0.1.Final #21 -->
 		<profile>
 			<id>wf-run</id>
 			<properties>
@@ -4493,7 +4427,7 @@
 								</goals>
 								<configuration>
 									<linksource>true</linksource>
-									<maxmemory>2048m</maxmemory>
+									<maxmemory>1024m</maxmemory>
 									<source>${java.version}</source>
 									<encoding>${project.build.sourceEncoding}</encoding>
 								</configuration>
@@ -4532,7 +4466,7 @@
 						<configuration>
 							<preparationGoals>clean</preparationGoals>
 							<autoVersionSubmodules>true</autoVersionSubmodules>
-							<goals>install</goals>
+							<goals>package</goals>
 						</configuration>
 					</plugin>
 					<plugin>

@@ -29,3 +29,5 @@ log
 /.idea/workspace.xml
 /x.txt
 /x_*.txt
+
+/.m2
