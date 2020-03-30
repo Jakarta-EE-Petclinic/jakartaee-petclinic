@@ -21,3 +21,7 @@
 * https://openliberty.io/blog/2018/06/29/full_java_ee_8_liberty_18002.html
 #### Strategy: Remove Hibernate Search and build another Search Solution for wlp
 
+
+# 30.03.2020
+Fixed #17, Fixed #21, Fixed #25, Fixed #26, Fixed #28, Fixed #29, Fixed #30
+

@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="petclinic" target="13" />
+      <module name="petclinic" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
