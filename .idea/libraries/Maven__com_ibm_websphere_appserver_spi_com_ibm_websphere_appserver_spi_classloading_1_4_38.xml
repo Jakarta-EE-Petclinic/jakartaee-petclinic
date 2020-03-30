@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.ibm.websphere.appserver.spi:com.ibm.websphere.appserver.spi.classloading:1.4.38">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/ibm/websphere/appserver/spi/com.ibm.websphere.appserver.spi.classloading/1.4.38/com.ibm.websphere.appserver.spi.classloading-1.4.38.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/ibm/websphere/appserver/spi/com.ibm.websphere.appserver.spi.classloading/1.4.38/com.ibm.websphere.appserver.spi.classloading-1.4.38-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/ibm/websphere/appserver/spi/com.ibm.websphere.appserver.spi.classloading/1.4.38/com.ibm.websphere.appserver.spi.classloading-1.4.38-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
