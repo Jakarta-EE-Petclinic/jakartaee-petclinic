@@ -4,9 +4,12 @@ MY_COMMAND_WLP_DEV_NODOCKER="./mvnw -P liberty-dev clean install liberty:dev"
 
 MY_COMMAND_WLP_RUN__NO_DOCKER="./mvnw -Pliberty-run clean install liberty:run"
 
+MY_COMMAND_WILDFLY_RUN="./mvnw -Pwildfly-run clean install wildfly:run"
+
+
 MY_COMMAND_WLP_DEV="./mvnw"
 MY_COMMAND_WLP_RUN="./mvnw -Pwlp-run"
-MY_COMMAND_WILDFLY_RUN="./mvnw -Pwf-run"
+
 
 
 
