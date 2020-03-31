@@ -25,3 +25,45 @@
 # 30.03.2020
 Fixed #17, Fixed #21, Fixed #25, Fixed #26, Fixed #28, Fixed #29, Fixed #30
 
+# 21.03.2020
+## [Update PrimeFaces JSF to Version 8.0 #14](https://github.com/Jakarta-EE-Petclinic/jakartaee-petclinic/issues/14)
+### changend dependencies:
+- [ ] PrimeFaces » 8.0            (Mar 05, 2020)
+- [ ] PrimeFaces Extensions - 8.0 (Mar 05, 2020)
+````
+<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
+<dependency>
+    <groupId>org.primefaces</groupId>
+    <artifactId>primefaces</artifactId>
+    <version>8.0</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.primefaces.extensions/primefaces-extensions -->
+<dependency>
+    <groupId>org.primefaces.extensions</groupId>
+    <artifactId>primefaces-extensions</artifactId>
+    <version>8.0</version>
+</dependency>
+````
+### new  dependencies:
+
+- [ ] PrimeFaces Extensions Master POM » 8.0
+- [ ] PrimeFaces Extensions Resources CKEditor » 8.0
+````
+<!-- https://mvnrepository.com/artifact/org.primefaces.extensions/master-pom -->
+<dependency>
+    <groupId>org.primefaces.extensions</groupId>
+    <artifactId>master-pom</artifactId>
+    <version>8.0</version>
+    <type>pom</type>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.primefaces.extensions/resources-ckeditor -->
+<dependency>
+    <groupId>org.primefaces.extensions</groupId>
+    <artifactId>resources-ckeditor</artifactId>
+    <version>8.0</version>
+    <scope>runtime</scope>
+</dependency>
+````
+
+
+
