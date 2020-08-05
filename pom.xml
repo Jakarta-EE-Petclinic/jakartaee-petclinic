@@ -87,9 +87,10 @@
 		<version.hibernate-search>5.10.5.Final</version.hibernate-search>
 		<!-- JSF -->
 		<version.org.primefaces.primefaces>8.0</version.org.primefaces.primefaces>
-		<version.org.primefaces.primefaces.extensions>8.0</version.org.primefaces.primefaces.extensions>
-		<version.org.primefaces.themes.all-themes>1.0.10</version.org.primefaces.themes.all-themes>
+		<version.org.primefaces.primefaces.extensions>8.0.4</version.org.primefaces.primefaces.extensions>
+		<version.primefaces-selenium>8.0.2</version.primefaces-selenium>
 		<version.org.primefaces.extensions.primefaces-arquillian>7.0.0</version.org.primefaces.extensions.primefaces-arquillian>
+		<version.primefaces-selenium>8.0.2</version.primefaces-selenium>
 		<version.org.omnifaces.arquillian-primefaces>0.3</version.org.omnifaces.arquillian-primefaces>
 		<!-- JSF Third Party -->
 		<commons-collections.version>4.4</commons-collections.version>
@@ -534,7 +535,30 @@
 				<version>${version.org.primefaces.primefaces.extensions}</version>
 				<scope>runtime</scope>
 			</dependency>
-
+			<dependency>
+				<groupId>org.primefaces.extensions</groupId>
+				<artifactId>primefaces-extensions</artifactId>
+				<version>${version.org.primefaces.primefaces.extensions}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.primefaces.extensions</groupId>
+				<artifactId>primefaces-selenium</artifactId>
+				<version>${version.primefaces-selenium}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.primefaces.extensions</groupId>
+				<artifactId>primefaces-selenium-core</artifactId>
+				<version>${version.primefaces-selenium}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.primefaces.extensions</groupId>
+				<artifactId>primefaces-selenium-components</artifactId>
+				<version>${version.primefaces-selenium}</version>
+				<scope>test</scope>
+			</dependency>
 			<!-- PrimeFaces JSF Extension: Commons  -->
 			<dependency>
 				<groupId>org.apache.commons</groupId>
@@ -628,14 +652,6 @@
 				<groupId>org.apache.poi</groupId>
 				<artifactId>poi-ooxml</artifactId>
 				<version>${poi.version}</version>
-			</dependency>
-
-			<!-- PrimeFaces JSF: Themes -->
-			<dependency>
-				<!-- TODO: Update to PrimeFaces 8.0 -->
-				<groupId>org.primefaces.themes</groupId>
-				<artifactId>all-themes</artifactId>
-				<version>${version.org.primefaces.themes.all-themes}</version>
 			</dependency>
 			<!-- PrimeFaces JSF: Integration Testing with Arquillian -->
 			<dependency>
@@ -1032,8 +1048,18 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.primefaces.themes</groupId>
-			<artifactId>all-themes</artifactId>
+			<groupId>org.primefaces.extensions</groupId>
+			<artifactId>primefaces-extensions</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.extensions</groupId>
+			<artifactId>primefaces-selenium-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.extensions</groupId>
+			<artifactId>primefaces-selenium-components</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<!-- PrimeFaces JSF Extension: Commons-->
 		<dependency>
@@ -1328,6 +1354,11 @@
 					<artifactId>jaxb2-maven-plugin</artifactId>
 					<version>${version.jaxb2-maven-plugin}</version>
 				</plugin>
+				<plugin>
+						<groupId>org.primefaces.extensions</groupId>
+						<artifactId>resources-optimizer-maven-plugin</artifactId>
+						<version>2.3.4</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
@@ -1378,6 +1409,10 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.primefaces.extensions</groupId>
+				<artifactId>resources-optimizer-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
