@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: xalan:serializer:2.7.1.jbossorg-4">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/xalan/serializer/2.7.1.jbossorg-4/serializer-2.7.1.jbossorg-4.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/xalan/serializer/2.7.1.jbossorg-4/serializer-2.7.1.jbossorg-4-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/xalan/serializer/2.7.1.jbossorg-4/serializer-2.7.1.jbossorg-4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
