@@ -42,7 +42,7 @@
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<!-- general -->
-		<version.log4j>2.12.1</version.log4j>
+		<version.log4j>2.13.3</version.log4j>
 		<version.com.google.guava.guava>27.0.1-jre</version.com.google.guava.guava>
 		<version.com.google.auto.auto-common>0.10</version.com.google.auto.auto-common>
 		<version.com.google.code.gson.gson>2.8.6</version.com.google.code.gson.gson>
