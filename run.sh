@@ -40,13 +40,13 @@ function runAllProfiles(){
 }
 
 function firstSetup() {
-    ./mvnw -Pliberty-dev dpendency:purge-local-repository clean install -DskipTests=true
-    ./mvnw -Pliberty-run dpendency:purge-local-repository clean install -DskipTests=true
-    ./mvnw -Pwildfly-run dpendency:purge-local-repository clean install -DskipTests=true
+    ./mvnw -Pliberty-dev dependency:purge-local-repository clean install -DskipTests=true
+    ./mvnw -Pliberty-run dependency:purge-local-repository clean install -DskipTests=true
+    ./mvnw -Pwildfly-run dependency:purge-local-repository clean install -DskipTests=true
 
-    ./mvnw -Pliberty-dev dpendency:purge-local-repository clean install site -DskipTests=true
-    ./mvnw -Pliberty-run dpendency:purge-local-repository clean install site -DskipTests=true
-    ./mvnw -Pwildfly-run dpendency:purge-local-repository clean install site -DskipTests=true
+    ./mvnw -Pliberty-dev dependency:purge-local-repository clean install site -DskipTests=true
+    ./mvnw -Pliberty-run dependency:purge-local-repository clean install site -DskipTests=true
+    ./mvnw -Pwildfly-run dependency:purge-local-repository clean install site -DskipTests=true
 }
 
 function main() {
