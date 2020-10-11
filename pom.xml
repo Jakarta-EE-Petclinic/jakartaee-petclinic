@@ -1931,7 +1931,7 @@
 									<overWriteReleases>true</overWriteReleases>
 									<overWriteSnapshots>true</overWriteSnapshots>
 									<outputFile>${project.build.outputDirectory}/classes/</outputFile>
-									<excludeTypes>pom,maven-plugin</excludeTypes>
+									<excludeTypes>pom,maven-plugin,esa</excludeTypes>
 									<excludeGroupIds>antlr,org.beanshell,org.apache.maven.plugins,org.apache.maven.scm,org.jruby</excludeGroupIds>
 									<excludeArtifactIds>weld-probe-core,antlr,bsh,velocity-tools,liquibase-core,jruby-complete</excludeArtifactIds>
 								</configuration>
@@ -1950,7 +1950,7 @@
 									<overWriteReleases>true</overWriteReleases>
 									<overWriteSnapshots>true</overWriteSnapshots>
 									<outputFile>${project.build.outputDirectory}/classes/</outputFile>
-									<excludeTypes>pom,maven-plugin</excludeTypes>
+									<excludeTypes>pom,maven-plugin,esa</excludeTypes>
 									<excludeGroupIds>antlr,org.beanshell,org.apache.maven.plugins,org.apache.maven.scm,org.jruby</excludeGroupIds>
 									<excludeArtifactIds>weld-probe-core,antlr,bsh,velocity-tools,liquibase-core,jruby-complete,cdi-api</excludeArtifactIds>
 								</configuration>
@@ -1976,10 +1976,11 @@
 									<outputFile>${project.build.outputDirectory}/classpath.txt</outputFile>
 									<failOnWarning>false</failOnWarning>
 									<ignoreNonCompile>true</ignoreNonCompile>
-									<excludeTypes>pom</excludeTypes>
+									<excludeTypes>pom,maven-plugin,esa</excludeTypes>
 									<excludeGroupIds>org.webjars,antlr,org.beanshell,org.apache.maven.plugins,org.apache.maven.scm,org.jruby</excludeGroupIds>
 									<excludeArtifactIds>weld-probe-core,antlr,bsh,velocity-tools,liquibase-core,jruby-complete,cdi-api</excludeArtifactIds>
 									<ignoredDependencies>
+										<ignoredDependency>org.beanshell.bsh:bsh</ignoredDependency>
 										<ignoredDependency>org.apache.maven.plugins:maven-surefire-plugin</ignoredDependency>
 									</ignoredDependencies>
 									<ignoredUsedUndeclaredDependencies>
@@ -2046,7 +2047,7 @@
 								</goals>
 								<configuration>
 									<classifier>sources</classifier>
-									<excludeTypes>pom,maven-plugin</excludeTypes>
+									<excludeTypes>pom,maven-plugin,esa</excludeTypes>
 									<excludeGroupIds>org.webjars,antlr,org.beanshell,org.apache.maven.plugins,org.apache.maven.scm,org.jruby</excludeGroupIds>
 									<excludeArtifactIds>weld-probe-core,antlr,bsh,velocity-tools,liquibase-core,jruby-complete,cdi-api</excludeArtifactIds>
 									<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
