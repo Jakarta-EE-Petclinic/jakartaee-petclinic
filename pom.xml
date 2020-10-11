@@ -1752,7 +1752,7 @@
 			</dependencies>
 			<build>
 				<finalName>${project.artifactId}</finalName>
-				<defaultGoal>clean install docker-compose:up liberty:dev docker-compose:down</defaultGoal>
+				<defaultGoal>dependency:purge-local-repository clean install docker-compose:up liberty:dev docker-compose:down</defaultGoal>
 				<resources>
 					<resource>
 						<directory>src/main/resources</directory>

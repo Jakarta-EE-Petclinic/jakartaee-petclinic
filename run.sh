@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-MY_COMMAND_NO_DOCKER__WLP_DEV="./mvnw -P liberty-dev clean install liberty:dev"
-MY_COMMAND_NO_DOCKER__WLP_RUN="./mvnw -Pliberty-run clean install liberty:run"
-MY_COMMAND_NO_DOCKER__WILDFLY_RUN="./mvnw -Pwildfly-run clean install wildfly:run"
+MY_COMMAND_NO_DOCKER__WLP_DEV="./mvnw -P liberty-dev dependency:purge-local-repository clean install liberty:dev"
+MY_COMMAND_NO_DOCKER__WLP_RUN="./mvnw -Pliberty-run dependency:purge-local-repository clean install liberty:run"
+MY_COMMAND_NO_DOCKER__WILDFLY_RUN="./mvnw -Pwildfly-run dependency:purge-local-repository clean install wildfly:run"
 
 
 MY_COMMAND__WLP_DEV="./mvnw"
 MY_COMMAND__WLP_RUN="./mvnw -Pwlp-run"
-MY_COMMAND__WILDFLY_RUN="./mvnw -Pwildfly-run clean install wildfly:run"
+MY_COMMAND__WILDFLY_RUN="./mvnw -Pwildfly-run dependency:purge-local-repository clean install wildfly:run"
 
 
 function dockerUp() {
