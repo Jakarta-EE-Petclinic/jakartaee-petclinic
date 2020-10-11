@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-
-# huhu
-
 function smokeTestProfiles() {
 	echo "smokeTestProfiles"
 	TEST_CATEGORY=$1
