@@ -17,9 +17,9 @@
 	<inceptionYear>2019</inceptionYear>
 
 	<scm>
-		<url>https://github.com/Jakarta-EE-Petclinic/jakartaee-petclinic.git</url>
 		<connection>scm:git:git@github.com:Jakarta-EE-Petclinic/jakartaee-petclinic.git</connection>
 		<developerConnection>scm:git:git@github.com:Jakarta-EE-Petclinic/jakartaee-petclinic.git</developerConnection>
+		<url>https://github.com/Jakarta-EE-Petclinic/jakartaee-petclinic/tree/${project.scm.tag}</url>
 		<tag>HEAD</tag>
 	</scm>
 
