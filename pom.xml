@@ -1947,7 +1947,7 @@
 								<id>report</id>
 								<phase>site</phase>
 								<configuration>
-									<excludeGroupIds>org.webjars,org.jclouds,org.jboss.as,xml-resolver,commons-configuration,org.codehaus.plexus,commons-digester,junit,log4j,io.openliberty.features</excludeGroupIds>
+									<excludeGroupIds>org.beanshell,antlr,org.webjars,org.jclouds,org.jboss.as,xml-resolver,commons-configuration,org.codehaus.plexus,commons-digester,junit,log4j,io.openliberty.features</excludeGroupIds>
 									<excludeArtifactIds>weld-probe-core,commons-configuration,jdk.tools,maven-antrun-plugin</excludeArtifactIds>
 									<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
 									<reportSets>
@@ -1971,7 +1971,7 @@
 									<goal>unpack-dependencies</goal>
 								</goals>
 								<configuration>
-									<excludeGroupIds>org.webjars</excludeGroupIds>
+									<excludeGroupIds>org.webjars,antlr,org.beanshell</excludeGroupIds>
 									<excludeArtifactIds>weld-probe-core</excludeArtifactIds>
 									<classifier>sources</classifier>
 									<failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
