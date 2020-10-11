@@ -13,7 +13,7 @@ function smokeTestProfiles() {
 		echo $i
 		echo "------------------------------------"
 		echo $LOGFILE
-		./mvnw -P$i clean install > $LOGFILE
+		./mvnw -P$i dependency:purge-local-repository clean install > $LOGFILE
 		echo "------------------------------------"
 		cat $LOGFILE | grep -v "INFO"
 		echo "------------------------------------"

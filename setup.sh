@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-MY_COMMAND_1="./mvnw clean install site site:deploy"
-MY_COMMAND_2="./mvnw -Psetup"
+export MY_COMMAND_1="./mvnw clean install site site:deploy"
+export MY_COMMAND_2="./mvnw -Psetup"
 
-MY_COMMAND=MY_COMMAND_2
+export MY_COMMAND=$MY_COMMAND_2
 
 echo "$MY_COMMAND"
 $MY_COMMAND > x.txt
