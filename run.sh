@@ -39,9 +39,20 @@ function runAllProfiles(){
 	#dockerDown
 }
 
+function firstSetup() {
+    ./mvnw -Pliberty-dev clean install -DskipTests=true
+    ./mvnw -Pliberty-run clean install -DskipTests=true
+    ./mvnw -Pwildfly-run clean install -DskipTests=true
+
+    ./mvnw -Pliberty-dev clean install site -DskipTests=true
+    ./mvnw -Pliberty-run clean install site -DskipTests=true
+    ./mvnw -Pwildfly-run clean install site -DskipTests=true
+}
+
 function main() {
 	#runCommand
-	runAllProfiles
+	#runAllProfiles
+	firstSetup
 }
 
 main
