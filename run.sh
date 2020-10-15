@@ -46,7 +46,8 @@ function secondSetup() {
 }
 
 function firstSetup() {
-    ./mvnw -Pliberty-dev dependency:purge-local-repository clean liberty:dev -DskipTests=true
+		./mvnw
+    #./mvnw -Pliberty-dev dependency:purge-local-repository clean liberty:dev -DskipTests=true
     #./mvnw -Pliberty-run dependency:purge-local-repository clean install -DskipTests=true
     #./mvnw -Pwildfly-run dependency:purge-local-repository clean install -DskipTests=true
 }

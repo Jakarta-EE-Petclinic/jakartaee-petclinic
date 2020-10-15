@@ -43,8 +43,8 @@
 		<properties serverName="localhost"
 		            portNumber="5432"
 		            databaseName="jakartaee_petclinic"
-		            user="postgres"
-		            password="postgrespwd"/>
+		            user="jakartaee_petclinic"
+		            password="jakartaee_petclinicpwd"/>
 	</dataSource>
 
 	<jdbcDriver id="postgresqlDriver"
