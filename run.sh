@@ -40,9 +40,10 @@ function runAllProfiles(){
 }
 
 function secondSetup() {
-    ./mvnw -Pliberty-dev dependency:purge-local-repository clean install site -DskipTests=true
-    ./mvnw -Pliberty-run dependency:purge-local-repository clean install site -DskipTests=true
-    ./mvnw -Pwildfly-run dependency:purge-local-repository clean install site -DskipTests=true
+		./mvnw dependency:purge-local-repository clean install site site:deploy liberty:dev
+    #./mvnw -Pliberty-dev dependency:purge-local-repository clean install site -DskipTests=true
+    #./mvnw -Pliberty-run dependency:purge-local-repository clean install site -DskipTests=true
+    #./mvnw -Pwildfly-run dependency:purge-local-repository clean install site -DskipTests=true
 }
 
 function firstSetup() {
@@ -55,7 +56,9 @@ function firstSetup() {
 function main() {
 	#runCommand
 	#runAllProfiles
-	firstSetup
+
+	#firstSetup
+	secondSetup
 }
 
 main
