@@ -67,7 +67,7 @@
 		<version.jakarta.xml.registry-api>1.0.10</version.jakarta.xml.registry-api>
 		<version.jakarta.xml.rpc-api>1.1.4</version.jakarta.xml.rpc-api>
 		<!-- Testing -->
-		<version.junit>4.12</version.junit>
+		<version.junit>4.13.1</version.junit>
 		<version.dbunit>2.5.3</version.dbunit>
 		<version.selenium>3.7.1</version.selenium>
 		<version.arquillian_core>1.6.0.Final</version.arquillian_core>
