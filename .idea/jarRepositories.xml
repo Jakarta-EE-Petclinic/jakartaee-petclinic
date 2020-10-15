@@ -12,6 +12,11 @@
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="libs-release" />
+      <option name="url" value="http://tw-asus7:8081/artifactory/all" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="snapshots" />
       <option name="name" value="libs-snapshot" />
       <option name="url" value="http://localhost:8081/artifactory/all" />
@@ -130,6 +135,11 @@
       <option name="id" value="jcenter" />
       <option name="name" value="JCenter Repository" />
       <option name="url" value="http://localhost:8081/ui/all" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="snapshots" />
+      <option name="name" value="libs-snapshot" />
+      <option name="url" value="http://tw-asus7:8081/artifactory/all" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="sonatype-releases" />

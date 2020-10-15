@@ -10,14 +10,23 @@
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar" />
         </processorPath>
-        <module name="jakartaee-petclinic" />
         <module name="petclinic" />
+      </profile>
+      <profile name="Annotation profile for jakartaee-petclinic" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar" />
+        </processorPath>
+        <module name="jakartaee-petclinic" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="jakartaee-petclinic" options="-Xlint:all -Xlint:serial" />
+      <module name="jakartaee-petclinic" options="-Xlint:all" />
       <module name="petclinic" options="-Xlint:all -Xlint:serial" />
     </option>
   </component>

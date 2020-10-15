@@ -286,7 +286,6 @@
 
 	<dependencyManagement>
 		<dependencies>
-
 			<!-- Jakarta EE 8 API -->
 			<dependency>
 				<groupId>jakarta.platform</groupId>
@@ -3597,7 +3596,7 @@
 							</execution>
 						<execution>
 							<id>check-dependencies</id>
-							<phase>verify</phase>
+							<phase>pre-site</phase>
 							<goals>
 								<goal>analyze</goal>
 								<goal>analyze-dep-mgt</goal>
@@ -4230,7 +4229,7 @@
 						<executions>
 							<execution>
 								<id>check-dependencies</id>
-								<phase>verify</phase>
+								<phase>pre-site</phase>
 								<goals>
 									<goal>analyze</goal>
 									<goal>analyze-dep-mgt</goal>
@@ -4247,7 +4246,7 @@
 							</execution>
 							<execution>
 								<id>get-dependency-sources</id>
-								<phase>prepare-package</phase>
+								<phase>pre-site</phase>
 								<goals>
 									<goal>sources</goal>
 									<goal>resolve</goal>
@@ -4798,7 +4797,7 @@
 						<executions>
 							<execution>
 								<id>check-dependencies</id>
-								<phase>verify</phase>
+								<phase>pre-site</phase>
 								<goals>
 									<goal>analyze</goal>
 									<goal>analyze-dep-mgt</goal>
@@ -4815,7 +4814,7 @@
 							</execution>
 							<execution>
 								<id>get-dependency-sources</id>
-								<phase>prepare-package</phase>
+								<phase>pre-site</phase>
 								<goals>
 									<goal>sources</goal>
 									<goal>resolve</goal>
