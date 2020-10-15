@@ -1,4 +1,5 @@
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -1543,7 +1544,7 @@
 
 		<!-- openliberty-dev-run -->
 		<profile>
-			<id>liberty-dev</id>
+			<id>openliberty</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
@@ -1738,7 +1739,6 @@
 					<artifactId>log4j-appserver</artifactId>
 					<version>${version.log4j}</version>
 				</dependency>
-
 				<!-- Docker for PostgreSQL Database -->
 				<dependency>
 					<groupId>com.dkanejs.maven.plugins</groupId>
@@ -1751,7 +1751,7 @@
 			</dependencies>
 			<build>
 				<finalName>${project.artifactId}</finalName>
-				<defaultGoal>dependency:purge-local-repository clean install docker-compose:up liberty:dev docker-compose:down</defaultGoal>
+				<defaultGoal>dependency:purge-local-repository clean liberty:dev</defaultGoal>
 				<resources>
 					<resource>
 						<directory>src/main/resources</directory>
@@ -3192,8 +3192,6 @@
 						<artifactId>log4j-appserver</artifactId>
 						<version>${version.log4j}</version>
 					</dependency>
-
-
 					<dependency>
 						<groupId>org.reflections</groupId>
 						<artifactId>reflections</artifactId>
