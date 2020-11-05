@@ -157,12 +157,12 @@
 		<version.jakartaee8.server.wildfly.arquillian>2.2.0.Final</version.jakartaee8.server.wildfly.arquillian>
 		<version.jakartaee8.server.openliberty.arquillian>1.0.6</version.jakartaee8.server.openliberty.arquillian>
 		<!-- OpenLiberty -->
-		<version.jakartaee8.server.openliberty>20.0.0.10</version.jakartaee8.server.openliberty>
+		<version.jakartaee8.server.openliberty>20.0.0.11</version.jakartaee8.server.openliberty>
 		<runtime.jakartaee8.server.openliberty.remote>${user.home}/j/srv/openliberty-${version.jakartaee8.server.openliberty}/wlp</runtime.jakartaee8.server.openliberty.remote>
 		<runtime.jakartaee8.server.openliberty.ServerName>petclinicServer</runtime.jakartaee8.server.openliberty.ServerName>
-		<version.liberty-maven-plugin>3.2.2</version.liberty-maven-plugin>
+		<version.liberty-maven-plugin>3.2.4</version.liberty-maven-plugin>
 		<!-- Wildfly -->
-		<version.jakartaee8.server.wildfly>20.0.1.Final</version.jakartaee8.server.wildfly>
+		<version.jakartaee8.server.wildfly>13.0.1.Final</version.jakartaee8.server.wildfly>
 		<runtime.jakartaee8.server.wildfly.remote>${user.home}/j/srv/wildfly-${version.jakartaee8.server.wildfly}</runtime.jakartaee8.server.wildfly.remote>
 		<version.wildfly-maven-plugin>2.0.2.Final</version.wildfly-maven-plugin>
 		<!-- Glassfish: TODO -->

@@ -25,7 +25,7 @@ function siteAll() {
 }
 
 function runCommand(){
-	MY_COMMAND=$MY_COMMAND_WILDFLY_RUN
+	MY_COMMAND=$MY_COMMAND__WLP_DEV
 	echo "$MY_COMMAND"
 	$MY_COMMAND
 }
@@ -57,8 +57,8 @@ function main() {
 	#runCommand
 	#runAllProfiles
 
-	#firstSetup
-	secondSetup
+	firstSetup
+	#secondSetup
 }
 
 main
